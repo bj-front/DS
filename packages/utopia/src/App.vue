@@ -1,24 +1,68 @@
 <script setup lang="ts">
-// Clean Vue 3 app for Utopia Design System
+import { ref } from 'vue'
+import { ThemeProvider, clubEmployesLight, clubEmployesDark, gifteoLight, gifteoDark } from './index'
+import TokensDemo from './components/demo/TokensDemo.vue'
+import BrandSwitcher from './components/demo/BrandSwitcher.vue'
+import type { ThemeConfig } from './theme-provider'
+
+const currentTheme = ref<ThemeConfig>(clubEmployesLight)
+
+const handleThemeChange = (newTheme: ThemeConfig) => {
+  currentTheme.value = newTheme
+}
 </script>
 
 <template>
-  <div>
-    <h1>Utopia Design System</h1>
-    <p>Your component library is ready for development</p>
-  </div>
+  <ThemeProvider :theme="currentTheme">
+    <div class="app">
+      <header class="app-header">
+        <h1>🎨 Design System Utopia</h1>
+        <p>Système de tokens multi-marques - Club Employés & Gifteo</p>
+      </header>
+      
+      <main class="app-main">
+        <BrandSwitcher 
+          :clubEmployesLight="clubEmployesLight"
+          :clubEmployesDark="clubEmployesDark"
+          :gifteoLight="gifteoLight"
+          :gifteoDark="gifteoDark"
+          :currentTheme="currentTheme"
+          @themeChange="handleThemeChange"
+        />
+        
+        <TokensDemo />
+      </main>
+    </div>
+  </ThemeProvider>
 </template>
 
 <style scoped>
-h1 {
-  color: #42b883;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 2rem 0;
+.app {
+  min-height: 100vh;
+  background-color: var(--theme-colors-surface-background);
+  color: var(--theme-colors-text-primary);
 }
 
-p {
+.app-header {
+  background: linear-gradient(135deg, var(--theme-colors-primary-600), var(--theme-colors-primary-800));
+  color: var(--theme-colors-text-inverse);
+  padding: var(--spacing-8);
   text-align: center;
-  color: #666;
+}
+
+.app-header h1 {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-2);
+}
+
+.app-header p {
+  font-size: var(--font-size-lg);
+  opacity: 0.9;
+}
+
+.app-main {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 </style>

@@ -1,0 +1,206 @@
+{
+  "color": {
+    "blue": {
+      "25": {
+        "value": "#0c1426",
+        "type": "color"
+      },
+      "50": {
+        "value": "#172554",
+        "type": "color"
+      },
+      "100": {
+        "value": "#1e3a8a",
+        "type": "color"
+      },
+      "200": {
+        "value": "#1e40af",
+        "type": "color"
+      },
+      "300": {
+        "value": "#1d4ed8",
+        "type": "color"
+      },
+      "400": {
+        "value": "#2563eb",
+        "type": "color"
+      },
+      "500": {
+        "value": "#3b82f6",
+        "type": "color"
+      },
+      "600": {
+        "value": "#60a5fa",
+        "type": "color"
+      },
+      "700": {
+        "value": "#93c5fd",
+        "type": "color"
+      },
+      "800": {
+        "value": "#bfdbfe",
+        "type": "color"
+      },
+      "900": {
+        "value": "#dbeafe",
+        "type": "color"
+      },
+      "950": {
+        "value": "#eff6ff",
+        "type": "color"
+      }
+    },
+    "product": {
+      "exclusive-sale": {
+        "primary": {
+          "value": "#ff8a65",
+          "type": "color"
+        },
+        "light": {
+          "value": "rgba(255, 107, 53, 0.1)",
+          "type": "color"
+        }
+      },
+      "promo-code": {
+        "primary": {
+          "value": "#f06292",
+          "type": "color"
+        },
+        "light": {
+          "value": "rgba(233, 30, 99, 0.1)",
+          "type": "color"
+        }
+      },
+      "physical-product": {
+        "primary": {
+          "value": "#60a5fa",
+          "type": "color"
+        },
+        "light": {
+          "value": "rgba(59, 130, 246, 0.1)",
+          "type": "color"
+        }
+      },
+      "e-ticket": {
+        "primary": {
+          "value": "#fbbf24",
+          "type": "color"
+        },
+        "light": {
+          "value": "rgba(245, 158, 11, 0.1)",
+          "type": "color"
+        }
+      },
+      "member-card": {
+        "primary": {
+          "value": "#a78bfa",
+          "type": "color"
+        },
+        "light": {
+          "value": "rgba(139, 92, 246, 0.1)",
+          "type": "color"
+        }
+      },
+      "gift-card": {
+        "primary": {
+          "value": "#22d3ee",
+          "type": "color"
+        },
+        "light": {
+          "value": "rgba(6, 182, 212, 0.1)",
+          "type": "color"
+        }
+      },
+      "e-check": {
+        "primary": {
+          "value": "#a855f7",
+          "type": "color"
+        },
+        "light": {
+          "value": "rgba(124, 58, 237, 0.1)",
+          "type": "color"
+        }
+      }
+    },
+    "semantic": {
+      "attention": {
+        "primary": {
+          "value": "#f87171",
+          "type": "color"
+        },
+        "secondary": {
+          "value": "#ff69b4",
+          "type": "color"
+        },
+        "background": {
+          "value": "rgba(207, 42, 42, 0.1)",
+          "type": "color"
+        }
+      },
+      "success": {
+        "primary": {
+          "value": "#34d399",
+          "type": "color"
+        },
+        "secondary": {
+          "value": "#10b981",
+          "type": "color"
+        },
+        "background": {
+          "value": "rgba(10, 156, 86, 0.1)",
+          "type": "color"
+        }
+      }
+    },
+    "neutral": {
+      "white": {
+        "value": "#111827",
+        "type": "color"
+      },
+      "black": {
+        "value": "#f9fafb",
+        "type": "color"
+      },
+      "50": {
+        "value": "#111827",
+        "type": "color"
+      },
+      "100": {
+        "value": "#1f2937",
+        "type": "color"
+      },
+      "200": {
+        "value": "#374151",
+        "type": "color"
+      },
+      "300": {
+        "value": "#4b5563",
+        "type": "color"
+      },
+      "400": {
+        "value": "#6b7280",
+        "type": "color"
+      },
+      "500": {
+        "value": "#9ca3af",
+        "type": "color"
+      },
+      "600": {
+        "value": "#d1d5db",
+        "type": "color"
+      },
+      "700": {
+        "value": "#e5e7eb",
+        "type": "color"
+      },
+      "800": {
+        "value": "#f3f4f6",
+        "type": "color"
+      },
+      "900": {
+        "value": "#f9fafb",
+        "type": "color"
+      }
+    }
+  }
+} 

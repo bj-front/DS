@@ -1,0 +1,248 @@
+{
+  "color": {
+    "red": {
+      "50": {
+        "value": "#7f1d1d",
+        "type": "color"
+      },
+      "100": {
+        "value": "#991b1b",
+        "type": "color"
+      },
+      "200": {
+        "value": "#b91c1c",
+        "type": "color"
+      },
+      "300": {
+        "value": "#dc2626",
+        "type": "color"
+      },
+      "400": {
+        "value": "#ef4444",
+        "type": "color"
+      },
+      "500": {
+        "value": "#f87171",
+        "type": "color"
+      },
+      "600": {
+        "value": "#fca5a5",
+        "type": "color"
+      },
+      "700": {
+        "value": "#fecaca",
+        "type": "color"
+      },
+      "800": {
+        "value": "#fee2e2",
+        "type": "color"
+      },
+      "900": {
+        "value": "#fef2f2",
+        "type": "color"
+      }
+    },
+    "orange": {
+      "50": {
+        "value": "#431407",
+        "type": "color"
+      },
+      "100": {
+        "value": "#7c2d12",
+        "type": "color"
+      },
+      "200": {
+        "value": "#9a3412",
+        "type": "color"
+      },
+      "300": {
+        "value": "#c2410c",
+        "type": "color"
+      },
+      "400": {
+        "value": "#ea580c",
+        "type": "color"
+      },
+      "500": {
+        "value": "#f97316",
+        "type": "color"
+      },
+      "600": {
+        "value": "#fb923c",
+        "type": "color"
+      },
+      "605": {
+        "value": "#fdba74",
+        "type": "color"
+      },
+      "700": {
+        "value": "#fed7aa",
+        "type": "color"
+      },
+      "800": {
+        "value": "#ffedd5",
+        "type": "color"
+      },
+      "900": {
+        "value": "#fff7ed",
+        "type": "color"
+      },
+      "950": {
+        "value": "#fffbf7",
+        "type": "color"
+      }
+    },
+    "secondary": {
+      "primary": {
+        "value": "#fb923c",
+        "type": "color"
+      },
+      "light": {
+        "value": "rgba(249, 115, 22, 0.1)",
+        "type": "color"
+      }
+    },
+    "neutral": {
+      "white": {
+        "value": "#1c1917",
+        "type": "color"
+      },
+      "black": {
+        "value": "#fafaf9",
+        "type": "color"
+      },
+      "50": {
+        "value": "#1c1917",
+        "type": "color"
+      },
+      "100": {
+        "value": "#292524",
+        "type": "color"
+      },
+      "200": {
+        "value": "#44403c",
+        "type": "color"
+      },
+      "300": {
+        "value": "#57534e",
+        "type": "color"
+      },
+      "400": {
+        "value": "#78716c",
+        "type": "color"
+      },
+      "500": {
+        "value": "#a8a29e",
+        "type": "color"
+      },
+      "600": {
+        "value": "#d6d3d1",
+        "type": "color"
+      },
+      "700": {
+        "value": "#e7e5e4",
+        "type": "color"
+      },
+      "800": {
+        "value": "#f5f5f4",
+        "type": "color"
+      },
+      "900": {
+        "value": "#fafaf9",
+        "type": "color"
+      }
+    },
+    "product": {
+      "gift": {
+        "primary": {
+          "value": "#f87171",
+          "type": "color"
+        },
+        "light": {
+          "value": "rgba(220, 38, 38, 0.1)",
+          "type": "color"
+        }
+      },
+      "experience": {
+        "primary": {
+          "value": "#fb923c",
+          "type": "color"
+        },
+        "light": {
+          "value": "rgba(249, 115, 22, 0.1)",
+          "type": "color"
+        }
+      },
+      "voucher": {
+        "primary": {
+          "value": "#fdba74",
+          "type": "color"
+        },
+        "light": {
+          "value": "rgba(234, 88, 12, 0.1)",
+          "type": "color"
+        }
+      },
+      "exclusive-sale": {
+        "primary": {
+          "value": "#f87171",
+          "type": "color"
+        },
+        "light": {
+          "value": "rgba(220, 38, 38, 0.1)",
+          "type": "color"
+        }
+      },
+      "promo-code": {
+        "primary": {
+          "value": "#fb923c",
+          "type": "color"
+        },
+        "light": {
+          "value": "rgba(249, 115, 22, 0.1)",
+          "type": "color"
+        }
+      },
+      "e-ticket": {
+        "primary": {
+          "value": "#fdba74",
+          "type": "color"
+        },
+        "light": {
+          "value": "rgba(234, 88, 12, 0.1)",
+          "type": "color"
+        }
+      }
+    },
+    "semantic": {
+      "attention": {
+        "primary": {
+          "value": "#f87171",
+          "type": "color"
+        },
+        "secondary": {
+          "value": "#fca5a5",
+          "type": "color"
+        },
+        "background": {
+          "value": "rgba(220, 38, 38, 0.1)",
+          "type": "color"
+        }
+      },
+      "success": {
+        "primary": {
+          "value": "#4ade80",
+          "type": "color"
+        },
+        "secondary": {
+          "value": "#22c55e",
+          "type": "color"
+        },
+        "background": {
+          "value": "rgba(22, 163, 74, 0.1)",
+          "type": "color"
+        }
+      }
+    }
+  }
+} 

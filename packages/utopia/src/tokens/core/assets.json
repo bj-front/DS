@@ -1,0 +1,14 @@
+{
+  "assets": {
+    "logos": {
+      "club-employes": {
+        "value": "/src/assets/logos/c-e.png",
+        "type": "asset"
+      },
+      "gifteo": {
+        "value": "/src/assets/logos/gifteo.png", 
+        "type": "asset"
+      }
+    }
+  }
+} 
