@@ -201,6 +201,98 @@
         "value": "#111827",
         "type": "color"
       }
+    },
+    "brand": {
+      "primary": {
+        "25": {
+          "value": "#FAFBFE",
+          "type": "color"
+        },
+        "50": {
+          "value": "#F6F8FE",
+          "type": "color"
+        },
+        "100": {
+          "value": "#F2F5FE",
+          "type": "color"
+        },
+        "200": {
+          "value": "#E9EEFE",
+          "type": "color"
+        },
+        "300": {
+          "value": "#C9D6FB",
+          "type": "color"
+        },
+        "400": {
+          "value": "#93AEF8",
+          "type": "color"
+        },
+        "500": {
+          "value": "#275CF1",
+          "type": "color"
+        }
+      },
+      "secondary": {
+        "25": {
+          "value": "#FAFAFЕ",
+          "type": "color"
+        },
+        "50": {
+          "value": "#F5F6F8",
+          "type": "color"
+        },
+        "100": {
+          "value": "#F0F1F4",
+          "type": "color"
+        },
+        "200": {
+          "value": "#E7E8ED",
+          "type": "color"
+        },
+        "300": {
+          "value": "#C2C6D1",
+          "type": "color"
+        },
+        "400": {
+          "value": "#858EA4",
+          "type": "color"
+        },
+        "500": {
+          "value": "#0B1C48",
+          "type": "color"
+        }
+      },
+      "accent": {
+        "25": {
+          "value": "#FFFCFA",
+          "type": "color"
+        },
+        "50": {
+          "value": "#FFF9F6",
+          "type": "color"
+        },
+        "100": {
+          "value": "#FFF6F2",
+          "type": "color"
+        },
+        "200": {
+          "value": "#FEF0E9",
+          "type": "color"
+        },
+        "300": {
+          "value": "#FCD8C8",
+          "type": "color"
+        },
+        "400": {
+          "value": "#F9B191",
+          "type": "color"
+        },
+        "500": {
+          "value": "#F36222",
+          "type": "color"
+        }
+      }
     }
   }
 } 

@@ -8,6 +8,98 @@
       }
     },
     "colors": {
+      "brand": {
+        "primary": {
+          "25": {
+            "value": "{color.brand.primary.25}",
+            "type": "color"
+          },
+          "50": {
+            "value": "{color.brand.primary.50}",
+            "type": "color"
+          },
+          "100": {
+            "value": "{color.brand.primary.100}",
+            "type": "color"
+          },
+          "200": {
+            "value": "{color.brand.primary.200}",
+            "type": "color"
+          },
+          "300": {
+            "value": "{color.brand.primary.300}",
+            "type": "color"
+          },
+          "400": {
+            "value": "{color.brand.primary.400}",
+            "type": "color"
+          },
+          "500": {
+            "value": "{color.brand.primary.500}",
+            "type": "color"
+          }
+        },
+        "secondary": {
+          "25": {
+            "value": "{color.brand.secondary.25}",
+            "type": "color"
+          },
+          "50": {
+            "value": "{color.brand.secondary.50}",
+            "type": "color"
+          },
+          "100": {
+            "value": "{color.brand.secondary.100}",
+            "type": "color"
+          },
+          "200": {
+            "value": "{color.brand.secondary.200}",
+            "type": "color"
+          },
+          "300": {
+            "value": "{color.brand.secondary.300}",
+            "type": "color"
+          },
+          "400": {
+            "value": "{color.brand.secondary.400}",
+            "type": "color"
+          },
+          "500": {
+            "value": "{color.brand.secondary.500}",
+            "type": "color"
+          }
+        },
+        "accent": {
+          "25": {
+            "value": "{color.brand.accent.25}",
+            "type": "color"
+          },
+          "50": {
+            "value": "{color.brand.accent.50}",
+            "type": "color"
+          },
+          "100": {
+            "value": "{color.brand.accent.100}",
+            "type": "color"
+          },
+          "200": {
+            "value": "{color.brand.accent.200}",
+            "type": "color"
+          },
+          "300": {
+            "value": "{color.brand.accent.300}",
+            "type": "color"
+          },
+          "400": {
+            "value": "{color.brand.accent.400}",
+            "type": "color"
+          },
+          "500": {
+            "value": "{color.brand.accent.500}",
+            "type": "color"
+          }
+        }
+      },
       "primary": {
         "50": {
           "value": "{color.blue.900}",
@@ -52,7 +144,7 @@
       },
       "surface": {
         "background": {
-          "value": "{color.neutral.900}",
+          "value": "{color.brand.secondary.25}",
           "type": "color"
         },
         "card": {
@@ -96,29 +188,135 @@
           "type": "color"
         }
       },
+      "common": {
+        "slate": {
+          "50": {
+            "value": "{color.slate-dark.50}",
+            "type": "color"
+          },
+          "200": {
+            "value": "{color.slate-dark.200}",
+            "type": "color"
+          },
+          "400": {
+            "value": "{color.slate-dark.400}",
+            "type": "color"
+          },
+          "600": {
+            "value": "{color.slate-dark.600}",
+            "type": "color"
+          },
+          "800": {
+            "value": "{color.slate-dark.800}",
+            "type": "color"
+          },
+          "950": {
+            "value": "{color.slate-dark.950}",
+            "type": "color"
+          }
+        },
+        "succeed": {
+          "50": {
+            "value": "{color.succeed-dark.50}",
+            "type": "color"
+          },
+          "200": {
+            "value": "{color.succeed-dark.200}",
+            "type": "color"
+          },
+          "400": {
+            "value": "{color.succeed-dark.400}",
+            "type": "color"
+          },
+          "600": {
+            "value": "{color.succeed-dark.600}",
+            "type": "color"
+          },
+          "800": {
+            "value": "{color.succeed-dark.800}",
+            "type": "color"
+          },
+          "950": {
+            "value": "{color.succeed-dark.950}",
+            "type": "color"
+          }
+        },
+        "warning": {
+          "50": {
+            "value": "{color.warning-dark.50}",
+            "type": "color"
+          },
+          "200": {
+            "value": "{color.warning-dark.200}",
+            "type": "color"
+          },
+          "400": {
+            "value": "{color.warning-dark.400}",
+            "type": "color"
+          },
+          "600": {
+            "value": "{color.warning-dark.600}",
+            "type": "color"
+          },
+          "800": {
+            "value": "{color.warning-dark.800}",
+            "type": "color"
+          },
+          "950": {
+            "value": "{color.warning-dark.950}",
+            "type": "color"
+          }
+        },
+        "danger": {
+          "50": {
+            "value": "{color.danger-dark.50}",
+            "type": "color"
+          },
+          "200": {
+            "value": "{color.danger-dark.200}",
+            "type": "color"
+          },
+          "400": {
+            "value": "{color.danger-dark.400}",
+            "type": "color"
+          },
+          "600": {
+            "value": "{color.danger-dark.600}",
+            "type": "color"
+          },
+          "800": {
+            "value": "{color.danger-dark.800}",
+            "type": "color"
+          },
+          "950": {
+            "value": "{color.danger-dark.950}",
+            "type": "color"
+          }
+        }
+      },
       "state": {
         "error": {
-          "value": "{color.semantic.attention.primary}",
+          "value": "{color.danger-dark.400}",
           "type": "color"
         },
         "error-background": {
-          "value": "rgba(207, 42, 42, 0.1)",
+          "value": "{color.danger-dark.50}",
           "type": "color"
         },
         "success": {
-          "value": "{color.semantic.success.primary}",
+          "value": "{color.succeed-dark.400}",
           "type": "color"
         },
         "success-background": {
-          "value": "rgba(10, 156, 86, 0.1)",
+          "value": "{color.succeed-dark.50}",
           "type": "color"
         },
         "warning": {
-          "value": "{color.product.e-ticket.primary}",
+          "value": "{color.warning-dark.400}",
           "type": "color"
         },
         "warning-background": {
-          "value": "rgba(245, 158, 11, 0.1)",
+          "value": "{color.warning-dark.50}",
           "type": "color"
         }
       }

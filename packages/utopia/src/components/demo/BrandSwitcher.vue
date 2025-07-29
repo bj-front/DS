@@ -1,59 +1,32 @@
 <template>
-  <div class="brand-switcher">
-    <h3 class="switcher-title">🎨 Sélecteur de marque et mode</h3>
-    
-    <div class="switcher-controls">
-      <!-- Brand selector -->
-      <div class="control-group">
-        <label class="control-label">Marque :</label>
-        <div class="brand-options">
-          <button 
-            v-for="brand in brands" 
-            :key="brand.key"
-            @click="selectBrand(brand)"
-            class="brand-btn"
-            :class="{ 'active': currentBrand.key === brand.key }"
-          >
-            <div class="brand-logo" v-if="brand.lightTheme.logo">
-              <img :src="brand.lightTheme.logo" :alt="`Logo ${brand.name}`" class="brand-logo-img" />
-            </div>
-            <div class="brand-content">
-              <span class="brand-icon">{{ brand.icon }}</span>
-              <span class="brand-name">{{ brand.name }}</span>
-            </div>
-          </button>
-        </div>
+  <div class="floating-brand-switcher">
+    <div class="widget-content">
+      <!-- Brand buttons -->
+      <div class="brand-buttons">
+        <button 
+          v-for="brand in brands" 
+          :key="brand.key"
+          @click="selectBrand(brand)"
+          class="brand-widget-btn"
+          :class="{ 'active': currentBrand.key === brand.key }"
+          :title="brand.name"
+        >
+          <span class="brand-widget-icon">{{ brand.icon }}</span>
+        </button>
       </div>
-
-      <!-- Mode selector -->
-      <div class="control-group">
-        <label class="control-label">Mode :</label>
-        <div class="mode-options">
-          <button 
-            @click="toggleMode"
-            class="mode-toggle"
-            :class="{ 'dark': isDarkMode }"
-          >
-            <span class="mode-icon">{{ isDarkMode ? '🌙' : '☀️' }}</span>
-            <span class="mode-text">{{ isDarkMode ? 'Dark' : 'Light' }}</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Current theme info -->
-    <div class="current-theme">
-      <div class="theme-preview">
-        <div class="preview-colors">
-          <div class="color-swatch primary" title="Primary 500"></div>
-          <div class="color-swatch secondary" title="Secondary"></div>
-          <div class="color-swatch surface" title="Surface"></div>
-        </div>
-        <div class="theme-details">
-          <span class="theme-name">{{ currentTheme.name }}</span>
-          <span class="theme-mode">{{ currentTheme.mode }}</span>
-        </div>
-      </div>
+      
+      <!-- Separator -->
+      <div class="separator"></div>
+      
+      <!-- Mode toggle -->
+      <button 
+        @click="toggleMode"
+        class="mode-widget-toggle"
+        :class="{ 'dark': isDarkMode }"
+        :title="isDarkMode ? 'Mode Sombre' : 'Mode Clair'"
+      >
+        <span class="mode-widget-icon">{{ isDarkMode ? '🌙' : '☀️' }}</span>
+      </button>
     </div>
   </div>
 </template>
@@ -89,7 +62,7 @@ const brands: Brand[] = [
   {
     key: 'club-employes',
     name: 'Club Employés',
-    icon: '💙',
+    icon: '🏢',
     lightTheme: props.clubEmployesLight,
     darkTheme: props.clubEmployesDark
   },
@@ -102,213 +75,144 @@ const brands: Brand[] = [
   }
 ]
 
-const currentBrand = ref<Brand>(brands[0])
-const isDarkMode = computed(() => props.currentTheme.mode === 'dark')
+const isDarkMode = ref(false)
 
-// Déterminer la marque actuelle basée sur le thème
-const updateCurrentBrand = () => {
-  const brandKey = props.currentTheme.name.includes('gifteo') ? 'gifteo' : 'club-employes'
-  const brand = brands.find(b => b.key === brandKey)
-  if (brand) {
-    currentBrand.value = brand
-  }
-}
+const currentBrand = computed(() => {
+  return brands.find(brand => 
+    brand.lightTheme.name === props.currentTheme.name || 
+    brand.darkTheme.name === props.currentTheme.name
+  ) || brands[0]
+})
 
-// Mettre à jour quand le thème change
-updateCurrentBrand()
+// Initialize dark mode based on current theme
+isDarkMode.value = props.currentTheme.mode === 'dark'
 
 const selectBrand = (brand: Brand) => {
-  currentBrand.value = brand
   const newTheme = isDarkMode.value ? brand.darkTheme : brand.lightTheme
   emit('themeChange', newTheme)
 }
 
 const toggleMode = () => {
+  isDarkMode.value = !isDarkMode.value
   const newTheme = isDarkMode.value 
-    ? currentBrand.value.lightTheme 
-    : currentBrand.value.darkTheme
+    ? currentBrand.value.darkTheme 
+    : currentBrand.value.lightTheme
   emit('themeChange', newTheme)
 }
 </script>
 
 <style scoped>
-.brand-switcher {
-  background-color: var(--theme-colors-surface-card);
-  border: var(--border-width-1) solid var(--theme-colors-border-default);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-6);
-  margin-bottom: var(--spacing-6);
-}
-
-.switcher-title {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  color: var(--theme-colors-text-primary);
-  margin-bottom: var(--spacing-4);
-  text-align: center;
-}
-
-.switcher-controls {
-  display: grid;
-  gap: var(--spacing-4);
-  margin-bottom: var(--spacing-5);
-}
-
-.control-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-2);
-}
-
-.control-label {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--theme-colors-text-secondary);
-}
-
-.brand-options {
-  display: flex;
-  gap: var(--spacing-2);
-}
-
-.brand-btn {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-3);
-  padding: var(--spacing-3) var(--spacing-4);
-  background-color: var(--theme-colors-border-muted);
-  border: var(--border-width-1) solid var(--theme-colors-border-default);
-  border-radius: var(--border-radius-base);
-  cursor: pointer;
+.floating-brand-switcher {
+  position: fixed;
+  top: var(--spacing-6);
+  right: var(--spacing-6);
+  z-index: 1000;
+  background: var(--theme-colors-surface-card);
+  border: 1px solid var(--theme-colors-border-default);
+  border-radius: var(--border-radius-full);
+  padding: var(--spacing-2);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(8px);
   transition: all 0.2s ease;
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-sm);
-  color: var(--theme-colors-text-secondary);
 }
 
-.brand-logo {
-  flex-shrink: 0;
-}
-
-.brand-logo-img {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-}
-
-.brand-content {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-2);
-}
-
-.brand-btn:hover {
-  background-color: var(--theme-colors-border-default);
+.floating-brand-switcher:hover {
+  box-shadow: var(--shadow-xl);
   transform: translateY(-1px);
 }
 
-.brand-btn.active {
-  background-color: var(--theme-colors-primary-500);
-  color: var(--theme-colors-text-inverse);
-  border-color: var(--theme-colors-primary-600);
-}
-
-.brand-btn.active:hover {
-  background-color: var(--theme-colors-primary-600);
-}
-
-.brand-icon {
-  font-size: var(--font-size-base);
-}
-
-.mode-options {
-  display: flex;
-}
-
-.mode-toggle {
+.widget-content {
   display: flex;
   align-items: center;
   gap: var(--spacing-2);
-  padding: var(--spacing-3) var(--spacing-4);
-  background: linear-gradient(135deg, var(--theme-colors-primary-500), var(--theme-colors-primary-600));
-  color: var(--theme-colors-text-inverse);
-  border: none;
-  border-radius: var(--border-radius-base);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
 }
 
-.mode-toggle:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.mode-toggle.dark {
-  background: linear-gradient(135deg, var(--theme-colors-text-secondary), var(--theme-colors-text-primary));
-}
-
-.mode-icon {
-  font-size: var(--font-size-base);
-}
-
-.current-theme {
-  border-top: var(--border-width-1) solid var(--theme-colors-border-default);
-  padding-top: var(--spacing-4);
-}
-
-.theme-preview {
+.brand-buttons {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-4);
-}
-
-.preview-colors {
-  display: flex;
-  gap: var(--spacing-2);
-}
-
-.color-swatch {
-  width: 24px;
-  height: 24px;
-  border-radius: var(--border-radius-sm);
-  border: var(--border-width-1) solid var(--theme-colors-border-strong);
-}
-
-.color-swatch.primary {
-  background-color: var(--theme-colors-primary-500);
-}
-
-.color-swatch.secondary {
-  background-color: var(--theme-colors-primary-400);
-}
-
-.color-swatch.surface {
-  background-color: var(--theme-colors-surface-background);
-}
-
-.theme-details {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
   gap: var(--spacing-1);
 }
 
-.theme-name {
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-xs);
+.brand-widget-btn {
+  width: 36px;
+  height: 36px;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-full);
+  background: transparent;
   color: var(--theme-colors-text-secondary);
-  background-color: var(--theme-colors-border-muted);
-  padding: var(--spacing-1) var(--spacing-2);
-  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
 }
 
-.theme-mode {
-  font-size: var(--font-size-xs);
-  color: var(--theme-colors-text-muted);
-  text-transform: capitalize;
+.brand-widget-btn:hover {
+  background: var(--theme-colors-surface-background);
+  color: var(--theme-colors-text-primary);
+  transform: scale(1.05);
+}
+
+.brand-widget-btn.active {
+  border-color: var(--theme-colors-primary-500);
+  background: var(--theme-colors-primary-500);
+  color: white;
+  box-shadow: 0 0 0 2px var(--theme-colors-primary-200);
+}
+
+.brand-widget-icon {
+  font-size: inherit;
+}
+
+.separator {
+  width: 1px;
+  height: 24px;
+  background: var(--theme-colors-border-default);
+  margin: 0 var(--spacing-1);
+}
+
+.mode-widget-toggle {
+  width: 36px;
+  height: 36px;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-full);
+  background: var(--theme-colors-surface-background);
+  color: var(--theme-colors-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+}
+
+.mode-widget-toggle:hover {
+  color: var(--theme-colors-text-primary);
+  transform: scale(1.05);
+}
+
+.mode-widget-toggle.dark {
+  background: var(--theme-colors-primary-500);
+  border-color: var(--theme-colors-primary-500);
+  color: white;
+  box-shadow: 0 0 0 2px var(--theme-colors-primary-200);
+}
+
+.mode-widget-icon {
+  font-size: inherit;
+}
+
+@media (max-width: 768px) {
+  .floating-brand-switcher {
+    top: var(--spacing-4);
+    right: var(--spacing-4);
+  }
+  
+  .brand-widget-btn,
+  .mode-widget-toggle {
+    width: 32px;
+    height: 32px;
+    font-size: var(--font-size-base);
+  }
 }
 </style> 

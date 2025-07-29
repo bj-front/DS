@@ -50,6 +50,98 @@
         "type": "color"
       }
     },
+    "brand": {
+      "primary": {
+        "25": {
+          "value": "#0A1B3E",
+          "type": "color"
+        },
+        "50": {
+          "value": "#172554",
+          "type": "color"
+        },
+        "100": {
+          "value": "#1E3A8A",
+          "type": "color"
+        },
+        "200": {
+          "value": "#1E40AF",
+          "type": "color"
+        },
+        "300": {
+          "value": "#2563EB",
+          "type": "color"
+        },
+        "400": {
+          "value": "#3B82F6",
+          "type": "color"
+        },
+        "500": {
+          "value": "#275CF1",
+          "type": "color"
+        }
+      },
+      "secondary": {
+        "25": {
+          "value": "#050B17",
+          "type": "color"
+        },
+        "50": {
+          "value": "#0B1C48",
+          "type": "color"
+        },
+        "100": {
+          "value": "#1E3A8A",
+          "type": "color"
+        },
+        "200": {
+          "value": "#1E40AF",
+          "type": "color"
+        },
+        "300": {
+          "value": "#2563EB",
+          "type": "color"
+        },
+        "400": {
+          "value": "#3B82F6",
+          "type": "color"
+        },
+        "500": {
+          "value": "#0B1C48",
+          "type": "color"
+        }
+      },
+      "accent": {
+        "25": {
+          "value": "#441B0A",
+          "type": "color"
+        },
+        "50": {
+          "value": "#7C2D12",
+          "type": "color"
+        },
+        "100": {
+          "value": "#9A3412",
+          "type": "color"
+        },
+        "200": {
+          "value": "#C2410C",
+          "type": "color"
+        },
+        "300": {
+          "value": "#EA580C",
+          "type": "color"
+        },
+        "400": {
+          "value": "#F97316",
+          "type": "color"
+        },
+        "500": {
+          "value": "#F36222",
+          "type": "color"
+        }
+      }
+    },
     "product": {
       "exclusive-sale": {
         "primary": {

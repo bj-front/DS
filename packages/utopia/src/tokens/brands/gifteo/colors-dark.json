@@ -1,5 +1,97 @@
 {
   "color": {
+    "brand": {
+      "primary": {
+        "25": {
+          "value": "#2A0A0A",
+          "type": "color"
+        },
+        "50": {
+          "value": "#7F1D1D",
+          "type": "color"
+        },
+        "100": {
+          "value": "#991B1B",
+          "type": "color"
+        },
+        "200": {
+          "value": "#B91C1C",
+          "type": "color"
+        },
+        "300": {
+          "value": "#DC2626",
+          "type": "color"
+        },
+        "400": {
+          "value": "#EF4444",
+          "type": "color"
+        },
+        "500": {
+          "value": "#F43E40",
+          "type": "color"
+        }
+      },
+      "secondary": {
+        "25": {
+          "value": "#0A0101",
+          "type": "color"
+        },
+        "50": {
+          "value": "#130101",
+          "type": "color"
+        },
+        "100": {
+          "value": "#292524",
+          "type": "color"
+        },
+        "200": {
+          "value": "#44403C",
+          "type": "color"
+        },
+        "300": {
+          "value": "#57534E",
+          "type": "color"
+        },
+        "400": {
+          "value": "#78716C",
+          "type": "color"
+        },
+        "500": {
+          "value": "#130101",
+          "type": "color"
+        }
+      },
+      "accent": {
+        "25": {
+          "value": "#4A1B08",
+          "type": "color"
+        },
+        "50": {
+          "value": "#7C2D12",
+          "type": "color"
+        },
+        "100": {
+          "value": "#9A3412",
+          "type": "color"
+        },
+        "200": {
+          "value": "#C2410C",
+          "type": "color"
+        },
+        "300": {
+          "value": "#EA580C",
+          "type": "color"
+        },
+        "400": {
+          "value": "#F97316",
+          "type": "color"
+        },
+        "500": {
+          "value": "#FF8B3D",
+          "type": "color"
+        }
+      }
+    },
     "red": {
       "50": {
         "value": "#7f1d1d",
