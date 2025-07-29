@@ -2,6 +2,10 @@
 export { ThemeProvider } from './theme-provider'
 export type { ThemeConfig, ThemeProviderProps } from './theme-provider'
 
+// Components
+export { Button, Icon } from './components/atoms'
+export type { ButtonVariant, ButtonSize, IconName, IconSize } from './components/atoms'
+
 // Themes
 export { clubEmployesLight, clubEmployesDark } from './themes/club-employes'
 export { gifteoLight, gifteoDark } from './themes/gifteo'

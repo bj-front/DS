@@ -64,6 +64,9 @@
     <!-- Logos Display -->
     <LogoDisplay />
 
+    <!-- Button Demo -->
+    <ButtonDemo />
+
     <!-- Dark Mode Showcase -->
     <DarkModeShowcase />
 
@@ -77,6 +80,7 @@ import { inject, computed } from 'vue'
 import DarkModeShowcase from './DarkModeShowcase.vue'
 import GifteoColorsDemo from './GifteoColorsDemo.vue'
 import LogoDisplay from './LogoDisplay.vue'
+import ButtonDemo from './ButtonDemo.vue'
 
 const theme = inject('theme', { name: { value: 'unknown' } })
 const isGifteoTheme = computed(() => {
