@@ -9,11 +9,11 @@
         <div class="surface-demo">
           <div class="surface-item background">
             <span>Background</span>
-            <code>--color-neutral-50</code>
+            <code>--theme-colors-surface-background</code>
           </div>
           <div class="surface-item card">
             <span>Card</span>
-            <code>--color-neutral-white</code>
+            <code>--theme-colors-surface-card</code>
           </div>
         </div>
       </div>
@@ -74,16 +74,16 @@ const currentMode = computed(() => {
 <style scoped>
 .dark-mode-showcase {
   padding: var(--spacing-6);
-  background-color: var(--color-neutral-white);
+  background-color: var(--theme-colors-surface-card);
   border-radius: var(--border-radius-lg);
-  border: var(--border-width-1) solid var(--color-neutral-200);
+  border: var(--border-width-1) solid var(--theme-colors-border-default);
   margin-top: var(--spacing-8);
 }
 
 .showcase-title {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
-  color: var(--color-neutral-900);
+  color: var(--theme-colors-text-primary);
   margin-bottom: var(--spacing-6);
   text-align: center;
 }
@@ -97,15 +97,15 @@ const currentMode = computed(() => {
 
 .showcase-card {
   padding: var(--spacing-5);
-  background-color: var(--color-neutral-50);
+  background-color: var(--theme-colors-surface-card);
   border-radius: var(--border-radius-base);
-  border: var(--border-width-1) solid var(--color-neutral-200);
+  border: var(--border-width-1) solid var(--theme-colors-border-default);
 }
 
 .card-title {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-neutral-800);
+  color: var(--theme-colors-text-primary);
   margin-bottom: var(--spacing-4);
 }
 
@@ -125,14 +125,14 @@ const currentMode = computed(() => {
 }
 
 .surface-item.background {
-  background-color: var(--color-neutral-50);
-  color: var(--color-neutral-900);
+  background-color: var(--theme-colors-surface-background);
+  color: var(--theme-colors-text-primary);
 }
 
 .surface-item.card {
-  background-color: var(--color-neutral-white);
-  color: var(--color-neutral-900);
-  border: var(--border-width-1) solid var(--color-neutral-200);
+  background-color: var(--theme-colors-surface-card);
+  color: var(--theme-colors-text-primary);
+  border: var(--border-width-1) solid var(--theme-colors-border-default);
 }
 
 .surface-item code {
@@ -149,16 +149,16 @@ const currentMode = computed(() => {
 }
 
 .text-primary {
-  color: var(--color-neutral-900);
+  color: var(--theme-colors-text-primary);
   font-weight: var(--font-weight-medium);
 }
 
 .text-secondary {
-  color: var(--color-neutral-600);
+  color: var(--theme-colors-text-secondary);
 }
 
 .text-muted {
-  color: var(--color-neutral-400);
+  color: var(--theme-colors-text-muted);
 }
 
 /* Primary demo */
@@ -177,9 +177,9 @@ const currentMode = computed(() => {
   font-size: var(--font-size-sm);
 }
 
-.primary-100 { background-color: var(--color-blue-100); color: var(--color-blue-900); }
-.primary-500 { background-color: var(--color-blue-500); }
-.primary-900 { background-color: var(--color-blue-900); }
+.primary-100 { background-color: var(--theme-colors-primary-100); color: var(--theme-colors-primary-900); }
+.primary-500 { background-color: var(--theme-colors-primary-500); }
+.primary-900 { background-color: var(--theme-colors-primary-900); }
 
 /* Border demo */
 .border-demo {
@@ -192,30 +192,30 @@ const currentMode = computed(() => {
   padding: var(--spacing-3);
   border-radius: var(--border-radius-sm);
   text-align: center;
-  background-color: var(--color-neutral-white);
-  color: var(--color-neutral-700);
+  background-color: var(--theme-colors-surface-card);
+  color: var(--theme-colors-text-primary);
   font-weight: var(--font-weight-medium);
 }
 
 .border-default {
-  border: var(--border-width-2) solid var(--color-neutral-200);
+  border: var(--border-width-2) solid var(--theme-colors-border-default);
 }
 
 .border-muted {
-  border: var(--border-width-2) solid var(--color-neutral-100);
+  border: var(--border-width-2) solid var(--theme-colors-border-muted);
 }
 
 .border-strong {
-  border: var(--border-width-2) solid var(--color-neutral-300);
+  border: var(--border-width-2) solid var(--theme-colors-border-strong);
 }
 
 /* Mode info */
 .mode-info {
   text-align: center;
   padding: var(--spacing-4);
-  background-color: var(--color-blue-50);
+  background-color: var(--theme-colors-primary-50);
   border-radius: var(--border-radius-base);
-  border: var(--border-width-1) solid var(--color-blue-200);
+  border: var(--border-width-1) solid var(--theme-colors-primary-200);
 }
 
 .info-badge {

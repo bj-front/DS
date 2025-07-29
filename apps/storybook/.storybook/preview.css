@@ -1,0 +1,185 @@
+/* Styles globaux pour l'interface de preview Storybook */
+
+/* Reset et base */
+* {
+  box-sizing: border-box;
+}
+
+/* Styles pour le HTML et body */
+html, body {
+  background-color: var(--theme-colors-surface-background, #ffffff) !important;
+  color: var(--theme-colors-text-primary, #111827) !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Styles pour le root de Storybook */
+#storybook-root {
+  background-color: var(--theme-colors-surface-background, #ffffff) !important;
+  color: var(--theme-colors-text-primary, #111827) !important;
+  font-family: var(--font-family-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  min-height: 100vh;
+}
+
+/* Styles pour la zone principale de Storybook */
+.sb-show-main, 
+.sb-main-padded,
+.sb-main-centered,
+.sb-main-fullscreen {
+  background-color: var(--theme-colors-surface-background, #ffffff) !important;
+  color: var(--theme-colors-text-primary, #111827) !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Styles pour les stories avec layout centered */
+.sb-show-main.sb-main-centered {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Styles pour les stories avec layout fullscreen */
+.sb-show-main.sb-main-fullscreen {
+  min-height: 100vh;
+}
+
+/* Styles pour les stories avec layout padded */
+.sb-show-main.sb-main-padded {
+  padding: 1rem;
+}
+
+/* Override des styles Storybook par défaut */
+.docs-story {
+  background-color: var(--theme-colors-surface-background, #ffffff) !important;
+  color: var(--theme-colors-text-primary, #111827) !important;
+}
+
+/* Cibler spécifiquement l'iframe de preview */
+.sb-show-main iframe,
+.sb-show-main > div,
+.sb-show-main > div > div {
+  background-color: var(--theme-colors-surface-background, #ffffff) !important;
+  color: var(--theme-colors-text-primary, #111827) !important;
+}
+
+/* Panel de Canvas */
+#storybook-panel-root .os-content {
+  background-color: var(--theme-colors-surface-background, #ffffff) !important;
+}
+
+/* Zone de Canvas complète */
+[data-is-storybook="true"] {
+  background-color: var(--theme-colors-surface-background, #ffffff) !important;
+  color: var(--theme-colors-text-primary, #111827) !important;
+}
+
+/* Panels Storybook - Addons (PROPS, Actions, etc.) */
+#storybook-panel-root,
+#panel-tab-content,
+.panel-content,
+[id^="panel-tab-content"],
+[data-panel-id],
+.docblock-argstable,
+.docblock-argstable-body,
+.sb-addon-panel,
+.addon-panel {
+  background-color: var(--theme-colors-surface-background, #ffffff) !important;
+  color: var(--theme-colors-text-primary, #111827) !important;
+}
+
+/* Tables des props/contrôles */
+.docblock-argstable table,
+.docblock-argstable tbody,
+.docblock-argstable thead,
+.docblock-argstable tr,
+.docblock-argstable td,
+.docblock-argstable th,
+table[class*="argstable"],
+.sb-argstable,
+.sb-argstable-body,
+.sb-argstable-head {
+  background-color: var(--theme-colors-surface-background, #ffffff) !important;
+  color: var(--theme-colors-text-primary, #111827) !important;
+  border-color: var(--theme-colors-border-default, #e5e7eb) !important;
+}
+
+/* Contrôles spécifiques (inputs, selects) */
+.docblock-argstable input,
+.docblock-argstable select,
+.docblock-argstable textarea,
+.sb-argstable input,
+.sb-argstable select,
+.sb-argstable textarea,
+[class*="control-"] input,
+[class*="control-"] select,
+[class*="control-"] textarea,
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  background-color: var(--theme-colors-surface-card, #f3f4f6) !important;
+  color: var(--theme-colors-text-primary, #111827) !important;
+  border-color: var(--theme-colors-border-default, #e5e7eb) !important;
+}
+
+/* Contrôles Storybook spécifiques - ciblage plus précis */
+#panel-tab-content input,
+#panel-tab-content select, 
+#panel-tab-content textarea,
+[id^="panel-tab-content"] input,
+[id^="panel-tab-content"] select,
+[id^="panel-tab-content"] textarea,
+.sb-addon-panel input,
+.sb-addon-panel select,
+.sb-addon-panel textarea {
+  background-color: var(--theme-colors-surface-card, #f3f4f6) !important;
+  color: var(--theme-colors-text-primary, #111827) !important;
+  border: 1px solid var(--theme-colors-border-default, #e5e7eb) !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+}
+
+/* Focus states pour les contrôles */
+#panel-tab-content input:focus,
+#panel-tab-content select:focus,
+#panel-tab-content textarea:focus,
+[id^="panel-tab-content"] input:focus,
+[id^="panel-tab-content"] select:focus,
+[id^="panel-tab-content"] textarea:focus {
+  outline: 2px solid var(--theme-colors-primary-500, #3b82f6) !important;
+  outline-offset: 2px !important;
+  border-color: var(--theme-colors-primary-500, #3b82f6) !important;
+}
+
+/* Styles pour les contrôles dans la toolbar */
+.sb-bar {
+  border-bottom: 1px solid var(--theme-colors-border-default, #e5e7eb);
+}
+
+/* Interface générale Storybook */
+.sb-main,
+.sb-layout,
+[class*="sb-"],
+.sidebar-container,
+.main-container {
+  background-color: var(--theme-colors-surface-background, #ffffff) !important;
+  color: var(--theme-colors-text-primary, #111827) !important;
+}
+
+/* Correction du layout des boutons dans les stories */
+.sb-show-main [data-story-block="true"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: auto;
+}
+
+/* Assurer que les boutons ne prennent pas toute la hauteur */
+button {
+  height: auto !important;
+  min-height: auto !important;
+} 

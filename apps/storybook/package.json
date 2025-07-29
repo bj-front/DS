@@ -14,11 +14,13 @@
     "publish-packages": "changeset publish"
   },
   "dependencies": {
-    "vue": "^3.5.17"
+    "vue": "^3.5.17",
+    "utopia": "workspace:*"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.0.1",
     "@storybook/addon-a11y": "^9.0.18",
+    "@storybook/addon-controls": "^9.0.18",
     "@storybook/addon-docs": "^9.0.18",
     "@storybook/addon-vitest": "^9.0.18",
     "@storybook/vue3-vite": "^9.0.18",
