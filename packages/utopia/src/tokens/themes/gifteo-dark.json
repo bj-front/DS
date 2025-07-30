@@ -3,8 +3,22 @@
     "name": "gifteo-dark",
     "assets": {
       "logo": {
-        "value": "{assets.logos.gifteo}",
-        "type": "asset"
+        "default": {
+          "value": "{assets.logos.gifteo.white}",
+          "type": "asset"
+        },
+        "small": {
+          "value": "{assets.logos.gifteo.small-white}",
+          "type": "asset"
+        },
+        "white": {
+          "value": "{assets.logos.gifteo.white}",
+          "type": "asset"
+        },
+        "small-white": {
+          "value": "{assets.logos.gifteo.small-white}",
+          "type": "asset"
+        }
       }
     },
     "colors": {

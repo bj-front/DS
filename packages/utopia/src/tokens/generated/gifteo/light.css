@@ -3,8 +3,15 @@
  */
 
 :root {
-  --assets-logos-club-employes: url('/src/assets/logos/c-e.png');
-  --assets-logos-gifteo: url('/src/assets/logos/gifteo.png');
+  --assets-logos-club-employes-default: url('/src/assets/logos/club-employes/logo.svg');
+  --assets-logos-club-employes-small: url('/src/assets/logos/club-employes/logo-small.svg');
+  --assets-logos-club-employes-white: url('/src/assets/logos/club-employes/logo-white.svg');
+  --assets-logos-club-employes-small-white: url('/src/assets/logos/club-employes/logo-small-white.svg');
+  --assets-logos-gifteo-default: url('/src/assets/logos/gifteo/logo.svg');
+  --assets-logos-gifteo-small: url('/src/assets/logos/gifteo/logo-small.svg');
+  --assets-logos-gifteo-white: url('/src/assets/logos/gifteo/logo-white.svg');
+  --assets-logos-gifteo-small-white: url('/src/assets/logos/gifteo/logo-small-white.svg');
+  --assets-icons-placeholder-copy: url('/src/assets/icons/actions/copy.svg');
   --border-width-0: 0px;
   --border-width-1: 1px;
   --border-width-2: 2px;
@@ -229,7 +236,10 @@
   --font-line-height-tight: 1.25;
   --font-line-height-normal: 1.5;
   --font-line-height-relaxed: 1.75;
-  --theme-assets-logo: url('/src/assets/logos/gifteo.png');
+  --theme-assets-logo-default: url('/src/assets/logos/gifteo/logo.svg');
+  --theme-assets-logo-small: url('/src/assets/logos/gifteo/logo-small.svg');
+  --theme-assets-logo-white: url('/src/assets/logos/gifteo/logo-white.svg');
+  --theme-assets-logo-small-white: url('/src/assets/logos/gifteo/logo-small-white.svg');
   --theme-colors-brand-primary-25: #fffbfb;
   --theme-colors-brand-primary-50: #fff7f7;
   --theme-colors-brand-primary-100: #fef3f4;

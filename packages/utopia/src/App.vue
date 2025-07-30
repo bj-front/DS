@@ -8,6 +8,7 @@ import ColorsPage from './components/pages/ColorsPage.vue'
 import SurfacesPage from './components/pages/SurfacesPage.vue'
 import TypographyPage from './components/pages/TypographyPage.vue'
 import SpacingPage from './components/pages/SpacingPage.vue'
+import LogosPage from './components/pages/LogosPage.vue'
 import ThemeComparison from './components/pages/ThemeComparison.vue'
 import type { ThemeConfig } from './theme-provider'
 
@@ -67,6 +68,10 @@ const handlePageChange = (page: string) => {
         />
         <SpacingPage 
           v-else-if="currentPage === 'spacing'"
+        />
+        <LogosPage 
+          v-else-if="currentPage === 'logos'"
+          :currentTheme="currentTheme"
         />
         <ThemeComparison 
           v-else-if="currentPage === 'theme-comparison'"

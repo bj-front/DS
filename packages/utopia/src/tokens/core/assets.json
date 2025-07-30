@@ -2,12 +2,57 @@
   "assets": {
     "logos": {
       "club-employes": {
-        "value": "/src/assets/logos/c-e.png",
-        "type": "asset"
+        "default": {
+          "value": "/src/assets/logos/club-employes/logo.svg",
+          "type": "asset",
+          "description": "Logo principal Club Employés"
+        },
+        "small": {
+          "value": "/src/assets/logos/club-employes/logo-small.svg",
+          "type": "asset",
+          "description": "Logo Club Employés version compacte"
+        },
+        "white": {
+          "value": "/src/assets/logos/club-employes/logo-white.svg",
+          "type": "asset",
+          "description": "Logo Club Employés version blanche (sur fond sombre)"
+        },
+        "small-white": {
+          "value": "/src/assets/logos/club-employes/logo-small-white.svg",
+          "type": "asset",
+          "description": "Logo Club Employés version compacte et blanche"
+        }
       },
       "gifteo": {
-        "value": "/src/assets/logos/gifteo.png", 
-        "type": "asset"
+        "default": {
+          "value": "/src/assets/logos/gifteo/logo.svg",
+          "type": "asset",
+          "description": "Logo principal Gifteo"
+        },
+        "small": {
+          "value": "/src/assets/logos/gifteo/logo-small.svg",
+          "type": "asset",
+          "description": "Logo Gifteo version compacte"
+        },
+        "white": {
+          "value": "/src/assets/logos/gifteo/logo-white.svg",
+          "type": "asset",
+          "description": "Logo Gifteo version blanche (sur fond sombre)"
+        },
+        "small-white": {
+          "value": "/src/assets/logos/gifteo/logo-small-white.svg",
+          "type": "asset",
+          "description": "Logo Gifteo version compacte et blanche"
+        }
+      }
+    },
+    "icons": {
+      "placeholder": {
+        "copy": {
+          "value": "/src/assets/icons/actions/copy.svg",
+          "type": "asset",
+          "description": "Icône copier - à remplacer par les vraies icônes"
+        }
       }
     }
   }

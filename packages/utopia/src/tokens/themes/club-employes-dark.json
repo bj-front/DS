@@ -3,8 +3,22 @@
     "name": "club-employes-dark",
     "assets": {
       "logo": {
-        "value": "{assets.logos.club-employes}",
-        "type": "asset"
+        "default": {
+          "value": "{assets.logos.club-employes.white}",
+          "type": "asset"
+        },
+        "small": {
+          "value": "{assets.logos.club-employes.small-white}",
+          "type": "asset"
+        },
+        "white": {
+          "value": "{assets.logos.club-employes.white}",
+          "type": "asset"
+        },
+        "small-white": {
+          "value": "{assets.logos.club-employes.small-white}",
+          "type": "asset"
+        }
       }
     },
     "colors": {

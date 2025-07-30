@@ -2,8 +2,20 @@
  * Do not edit directly, this file was auto-generated.
  */
 
-export const AssetsLogosClubEmployes = "/src/assets/logos/c-e.png";
-export const AssetsLogosGifteo = "/src/assets/logos/gifteo.png";
+export const AssetsLogosClubEmployesDefault =
+  "/src/assets/logos/club-employes/logo.svg";
+export const AssetsLogosClubEmployesSmall =
+  "/src/assets/logos/club-employes/logo-small.svg";
+export const AssetsLogosClubEmployesWhite =
+  "/src/assets/logos/club-employes/logo-white.svg";
+export const AssetsLogosClubEmployesSmallWhite =
+  "/src/assets/logos/club-employes/logo-small-white.svg";
+export const AssetsLogosGifteoDefault = "/src/assets/logos/gifteo/logo.svg";
+export const AssetsLogosGifteoSmall = "/src/assets/logos/gifteo/logo-small.svg";
+export const AssetsLogosGifteoWhite = "/src/assets/logos/gifteo/logo-white.svg";
+export const AssetsLogosGifteoSmallWhite =
+  "/src/assets/logos/gifteo/logo-small-white.svg";
+export const AssetsIconsPlaceholderCopy = "/src/assets/icons/actions/copy.svg";
 export const BorderWidth0 = "0px";
 export const BorderWidth1 = "1px";
 export const BorderWidth2 = "2px";
@@ -224,7 +236,14 @@ export const FontWeightBold = "700";
 export const FontLineHeightTight = "1.25";
 export const FontLineHeightNormal = "1.5";
 export const FontLineHeightRelaxed = "1.75";
-export const ThemeAssetsLogo = "/src/assets/logos/c-e.png";
+export const ThemeAssetsLogoDefault =
+  "/src/assets/logos/club-employes/logo-white.svg";
+export const ThemeAssetsLogoSmall =
+  "/src/assets/logos/club-employes/logo-small-white.svg";
+export const ThemeAssetsLogoWhite =
+  "/src/assets/logos/club-employes/logo-white.svg";
+export const ThemeAssetsLogoSmallWhite =
+  "/src/assets/logos/club-employes/logo-small-white.svg";
 export const ThemeColorsBrandPrimary25 = "#0a1b3e";
 export const ThemeColorsBrandPrimary50 = "#172554";
 export const ThemeColorsBrandPrimary100 = "#1e3a8a";

@@ -1,6 +1,6 @@
 import lightCSS from '../../tokens/generated/gifteo/light.css?inline'
 import darkCSS from '../../tokens/generated/gifteo/dark.css?inline'
-import gifteoLogo from '../../assets/logos/gifteo.png'
+import gifteoLogo from '../../assets/logos/gifteo/logo.svg'
 import type { ThemeConfig } from '../../theme-provider'
 
 export const gifteoLight: ThemeConfig = {

@@ -67,6 +67,12 @@ const pages: Page[] = [
     title: 'Espacement et dimensions'
   },
   {
+    key: 'logos',
+    label: 'Logos',
+    icon: '🏢',
+    title: 'Logos et icônes'
+  },
+  {
     key: 'theme-comparison',
     label: 'Light/Dark',
     icon: '🌓',
