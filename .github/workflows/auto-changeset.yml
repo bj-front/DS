@@ -79,7 +79,11 @@ jobs:
             echo "📝 Created automatic changeset: $CHANGESET_FILE"
             git add "$CHANGESET_FILE"
             git commit -m "chore: add automatic changeset for component/token changes"
-            git push
+            
+            # Au lieu de push, créer un commentaire dans la PR
+            echo "📝 Changeset created: $CHANGESET_FILE"
+            echo "changeset_created=true" >> $GITHUB_OUTPUT
+            echo "changeset_file=$CHANGESET_FILE" >> $GITHUB_OUTPUT
           else
             echo "ℹ️  No component or token changes detected"
           fi

@@ -1,0 +1,130 @@
+name: PR Helper
+
+on:
+  push:
+    branches-ignore: 
+      - main
+      - develop
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Analyze changes
+        id: analyze
+        run: |
+          BRANCH_NAME="${{ github.ref_name }}"
+          COMPONENT_CHANGES=$(git diff --name-only origin/main...HEAD | grep -E "packages/utopia/src/components/" | wc -l)
+          TOKEN_CHANGES=$(git diff --name-only origin/main...HEAD | grep -E "packages/utopia/src/tokens/" | wc -l)
+          NEW_COMPONENTS=$(git diff --name-only --diff-filter=A origin/main...HEAD | grep -E "packages/utopia/src/components/.*\.vue$" | grep -v "demo/" | wc -l)
+          
+          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
+          echo "components=$COMPONENT_CHANGES" >> $GITHUB_OUTPUT
+          echo "tokens=$TOKEN_CHANGES" >> $GITHUB_OUTPUT
+          echo "new_components=$NEW_COMPONENTS" >> $GITHUB_OUTPUT
+          
+          # Générer le message de changeset recommandé
+          if [ "$NEW_COMPONENTS" -gt 0 ]; then
+            echo "changeset_type=minor" >> $GITHUB_OUTPUT
+            echo "changeset_desc=Add new components" >> $GITHUB_OUTPUT
+          elif [ "$COMPONENT_CHANGES" -gt 0 ] || [ "$TOKEN_CHANGES" -gt 0 ]; then
+            echo "changeset_type=minor" >> $GITHUB_OUTPUT
+            echo "changeset_desc=Update components and tokens" >> $GITHUB_OUTPUT
+          else
+            echo "changeset_type=patch" >> $GITHUB_OUTPUT
+            echo "changeset_desc=General updates" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create PR if not exists
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH_NAME="${{ steps.analyze.outputs.branch }}"
+          
+          # Vérifier si PR existe
+          if gh pr view "$BRANCH_NAME" >/dev/null 2>&1; then
+            echo "PR already exists, adding comment instead"
+            
+            # Ajouter un commentaire avec l'analyse
+            cat > comment.md << EOF
+          ## 🤖 Automated Analysis Update
+          
+          **Latest changes detected:**
+          - 🔧 Components changed: **${{ steps.analyze.outputs.components }}**
+          - 🎨 Tokens changed: **${{ steps.analyze.outputs.tokens }}**
+          - 🆕 New components: **${{ steps.analyze.outputs.new_components }}**
+          
+          **Recommended changeset:**
+          \`\`\`bash
+          npm run changeset
+          # Select: ${{ steps.analyze.outputs.changeset_type }}
+          # Message: ${{ steps.analyze.outputs.changeset_desc }}
+          \`\`\`
+          
+          **Or create automatically:**
+          \`\`\`bash
+          echo "---" > .changeset/auto-$(date +%s).md
+          echo '"@club-employes/utopia": ${{ steps.analyze.outputs.changeset_type }}' >> .changeset/auto-$(date +%s).md
+          echo "---" >> .changeset/auto-$(date +%s).md
+          echo "" >> .changeset/auto-$(date +%s).md
+          echo "${{ steps.analyze.outputs.changeset_desc }}" >> .changeset/auto-$(date +%s).md
+          \`\`\`
+          
+          ---
+          *Updated: $(date)*
+          EOF
+          
+            gh pr comment "$BRANCH_NAME" --body-file comment.md
+          else
+            # Créer une nouvelle PR
+            TITLE="feat: ${{ steps.analyze.outputs.changeset_desc }}"
+            
+            cat > pr_body.md << EOF
+          ## 🎨 Design System Update
+          
+          **Branch:** \`$BRANCH_NAME\`
+          
+          ### 📊 Changes Summary
+          - 🔧 Components changed: **${{ steps.analyze.outputs.components }}**
+          - 🎨 Tokens changed: **${{ steps.analyze.outputs.tokens }}**
+          - 🆕 New components: **${{ steps.analyze.outputs.new_components }}**
+          
+          ### 📝 Changeset Required
+          
+          **Recommended type:** \`${{ steps.analyze.outputs.changeset_type }}\`
+          
+          **Quick create:**
+          \`\`\`bash
+          npm run changeset
+          \`\`\`
+          
+          ### ✅ Checklist
+          
+          - [ ] 🏗️ Build passes  
+          - [ ] 📝 Changeset created
+          - [ ] 🎨 Components tested
+          - [ ] 🔍 Ready for review
+          
+          ---
+          > 🤖 *Created automatically by GitHub Actions*
+          EOF
+          
+            gh pr create \
+              --title "$TITLE" \
+              --body-file pr_body.md \
+              --base main \
+              --head "$BRANCH_NAME" \
+              --label "design-system,auto-analysis"
+              
+            echo "✅ PR created successfully!"
+          fi
