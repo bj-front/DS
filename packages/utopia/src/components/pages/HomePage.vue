@@ -33,49 +33,85 @@
     </div>
 
     <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🎨</div>
-        <h3 class="feature-title">Couleurs</h3>
+      <div 
+        v-for="feature in features" 
+        :key="feature.page"
+        class="feature-card"
+      >
+        <div class="feature-icon">{{ feature.icon }}</div>
+        <h3 class="feature-title">{{ feature.title }}</h3>
         <p class="feature-description">
-          Palettes brand spécifiques et couleurs communes partagées entre les marques.
+          {{ feature.description }}
         </p>
-      </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">📝</div>
-        <h3 class="feature-title">Typographie</h3>
-        <p class="feature-description">
-          Système typographique cohérent avec hiérarchie et styles définis.
-        </p>
-      </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">📏</div>
-        <h3 class="feature-title">Espacement</h3>
-        <p class="feature-description">
-          Échelle d'espacement harmonieuse pour layouts consistants.
-        </p>
-      </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">🏢</div>
-        <h3 class="feature-title">Multi-marques</h3>
-        <p class="feature-description">
-          Support natif pour Club Employés et Gifteo avec thèmes clair/sombre.
-        </p>
+        <div class="feature-actions">
+          <Button 
+            :variant="feature.buttonVariant"
+            size="md"
+            @click="navigateToPage(feature.page)"
+          >
+            <template #icon>
+              <span>{{ feature.icon }}</span>
+            </template>
+            Explorer {{ feature.title }}
+          </Button>
+        </div>
       </div>
     </div>
+
+    <!-- Section actions principales -->
+    
   </div>
 </template>
 
 <script setup lang="ts">
+import { Button } from '../atoms/Button'
 import type { ThemeConfig } from '../../theme-provider'
 
 interface Props {
   currentTheme: ThemeConfig
 }
 
+interface Emits {
+  (e: 'navigate', page: string): void
+}
+
 const props = defineProps<Props>()
+const emit = defineEmits<Emits>()
+
+const navigateToPage = (page: string) => {
+  emit('navigate', page)
+}
+
+const features = [
+  {
+    icon: '🎨',
+    title: 'Couleurs',
+    description: 'Palettes brand spécifiques et couleurs communes partagées entre les marques.',
+    page: 'colors',
+    buttonVariant: 'outline' as const
+  },
+  {
+    icon: '🖼️',
+    title: 'Surfaces',
+    description: 'Différentes surfaces et arrière-plans adaptés aux thèmes.',
+    page: 'surfaces',
+    buttonVariant: 'outline' as const
+  },
+  {
+    icon: '📝',
+    title: 'Typographie',
+    description: 'Système typographique complet avec tailles, poids et styles.',
+    page: 'typography',
+    buttonVariant: 'outline' as const
+  },
+  {
+    icon: '📏',
+    title: 'Espacement',
+    description: 'Échelle d\'espacement cohérente pour des layouts harmonieux.',
+    page: 'spacing',
+    buttonVariant: 'outline' as const
+  }
+]
 </script>
 
 <style scoped>
@@ -227,6 +263,28 @@ const props = defineProps<Props>()
   font-size: var(--font-size-base);
   color: var(--theme-colors-text-secondary);
   line-height: 1.6;
+}
+
+.feature-actions {
+  margin-top: var(--spacing-6);
+}
+
+.main-actions {
+  margin-top: var(--spacing-16);
+  text-align: center;
+}
+
+.actions-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--theme-colors-text-primary);
+  margin-bottom: var(--spacing-8);
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-4);
 }
 
 @media (max-width: 768px) {

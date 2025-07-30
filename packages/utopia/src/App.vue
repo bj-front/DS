@@ -6,6 +6,8 @@ import FloatingNav from './components/demo/FloatingNav.vue'
 import HomePage from './components/pages/HomePage.vue'
 import ColorsPage from './components/pages/ColorsPage.vue'
 import SurfacesPage from './components/pages/SurfacesPage.vue'
+import TypographyPage from './components/pages/TypographyPage.vue'
+import SpacingPage from './components/pages/SpacingPage.vue'
 import type { ThemeConfig } from './theme-provider'
 
 const currentTheme = ref<ThemeConfig>(clubEmployesLight)
@@ -49,6 +51,7 @@ const handlePageChange = (page: string) => {
         <HomePage 
           v-if="currentPage === 'home'"
           :currentTheme="currentTheme"
+          @navigate="handlePageChange"
         />
         <ColorsPage 
           v-else-if="currentPage === 'colors'"
@@ -58,14 +61,12 @@ const handlePageChange = (page: string) => {
           v-else-if="currentPage === 'surfaces'"
           :currentTheme="currentTheme"
         />
-        <div v-else-if="currentPage === 'typography'" class="placeholder-page">
-          <h2>📝 Typographie</h2>
-          <p>Cette section sera bientôt disponible...</p>
-        </div>
-        <div v-else-if="currentPage === 'spacing'" class="placeholder-page">
-          <h2>📏 Espacement</h2>
-          <p>Cette section sera bientôt disponible...</p>
-        </div>
+        <TypographyPage 
+          v-else-if="currentPage === 'typography'"
+        />
+        <SpacingPage 
+          v-else-if="currentPage === 'spacing'"
+        />
       </main>
     </div>
   </ThemeProvider>
@@ -101,22 +102,5 @@ const handlePageChange = (page: string) => {
   min-height: calc(100vh - 160px);
 }
 
-.placeholder-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-8);
-  text-align: center;
-}
 
-.placeholder-page h2 {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--theme-colors-text-primary);
-  margin-bottom: var(--spacing-6);
-}
-
-.placeholder-page p {
-  font-size: var(--font-size-lg);
-  color: var(--theme-colors-text-secondary);
-}
 </style>

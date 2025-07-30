@@ -24,7 +24,18 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
-                <code class="color-code">{{ shade.variable }}</code>
+                <div class="color-code-group">
+                  <code class="color-code">{{ shade.variable }}</code>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    @click="copyToClipboard(shade.variable)"
+                    class="copy-btn"
+                    :aria-label="`Copier ${shade.variable}`"
+                  >
+                    📋
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -37,7 +48,18 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
-                <code class="color-code">{{ shade.variable }}</code>
+                <div class="color-code-group">
+                  <code class="color-code">{{ shade.variable }}</code>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    @click="copyToClipboard(shade.variable)"
+                    class="copy-btn"
+                    :aria-label="`Copier ${shade.variable}`"
+                  >
+                    📋
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -50,7 +72,18 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
-                <code class="color-code">{{ shade.variable }}</code>
+                <div class="color-code-group">
+                  <code class="color-code">{{ shade.variable }}</code>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    @click="copyToClipboard(shade.variable)"
+                    class="copy-btn"
+                    :aria-label="`Copier ${shade.variable}`"
+                  >
+                    📋
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -74,7 +107,18 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
-                <code class="color-code">{{ shade.variable }}</code>
+                <div class="color-code-group">
+                  <code class="color-code">{{ shade.variable }}</code>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    @click="copyToClipboard(shade.variable)"
+                    class="copy-btn"
+                    :aria-label="`Copier ${shade.variable}`"
+                  >
+                    📋
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -87,7 +131,18 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
-                <code class="color-code">{{ shade.variable }}</code>
+                <div class="color-code-group">
+                  <code class="color-code">{{ shade.variable }}</code>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    @click="copyToClipboard(shade.variable)"
+                    class="copy-btn"
+                    :aria-label="`Copier ${shade.variable}`"
+                  >
+                    📋
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -100,7 +155,18 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
-                <code class="color-code">{{ shade.variable }}</code>
+                <div class="color-code-group">
+                  <code class="color-code">{{ shade.variable }}</code>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    @click="copyToClipboard(shade.variable)"
+                    class="copy-btn"
+                    :aria-label="`Copier ${shade.variable}`"
+                  >
+                    📋
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -113,7 +179,18 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
-                <code class="color-code">{{ shade.variable }}</code>
+                <div class="color-code-group">
+                  <code class="color-code">{{ shade.variable }}</code>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    @click="copyToClipboard(shade.variable)"
+                    class="copy-btn"
+                    :aria-label="`Copier ${shade.variable}`"
+                  >
+                    📋
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -125,6 +202,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { Button } from '../atoms/Button'
 import type { ThemeConfig } from '../../theme-provider'
 
 interface Props {
@@ -220,6 +298,16 @@ const currentBrand = computed(() => {
   const brandKey = props.currentTheme.name.includes('club-employes') ? 'club-employes' : 'gifteo'
   return brandColors[brandKey]
 })
+
+// Copy to clipboard function
+const copyToClipboard = async (text: string) => {
+  try {
+    await navigator.clipboard.writeText(text)
+    // You could add a toast notification here
+  } catch (err) {
+    console.error('Failed to copy: ', err)
+  }
+}
 
 // Common Colors (adapted for light/dark modes)
 const slateColors = [
@@ -370,6 +458,13 @@ const dangerColors = [
   margin-bottom: var(--spacing-1);
 }
 
+.color-code-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  width: 100%;
+}
+
 .color-code {
   font-family: var(--font-family-mono);
   font-size: var(--font-size-xs);
@@ -377,6 +472,19 @@ const dangerColors = [
   background: var(--theme-colors-surface-background);
   padding: var(--spacing-1) var(--spacing-2);
   border-radius: var(--border-radius-sm);
+  flex: 1;
+}
+
+.copy-btn {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  min-width: 32px !important;
+  min-height: 24px !important;
+  padding: var(--spacing-1) !important;
+}
+
+.color-card:hover .copy-btn {
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
