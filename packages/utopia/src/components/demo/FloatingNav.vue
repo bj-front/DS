@@ -32,8 +32,8 @@ interface Emits {
   (e: 'pageChange', page: string): void
 }
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emits>()
+defineProps<Props>()
+defineEmits<Emits>()
 
 const pages: Page[] = [
   {

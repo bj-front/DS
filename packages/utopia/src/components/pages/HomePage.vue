@@ -75,7 +75,7 @@ interface Emits {
   (e: 'navigate', page: string): void
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 const navigateToPage = (page: string) => {
