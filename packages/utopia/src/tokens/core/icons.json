@@ -1,0 +1,2503 @@
+{
+  "icons": {
+    "general": {
+      "11": {
+        "value": "/src/assets/icons-processed/11.svg",
+        "type": "asset",
+        "description": "Icône 11 (catégorie: general)"
+      },
+      "3d_box": {
+        "value": "/src/assets/icons-processed/3d_box.svg",
+        "type": "asset",
+        "description": "Icône 3d_box (catégorie: general)"
+      },
+      "add_round": {
+        "value": "/src/assets/icons-processed/Add_round.svg",
+        "type": "asset",
+        "description": "Icône add_round (catégorie: general)"
+      },
+      "add_round_duotone": {
+        "value": "/src/assets/icons-processed/Add_round_duotone.svg",
+        "type": "asset",
+        "description": "Icône add_round_duotone (catégorie: general)"
+      },
+      "add_round_fill": {
+        "value": "/src/assets/icons-processed/Add_round_fill.svg",
+        "type": "asset",
+        "description": "Icône add_round_fill (catégorie: general)"
+      },
+      "alarm": {
+        "value": "/src/assets/icons-processed/Alarm.svg",
+        "type": "asset",
+        "description": "Icône alarm (catégorie: general)"
+      },
+      "angry": {
+        "value": "/src/assets/icons-processed/Angry.svg",
+        "type": "asset",
+        "description": "Icône angry (catégorie: general)"
+      },
+      "archive_alt_big": {
+        "value": "/src/assets/icons-processed/Archive_alt_big.svg",
+        "type": "asset",
+        "description": "Icône archive_alt_big (catégorie: general)"
+      },
+      "archive_alt_small": {
+        "value": "/src/assets/icons-processed/Archive_alt_small.svg",
+        "type": "asset",
+        "description": "Icône archive_alt_small (catégorie: general)"
+      },
+      "archive_alt_small_add": {
+        "value": "/src/assets/icons-processed/Archive_alt_small_add.svg",
+        "type": "asset",
+        "description": "Icône archive_alt_small_add (catégorie: general)"
+      },
+      "archive_alt_small_lock": {
+        "value": "/src/assets/icons-processed/Archive_alt_small_lock.svg",
+        "type": "asset",
+        "description": "Icône archive_alt_small_lock (catégorie: general)"
+      },
+      "archive_alt_small_secure_light": {
+        "value": "/src/assets/icons-processed/Archive_alt_small_secure_light.svg",
+        "type": "asset",
+        "description": "Icône archive_alt_small_secure_light (catégorie: general)"
+      },
+      "archive_export": {
+        "value": "/src/assets/icons-processed/Archive_export.svg",
+        "type": "asset",
+        "description": "Icône archive_export (catégorie: general)"
+      },
+      "archive_import": {
+        "value": "/src/assets/icons-processed/Archive_import.svg",
+        "type": "asset",
+        "description": "Icône archive_import (catégorie: general)"
+      },
+      "archive_load": {
+        "value": "/src/assets/icons-processed/Archive_load.svg",
+        "type": "asset",
+        "description": "Icône archive_load (catégorie: general)"
+      },
+      "archive_plane": {
+        "value": "/src/assets/icons-processed/Archive_plane.svg",
+        "type": "asset",
+        "description": "Icône archive_plane (catégorie: general)"
+      },
+      "arhive-1": {
+        "value": "/src/assets/icons-processed/Arhive-1.svg",
+        "type": "asset",
+        "description": "Icône arhive-1 (catégorie: general)"
+      },
+      "arhive": {
+        "value": "/src/assets/icons-processed/Arhive.svg",
+        "type": "asset",
+        "description": "Icône arhive (catégorie: general)"
+      },
+      "arhive_alt_add": {
+        "value": "/src/assets/icons-processed/Arhive_alt_add.svg",
+        "type": "asset",
+        "description": "Icône arhive_alt_add (catégorie: general)"
+      },
+      "arhive_alt_add_list": {
+        "value": "/src/assets/icons-processed/Arhive_alt_add_list.svg",
+        "type": "asset",
+        "description": "Icône arhive_alt_add_list (catégorie: general)"
+      },
+      "arhive_alt_export": {
+        "value": "/src/assets/icons-processed/Arhive_alt_export.svg",
+        "type": "asset",
+        "description": "Icône arhive_alt_export (catégorie: general)"
+      },
+      "arhives_alt": {
+        "value": "/src/assets/icons-processed/Arhives_alt.svg",
+        "type": "asset",
+        "description": "Icône arhives_alt (catégorie: general)"
+      },
+      "atom": {
+        "value": "/src/assets/icons-processed/Atom.svg",
+        "type": "asset",
+        "description": "Icône atom (catégorie: general)"
+      },
+      "atom_alt": {
+        "value": "/src/assets/icons-processed/Atom_alt.svg",
+        "type": "asset",
+        "description": "Icône atom_alt (catégorie: general)"
+      },
+      "back": {
+        "value": "/src/assets/icons-processed/Back.svg",
+        "type": "asset",
+        "description": "Icône back (catégorie: general)"
+      },
+      "bag": {
+        "value": "/src/assets/icons-processed/Bag.svg",
+        "type": "asset",
+        "description": "Icône bag (catégorie: general)"
+      },
+      "bag_alt": {
+        "value": "/src/assets/icons-processed/Bag_alt.svg",
+        "type": "asset",
+        "description": "Icône bag_alt (catégorie: general)"
+      },
+      "basket-1": {
+        "value": "/src/assets/icons-processed/Basket-1.svg",
+        "type": "asset",
+        "description": "Icône basket-1 (catégorie: general)"
+      },
+      "basket-2": {
+        "value": "/src/assets/icons-processed/Basket-2.svg",
+        "type": "asset",
+        "description": "Icône basket-2 (catégorie: general)"
+      },
+      "basket": {
+        "value": "/src/assets/icons-processed/Basket.svg",
+        "type": "asset",
+        "description": "Icône basket (catégorie: general)"
+      },
+      "basket_alt": {
+        "value": "/src/assets/icons-processed/Basket_alt.svg",
+        "type": "asset",
+        "description": "Icône basket_alt (catégorie: general)"
+      },
+      "basket_alt_3": {
+        "value": "/src/assets/icons-processed/Basket_alt_3.svg",
+        "type": "asset",
+        "description": "Icône basket_alt_3 (catégorie: general)"
+      },
+      "bed": {
+        "value": "/src/assets/icons-processed/Bed.svg",
+        "type": "asset",
+        "description": "Icône bed (catégorie: general)"
+      },
+      "bell": {
+        "value": "/src/assets/icons-processed/Bell.svg",
+        "type": "asset",
+        "description": "Icône bell (catégorie: general)"
+      },
+      "bell_pin": {
+        "value": "/src/assets/icons-processed/Bell_pin.svg",
+        "type": "asset",
+        "description": "Icône bell_pin (catégorie: general)"
+      },
+      "blank": {
+        "value": "/src/assets/icons-processed/Blank.svg",
+        "type": "asset",
+        "description": "Icône blank (catégorie: general)"
+      },
+      "blank_alt": {
+        "value": "/src/assets/icons-processed/Blank_alt.svg",
+        "type": "asset",
+        "description": "Icône blank_alt (catégorie: general)"
+      },
+      "blood": {
+        "value": "/src/assets/icons-processed/Blood.svg",
+        "type": "asset",
+        "description": "Icône blood (catégorie: general)"
+      },
+      "blood_add": {
+        "value": "/src/assets/icons-processed/Blood_add.svg",
+        "type": "asset",
+        "description": "Icône blood_add (catégorie: general)"
+      },
+      "blood_minus": {
+        "value": "/src/assets/icons-processed/Blood_minus.svg",
+        "type": "asset",
+        "description": "Icône blood_minus (catégorie: general)"
+      },
+      "book": {
+        "value": "/src/assets/icons-processed/Book.svg",
+        "type": "asset",
+        "description": "Icône book (catégorie: general)"
+      },
+      "book_check": {
+        "value": "/src/assets/icons-processed/Book_check.svg",
+        "type": "asset",
+        "description": "Icône book_check (catégorie: general)"
+      },
+      "book_open": {
+        "value": "/src/assets/icons-processed/Book_open.svg",
+        "type": "asset",
+        "description": "Icône book_open (catégorie: general)"
+      },
+      "book_open_alt": {
+        "value": "/src/assets/icons-processed/Book_open_alt.svg",
+        "type": "asset",
+        "description": "Icône book_open_alt (catégorie: general)"
+      },
+      "bookmark": {
+        "value": "/src/assets/icons-processed/Bookmark.svg",
+        "type": "asset",
+        "description": "Icône bookmark (catégorie: general)"
+      },
+      "box": {
+        "value": "/src/assets/icons-processed/Box.svg",
+        "type": "asset",
+        "description": "Icône box (catégorie: general)"
+      },
+      "box_alt": {
+        "value": "/src/assets/icons-processed/Box_alt.svg",
+        "type": "asset",
+        "description": "Icône box_alt (catégorie: general)"
+      },
+      "box_open": {
+        "value": "/src/assets/icons-processed/Box_open.svg",
+        "type": "asset",
+        "description": "Icône box_open (catégorie: general)"
+      },
+      "boxes": {
+        "value": "/src/assets/icons-processed/Boxes.svg",
+        "type": "asset",
+        "description": "Icône boxes (catégorie: general)"
+      },
+      "bubble": {
+        "value": "/src/assets/icons-processed/Bubble.svg",
+        "type": "asset",
+        "description": "Icône bubble (catégorie: general)"
+      },
+      "bug": {
+        "value": "/src/assets/icons-processed/Bug.svg",
+        "type": "asset",
+        "description": "Icône bug (catégorie: general)"
+      },
+      "cpu": {
+        "value": "/src/assets/icons-processed/CPU.svg",
+        "type": "asset",
+        "description": "Icône cpu (catégorie: general)"
+      },
+      "cake": {
+        "value": "/src/assets/icons-processed/Cake.svg",
+        "type": "asset",
+        "description": "Icône cake (catégorie: general)"
+      },
+      "calendar": {
+        "value": "/src/assets/icons-processed/Calendar.svg",
+        "type": "asset",
+        "description": "Icône calendar (catégorie: general)"
+      },
+      "calendar_add": {
+        "value": "/src/assets/icons-processed/Calendar_add.svg",
+        "type": "asset",
+        "description": "Icône calendar_add (catégorie: general)"
+      },
+      "calories": {
+        "value": "/src/assets/icons-processed/Calories.svg",
+        "type": "asset",
+        "description": "Icône calories (catégorie: general)"
+      },
+      "camera": {
+        "value": "/src/assets/icons-processed/Camera.svg",
+        "type": "asset",
+        "description": "Icône camera (catégorie: general)"
+      },
+      "cancel": {
+        "value": "/src/assets/icons-processed/Cancel.svg",
+        "type": "asset",
+        "description": "Icône cancel (catégorie: general)"
+      },
+      "cancel_duotone_line": {
+        "value": "/src/assets/icons-processed/Cancel_duotone_line.svg",
+        "type": "asset",
+        "description": "Icône cancel_duotone_line (catégorie: general)"
+      },
+      "carbs": {
+        "value": "/src/assets/icons-processed/Carbs.svg",
+        "type": "asset",
+        "description": "Icône carbs (catégorie: general)"
+      },
+      "center_pick": {
+        "value": "/src/assets/icons-processed/Center_pick.svg",
+        "type": "asset",
+        "description": "Icône center_pick (catégorie: general)"
+      },
+      "center_pick_alt": {
+        "value": "/src/assets/icons-processed/Center_pick_alt.svg",
+        "type": "asset",
+        "description": "Icône center_pick_alt (catégorie: general)"
+      },
+      "chart": {
+        "value": "/src/assets/icons-processed/Chart.svg",
+        "type": "asset",
+        "description": "Icône chart (catégorie: general)"
+      },
+      "chart_alt": {
+        "value": "/src/assets/icons-processed/Chart_alt.svg",
+        "type": "asset",
+        "description": "Icône chart_alt (catégorie: general)"
+      },
+      "chart_pin": {
+        "value": "/src/assets/icons-processed/Chart_pin.svg",
+        "type": "asset",
+        "description": "Icône chart_pin (catégorie: general)"
+      },
+      "chat": {
+        "value": "/src/assets/icons-processed/Chat.svg",
+        "type": "asset",
+        "description": "Icône chat (catégorie: general)"
+      },
+      "chat_alt": {
+        "value": "/src/assets/icons-processed/Chat_alt.svg",
+        "type": "asset",
+        "description": "Icône chat_alt (catégorie: general)"
+      },
+      "chat_alt_2": {
+        "value": "/src/assets/icons-processed/Chat_alt_2.svg",
+        "type": "asset",
+        "description": "Icône chat_alt_2 (catégorie: general)"
+      },
+      "chat_alt_3": {
+        "value": "/src/assets/icons-processed/Chat_alt_3.svg",
+        "type": "asset",
+        "description": "Icône chat_alt_3 (catégorie: general)"
+      },
+      "chat_alt_add-1": {
+        "value": "/src/assets/icons-processed/Chat_alt_add-1.svg",
+        "type": "asset",
+        "description": "Icône chat_alt_add-1 (catégorie: general)"
+      },
+      "chat_alt_add": {
+        "value": "/src/assets/icons-processed/Chat_alt_add.svg",
+        "type": "asset",
+        "description": "Icône chat_alt_add (catégorie: general)"
+      },
+      "chat_plus-1": {
+        "value": "/src/assets/icons-processed/Chat_plus-1.svg",
+        "type": "asset",
+        "description": "Icône chat_plus-1 (catégorie: general)"
+      },
+      "chat_plus": {
+        "value": "/src/assets/icons-processed/Chat_plus.svg",
+        "type": "asset",
+        "description": "Icône chat_plus (catégorie: general)"
+      },
+      "chat_search": {
+        "value": "/src/assets/icons-processed/Chat_search.svg",
+        "type": "asset",
+        "description": "Icône chat_search (catégorie: general)"
+      },
+      "check_ring": {
+        "value": "/src/assets/icons-processed/Check_ring.svg",
+        "type": "asset",
+        "description": "Icône check_ring (catégorie: general)"
+      },
+      "checked_round": {
+        "value": "/src/assets/icons-processed/Checked_round.svg",
+        "type": "asset",
+        "description": "Icône checked_round (catégorie: general)"
+      },
+      "chemistry": {
+        "value": "/src/assets/icons-processed/Chemistry.svg",
+        "type": "asset",
+        "description": "Icône chemistry (catégorie: general)"
+      },
+      "chield": {
+        "value": "/src/assets/icons-processed/Chield.svg",
+        "type": "asset",
+        "description": "Icône chield (catégorie: general)"
+      },
+      "chield_alt": {
+        "value": "/src/assets/icons-processed/Chield_alt.svg",
+        "type": "asset",
+        "description": "Icône chield_alt (catégorie: general)"
+      },
+      "chield_check": {
+        "value": "/src/assets/icons-processed/Chield_check.svg",
+        "type": "asset",
+        "description": "Icône chield_check (catégorie: general)"
+      },
+      "close_round": {
+        "value": "/src/assets/icons-processed/Close_round.svg",
+        "type": "asset",
+        "description": "Icône close_round (catégorie: general)"
+      },
+      "close_round_duotone": {
+        "value": "/src/assets/icons-processed/Close_round_duotone.svg",
+        "type": "asset",
+        "description": "Icône close_round_duotone (catégorie: general)"
+      },
+      "close_round_fill": {
+        "value": "/src/assets/icons-processed/Close_round_fill.svg",
+        "type": "asset",
+        "description": "Icône close_round_fill (catégorie: general)"
+      },
+      "cloud": {
+        "value": "/src/assets/icons-processed/Cloud.svg",
+        "type": "asset",
+        "description": "Icône cloud (catégorie: general)"
+      },
+      "cloud_alt": {
+        "value": "/src/assets/icons-processed/Cloud_alt.svg",
+        "type": "asset",
+        "description": "Icône cloud_alt (catégorie: general)"
+      },
+      "collapse": {
+        "value": "/src/assets/icons-processed/Collapse.svg",
+        "type": "asset",
+        "description": "Icône collapse (catégorie: general)"
+      },
+      "compas_mini": {
+        "value": "/src/assets/icons-processed/Compas_mini.svg",
+        "type": "asset",
+        "description": "Icône compas_mini (catégorie: general)"
+      },
+      "compass": {
+        "value": "/src/assets/icons-processed/Compass.svg",
+        "type": "asset",
+        "description": "Icône compass (catégorie: general)"
+      },
+      "compass_alt": {
+        "value": "/src/assets/icons-processed/Compass_alt.svg",
+        "type": "asset",
+        "description": "Icône compass_alt (catégorie: general)"
+      },
+      "compass_north_fill": {
+        "value": "/src/assets/icons-processed/Compass_north_fill.svg",
+        "type": "asset",
+        "description": "Icône compass_north_fill (catégorie: general)"
+      },
+      "copy": {
+        "value": "/src/assets/icons-processed/Copy.svg",
+        "type": "asset",
+        "description": "Icône copy (catégorie: general)"
+      },
+      "copy_alt": {
+        "value": "/src/assets/icons-processed/Copy_alt.svg",
+        "type": "asset",
+        "description": "Icône copy_alt (catégorie: general)"
+      },
+      "covert": {
+        "value": "/src/assets/icons-processed/Covert.svg",
+        "type": "asset",
+        "description": "Icône covert (catégorie: general)"
+      },
+      "critical": {
+        "value": "/src/assets/icons-processed/Critical.svg",
+        "type": "asset",
+        "description": "Icône critical (catégorie: general)"
+      },
+      "data_bank": {
+        "value": "/src/assets/icons-processed/Data_bank.svg",
+        "type": "asset",
+        "description": "Icône data_bank (catégorie: general)"
+      },
+      "database": {
+        "value": "/src/assets/icons-processed/Database.svg",
+        "type": "asset",
+        "description": "Icône database (catégorie: general)"
+      },
+      "date_range": {
+        "value": "/src/assets/icons-processed/Date_range.svg",
+        "type": "asset",
+        "description": "Icône date_range (catégorie: general)"
+      },
+      "date_today": {
+        "value": "/src/assets/icons-processed/Date_today.svg",
+        "type": "asset",
+        "description": "Icône date_today (catégorie: general)"
+      },
+      "desk": {
+        "value": "/src/assets/icons-processed/Desk.svg",
+        "type": "asset",
+        "description": "Icône desk (catégorie: general)"
+      },
+      "desk_alt": {
+        "value": "/src/assets/icons-processed/Desk_alt.svg",
+        "type": "asset",
+        "description": "Icône desk_alt (catégorie: general)"
+      },
+      "dimond": {
+        "value": "/src/assets/icons-processed/Dimond.svg",
+        "type": "asset",
+        "description": "Icône dimond (catégorie: general)"
+      },
+      "dimond_alt": {
+        "value": "/src/assets/icons-processed/Dimond_alt.svg",
+        "type": "asset",
+        "description": "Icône dimond_alt (catégorie: general)"
+      },
+      "direction": {
+        "value": "/src/assets/icons-processed/Direction.svg",
+        "type": "asset",
+        "description": "Icône direction (catégorie: general)"
+      },
+      "direction_alt": {
+        "value": "/src/assets/icons-processed/Direction_alt.svg",
+        "type": "asset",
+        "description": "Icône direction_alt (catégorie: general)"
+      },
+      "direction_alt_2": {
+        "value": "/src/assets/icons-processed/Direction_alt_2.svg",
+        "type": "asset",
+        "description": "Icône direction_alt_2 (catégorie: general)"
+      },
+      "direction_alt_3": {
+        "value": "/src/assets/icons-processed/Direction_alt_3.svg",
+        "type": "asset",
+        "description": "Icône direction_alt_3 (catégorie: general)"
+      },
+      "dna": {
+        "value": "/src/assets/icons-processed/Dna.svg",
+        "type": "asset",
+        "description": "Icône dna (catégorie: general)"
+      },
+      "done": {
+        "value": "/src/assets/icons-processed/Done.svg",
+        "type": "asset",
+        "description": "Icône done (catégorie: general)"
+      },
+      "done_all_alt_round": {
+        "value": "/src/assets/icons-processed/Done_all_alt_round.svg",
+        "type": "asset",
+        "description": "Icône done_all_alt_round (catégorie: general)"
+      },
+      "done_all_round": {
+        "value": "/src/assets/icons-processed/Done_all_round.svg",
+        "type": "asset",
+        "description": "Icône done_all_round (catégorie: general)"
+      },
+      "done_ring_round": {
+        "value": "/src/assets/icons-processed/Done_ring_round.svg",
+        "type": "asset",
+        "description": "Icône done_ring_round (catégorie: general)"
+      },
+      "done_round": {
+        "value": "/src/assets/icons-processed/Done_round.svg",
+        "type": "asset",
+        "description": "Icône done_round (catégorie: general)"
+      },
+      "dot3": {
+        "value": "/src/assets/icons-processed/Dot3.svg",
+        "type": "asset",
+        "description": "Icône dot3 (catégorie: general)"
+      },
+      "e-mail": {
+        "value": "/src/assets/icons-processed/E-mail.svg",
+        "type": "asset",
+        "description": "Icône e-mail (catégorie: general)"
+      },
+      "expand_left": {
+        "value": "/src/assets/icons-processed/Expand_left.svg",
+        "type": "asset",
+        "description": "Icône expand_left (catégorie: general)"
+      },
+      "expand_left_double": {
+        "value": "/src/assets/icons-processed/Expand_left_double.svg",
+        "type": "asset",
+        "description": "Icône expand_left_double (catégorie: general)"
+      },
+      "expand_left_stop": {
+        "value": "/src/assets/icons-processed/Expand_left_stop.svg",
+        "type": "asset",
+        "description": "Icône expand_left_stop (catégorie: general)"
+      },
+      "expand_right": {
+        "value": "/src/assets/icons-processed/Expand_right.svg",
+        "type": "asset",
+        "description": "Icône expand_right (catégorie: general)"
+      },
+      "expand_right_double": {
+        "value": "/src/assets/icons-processed/Expand_right_double.svg",
+        "type": "asset",
+        "description": "Icône expand_right_double (catégorie: general)"
+      },
+      "expand_right_stop": {
+        "value": "/src/assets/icons-processed/Expand_right_stop.svg",
+        "type": "asset",
+        "description": "Icône expand_right_stop (catégorie: general)"
+      },
+      "expand_top_stop": {
+        "value": "/src/assets/icons-processed/Expand_top_stop.svg",
+        "type": "asset",
+        "description": "Icône expand_top_stop (catégorie: general)"
+      },
+      "export": {
+        "value": "/src/assets/icons-processed/Export.svg",
+        "type": "asset",
+        "description": "Icône export (catégorie: general)"
+      },
+      "external": {
+        "value": "/src/assets/icons-processed/External.svg",
+        "type": "asset",
+        "description": "Icône external (catégorie: general)"
+      },
+      "eye": {
+        "value": "/src/assets/icons-processed/Eye.svg",
+        "type": "asset",
+        "description": "Icône eye (catégorie: general)"
+      },
+      "fat": {
+        "value": "/src/assets/icons-processed/Fat.svg",
+        "type": "asset",
+        "description": "Icône fat (catégorie: general)"
+      },
+      "favorite": {
+        "value": "/src/assets/icons-processed/Favorite.svg",
+        "type": "asset",
+        "description": "Icône favorite (catégorie: general)"
+      },
+      "favorites": {
+        "value": "/src/assets/icons-processed/Favorites.svg",
+        "type": "asset",
+        "description": "Icône favorites (catégorie: general)"
+      },
+      "filter": {
+        "value": "/src/assets/icons-processed/Filter.svg",
+        "type": "asset",
+        "description": "Icône filter (catégorie: general)"
+      },
+      "filter_alt-1": {
+        "value": "/src/assets/icons-processed/Filter_alt-1.svg",
+        "type": "asset",
+        "description": "Icône filter_alt-1 (catégorie: general)"
+      },
+      "filter_alt": {
+        "value": "/src/assets/icons-processed/Filter_alt.svg",
+        "type": "asset",
+        "description": "Icône filter_alt (catégorie: general)"
+      },
+      "filter_big": {
+        "value": "/src/assets/icons-processed/Filter_big.svg",
+        "type": "asset",
+        "description": "Icône filter_big (catégorie: general)"
+      },
+      "filter_big_alt": {
+        "value": "/src/assets/icons-processed/Filter_big_alt.svg",
+        "type": "asset",
+        "description": "Icône filter_big_alt (catégorie: general)"
+      },
+      "fire-1": {
+        "value": "/src/assets/icons-processed/Fire-1.svg",
+        "type": "asset",
+        "description": "Icône fire-1 (catégorie: general)"
+      },
+      "fire-2": {
+        "value": "/src/assets/icons-processed/Fire-2.svg",
+        "type": "asset",
+        "description": "Icône fire-2 (catégorie: general)"
+      },
+      "fire": {
+        "value": "/src/assets/icons-processed/Fire.svg",
+        "type": "asset",
+        "description": "Icône fire (catégorie: general)"
+      },
+      "flag": {
+        "value": "/src/assets/icons-processed/Flag.svg",
+        "type": "asset",
+        "description": "Icône flag (catégorie: general)"
+      },
+      "flag_alt": {
+        "value": "/src/assets/icons-processed/Flag_alt.svg",
+        "type": "asset",
+        "description": "Icône flag_alt (catégorie: general)"
+      },
+      "flag_finish": {
+        "value": "/src/assets/icons-processed/Flag_finish.svg",
+        "type": "asset",
+        "description": "Icône flag_finish (catégorie: general)"
+      },
+      "flag_finish_alt": {
+        "value": "/src/assets/icons-processed/Flag_finish_alt.svg",
+        "type": "asset",
+        "description": "Icône flag_finish_alt (catégorie: general)"
+      },
+      "flask": {
+        "value": "/src/assets/icons-processed/Flask.svg",
+        "type": "asset",
+        "description": "Icône flask (catégorie: general)"
+      },
+      "flask_alt": {
+        "value": "/src/assets/icons-processed/Flask_alt.svg",
+        "type": "asset",
+        "description": "Icône flask_alt (catégorie: general)"
+      },
+      "folder": {
+        "value": "/src/assets/icons-processed/Folder.svg",
+        "type": "asset",
+        "description": "Icône folder (catégorie: general)"
+      },
+      "folder_add": {
+        "value": "/src/assets/icons-processed/Folder_add.svg",
+        "type": "asset",
+        "description": "Icône folder_add (catégorie: general)"
+      },
+      "folder_alt": {
+        "value": "/src/assets/icons-processed/Folder_alt.svg",
+        "type": "asset",
+        "description": "Icône folder_alt (catégorie: general)"
+      },
+      "folder_check": {
+        "value": "/src/assets/icons-processed/Folder_check.svg",
+        "type": "asset",
+        "description": "Icône folder_check (catégorie: general)"
+      },
+      "folder_copy": {
+        "value": "/src/assets/icons-processed/Folder_copy.svg",
+        "type": "asset",
+        "description": "Icône folder_copy (catégorie: general)"
+      },
+      "folder_del": {
+        "value": "/src/assets/icons-processed/Folder_del.svg",
+        "type": "asset",
+        "description": "Icône folder_del (catégorie: general)"
+      },
+      "folder_dublicate": {
+        "value": "/src/assets/icons-processed/Folder_dublicate.svg",
+        "type": "asset",
+        "description": "Icône folder_dublicate (catégorie: general)"
+      },
+      "folder_line": {
+        "value": "/src/assets/icons-processed/Folder_line.svg",
+        "type": "asset",
+        "description": "Icône folder_line (catégorie: general)"
+      },
+      "folder_open": {
+        "value": "/src/assets/icons-processed/Folder_open.svg",
+        "type": "asset",
+        "description": "Icône folder_open (catégorie: general)"
+      },
+      "folder_open_alt": {
+        "value": "/src/assets/icons-processed/Folder_open_alt.svg",
+        "type": "asset",
+        "description": "Icône folder_open_alt (catégorie: general)"
+      },
+      "folder_search": {
+        "value": "/src/assets/icons-processed/Folder_search.svg",
+        "type": "asset",
+        "description": "Icône folder_search (catégorie: general)"
+      },
+      "folder_send": {
+        "value": "/src/assets/icons-processed/Folder_send.svg",
+        "type": "asset",
+        "description": "Icône folder_send (catégorie: general)"
+      },
+      "folders_": {
+        "value": "/src/assets/icons-processed/Folders_.svg",
+        "type": "asset",
+        "description": "Icône folders_ (catégorie: general)"
+      },
+      "folders_line": {
+        "value": "/src/assets/icons-processed/Folders_line.svg",
+        "type": "asset",
+        "description": "Icône folders_line (catégorie: general)"
+      },
+      "form": {
+        "value": "/src/assets/icons-processed/Form.svg",
+        "type": "asset",
+        "description": "Icône form (catégorie: general)"
+      },
+      "frame-11934": {
+        "value": "/src/assets/icons-processed/Frame 11934.svg",
+        "type": "asset",
+        "description": "Icône frame-11934 (catégorie: general)"
+      },
+      "frame": {
+        "value": "/src/assets/icons-processed/Frame.svg",
+        "type": "asset",
+        "description": "Icône frame (catégorie: general)"
+      },
+      "full-1": {
+        "value": "/src/assets/icons-processed/Full-1.svg",
+        "type": "asset",
+        "description": "Icône full-1 (catégorie: general)"
+      },
+      "full-2": {
+        "value": "/src/assets/icons-processed/Full-2.svg",
+        "type": "asset",
+        "description": "Icône full-2 (catégorie: general)"
+      },
+      "full": {
+        "value": "/src/assets/icons-processed/Full.svg",
+        "type": "asset",
+        "description": "Icône full (catégorie: general)"
+      },
+      "full_screen_corner": {
+        "value": "/src/assets/icons-processed/Full_Screen_Corner.svg",
+        "type": "asset",
+        "description": "Icône full_screen_corner (catégorie: general)"
+      },
+      "full_alt-1": {
+        "value": "/src/assets/icons-processed/Full_alt-1.svg",
+        "type": "asset",
+        "description": "Icône full_alt-1 (catégorie: general)"
+      },
+      "full_alt": {
+        "value": "/src/assets/icons-processed/Full_alt.svg",
+        "type": "asset",
+        "description": "Icône full_alt (catégorie: general)"
+      },
+      "gift": {
+        "value": "/src/assets/icons-processed/GIft.svg",
+        "type": "asset",
+        "description": "Icône gift (catégorie: general)"
+      },
+      "gamepad": {
+        "value": "/src/assets/icons-processed/Gamepad.svg",
+        "type": "asset",
+        "description": "Icône gamepad (catégorie: general)"
+      },
+      "glass": {
+        "value": "/src/assets/icons-processed/Glass.svg",
+        "type": "asset",
+        "description": "Icône glass (catégorie: general)"
+      },
+      "glasses": {
+        "value": "/src/assets/icons-processed/Glasses.svg",
+        "type": "asset",
+        "description": "Icône glasses (catégorie: general)"
+      },
+      "gps_fixed": {
+        "value": "/src/assets/icons-processed/Gps_fixed.svg",
+        "type": "asset",
+        "description": "Icône gps_fixed (catégorie: general)"
+      },
+      "headphones_fill": {
+        "value": "/src/assets/icons-processed/Headphones_fill.svg",
+        "type": "asset",
+        "description": "Icône headphones_fill (catégorie: general)"
+      },
+      "hhourglass_move_light": {
+        "value": "/src/assets/icons-processed/Hhourglass_move_light.svg",
+        "type": "asset",
+        "description": "Icône hhourglass_move_light (catégorie: general)"
+      },
+      "home": {
+        "value": "/src/assets/icons-processed/Home.svg",
+        "type": "asset",
+        "description": "Icône home (catégorie: general)"
+      },
+      "horizontal_switch": {
+        "value": "/src/assets/icons-processed/Horizontal_switch.svg",
+        "type": "asset",
+        "description": "Icône horizontal_switch (catégorie: general)"
+      },
+      "horizontal_top_left_main": {
+        "value": "/src/assets/icons-processed/Horizontal_top_left_main.svg",
+        "type": "asset",
+        "description": "Icône horizontal_top_left_main (catégorie: general)"
+      },
+      "horizontal_top_right_main": {
+        "value": "/src/assets/icons-processed/Horizontal_top_right_main.svg",
+        "type": "asset",
+        "description": "Icône horizontal_top_right_main (catégorie: general)"
+      },
+      "hourglass": {
+        "value": "/src/assets/icons-processed/Hourglass.svg",
+        "type": "asset",
+        "description": "Icône hourglass (catégorie: general)"
+      },
+      "ito": {
+        "value": "/src/assets/icons-processed/ITO.svg",
+        "type": "asset",
+        "description": "Icône ito (catégorie: general)"
+      },
+      "img": {
+        "value": "/src/assets/icons-processed/Img.svg",
+        "type": "asset",
+        "description": "Icône img (catégorie: general)"
+      },
+      "img_alt_": {
+        "value": "/src/assets/icons-processed/Img_alt_.svg",
+        "type": "asset",
+        "description": "Icône img_alt_ (catégorie: general)"
+      },
+      "img_box": {
+        "value": "/src/assets/icons-processed/Img_box.svg",
+        "type": "asset",
+        "description": "Icône img_box (catégorie: general)"
+      },
+      "img_load-box": {
+        "value": "/src/assets/icons-processed/Img_load-box.svg",
+        "type": "asset",
+        "description": "Icône img_load-box (catégorie: general)"
+      },
+      "img_out-box": {
+        "value": "/src/assets/icons-processed/Img_out-box.svg",
+        "type": "asset",
+        "description": "Icône img_out-box (catégorie: general)"
+      },
+      "img_rol": {
+        "value": "/src/assets/icons-processed/Img_rol.svg",
+        "type": "asset",
+        "description": "Icône img_rol (catégorie: general)"
+      },
+      "import": {
+        "value": "/src/assets/icons-processed/Import.svg",
+        "type": "asset",
+        "description": "Icône import (catégorie: general)"
+      },
+      "in": {
+        "value": "/src/assets/icons-processed/In.svg",
+        "type": "asset",
+        "description": "Icône in (catégorie: general)"
+      },
+      "info-1": {
+        "value": "/src/assets/icons-processed/Info-1.svg",
+        "type": "asset",
+        "description": "Icône info-1 (catégorie: general)"
+      },
+      "info": {
+        "value": "/src/assets/icons-processed/Info.svg",
+        "type": "asset",
+        "description": "Icône info (catégorie: general)"
+      },
+      "info_alt": {
+        "value": "/src/assets/icons-processed/Info_alt.svg",
+        "type": "asset",
+        "description": "Icône info_alt (catégorie: general)"
+      },
+      "key": {
+        "value": "/src/assets/icons-processed/Key.svg",
+        "type": "asset",
+        "description": "Icône key (catégorie: general)"
+      },
+      "key_alt": {
+        "value": "/src/assets/icons-processed/Key_alt.svg",
+        "type": "asset",
+        "description": "Icône key_alt (catégorie: general)"
+      },
+      "knife": {
+        "value": "/src/assets/icons-processed/Knife.svg",
+        "type": "asset",
+        "description": "Icône knife (catégorie: general)"
+      },
+      "lable": {
+        "value": "/src/assets/icons-processed/Lable.svg",
+        "type": "asset",
+        "description": "Icône lable (catégorie: general)"
+      },
+      "lamp": {
+        "value": "/src/assets/icons-processed/Lamp.svg",
+        "type": "asset",
+        "description": "Icône lamp (catégorie: general)"
+      },
+      "layers": {
+        "value": "/src/assets/icons-processed/Layers.svg",
+        "type": "asset",
+        "description": "Icône layers (catégorie: general)"
+      },
+      "less_screen_corner": {
+        "value": "/src/assets/icons-processed/Less_Screen_Corner.svg",
+        "type": "asset",
+        "description": "Icône less_screen_corner (catégorie: general)"
+      },
+      "less_round_duotone": {
+        "value": "/src/assets/icons-processed/Less_round_duotone.svg",
+        "type": "asset",
+        "description": "Icône less_round_duotone (catégorie: general)"
+      },
+      "line": {
+        "value": "/src/assets/icons-processed/Line.svg",
+        "type": "asset",
+        "description": "Icône line (catégorie: general)"
+      },
+      "line_alt": {
+        "value": "/src/assets/icons-processed/Line_alt.svg",
+        "type": "asset",
+        "description": "Icône line_alt (catégorie: general)"
+      },
+      "line_in": {
+        "value": "/src/assets/icons-processed/Line_in.svg",
+        "type": "asset",
+        "description": "Icône line_in (catégorie: general)"
+      },
+      "line_in_alt": {
+        "value": "/src/assets/icons-processed/Line_in_alt.svg",
+        "type": "asset",
+        "description": "Icône line_in_alt (catégorie: general)"
+      },
+      "line_out": {
+        "value": "/src/assets/icons-processed/Line_out.svg",
+        "type": "asset",
+        "description": "Icône line_out (catégorie: general)"
+      },
+      "line_out_alt": {
+        "value": "/src/assets/icons-processed/Line_out_alt.svg",
+        "type": "asset",
+        "description": "Icône line_out_alt (catégorie: general)"
+      },
+      "load_circle": {
+        "value": "/src/assets/icons-processed/Load_circle.svg",
+        "type": "asset",
+        "description": "Icône load_circle (catégorie: general)"
+      },
+      "load_circle_fill": {
+        "value": "/src/assets/icons-processed/Load_circle_fill.svg",
+        "type": "asset",
+        "description": "Icône load_circle_fill (catégorie: general)"
+      },
+      "load_list": {
+        "value": "/src/assets/icons-processed/Load_list.svg",
+        "type": "asset",
+        "description": "Icône load_list (catégorie: general)"
+      },
+      "load_list_alt": {
+        "value": "/src/assets/icons-processed/Load_list_alt.svg",
+        "type": "asset",
+        "description": "Icône load_list_alt (catégorie: general)"
+      },
+      "lock": {
+        "value": "/src/assets/icons-processed/Lock.svg",
+        "type": "asset",
+        "description": "Icône lock (catégorie: general)"
+      },
+      "lock_alt": {
+        "value": "/src/assets/icons-processed/Lock_alt.svg",
+        "type": "asset",
+        "description": "Icône lock_alt (catégorie: general)"
+      },
+      "lol": {
+        "value": "/src/assets/icons-processed/Lol.svg",
+        "type": "asset",
+        "description": "Icône lol (catégorie: general)"
+      },
+      "mask": {
+        "value": "/src/assets/icons-processed/Mask.svg",
+        "type": "asset",
+        "description": "Icône mask (catégorie: general)"
+      },
+      "materials": {
+        "value": "/src/assets/icons-processed/Materials.svg",
+        "type": "asset",
+        "description": "Icône materials (catégorie: general)"
+      },
+      "meatballs_menu": {
+        "value": "/src/assets/icons-processed/Meatballs_menu.svg",
+        "type": "asset",
+        "description": "Icône meatballs_menu (catégorie: general)"
+      },
+      "menu-1": {
+        "value": "/src/assets/icons-processed/Menu-1.svg",
+        "type": "asset",
+        "description": "Icône menu-1 (catégorie: general)"
+      },
+      "menu": {
+        "value": "/src/assets/icons-processed/Menu.svg",
+        "type": "asset",
+        "description": "Icône menu (catégorie: general)"
+      },
+      "message": {
+        "value": "/src/assets/icons-processed/Message.svg",
+        "type": "asset",
+        "description": "Icône message (catégorie: general)"
+      },
+      "message_alt": {
+        "value": "/src/assets/icons-processed/Message_alt.svg",
+        "type": "asset",
+        "description": "Icône message_alt (catégorie: general)"
+      },
+      "message_open": {
+        "value": "/src/assets/icons-processed/Message_open.svg",
+        "type": "asset",
+        "description": "Icône message_open (catégorie: general)"
+      },
+      "mic": {
+        "value": "/src/assets/icons-processed/Mic.svg",
+        "type": "asset",
+        "description": "Icône mic (catégorie: general)"
+      },
+      "mic_alt": {
+        "value": "/src/assets/icons-processed/Mic_alt.svg",
+        "type": "asset",
+        "description": "Icône mic_alt (catégorie: general)"
+      },
+      "molecule": {
+        "value": "/src/assets/icons-processed/Molecule.svg",
+        "type": "asset",
+        "description": "Icône molecule (catégorie: general)"
+      },
+      "money": {
+        "value": "/src/assets/icons-processed/Money.svg",
+        "type": "asset",
+        "description": "Icône money (catégorie: general)"
+      },
+      "moon": {
+        "value": "/src/assets/icons-processed/Moon.svg",
+        "type": "asset",
+        "description": "Icône moon (catégorie: general)"
+      },
+      "moon_alt": {
+        "value": "/src/assets/icons-processed/Moon_alt.svg",
+        "type": "asset",
+        "description": "Icône moon_alt (catégorie: general)"
+      },
+      "mortarboard": {
+        "value": "/src/assets/icons-processed/Mortarboard.svg",
+        "type": "asset",
+        "description": "Icône mortarboard (catégorie: general)"
+      },
+      "mortarboard_alt": {
+        "value": "/src/assets/icons-processed/Mortarboard_alt.svg",
+        "type": "asset",
+        "description": "Icône mortarboard_alt (catégorie: general)"
+      },
+      "mortarboard_alt_2": {
+        "value": "/src/assets/icons-processed/Mortarboard_alt_2.svg",
+        "type": "asset",
+        "description": "Icône mortarboard_alt_2 (catégorie: general)"
+      },
+      "mouse": {
+        "value": "/src/assets/icons-processed/Mouse.svg",
+        "type": "asset",
+        "description": "Icône mouse (catégorie: general)"
+      },
+      "move": {
+        "value": "/src/assets/icons-processed/Move.svg",
+        "type": "asset",
+        "description": "Icône move (catégorie: general)"
+      },
+      "move_alt": {
+        "value": "/src/assets/icons-processed/Move_alt.svg",
+        "type": "asset",
+        "description": "Icône move_alt (catégorie: general)"
+      },
+      "move_object": {
+        "value": "/src/assets/icons-processed/Move_object.svg",
+        "type": "asset",
+        "description": "Icône move_object (catégorie: general)"
+      },
+      "music": {
+        "value": "/src/assets/icons-processed/Music.svg",
+        "type": "asset",
+        "description": "Icône music (catégorie: general)"
+      },
+      "nfc": {
+        "value": "/src/assets/icons-processed/NFC.svg",
+        "type": "asset",
+        "description": "Icône nfc (catégorie: general)"
+      },
+      "navigate": {
+        "value": "/src/assets/icons-processed/Navigate.svg",
+        "type": "asset",
+        "description": "Icône navigate (catégorie: general)"
+      },
+      "nesting": {
+        "value": "/src/assets/icons-processed/Nesting.svg",
+        "type": "asset",
+        "description": "Icône nesting (catégorie: general)"
+      },
+      "news": {
+        "value": "/src/assets/icons-processed/News.svg",
+        "type": "asset",
+        "description": "Icône news (catégorie: general)"
+      },
+      "on_button": {
+        "value": "/src/assets/icons-processed/On_button.svg",
+        "type": "asset",
+        "description": "Icône on_button (catégorie: general)"
+      },
+      "orange": {
+        "value": "/src/assets/icons-processed/Orange.svg",
+        "type": "asset",
+        "description": "Icône orange (catégorie: general)"
+      },
+      "order": {
+        "value": "/src/assets/icons-processed/Order.svg",
+        "type": "asset",
+        "description": "Icône order (catégorie: general)"
+      },
+      "out": {
+        "value": "/src/assets/icons-processed/Out.svg",
+        "type": "asset",
+        "description": "Icône out (catégorie: general)"
+      },
+      "paper": {
+        "value": "/src/assets/icons-processed/Paper.svg",
+        "type": "asset",
+        "description": "Icône paper (catégorie: general)"
+      },
+      "paper_alt": {
+        "value": "/src/assets/icons-processed/Paper_alt.svg",
+        "type": "asset",
+        "description": "Icône paper_alt (catégorie: general)"
+      },
+      "pass": {
+        "value": "/src/assets/icons-processed/Pass.svg",
+        "type": "asset",
+        "description": "Icône pass (catégorie: general)"
+      },
+      "password": {
+        "value": "/src/assets/icons-processed/Password.svg",
+        "type": "asset",
+        "description": "Icône password (catégorie: general)"
+      },
+      "pin-1": {
+        "value": "/src/assets/icons-processed/Pin-1.svg",
+        "type": "asset",
+        "description": "Icône pin-1 (catégorie: general)"
+      },
+      "pin": {
+        "value": "/src/assets/icons-processed/Pin.svg",
+        "type": "asset",
+        "description": "Icône pin (catégorie: general)"
+      },
+      "pin_alt": {
+        "value": "/src/assets/icons-processed/Pin_alt.svg",
+        "type": "asset",
+        "description": "Icône pin_alt (catégorie: general)"
+      },
+      "pined": {
+        "value": "/src/assets/icons-processed/Pined.svg",
+        "type": "asset",
+        "description": "Icône pined (catégorie: general)"
+      },
+      "pipe": {
+        "value": "/src/assets/icons-processed/Pipe.svg",
+        "type": "asset",
+        "description": "Icône pipe (catégorie: general)"
+      },
+      "pipette": {
+        "value": "/src/assets/icons-processed/Pipette.svg",
+        "type": "asset",
+        "description": "Icône pipette (catégorie: general)"
+      },
+      "pizza": {
+        "value": "/src/assets/icons-processed/Pizza.svg",
+        "type": "asset",
+        "description": "Icône pizza (catégorie: general)"
+      },
+      "pointers": {
+        "value": "/src/assets/icons-processed/Pointers.svg",
+        "type": "asset",
+        "description": "Icône pointers (catégorie: general)"
+      },
+      "pressure": {
+        "value": "/src/assets/icons-processed/Pressure.svg",
+        "type": "asset",
+        "description": "Icône pressure (catégorie: general)"
+      },
+      "print": {
+        "value": "/src/assets/icons-processed/Print.svg",
+        "type": "asset",
+        "description": "Icône print (catégorie: general)"
+      },
+      "progress": {
+        "value": "/src/assets/icons-processed/Progress.svg",
+        "type": "asset",
+        "description": "Icône progress (catégorie: general)"
+      },
+      "protein": {
+        "value": "/src/assets/icons-processed/Protein.svg",
+        "type": "asset",
+        "description": "Icône protein (catégorie: general)"
+      },
+      "question": {
+        "value": "/src/assets/icons-processed/Question.svg",
+        "type": "asset",
+        "description": "Icône question (catégorie: general)"
+      },
+      "rain": {
+        "value": "/src/assets/icons-processed/Rain.svg",
+        "type": "asset",
+        "description": "Icône rain (catégorie: general)"
+      },
+      "reduce": {
+        "value": "/src/assets/icons-processed/Reduce.svg",
+        "type": "asset",
+        "description": "Icône reduce (catégorie: general)"
+      },
+      "refresh": {
+        "value": "/src/assets/icons-processed/Refresh.svg",
+        "type": "asset",
+        "description": "Icône refresh (catégorie: general)"
+      },
+      "refresh_2": {
+        "value": "/src/assets/icons-processed/Refresh_2.svg",
+        "type": "asset",
+        "description": "Icône refresh_2 (catégorie: general)"
+      },
+      "refund_forward": {
+        "value": "/src/assets/icons-processed/Refund_Forward.svg",
+        "type": "asset",
+        "description": "Icône refund_forward (catégorie: general)"
+      },
+      "refund_back": {
+        "value": "/src/assets/icons-processed/Refund_back.svg",
+        "type": "asset",
+        "description": "Icône refund_back (catégorie: general)"
+      },
+      "refund_ring_back": {
+        "value": "/src/assets/icons-processed/Refund_ring_back.svg",
+        "type": "asset",
+        "description": "Icône refund_ring_back (catégorie: general)"
+      },
+      "refund_ring_forward": {
+        "value": "/src/assets/icons-processed/Refund_ring_forward.svg",
+        "type": "asset",
+        "description": "Icône refund_ring_forward (catégorie: general)"
+      },
+      "refund_ring_top": {
+        "value": "/src/assets/icons-processed/Refund_ring_top.svg",
+        "type": "asset",
+        "description": "Icône refund_ring_top (catégorie: general)"
+      },
+      "refund_top": {
+        "value": "/src/assets/icons-processed/Refund_top.svg",
+        "type": "asset",
+        "description": "Icône refund_top (catégorie: general)"
+      },
+      "remove": {
+        "value": "/src/assets/icons-processed/Remove.svg",
+        "type": "asset",
+        "description": "Icône remove (catégorie: general)"
+      },
+      "return": {
+        "value": "/src/assets/icons-processed/Return.svg",
+        "type": "asset",
+        "description": "Icône return (catégorie: general)"
+      },
+      "ring": {
+        "value": "/src/assets/icons-processed/Ring.svg",
+        "type": "asset",
+        "description": "Icône ring (catégorie: general)"
+      },
+      "ring_move": {
+        "value": "/src/assets/icons-processed/Ring_move.svg",
+        "type": "asset",
+        "description": "Icône ring_move (catégorie: general)"
+      },
+      "road": {
+        "value": "/src/assets/icons-processed/Road.svg",
+        "type": "asset",
+        "description": "Icône road (catégorie: general)"
+      },
+      "road_alt": {
+        "value": "/src/assets/icons-processed/Road_alt.svg",
+        "type": "asset",
+        "description": "Icône road_alt (catégorie: general)"
+      },
+      "road_finish": {
+        "value": "/src/assets/icons-processed/Road_finish.svg",
+        "type": "asset",
+        "description": "Icône road_finish (catégorie: general)"
+      },
+      "rofl": {
+        "value": "/src/assets/icons-processed/Rofl.svg",
+        "type": "asset",
+        "description": "Icône rofl (catégorie: general)"
+      },
+      "roll": {
+        "value": "/src/assets/icons-processed/Roll.svg",
+        "type": "asset",
+        "description": "Icône roll (catégorie: general)"
+      },
+      "roll_alt": {
+        "value": "/src/assets/icons-processed/Roll_alt.svg",
+        "type": "asset",
+        "description": "Icône roll_alt (catégorie: general)"
+      },
+      "root": {
+        "value": "/src/assets/icons-processed/Root.svg",
+        "type": "asset",
+        "description": "Icône root (catégorie: general)"
+      },
+      "sad": {
+        "value": "/src/assets/icons-processed/Sad.svg",
+        "type": "asset",
+        "description": "Icône sad (catégorie: general)"
+      },
+      "sad_alt": {
+        "value": "/src/assets/icons-processed/Sad_alt.svg",
+        "type": "asset",
+        "description": "Icône sad_alt (catégorie: general)"
+      },
+      "sad_alt_2": {
+        "value": "/src/assets/icons-processed/Sad_alt_2.svg",
+        "type": "asset",
+        "description": "Icône sad_alt_2 (catégorie: general)"
+      },
+      "save": {
+        "value": "/src/assets/icons-processed/Save.svg",
+        "type": "asset",
+        "description": "Icône save (catégorie: general)"
+      },
+      "scan": {
+        "value": "/src/assets/icons-processed/Scan.svg",
+        "type": "asset",
+        "description": "Icône scan (catégorie: general)"
+      },
+      "scan_alt": {
+        "value": "/src/assets/icons-processed/Scan_alt.svg",
+        "type": "asset",
+        "description": "Icône scan_alt (catégorie: general)"
+      },
+      "scan_alt_2": {
+        "value": "/src/assets/icons-processed/Scan_alt_2.svg",
+        "type": "asset",
+        "description": "Icône scan_alt_2 (catégorie: general)"
+      },
+      "search": {
+        "value": "/src/assets/icons-processed/Search.svg",
+        "type": "asset",
+        "description": "Icône search (catégorie: general)"
+      },
+      "search_alt": {
+        "value": "/src/assets/icons-processed/Search_alt.svg",
+        "type": "asset",
+        "description": "Icône search_alt (catégorie: general)"
+      },
+      "send": {
+        "value": "/src/assets/icons-processed/Send.svg",
+        "type": "asset",
+        "description": "Icône send (catégorie: general)"
+      },
+      "send_hor": {
+        "value": "/src/assets/icons-processed/Send_hor.svg",
+        "type": "asset",
+        "description": "Icône send_hor (catégorie: general)"
+      },
+      "sertificate": {
+        "value": "/src/assets/icons-processed/Sertificate.svg",
+        "type": "asset",
+        "description": "Icône sertificate (catégorie: general)"
+      },
+      "server": {
+        "value": "/src/assets/icons-processed/Server.svg",
+        "type": "asset",
+        "description": "Icône server (catégorie: general)"
+      },
+      "sign_in_circle": {
+        "value": "/src/assets/icons-processed/Sign_in_circle.svg",
+        "type": "asset",
+        "description": "Icône sign_in_circle (catégorie: general)"
+      },
+      "sign_in_squre": {
+        "value": "/src/assets/icons-processed/Sign_in_squre.svg",
+        "type": "asset",
+        "description": "Icône sign_in_squre (catégorie: general)"
+      },
+      "sign_out_bis": {
+        "value": "/src/assets/icons-processed/Sign_out_bis.svg",
+        "type": "asset",
+        "description": "Icône sign_out_bis (catégorie: general)"
+      },
+      "sign_out_circle": {
+        "value": "/src/assets/icons-processed/Sign_out_circle.svg",
+        "type": "asset",
+        "description": "Icône sign_out_circle (catégorie: general)"
+      },
+      "sign_out_squre": {
+        "value": "/src/assets/icons-processed/Sign_out_squre.svg",
+        "type": "asset",
+        "description": "Icône sign_out_squre (catégorie: general)"
+      },
+      "speed": {
+        "value": "/src/assets/icons-processed/Speed.svg",
+        "type": "asset",
+        "description": "Icône speed (catégorie: general)"
+      },
+      "speed_alt": {
+        "value": "/src/assets/icons-processed/Speed_alt.svg",
+        "type": "asset",
+        "description": "Icône speed_alt (catégorie: general)"
+      },
+      "square": {
+        "value": "/src/assets/icons-processed/Square.svg",
+        "type": "asset",
+        "description": "Icône square (catégorie: general)"
+      },
+      "stackframe": {
+        "value": "/src/assets/icons-processed/Stackframe.svg",
+        "type": "asset",
+        "description": "Icône stackframe (catégorie: general)"
+      },
+      "stat": {
+        "value": "/src/assets/icons-processed/Stat.svg",
+        "type": "asset",
+        "description": "Icône stat (catégorie: general)"
+      },
+      "status": {
+        "value": "/src/assets/icons-processed/Status.svg",
+        "type": "asset",
+        "description": "Icône status (catégorie: general)"
+      },
+      "status_list": {
+        "value": "/src/assets/icons-processed/Status_list.svg",
+        "type": "asset",
+        "description": "Icône status_list (catégorie: general)"
+      },
+      "stop": {
+        "value": "/src/assets/icons-processed/Stop.svg",
+        "type": "asset",
+        "description": "Icône stop (catégorie: general)"
+      },
+      "subttasks": {
+        "value": "/src/assets/icons-processed/Subttasks.svg",
+        "type": "asset",
+        "description": "Icône subttasks (catégorie: general)"
+      },
+      "subttasks_alt": {
+        "value": "/src/assets/icons-processed/Subttasks_alt.svg",
+        "type": "asset",
+        "description": "Icône subttasks_alt (catégorie: general)"
+      },
+      "table": {
+        "value": "/src/assets/icons-processed/Table.svg",
+        "type": "asset",
+        "description": "Icône table (catégorie: general)"
+      },
+      "tablet": {
+        "value": "/src/assets/icons-processed/Tablet.svg",
+        "type": "asset",
+        "description": "Icône tablet (catégorie: general)"
+      },
+      "target": {
+        "value": "/src/assets/icons-processed/Target.svg",
+        "type": "asset",
+        "description": "Icône target (catégorie: general)"
+      },
+      "temperature-1": {
+        "value": "/src/assets/icons-processed/Temperature-1.svg",
+        "type": "asset",
+        "description": "Icône temperature-1 (catégorie: general)"
+      },
+      "temperature": {
+        "value": "/src/assets/icons-processed/Temperature.svg",
+        "type": "asset",
+        "description": "Icône temperature (catégorie: general)"
+      },
+      "tie": {
+        "value": "/src/assets/icons-processed/Tie.svg",
+        "type": "asset",
+        "description": "Icône tie (catégorie: general)"
+      },
+      "tooth": {
+        "value": "/src/assets/icons-processed/Tooth.svg",
+        "type": "asset",
+        "description": "Icône tooth (catégorie: general)"
+      },
+      "transger": {
+        "value": "/src/assets/icons-processed/Transger.svg",
+        "type": "asset",
+        "description": "Icône transger (catégorie: general)"
+      },
+      "trash": {
+        "value": "/src/assets/icons-processed/Trash.svg",
+        "type": "asset",
+        "description": "Icône trash (catégorie: general)"
+      },
+      "tree": {
+        "value": "/src/assets/icons-processed/Tree.svg",
+        "type": "asset",
+        "description": "Icône tree (catégorie: general)"
+      },
+      "trophy": {
+        "value": "/src/assets/icons-processed/Trophy.svg",
+        "type": "asset",
+        "description": "Icône trophy (catégorie: general)"
+      },
+      "tumer": {
+        "value": "/src/assets/icons-processed/Tumer.svg",
+        "type": "asset",
+        "description": "Icône tumer (catégorie: general)"
+      },
+      "turbine": {
+        "value": "/src/assets/icons-processed/Turbine.svg",
+        "type": "asset",
+        "description": "Icône turbine (catégorie: general)"
+      },
+      "unlock-1": {
+        "value": "/src/assets/icons-processed/Unlock-1.svg",
+        "type": "asset",
+        "description": "Icône unlock-1 (catégorie: general)"
+      },
+      "unlock": {
+        "value": "/src/assets/icons-processed/Unlock.svg",
+        "type": "asset",
+        "description": "Icône unlock (catégorie: general)"
+      },
+      "vector": {
+        "value": "/src/assets/icons-processed/Vector.svg",
+        "type": "asset",
+        "description": "Icône vector (catégorie: general)"
+      },
+      "vertical_switch": {
+        "value": "/src/assets/icons-processed/Vertical_switch.svg",
+        "type": "asset",
+        "description": "Icône vertical_switch (catégorie: general)"
+      },
+      "vertical_switch_alt": {
+        "value": "/src/assets/icons-processed/Vertical_switch_alt.svg",
+        "type": "asset",
+        "description": "Icône vertical_switch_alt (catégorie: general)"
+      },
+      "vertical_switch_long": {
+        "value": "/src/assets/icons-processed/Vertical_switch_long.svg",
+        "type": "asset",
+        "description": "Icône vertical_switch_long (catégorie: general)"
+      },
+      "water": {
+        "value": "/src/assets/icons-processed/Water.svg",
+        "type": "asset",
+        "description": "Icône water (catégorie: general)"
+      },
+      "waterfall": {
+        "value": "/src/assets/icons-processed/Waterfall.svg",
+        "type": "asset",
+        "description": "Icône waterfall (catégorie: general)"
+      },
+      "winter": {
+        "value": "/src/assets/icons-processed/Winter.svg",
+        "type": "asset",
+        "description": "Icône winter (catégorie: general)"
+      },
+      "wow": {
+        "value": "/src/assets/icons-processed/Wow.svg",
+        "type": "asset",
+        "description": "Icône wow (catégorie: general)"
+      },
+      "battery_full": {
+        "value": "/src/assets/icons-processed/battery_full.svg",
+        "type": "asset",
+        "description": "Icône battery_full (catégorie: general)"
+      },
+      "battery_low": {
+        "value": "/src/assets/icons-processed/battery_low.svg",
+        "type": "asset",
+        "description": "Icône battery_low (catégorie: general)"
+      },
+      "box_refresh_alt_right": {
+        "value": "/src/assets/icons-processed/box_refresh_alt_right.svg",
+        "type": "asset",
+        "description": "Icône box_refresh_alt_right (catégorie: general)"
+      },
+      "box_refresh_right": {
+        "value": "/src/assets/icons-processed/box_refresh_right.svg",
+        "type": "asset",
+        "description": "Icône box_refresh_right (catégorie: general)"
+      },
+      "candlestick": {
+        "value": "/src/assets/icons-processed/candlestick.svg",
+        "type": "asset",
+        "description": "Icône candlestick (catégorie: general)"
+      },
+      "check_ring_round": {
+        "value": "/src/assets/icons-processed/check_ring_round.svg",
+        "type": "asset",
+        "description": "Icône check_ring_round (catégorie: general)"
+      },
+      "circle_left": {
+        "value": "/src/assets/icons-processed/circle_left.svg",
+        "type": "asset",
+        "description": "Icône circle_left (catégorie: general)"
+      },
+      "circle_right": {
+        "value": "/src/assets/icons-processed/circle_right.svg",
+        "type": "asset",
+        "description": "Icône circle_right (catégorie: general)"
+      },
+      "circle_right_alt": {
+        "value": "/src/assets/icons-processed/circle_right_alt.svg",
+        "type": "asset",
+        "description": "Icône circle_right_alt (catégorie: general)"
+      },
+      "close_ring": {
+        "value": "/src/assets/icons-processed/close_ring.svg",
+        "type": "asset",
+        "description": "Icône close_ring (catégorie: general)"
+      },
+      "close_ring_duotone": {
+        "value": "/src/assets/icons-processed/close_ring_duotone.svg",
+        "type": "asset",
+        "description": "Icône close_ring_duotone (catégorie: general)"
+      },
+      "close_ring_fill": {
+        "value": "/src/assets/icons-processed/close_ring_fill.svg",
+        "type": "asset",
+        "description": "Icône close_ring_fill (catégorie: general)"
+      },
+      "cocktail": {
+        "value": "/src/assets/icons-processed/cocktail.svg",
+        "type": "asset",
+        "description": "Icône cocktail (catégorie: general)"
+      },
+      "color_picker": {
+        "value": "/src/assets/icons-processed/color_picker.svg",
+        "type": "asset",
+        "description": "Icône color_picker (catégorie: general)"
+      },
+      "comment": {
+        "value": "/src/assets/icons-processed/comment.svg",
+        "type": "asset",
+        "description": "Icône comment (catégorie: general)"
+      },
+      "darhboard": {
+        "value": "/src/assets/icons-processed/darhboard.svg",
+        "type": "asset",
+        "description": "Icône darhboard (catégorie: general)"
+      },
+      "darhboard_alt": {
+        "value": "/src/assets/icons-processed/darhboard_alt.svg",
+        "type": "asset",
+        "description": "Icône darhboard_alt (catégorie: general)"
+      },
+      "del_alt": {
+        "value": "/src/assets/icons-processed/del_alt.svg",
+        "type": "asset",
+        "description": "Icône del_alt (catégorie: general)"
+      },
+      "desktop": {
+        "value": "/src/assets/icons-processed/desktop.svg",
+        "type": "asset",
+        "description": "Icône desktop (catégorie: general)"
+      },
+      "doughnut_chart": {
+        "value": "/src/assets/icons-processed/doughnut_chart.svg",
+        "type": "asset",
+        "description": "Icône doughnut_chart (catégorie: general)"
+      },
+      "drink": {
+        "value": "/src/assets/icons-processed/drink.svg",
+        "type": "asset",
+        "description": "Icône drink (catégorie: general)"
+      },
+      "face_id": {
+        "value": "/src/assets/icons-processed/face_id.svg",
+        "type": "asset",
+        "description": "Icône face_id (catégorie: general)"
+      },
+      "flash": {
+        "value": "/src/assets/icons-processed/flash.svg",
+        "type": "asset",
+        "description": "Icône flash (catégorie: general)"
+      },
+      "gift_alt": {
+        "value": "/src/assets/icons-processed/gift_alt.svg",
+        "type": "asset",
+        "description": "Icône gift_alt (catégorie: general)"
+      },
+      "globe": {
+        "value": "/src/assets/icons-processed/globe.svg",
+        "type": "asset",
+        "description": "Icône globe (catégorie: general)"
+      },
+      "happy-1": {
+        "value": "/src/assets/icons-processed/happy-1.svg",
+        "type": "asset",
+        "description": "Icône happy-1 (catégorie: general)"
+      },
+      "happy": {
+        "value": "/src/assets/icons-processed/happy.svg",
+        "type": "asset",
+        "description": "Icône happy (catégorie: general)"
+      },
+      "hide_eye": {
+        "value": "/src/assets/icons-processed/hide_eye.svg",
+        "type": "asset",
+        "description": "Icône hide_eye (catégorie: general)"
+      },
+      "humidity": {
+        "value": "/src/assets/icons-processed/humidity.svg",
+        "type": "asset",
+        "description": "Icône humidity (catégorie: general)"
+      },
+      "ice_cream": {
+        "value": "/src/assets/icons-processed/ice_cream.svg",
+        "type": "asset",
+        "description": "Icône ice_cream (catégorie: general)"
+      },
+      "ice_cream_1": {
+        "value": "/src/assets/icons-processed/ice_cream_1.svg",
+        "type": "asset",
+        "description": "Icône ice_cream_1 (catégorie: general)"
+      },
+      "insta": {
+        "value": "/src/assets/icons-processed/insta.svg",
+        "type": "asset",
+        "description": "Icône insta (catégorie: general)"
+      },
+      "lightning": {
+        "value": "/src/assets/icons-processed/lightning.svg",
+        "type": "asset",
+        "description": "Icône lightning (catégorie: general)"
+      },
+      "lightning_alt": {
+        "value": "/src/assets/icons-processed/lightning_alt.svg",
+        "type": "asset",
+        "description": "Icône lightning_alt (catégorie: general)"
+      },
+      "lightning_ring": {
+        "value": "/src/assets/icons-processed/lightning_ring.svg",
+        "type": "asset",
+        "description": "Icône lightning_ring (catégorie: general)"
+      },
+      "link": {
+        "value": "/src/assets/icons-processed/link.svg",
+        "type": "asset",
+        "description": "Icône link (catégorie: general)"
+      },
+      "link_alt-1": {
+        "value": "/src/assets/icons-processed/link_alt-1.svg",
+        "type": "asset",
+        "description": "Icône link_alt-1 (catégorie: general)"
+      },
+      "link_alt": {
+        "value": "/src/assets/icons-processed/link_alt.svg",
+        "type": "asset",
+        "description": "Icône link_alt (catégorie: general)"
+      },
+      "md_icon": {
+        "value": "/src/assets/icons-processed/md_icon.svg",
+        "type": "asset",
+        "description": "Icône md_icon (catégorie: general)"
+      },
+      "mobile": {
+        "value": "/src/assets/icons-processed/mobile.svg",
+        "type": "asset",
+        "description": "Icône mobile (catégorie: general)"
+      },
+      "notebook": {
+        "value": "/src/assets/icons-processed/notebook.svg",
+        "type": "asset",
+        "description": "Icône notebook (catégorie: general)"
+      },
+      "oil": {
+        "value": "/src/assets/icons-processed/oil.svg",
+        "type": "asset",
+        "description": "Icône oil (catégorie: general)"
+      },
+      "package": {
+        "value": "/src/assets/icons-processed/package.svg",
+        "type": "asset",
+        "description": "Icône package (catégorie: general)"
+      },
+      "package_box": {
+        "value": "/src/assets/icons-processed/package_box.svg",
+        "type": "asset",
+        "description": "Icône package_box (catégorie: general)"
+      },
+      "package_box_alt": {
+        "value": "/src/assets/icons-processed/package_box_alt.svg",
+        "type": "asset",
+        "description": "Icône package_box_alt (catégorie: general)"
+      },
+      "package_box_close": {
+        "value": "/src/assets/icons-processed/package_box_close.svg",
+        "type": "asset",
+        "description": "Icône package_box_close (catégorie: general)"
+      },
+      "package_car": {
+        "value": "/src/assets/icons-processed/package_car.svg",
+        "type": "asset",
+        "description": "Icône package_car (catégorie: general)"
+      },
+      "package_favourite": {
+        "value": "/src/assets/icons-processed/package_favourite.svg",
+        "type": "asset",
+        "description": "Icône package_favourite (catégorie: general)"
+      },
+      "package_favourite_alt": {
+        "value": "/src/assets/icons-processed/package_favourite_alt.svg",
+        "type": "asset",
+        "description": "Icône package_favourite_alt (catégorie: general)"
+      },
+      "package_search": {
+        "value": "/src/assets/icons-processed/package_search.svg",
+        "type": "asset",
+        "description": "Icône package_search (catégorie: general)"
+      },
+      "paper_clip": {
+        "value": "/src/assets/icons-processed/paper_clip.svg",
+        "type": "asset",
+        "description": "Icône paper_clip (catégorie: general)"
+      },
+      "phone": {
+        "value": "/src/assets/icons-processed/phone.svg",
+        "type": "asset",
+        "description": "Icône phone (catégorie: general)"
+      },
+      "pie_chart": {
+        "value": "/src/assets/icons-processed/pie_chart.svg",
+        "type": "asset",
+        "description": "Icône pie_chart (catégorie: general)"
+      },
+      "pil": {
+        "value": "/src/assets/icons-processed/pil.svg",
+        "type": "asset",
+        "description": "Icône pil (catégorie: general)"
+      },
+      "pils": {
+        "value": "/src/assets/icons-processed/pils.svg",
+        "type": "asset",
+        "description": "Icône pils (catégorie: general)"
+      },
+      "pool": {
+        "value": "/src/assets/icons-processed/pool.svg",
+        "type": "asset",
+        "description": "Icône pool (catégorie: general)"
+      },
+      "pyramid_chart": {
+        "value": "/src/assets/icons-processed/pyramid_chart.svg",
+        "type": "asset",
+        "description": "Icône pyramid_chart (catégorie: general)"
+      },
+      "stethoscope": {
+        "value": "/src/assets/icons-processed/stethoscope.svg",
+        "type": "asset",
+        "description": "Icône stethoscope (catégorie: general)"
+      },
+      "suitcase": {
+        "value": "/src/assets/icons-processed/suitcase.svg",
+        "type": "asset",
+        "description": "Icône suitcase (catégorie: general)"
+      },
+      "": {
+        "value": "/src/assets/icons-processed/€.svg",
+        "type": "asset",
+        "description": "Icône  (catégorie: general)"
+      }
+    },
+    "time": {
+      "alarmclock": {
+        "value": "/src/assets/icons-processed/Alarmclock.svg",
+        "type": "asset",
+        "description": "Icône alarmclock (catégorie: time)"
+      },
+      "clock": {
+        "value": "/src/assets/icons-processed/Clock.svg",
+        "type": "asset",
+        "description": "Icône clock (catégorie: time)"
+      },
+      "jump_time": {
+        "value": "/src/assets/icons-processed/Jump_time.svg",
+        "type": "asset",
+        "description": "Icône jump_time (catégorie: time)"
+      },
+      "time": {
+        "value": "/src/assets/icons-processed/Time.svg",
+        "type": "asset",
+        "description": "Icône time (catégorie: time)"
+      },
+      "time_atack": {
+        "value": "/src/assets/icons-processed/Time_atack.svg",
+        "type": "asset",
+        "description": "Icône time_atack (catégorie: time)"
+      },
+      "time_del_light": {
+        "value": "/src/assets/icons-processed/Time_del_light.svg",
+        "type": "asset",
+        "description": "Icône time_del_light (catégorie: time)"
+      },
+      "time_progress": {
+        "value": "/src/assets/icons-processed/Time_progress.svg",
+        "type": "asset",
+        "description": "Icône time_progress (catégorie: time)"
+      },
+      "time_sleep": {
+        "value": "/src/assets/icons-processed/Time_sleep.svg",
+        "type": "asset",
+        "description": "Icône time_sleep (catégorie: time)"
+      },
+      "watch": {
+        "value": "/src/assets/icons-processed/watch.svg",
+        "type": "asset",
+        "description": "Icône watch (catégorie: time)"
+      },
+      "watch_alt": {
+        "value": "/src/assets/icons-processed/watch_alt.svg",
+        "type": "asset",
+        "description": "Icône watch_alt (catégorie: time)"
+      }
+    },
+    "navigation": {
+      "arhives_group_docks": {
+        "value": "/src/assets/icons-processed/Arhives_group_docks.svg",
+        "type": "asset",
+        "description": "Icône arhives_group_docks (catégorie: navigation)"
+      },
+      "arrow_alt_ldown": {
+        "value": "/src/assets/icons-processed/Arrow_alt_ldown.svg",
+        "type": "asset",
+        "description": "Icône arrow_alt_ldown (catégorie: navigation)"
+      },
+      "arrow_alt_left": {
+        "value": "/src/assets/icons-processed/Arrow_alt_left.svg",
+        "type": "asset",
+        "description": "Icône arrow_alt_left (catégorie: navigation)"
+      },
+      "arrow_alt_lright": {
+        "value": "/src/assets/icons-processed/Arrow_alt_lright.svg",
+        "type": "asset",
+        "description": "Icône arrow_alt_lright (catégorie: navigation)"
+      },
+      "arrow_alt_ltop": {
+        "value": "/src/assets/icons-processed/Arrow_alt_ltop.svg",
+        "type": "asset",
+        "description": "Icône arrow_alt_ltop (catégorie: navigation)"
+      },
+      "arrow_down_long": {
+        "value": "/src/assets/icons-processed/Arrow_down_long.svg",
+        "type": "asset",
+        "description": "Icône arrow_down_long (catégorie: navigation)"
+      },
+      "arrow_left_long": {
+        "value": "/src/assets/icons-processed/Arrow_left_long.svg",
+        "type": "asset",
+        "description": "Icône arrow_left_long (catégorie: navigation)"
+      },
+      "arrow_right_long": {
+        "value": "/src/assets/icons-processed/Arrow_right_long.svg",
+        "type": "asset",
+        "description": "Icône arrow_right_long (catégorie: navigation)"
+      },
+      "arrow_top_long": {
+        "value": "/src/assets/icons-processed/Arrow_top_long.svg",
+        "type": "asset",
+        "description": "Icône arrow_top_long (catégorie: navigation)"
+      },
+      "colum_up": {
+        "value": "/src/assets/icons-processed/Colum_up.svg",
+        "type": "asset",
+        "description": "Icône colum_up (catégorie: navigation)"
+      },
+      "down": {
+        "value": "/src/assets/icons-processed/Down.svg",
+        "type": "asset",
+        "description": "Icône down (catégorie: navigation)"
+      },
+      "download": {
+        "value": "/src/assets/icons-processed/Download.svg",
+        "type": "asset",
+        "description": "Icône download (catégorie: navigation)"
+      },
+      "download_circle": {
+        "value": "/src/assets/icons-processed/Download_circle.svg",
+        "type": "asset",
+        "description": "Icône download_circle (catégorie: navigation)"
+      },
+      "download_circle_fill": {
+        "value": "/src/assets/icons-processed/Download_circle_fill.svg",
+        "type": "asset",
+        "description": "Icône download_circle_fill (catégorie: navigation)"
+      },
+      "expand_down": {
+        "value": "/src/assets/icons-processed/Expand_down.svg",
+        "type": "asset",
+        "description": "Icône expand_down (catégorie: navigation)"
+      },
+      "expand_down_double": {
+        "value": "/src/assets/icons-processed/Expand_down_double.svg",
+        "type": "asset",
+        "description": "Icône expand_down_double (catégorie: navigation)"
+      },
+      "expand_down_stop": {
+        "value": "/src/assets/icons-processed/Expand_down_stop.svg",
+        "type": "asset",
+        "description": "Icône expand_down_stop (catégorie: navigation)"
+      },
+      "expand_up": {
+        "value": "/src/assets/icons-processed/Expand_up.svg",
+        "type": "asset",
+        "description": "Icône expand_up (catégorie: navigation)"
+      },
+      "expand_up_double": {
+        "value": "/src/assets/icons-processed/Expand_up_double.svg",
+        "type": "asset",
+        "description": "Icône expand_up_double (catégorie: navigation)"
+      },
+      "folder_up": {
+        "value": "/src/assets/icons-processed/Folder_up.svg",
+        "type": "asset",
+        "description": "Icône folder_up (catégorie: navigation)"
+      },
+      "folders_group": {
+        "value": "/src/assets/icons-processed/Folders_group.svg",
+        "type": "asset",
+        "description": "Icône folders_group (catégorie: navigation)"
+      },
+      "group": {
+        "value": "/src/assets/icons-processed/Group.svg",
+        "type": "asset",
+        "description": "Icône group (catégorie: navigation)"
+      },
+      "group_scan": {
+        "value": "/src/assets/icons-processed/Group_scan.svg",
+        "type": "asset",
+        "description": "Icône group_scan (catégorie: navigation)"
+      },
+      "horizontal_down_left_main": {
+        "value": "/src/assets/icons-processed/Horizontal_down_left_main.svg",
+        "type": "asset",
+        "description": "Icône horizontal_down_left_main (catégorie: navigation)"
+      },
+      "horizontal_down_right_main": {
+        "value": "/src/assets/icons-processed/Horizontal_down_right_main.svg",
+        "type": "asset",
+        "description": "Icône horizontal_down_right_main (catégorie: navigation)"
+      },
+      "line_up": {
+        "value": "/src/assets/icons-processed/Line_up.svg",
+        "type": "asset",
+        "description": "Icône line_up (catégorie: navigation)"
+      },
+      "refund_down": {
+        "value": "/src/assets/icons-processed/Refund_down.svg",
+        "type": "asset",
+        "description": "Icône refund_down (catégorie: navigation)"
+      },
+      "refund_ring_down": {
+        "value": "/src/assets/icons-processed/Refund_ring_down.svg",
+        "type": "asset",
+        "description": "Icône refund_ring_down (catégorie: navigation)"
+      },
+      "regroup": {
+        "value": "/src/assets/icons-processed/Regroup.svg",
+        "type": "asset",
+        "description": "Icône regroup (catégorie: navigation)"
+      },
+      "size_down": {
+        "value": "/src/assets/icons-processed/Size_down.svg",
+        "type": "asset",
+        "description": "Icône size_down (catégorie: navigation)"
+      },
+      "size_right_up": {
+        "value": "/src/assets/icons-processed/Size_right_up.svg",
+        "type": "asset",
+        "description": "Icône size_right_up (catégorie: navigation)"
+      },
+      "sort-list": {
+        "value": "/src/assets/icons-processed/Sort list.svg",
+        "type": "asset",
+        "description": "Icône sort-list (catégorie: navigation)"
+      },
+      "sort-list_alt": {
+        "value": "/src/assets/icons-processed/Sort list_alt.svg",
+        "type": "asset",
+        "description": "Icône sort-list_alt (catégorie: navigation)"
+      },
+      "sort": {
+        "value": "/src/assets/icons-processed/Sort.svg",
+        "type": "asset",
+        "description": "Icône sort (catégorie: navigation)"
+      },
+      "sort_arrow": {
+        "value": "/src/assets/icons-processed/Sort_arrow.svg",
+        "type": "asset",
+        "description": "Icône sort_arrow (catégorie: navigation)"
+      },
+      "sort_down": {
+        "value": "/src/assets/icons-processed/Sort_down.svg",
+        "type": "asset",
+        "description": "Icône sort_down (catégorie: navigation)"
+      },
+      "sort_up": {
+        "value": "/src/assets/icons-processed/Sort_up.svg",
+        "type": "asset",
+        "description": "Icône sort_up (catégorie: navigation)"
+      },
+      "sort_up_alt": {
+        "value": "/src/assets/icons-processed/Sort_up_alt.svg",
+        "type": "asset",
+        "description": "Icône sort_up_alt (catégorie: navigation)"
+      },
+      "up": {
+        "value": "/src/assets/icons-processed/Up.svg",
+        "type": "asset",
+        "description": "Icône up (catégorie: navigation)"
+      },
+      "upload": {
+        "value": "/src/assets/icons-processed/Upload.svg",
+        "type": "asset",
+        "description": "Icône upload (catégorie: navigation)"
+      },
+      "group_add": {
+        "value": "/src/assets/icons-processed/group_add.svg",
+        "type": "asset",
+        "description": "Icône group_add (catégorie: navigation)"
+      },
+      "group_share": {
+        "value": "/src/assets/icons-processed/group_share.svg",
+        "type": "asset",
+        "description": "Icône group_share (catégorie: navigation)"
+      },
+      "thumb_down": {
+        "value": "/src/assets/icons-processed/thumb_down.svg",
+        "type": "asset",
+        "description": "Icône thumb_down (catégorie: navigation)"
+      },
+      "thumb_up": {
+        "value": "/src/assets/icons-processed/thumb_up.svg",
+        "type": "asset",
+        "description": "Icône thumb_up (catégorie: navigation)"
+      }
+    },
+    "feedback": {
+      "broken_heart": {
+        "value": "/src/assets/icons-processed/Broken_heart.svg",
+        "type": "asset",
+        "description": "Icône broken_heart (catégorie: feedback)"
+      },
+      "star": {
+        "value": "/src/assets/icons-processed/Star.svg",
+        "type": "asset",
+        "description": "Icône star (catégorie: feedback)"
+      }
+    },
+    "text": {
+      "credit-card": {
+        "value": "/src/assets/icons-processed/Credit card.svg",
+        "type": "asset",
+        "description": "Icône credit-card (catégorie: text)"
+      },
+      "edit": {
+        "value": "/src/assets/icons-processed/Edit.svg",
+        "type": "asset",
+        "description": "Icône edit (catégorie: text)"
+      },
+      "edit2": {
+        "value": "/src/assets/icons-processed/Edit2.svg",
+        "type": "asset",
+        "description": "Icône edit2 (catégorie: text)"
+      },
+      "edit_alt": {
+        "value": "/src/assets/icons-processed/Edit_alt.svg",
+        "type": "asset",
+        "description": "Icône edit_alt (catégorie: text)"
+      },
+      "text": {
+        "value": "/src/assets/icons-processed/Text.svg",
+        "type": "asset",
+        "description": "Icône text (catégorie: text)"
+      },
+      "typo": {
+        "value": "/src/assets/icons-processed/typo.svg",
+        "type": "asset",
+        "description": "Icône typo (catégorie: text)"
+      }
+    },
+    "files": {
+      "file": {
+        "value": "/src/assets/icons-processed/File.svg",
+        "type": "asset",
+        "description": "Icône file (catégorie: files)"
+      },
+      "file_dock": {
+        "value": "/src/assets/icons-processed/File_dock.svg",
+        "type": "asset",
+        "description": "Icône file_dock (catégorie: files)"
+      },
+      "file_dock_add": {
+        "value": "/src/assets/icons-processed/File_dock_add.svg",
+        "type": "asset",
+        "description": "Icône file_dock_add (catégorie: files)"
+      },
+      "file_dock_search": {
+        "value": "/src/assets/icons-processed/File_dock_search.svg",
+        "type": "asset",
+        "description": "Icône file_dock_search (catégorie: files)"
+      },
+      "folder_file": {
+        "value": "/src/assets/icons-processed/Folder_file.svg",
+        "type": "asset",
+        "description": "Icône folder_file (catégorie: files)"
+      },
+      "folder_file_alt": {
+        "value": "/src/assets/icons-processed/Folder_file_alt.svg",
+        "type": "asset",
+        "description": "Icône folder_file_alt (catégorie: files)"
+      }
+    },
+    "location": {
+      "map-1": {
+        "value": "/src/assets/icons-processed/Map-1.svg",
+        "type": "asset",
+        "description": "Icône map-1 (catégorie: location)"
+      },
+      "map": {
+        "value": "/src/assets/icons-processed/Map.svg",
+        "type": "asset",
+        "description": "Icône map (catégorie: location)"
+      },
+      "world": {
+        "value": "/src/assets/icons-processed/world.svg",
+        "type": "asset",
+        "description": "Icône world (catégorie: location)"
+      },
+      "world_2": {
+        "value": "/src/assets/icons-processed/world_2.svg",
+        "type": "asset",
+        "description": "Icône world_2 (catégorie: location)"
+      },
+      "world_alt": {
+        "value": "/src/assets/icons-processed/world_alt.svg",
+        "type": "asset",
+        "description": "Icône world_alt (catégorie: location)"
+      }
+    },
+    "media": {
+      "play": {
+        "value": "/src/assets/icons-processed/Play.svg",
+        "type": "asset",
+        "description": "Icône play (catégorie: media)"
+      },
+      "sound": {
+        "value": "/src/assets/icons-processed/Sound.svg",
+        "type": "asset",
+        "description": "Icône sound (catégorie: media)"
+      },
+      "stop_and_play": {
+        "value": "/src/assets/icons-processed/Stop_and_play.svg",
+        "type": "asset",
+        "description": "Icône stop_and_play (catégorie: media)"
+      },
+      "video": {
+        "value": "/src/assets/icons-processed/Video.svg",
+        "type": "asset",
+        "description": "Icône video (catégorie: media)"
+      },
+      "video_file": {
+        "value": "/src/assets/icons-processed/Video_file.svg",
+        "type": "asset",
+        "description": "Icône video_file (catégorie: media)"
+      },
+      "sound_max": {
+        "value": "/src/assets/icons-processed/sound_max.svg",
+        "type": "asset",
+        "description": "Icône sound_max (catégorie: media)"
+      },
+      "sound_min": {
+        "value": "/src/assets/icons-processed/sound_min.svg",
+        "type": "asset",
+        "description": "Icône sound_min (catégorie: media)"
+      },
+      "sound_mute": {
+        "value": "/src/assets/icons-processed/sound_mute.svg",
+        "type": "asset",
+        "description": "Icône sound_mute (catégorie: media)"
+      }
+    },
+    "settings": {
+      "setting_alt_line": {
+        "value": "/src/assets/icons-processed/Setting_alt_line.svg",
+        "type": "asset",
+        "description": "Icône setting_alt_line (catégorie: settings)"
+      },
+      "setting_line": {
+        "value": "/src/assets/icons-processed/Setting_line.svg",
+        "type": "asset",
+        "description": "Icône setting_line (catégorie: settings)"
+      },
+      "setting_vert": {
+        "value": "/src/assets/icons-processed/Setting_vert.svg",
+        "type": "asset",
+        "description": "Icône setting_vert (catégorie: settings)"
+      },
+      "widget-1": {
+        "value": "/src/assets/icons-processed/Widget-1.svg",
+        "type": "asset",
+        "description": "Icône widget-1 (catégorie: settings)"
+      },
+      "widget": {
+        "value": "/src/assets/icons-processed/Widget.svg",
+        "type": "asset",
+        "description": "Icône widget (catégorie: settings)"
+      },
+      "widget_add": {
+        "value": "/src/assets/icons-processed/Widget_add.svg",
+        "type": "asset",
+        "description": "Icône widget_add (catégorie: settings)"
+      },
+      "widget_alt-1": {
+        "value": "/src/assets/icons-processed/Widget_alt-1.svg",
+        "type": "asset",
+        "description": "Icône widget_alt-1 (catégorie: settings)"
+      },
+      "widget_alt": {
+        "value": "/src/assets/icons-processed/Widget_alt.svg",
+        "type": "asset",
+        "description": "Icône widget_alt (catégorie: settings)"
+      },
+      "table_settings": {
+        "value": "/src/assets/icons-processed/table_settings.svg",
+        "type": "asset",
+        "description": "Icône table_settings (catégorie: settings)"
+      }
+    },
+    "commerce": {
+      "shop": {
+        "value": "/src/assets/icons-processed/Shop.svg",
+        "type": "asset",
+        "description": "Icône shop (catégorie: commerce)"
+      },
+      "ticket": {
+        "value": "/src/assets/icons-processed/Ticket.svg",
+        "type": "asset",
+        "description": "Icône ticket (catégorie: commerce)"
+      },
+      "ticket_alt": {
+        "value": "/src/assets/icons-processed/Ticket_alt.svg",
+        "type": "asset",
+        "description": "Icône ticket_alt (catégorie: commerce)"
+      },
+      "ticket_use": {
+        "value": "/src/assets/icons-processed/Ticket_use.svg",
+        "type": "asset",
+        "description": "Icône ticket_use (catégorie: commerce)"
+      },
+      "wallet": {
+        "value": "/src/assets/icons-processed/Wallet.svg",
+        "type": "asset",
+        "description": "Icône wallet (catégorie: commerce)"
+      },
+      "wallet_alt": {
+        "value": "/src/assets/icons-processed/Wallet_alt.svg",
+        "type": "asset",
+        "description": "Icône wallet_alt (catégorie: commerce)"
+      }
+    },
+    "weather": {
+      "storm": {
+        "value": "/src/assets/icons-processed/Storm.svg",
+        "type": "asset",
+        "description": "Icône storm (catégorie: weather)"
+      },
+      "sun-1": {
+        "value": "/src/assets/icons-processed/Sun-1.svg",
+        "type": "asset",
+        "description": "Icône sun-1 (catégorie: weather)"
+      },
+      "sun": {
+        "value": "/src/assets/icons-processed/Sun.svg",
+        "type": "asset",
+        "description": "Icône sun (catégorie: weather)"
+      },
+      "sunlight": {
+        "value": "/src/assets/icons-processed/Sunlight.svg",
+        "type": "asset",
+        "description": "Icône sunlight (catégorie: weather)"
+      }
+    },
+    "users": {
+      "user": {
+        "value": "/src/assets/icons-processed/User.svg",
+        "type": "asset",
+        "description": "Icône user (catégorie: users)"
+      },
+      "user_add": {
+        "value": "/src/assets/icons-processed/User_add.svg",
+        "type": "asset",
+        "description": "Icône user_add (catégorie: users)"
+      },
+      "user_add_alt": {
+        "value": "/src/assets/icons-processed/User_add_alt.svg",
+        "type": "asset",
+        "description": "Icône user_add_alt (catégorie: users)"
+      },
+      "user_alt": {
+        "value": "/src/assets/icons-processed/User_alt.svg",
+        "type": "asset",
+        "description": "Icône user_alt (catégorie: users)"
+      },
+      "user_box": {
+        "value": "/src/assets/icons-processed/User_box.svg",
+        "type": "asset",
+        "description": "Icône user_box (catégorie: users)"
+      },
+      "user_cicrle": {
+        "value": "/src/assets/icons-processed/User_cicrle.svg",
+        "type": "asset",
+        "description": "Icône user_cicrle (catégorie: users)"
+      },
+      "user_scan": {
+        "value": "/src/assets/icons-processed/User_scan.svg",
+        "type": "asset",
+        "description": "Icône user_scan (catégorie: users)"
+      }
+    }
+  }
+}

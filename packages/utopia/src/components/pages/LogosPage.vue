@@ -170,16 +170,9 @@
       <LogoShowcase />
     </section>
 
-    <!-- Section Icônes (placeholder) -->
+    <!-- Section Icônes -->
     <section class="icons-section">
-      <h2>🎯 Icônes système</h2>
-      <p>Les icônes du design system seront ajoutées ici une fois configurées.</p>
-      
-      <div class="placeholder-card">
-        <div class="placeholder-icon">⚠️</div>
-        <h3>En cours de développement</h3>
-        <p>Cette section présentera les icônes SVG du design system une fois qu'elles seront intégrées aux tokens.</p>
-      </div>
+      <IconShowcase />
     </section>
   </div>
 </template>
@@ -188,6 +181,7 @@
 import { computed } from 'vue'
 import { Button } from '../atoms/Button'
 import LogoShowcase from '../demo/LogoShowcase.vue'
+import IconShowcase from '../demo/IconShowcase.vue'
 import type { ThemeConfig } from '../../theme-provider'
 
 interface Props {

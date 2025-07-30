@@ -45,15 +45,6 @@
           "description": "Logo Gifteo version compacte et blanche"
         }
       }
-    },
-    "icons": {
-      "placeholder": {
-        "copy": {
-          "value": "/src/assets/icons/actions/copy.svg",
-          "type": "asset",
-          "description": "Icône copier - à remplacer par les vraies icônes"
-        }
-      }
     }
   }
 } 
