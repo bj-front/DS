@@ -1,8 +1,11 @@
+export { Badge } from './Badge'
 export { Button } from './Button'
 export { Icon } from './Icon'
 export { Logo } from './Logo'
 
 // Types
+export type BadgeVariant = 'default' | 'success' | 'warning' | 'danger'
+export type BadgeSize = 'small' | 'medium'
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'
 export type ButtonSize = 'small' | 'medium' | 'large'
 export type IconName = string
