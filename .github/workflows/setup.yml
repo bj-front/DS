@@ -1,0 +1,85 @@
+name: Setup Repository
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+jobs:
+  setup:
+    name: Setup Repository for Automation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Verify Setup
+        run: |
+          echo "🔍 Verifying setup..."
+          
+          # Check if npm scripts exist
+          if npm run --silent 2>/dev/null | grep -q "changeset"; then
+            echo "✅ Changeset scripts found"
+          else
+            echo "❌ Changeset scripts missing"
+            exit 1
+          fi
+          
+          # Check if build works
+          if npm run ci:build; then
+            echo "✅ Build successful"
+          else
+            echo "❌ Build failed"
+            exit 1
+          fi
+          
+          # Check changesets configuration
+          if [ -f ".changeset/config.json" ]; then
+            echo "✅ Changesets configured"
+          else
+            echo "❌ Changesets not configured"
+            exit 1
+          fi
+
+      - name: Create Initial Changeset
+        run: |
+          if [ ! -f ".changeset/initial-setup.md" ]; then
+            cat > .changeset/initial-setup.md << 'EOF'
+          ---
+          "@club-employes/utopia": patch
+          ---
+
+          Initial setup of automated CI/CD pipeline
+
+          - Added GitHub Actions for automated build, test, and release
+          - Configured changesets for version management
+          - Set up npm organization publishing
+          EOF
+            echo "✅ Initial changeset created"
+          else
+            echo "ℹ️ Initial changeset already exists"
+          fi
+
+      - name: Setup Success Message
+        run: |
+          echo "🎉 Repository setup completed successfully!"
+          echo ""
+          echo "📋 Next steps:"
+          echo "1. Configure NPM_TOKEN secret in repository settings"
+          echo "2. Run: ./scripts/setup-automation.sh"
+          echo "3. Test with a feature branch and PR"
+          echo ""
+          echo "📚 Documentation: .github/AUTOMATION.md"

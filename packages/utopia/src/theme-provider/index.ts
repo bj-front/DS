@@ -3,7 +3,7 @@ export { default as ThemeProvider } from './ThemeProvider.vue'
 export interface ThemeConfig {
   name: string
   mode?: 'light' | 'dark'
-  cssContent: string
+  cssFile?: string
   logo?: string
 }
 

@@ -42,7 +42,7 @@ import { computed } from 'vue'
 
 // Types
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'
-export type ButtonSize = 'sm' | 'md' | 'lg'
+export type ButtonSize = 'small' | 'medium' | 'large'
 
 // Props
 interface Props {
@@ -61,7 +61,7 @@ interface Emits {
 
 const props = withDefaults(defineProps<Props>(), {
   variant: 'primary',
-  size: 'md',
+  size: 'medium',
   disabled: false,
   loading: false,
   block: false
@@ -70,16 +70,25 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<Emits>()
 
 // Computed
-const buttonClasses = computed(() => [
-  'button',
-  `button--${props.variant}`,
-  `button--${props.size}`,
-  {
-    'button--disabled': props.disabled,
-    'button--loading': props.loading,
-    'button--block': props.block
+const buttonClasses = computed(() => {
+  // Map size names to CSS classes
+  const sizeMap: Record<ButtonSize, string> = {
+    'small': 'sm',
+    'medium': 'md', 
+    'large': 'lg'
   }
-])
+  
+  return [
+    'button',
+    `button--${props.variant}`,
+    `button--${sizeMap[props.size]}`,
+    {
+      'button--disabled': props.disabled,
+      'button--loading': props.loading,
+      'button--block': props.block
+    }
+  ]
+})
 
 // Methods
 const handleClick = (event: MouseEvent) => {

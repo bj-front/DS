@@ -1,28 +1,36 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { resolve } from 'path'
+import dts from 'vite-plugin-dts'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    dts({
+      insertTypesEntry: true,
+      exclude: ['**/*.stories.ts', '**/*.test.ts']
+    })
+  ],
   
-  // Optimisations pour la production
   build: {
-    // Améliorer la taille des chunks
+    lib: {
+      entry: resolve(__dirname, 'src/index.ts'),
+      name: 'Utopia',
+      formats: ['es'],
+      fileName: () => 'index.js'
+    },
     rollupOptions: {
+      external: ['vue'],
       output: {
-        manualChunks: {
-          vendor: ['vue'],
+        globals: {
+          vue: 'Vue'
         }
       }
     },
-    // Réduire la taille du bundle
-    minify: 'terser'
+    emptyOutDir: true
   },
 
-  // Base URL pour GitHub Pages (optionnel)
-  // Décommenter et ajuster si vous utilisez GitHub Pages
-  // base: '/nom-de-votre-repo/',
-  
   // Optimisations CSS
   css: {
     devSourcemap: true
