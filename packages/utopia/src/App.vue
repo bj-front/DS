@@ -8,6 +8,7 @@ import ColorsPage from './components/pages/ColorsPage.vue'
 import SurfacesPage from './components/pages/SurfacesPage.vue'
 import TypographyPage from './components/pages/TypographyPage.vue'
 import SpacingPage from './components/pages/SpacingPage.vue'
+import ThemeComparison from './components/pages/ThemeComparison.vue'
 import type { ThemeConfig } from './theme-provider'
 
 const currentTheme = ref<ThemeConfig>(clubEmployesLight)
@@ -66,6 +67,10 @@ const handlePageChange = (page: string) => {
         />
         <SpacingPage 
           v-else-if="currentPage === 'spacing'"
+        />
+        <ThemeComparison 
+          v-else-if="currentPage === 'theme-comparison'"
+          :currentTheme="currentTheme"
         />
       </main>
     </div>

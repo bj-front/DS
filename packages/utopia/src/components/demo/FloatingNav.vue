@@ -65,6 +65,12 @@ const pages: Page[] = [
     label: 'Espacement',
     icon: '📏',
     title: 'Espacement et dimensions'
+  },
+  {
+    key: 'theme-comparison',
+    label: 'Light/Dark',
+    icon: '🌓',
+    title: 'Correspondances Light/Dark'
   }
 ]
 </script>
