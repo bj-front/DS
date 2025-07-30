@@ -13,7 +13,7 @@ import { computed, ref, watch } from 'vue'
 
 // Types
 export type IconName = string // Nom de l'icône (ex: 'user', 'search', 'general/home')
-export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export type IconSize = 'small' | 'medium' | 'large'
 export type IconColor = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral' | 'current'
 
 // Props
@@ -31,7 +31,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  size: 'md',
+  size: 'medium',
   color: 'current'
 })
 
@@ -40,9 +40,16 @@ const iconSvg = ref<string>('')
 
 // Computed
 const iconClasses = computed(() => {
+  // Map size names to CSS classes  
+  const sizeMap: Record<IconSize, string> = {
+    'small': 'sm',
+    'medium': 'md',
+    'large': 'lg'
+  }
+  
   return [
     'icon',
-    `icon--${props.size}`,
+    `icon--${sizeMap[props.size]}`,
     `icon--${props.color}`,
     props.class
   ].filter(Boolean)

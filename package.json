@@ -1,15 +1,30 @@
 {
   "name": "ds",
   "version": "1.0.0",
-  "description": "",
+  "description": "Design System monorepo with automated CI/CD",
   "main": "index.js",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "dev": "cd packages/utopia && npm run dev",
-    "build": "cd packages/utopia && npm run build:tokens",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "cd packages/utopia && npm run build",
+    "build:tokens": "cd packages/utopia && npm run build:tokens",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "cd packages/utopia && npm run lint",
+    "type-check": "cd packages/utopia && npm run type-check",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "cd packages/utopia && npm run build && changeset publish",
+    "ci:build": "npm run build:tokens && npm run build",
+    "ci:test": "npm run lint && npm run type-check"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["design-system", "vue", "tokens", "components"],
+  "author": "Club Employes",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "devDependencies": {
+    "@changesets/cli": "^2.27.11",
+    "@changesets/changelog-github": "^0.5.0"
+  }
 }

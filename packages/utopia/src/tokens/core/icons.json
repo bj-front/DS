@@ -1936,10 +1936,10 @@
         "type": "asset",
         "description": "Icône suitcase (catégorie: general)"
       },
-      "": {
+      "euro": {
         "value": "/src/assets/icons-processed/€.svg",
         "type": "asset",
-        "description": "Icône  (catégorie: general)"
+        "description": "Icône euro (catégorie: general)"
       }
     },
     "time": {

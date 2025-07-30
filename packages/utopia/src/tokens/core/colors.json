@@ -94,8 +94,9 @@
     },
     "succeed": {
       "50": {
-        "value": "#E2FCF0",
-        "type": "color"
+        "value": "#E8FCF2",
+        "type": "color",
+        "description": "Success color 50 - updated for better contrast"
       },
       "100": {
         "value": "#D0FAE5",
