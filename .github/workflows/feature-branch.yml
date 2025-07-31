@@ -54,12 +54,8 @@ jobs:
             exit 1
           fi
           
-          # Vérifier s'il y a déjà un changeset
-          if [ -n "$(ls -A .changeset/*.md 2>/dev/null | grep -v README)" ]; then
-            echo "✅ Changeset already exists, skipping auto-generation"
-            echo "changeset_created=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
+          # Note: Nous créons toujours un changeset si il y a des modifications
+          # Changesets peut gérer plusieurs changesets et les consolider automatiquement
           
           # Détecter les changements
           COMPONENT_CHANGES=$(git diff --name-only origin/main...HEAD | grep -E "packages/utopia/src/components/" | wc -l)
@@ -85,8 +81,9 @@ jobs:
               CHANGE_SUMMARY="Update existing components"
             fi
             
-            # Créer le changeset
-            CHANGESET_FILE=".changeset/auto-$(date +%s).md"
+            # Créer le changeset avec un nom unique pour cette branche
+            BRANCH_SAFE=$(echo "$BRANCH_NAME" | sed 's/[^a-zA-Z0-9]/-/g')
+            CHANGESET_FILE=".changeset/auto-$BRANCH_SAFE-$(date +%s).md"
             cat > "$CHANGESET_FILE" << EOF
           ---
           "@club-employes/utopia": $VERSION_TYPE
