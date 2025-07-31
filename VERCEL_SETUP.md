@@ -26,8 +26,9 @@
 2. Dans la section **Organization**, copie l'ID
 
 #### C. Project ID  
-1. Dans ton projet, va dans **Settings** → **General**
+1. Dans ton projet Vercel, va dans **Settings** → **General**
 2. Dans la section **Project**, copie l'ID
+3. **Important:** Assure-toi que le projet Vercel a le bon "Root Directory" configuré à `apps/utopia-website`
 
 ### 3. 🔒 Ajouter les secrets GitHub
 
@@ -84,6 +85,23 @@ Une fois configuré, voici ce qui se passera :
 - **Preview :** `https://[project-name]-[branch-hash].vercel.app`
 
 ## 🚨 Dépannage
+
+### Erreur "The provided path does not exist"
+
+Si tu vois cette erreur :
+```
+Error: The provided path "~/work/DS/DS/apps/utopia-website/packages/utopia" does not exist
+```
+
+**Solution :**
+1. Va dans ton projet Vercel → **Settings** → **General**
+2. Dans la section **Build & Development Settings** :
+   - **Root Directory :** change vers `apps/utopia-website`
+   - **Build Command :** `npm run build`
+   - **Output Directory :** `dist`
+3. Sauvegarde les changements
+
+### Autres problèmes
 
 Si les déploiements échouent :
 

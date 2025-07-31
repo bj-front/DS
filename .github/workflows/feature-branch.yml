@@ -289,8 +289,10 @@ jobs:
       - name: 🚀 Deploy to Vercel Preview
         id: deploy
         run: |
-          # Force Vercel to use current directory as root
-          npx vercel deploy --token=${{ secrets.VERCEL_TOKEN }} --yes --force > deployment-url.txt
+          # Remove any existing Vercel config and deploy fresh
+          rm -rf .vercel
+          npx vercel link --yes --scope=${{ secrets.VERCEL_ORG_ID }} --project=${{ secrets.VERCEL_PROJECT_ID }} --token=${{ secrets.VERCEL_TOKEN }}
+          npx vercel deploy --token=${{ secrets.VERCEL_TOKEN }} --yes > deployment-url.txt
           echo "preview_url=$(cat deployment-url.txt)" >> $GITHUB_OUTPUT
         working-directory: apps/utopia-website
 
