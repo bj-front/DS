@@ -8,7 +8,7 @@
     @click="handleClick"
   >
     <!-- Loading spinner -->
-    <span v-if="loading" class="button-spinner" aria-hidden="true">
+    <span v-if="loading" class="button-spinner ok" aria-hidden="true">
       <svg class="spinner-icon" viewBox="0 0 24 24">
         <circle class="spinner-path" cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="31.416" stroke-dashoffset="31.416">
           <animate attributeName="stroke-dasharray" dur="2s" values="0 31.416;15.708 15.708;0 31.416" repeatCount="indefinite"/>
