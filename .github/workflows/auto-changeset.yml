@@ -35,6 +35,13 @@ jobs:
           # Configurer le token pour les push
           git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           
+          # Vérifier que le dossier .changeset existe
+          if [ ! -d ".changeset" ]; then
+            echo "❌ .changeset directory not found. Repository not properly configured for changesets."
+            echo "Run: npm run changeset init"
+            exit 1
+          fi
+          
           # Vérifier s'il y a déjà un changeset
           if [ -n "$(ls -A .changeset/*.md 2>/dev/null | grep -v README)" ]; then
             echo "✅ Changeset already exists, skipping auto-generation"
