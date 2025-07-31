@@ -15,7 +15,7 @@
     "type-check": "cd packages/utopia && npm run type-check",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "cd packages/utopia && npm run build && changeset publish",
+    "release": "cd packages/utopia && npm run build && cd ../.. && changeset publish",
     "ci:build": "npm run build:tokens && npm run build",
     "ci:test": "npm run lint && npm run type-check"
   },
