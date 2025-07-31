@@ -93,7 +93,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
           # Consommer les changesets et faire le version bump
-          changeset version
+          npx changeset version
           
           # Vérifier s'il y a des changements à commiter
           if ! git diff --cached --quiet || ! git diff --quiet; then
@@ -107,7 +107,7 @@ jobs:
             
             # Publier sur npm (rebuild et publish en une fois)
             cd packages/utopia && npm run build
-            changeset publish
+            npx changeset publish
             
             echo "published=true" >> $GITHUB_OUTPUT
             echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
