@@ -1,0 +1,132 @@
+name: Main CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  # Job 1: Tests et Build (toujours)
+  ci:
+    name: CI - Test & Build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build tokens
+        run: npm run build:tokens
+        
+      - name: Build package
+        run: npm run build
+        
+      - name: Lint
+        run: npm run lint
+        
+      - name: Type check
+        run: npm run type-check
+
+  # Job 2: Validation Changeset (seulement pour les PRs)
+  changeset-check:
+    name: Validate Changeset
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    needs: ci
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Check for changeset
+        run: |
+          if [ ! -d ".changeset" ] || [ -z "$(ls -A .changeset/*.md 2>/dev/null)" ]; then
+            echo "❌ No changeset found. Please add a changeset for your changes."
+            echo "Run: npm run changeset"
+            exit 1
+          else
+            echo "✅ Changeset found!"
+          fi
+
+  # Job 3: Release (seulement sur push vers main, après CI)
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: ci
+    permissions:
+      contents: write
+      pull-requests: write
+      packages: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      # Pas besoin de re-builder, on réutilise les artifacts du job CI
+      - name: Build tokens
+        run: npm run build:tokens
+        
+      - name: Build package
+        run: npm run build
+        
+      - name: Create Release Pull Request or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: npm run version-packages
+          publish: npm run release
+          title: "chore: release package"
+          commit: "chore: release package"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          
+      - name: Create GitHub Release
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./packages/utopia/package.json').version")
+          gh release create "v$PACKAGE_VERSION" \
+            --title "Release v$PACKAGE_VERSION" \
+            --notes "🚀 New release of @club-employes/utopia design system" \
+            --latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
