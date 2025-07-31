@@ -107,6 +107,7 @@ jobs:
             
             # Publier sur npm (rebuild et publish en une fois)
             cd packages/utopia && npm run build
+            cd ../.. # Retourner à la racine pour changeset publish
             npx changeset publish
             
             echo "published=true" >> $GITHUB_OUTPUT
