@@ -11,8 +11,8 @@ import {
   clubEmployesLight
 } from '@club-employes/utopia'
 import '@club-employes/utopia/styles'
-// Import CSS tokens directly from source  
-import '../../../packages/utopia/src/tokens/generated/club-employes/light.css'
+// Import CSS tokens from the built package
+import '@club-employes/utopia/tokens/club-employes/light'
 
 // Import the shared layout component
 import AppLayout from './domains/shared/components/AppLayout.vue'
