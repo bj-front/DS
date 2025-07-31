@@ -1,6 +1,6 @@
 {
   "name": "@club-employes/utopia",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Design system for Club Employes applications",
   "type": "module",
   "main": "./dist/index.js",
