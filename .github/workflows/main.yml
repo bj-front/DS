@@ -73,6 +73,14 @@ jobs:
       - name: Build package
         run: npm run build
         
+      # Vérifier l'authentification npm
+      - name: Verify npm authentication
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          npm whoami || echo "Warning: npm authentication failed"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
       # Utiliser l'action changesets officielle pour créer PR de release ou publier
       - name: Create Release Pull Request or Publish
         id: changesets
@@ -89,6 +97,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           
       - name: Create GitHub Release
         if: steps.changesets.outputs.published == 'true'
