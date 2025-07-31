@@ -52,7 +52,6 @@ interface Props {
   loading?: boolean
   block?: boolean
   ariaLabel?: string
-  test?: string
 }
 
 // Emits
