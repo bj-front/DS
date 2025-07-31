@@ -279,7 +279,7 @@ jobs:
           TARBALL=$(npm pack)
           echo "Generated tarball: $TARBALL"
           cd ../../apps/utopia-website
-          npm install --no-save "../utopia/$TARBALL"
+          npm install --no-save "../../packages/utopia/$TARBALL"
 
       - name: 🏗️ Build website
         run: |
