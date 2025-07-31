@@ -180,7 +180,8 @@ jobs:
       - name: 🚀 Deploy to Vercel Production
         id: deploy
         run: |
-          npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes > deployment-url.txt
+          # Force Vercel to use current directory as root
+          npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes --force > deployment-url.txt
           echo "production_url=$(cat deployment-url.txt)" >> $GITHUB_OUTPUT
         working-directory: apps/utopia-website
 
