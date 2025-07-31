@@ -48,5 +48,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/club-employes/ds.git"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
