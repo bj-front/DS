@@ -5,6 +5,9 @@ on:
     branches-ignore: [main, develop]
     paths:
       - 'packages/utopia/src/**'
+      - '.github/workflows/**'
+      - 'packages/utopia/package.json'
+      - 'package.json'
 
 jobs:
   automation:
