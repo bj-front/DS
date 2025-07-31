@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:tokens && vite build",
+    "build": "npm run build:tokens && vite build && cp src/index.d.ts dist/index.d.ts",
     "build:tokens": "node scripts/build-tokens.js",
     "preview": "vite preview",
     "lint": "echo 'Linting passed'",

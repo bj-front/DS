@@ -8,8 +8,10 @@ export default defineConfig({
   plugins: [
     vue(),
     dts({
-      insertTypesEntry: true,
-      exclude: ['**/*.stories.ts', '**/*.test.ts']
+      insertTypesEntry: false,
+      exclude: ['**/*.stories.ts', '**/*.test.ts', 'src/main.ts'],
+      copyDtsFiles: false,
+      include: ['src/index.d.ts']
     })
   ],
   
