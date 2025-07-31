@@ -119,26 +119,63 @@ jobs:
           EOF
           
           # Essayer d'obtenir l'auteur du commit pour l'assignation
-          COMMIT_AUTHOR=$(git log -1 --pretty=format:'%ae' | cut -d'@' -f1)
+          COMMIT_AUTHOR_EMAIL=$(git log -1 --pretty=format:'%ae')
+          
+          # Essayer différentes méthodes pour trouver le nom d'utilisateur GitHub
+          POSSIBLE_USERNAMES=(
+            "$(echo $COMMIT_AUTHOR_EMAIL | cut -d'@' -f1)"  # email prefix
+            "$(echo $COMMIT_AUTHOR_EMAIL | cut -d'.' -f1)"  # first part before dot
+            "${{ github.actor }}"  # GitHub actor who triggered the workflow
+          )
+          
+          GITHUB_USER=""
+          for username in "${POSSIBLE_USERNAMES[@]}"; do
+            if [ -n "$username" ] && gh api users/"$username" >/dev/null 2>&1; then
+              GITHUB_USER="$username"
+              echo "✅ Found GitHub user: $GITHUB_USER"
+              break
+            fi
+          done
+          
+          # Créer les labels s'ils n'existent pas
+          echo "🏷️ Ensuring labels exist..."
+          gh label create "auto-created" --description "Automatically created PR" --color "0E8A16" || true
+          gh label create "design-system" --description "Design system related changes" --color "1D76DB" || true
           
           # Créer la PR avec GitHub CLI
-          if gh api users/"$COMMIT_AUTHOR" >/dev/null 2>&1; then
-            echo "📝 Assigning PR to $COMMIT_AUTHOR"
+          if [ -n "$GITHUB_USER" ]; then
+            echo "📝 Creating PR and assigning to $GITHUB_USER"
             gh pr create \
               --title "$TITLE" \
               --body-file pr_body.md \
               --base main \
               --head "$BRANCH_NAME" \
-              --assignee "$COMMIT_AUTHOR" \
-              --label "auto-created,design-system"
+              --assignee "$GITHUB_USER" \
+              --label "auto-created,design-system" || \
+            gh pr create \
+              --title "$TITLE" \
+              --body-file pr_body.md \
+              --base main \
+              --head "$BRANCH_NAME" \
+              --label "auto-created,design-system" || \
+            gh pr create \
+              --title "$TITLE" \
+              --body-file pr_body.md \
+              --base main \
+              --head "$BRANCH_NAME"
           else
-            echo "📝 Creating PR without assignee (user $COMMIT_AUTHOR not found)"
+            echo "📝 Creating PR without assignee (no valid GitHub user found)"
             gh pr create \
               --title "$TITLE" \
               --body-file pr_body.md \
               --base main \
               --head "$BRANCH_NAME" \
-              --label "auto-created,design-system"
+              --label "auto-created,design-system" || \
+            gh pr create \
+              --title "$TITLE" \
+              --body-file pr_body.md \
+              --base main \
+              --head "$BRANCH_NAME"
           fi
             
           echo "✅ Pull Request created successfully!"

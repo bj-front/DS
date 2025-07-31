@@ -47,21 +47,40 @@
 - **Secret :** Colle le token que tu as copié
 - **Add secret**
 
-## ✅ **Étape 3 : Vérifier la configuration**
+## ✅ **Étape 3 : Configurer les labels GitHub**
 
-### **3.1 Permissions du repo**
+### **3.1 Créer les labels automatiquement**
+Exécute le script de configuration des labels :
+
+```bash
+./scripts/create-labels.sh
+```
+
+Si le script échoue, passe à l'étape 3.2 pour créer les labels manuellement.
+
+### **3.2 Créer les labels manuellement**
+Va dans **Settings** → **Issues** → **Labels** et crée ces labels :
+
+| Nom | Description | Couleur |
+|-----|-------------|---------|
+| `auto-created` | Pull Request créée automatiquement | `#0E8A16` |
+| `design-system` | Modifications du design system | `#1D76DB` |
+| `component` | Modifications de composants | `#FF9500` |
+| `tokens` | Modifications des design tokens | `#FF6B6B` |
+
+### **3.3 Permissions du repo**
 Va aussi dans **Settings** → **Actions** → **General** et assure-toi :
 - ✅ **Workflow permissions** : `Read and write permissions`
 - ✅ **Allow GitHub Actions to create and approve pull requests**
 
-### **3.2 Test**
+### **3.4 Test**
 Une fois configuré, fais un push sur une branche :
 
 ```bash
-git checkout -b test/token-auth
+git checkout -b test/automation-fix
 echo "test" >> README.md
-git add . && git commit -m "test: verify PAT_TOKEN works"
-git push -u origin test/token-auth
+git add . && git commit -m "test: verify automation works"
+git push -u origin test/automation-fix
 ```
 
 ## 🎯 **Résultat attendu**
@@ -80,10 +99,14 @@ Avec le PAT_TOKEN configuré, les workflows devraient :
    - Token créé avec les bons scopes
    - Token ajouté aux secrets avec le nom exact `PAT_TOKEN`
 
-2. **Vérifier les permissions :**
+2. **Vérifier les labels :**
+   - Labels `auto-created` et `design-system` existent dans le repo
+   - Utiliser `./scripts/create-labels.sh` pour les créer automatiquement
+
+3. **Vérifier les permissions :**
    - Settings → Actions → General → "Read and write permissions"
 
-3. **Vérifier les logs :**
+4. **Vérifier les logs :**
    - GitHub → Actions → Voir les erreurs dans les logs
 
 ## 💡 **Pourquoi ça fonctionne**
