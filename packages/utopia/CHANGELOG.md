@@ -1,5 +1,15 @@
 # @club-employes/utopia
 
+## 2.4.0
+
+### Minor Changes
+
+- 47a6042: Add new components
+
+  - Components changed: 1
+  - Tokens changed: 0
+  - New components: 1
+
 ## 2.3.0
 
 ### Minor Changes
