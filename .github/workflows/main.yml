@@ -142,6 +142,9 @@ jobs:
     name: 🌟 Deploy to Production (Vercel)
     runs-on: ubuntu-latest
     needs: [ci]
+    permissions:
+      pull-requests: write
+      issues: write
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -191,6 +194,7 @@ jobs:
       - name: 🎉 Create deployment success comment
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
             const productionUrl = '${{ steps.deploy.outputs.preview-url }}';
             
