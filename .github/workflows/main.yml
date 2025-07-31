@@ -73,16 +73,16 @@ jobs:
       - name: Build package
         run: npm run build
         
-      # Utiliser l'action changesets officielle
+      # Utiliser l'action changesets officielle pour créer PR de release ou publier
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
         with:
-          # Commande pour publier les packages
+          # Commande pour publier les packages (seulement si PR de release mergée)
           publish: npm run release
-          # Titre de la PR de release
-          title: "chore: release new version"
-          # Message de commit
+          # Titre de la PR de release automatique
+          title: "🚀 Release: Version Packages"
+          # Message de commit pour les changements de version
           commit: "chore: version packages"
           # Configuration git automatique
           setupGitUser: true
