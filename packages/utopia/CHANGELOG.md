@@ -1,5 +1,15 @@
 # @club-employes/utopia
 
+## 2.7.0
+
+### Minor Changes
+
+- ef2eaab: Add new components
+
+  - Components changed: 1
+  - Tokens changed: 0
+  - New components: 1
+
 ## 2.6.0
 
 ### Minor Changes
