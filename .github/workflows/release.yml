@@ -49,15 +49,35 @@ jobs:
             echo "has_changesets=true" >> $GITHUB_OUTPUT
           fi
         
-      - name: Create Release Pull Request or Publish
+      - name: Version packages and publish directly
         if: steps.changeset-check.outputs.has_changesets == 'true'
         id: changesets
-        uses: changesets/action@v1
-        with:
-          version: npm run version-packages
-          publish: npm run release
-          title: "chore: release package"
-          commit: "chore: release package"
+        run: |
+          # Consommer les changesets et faire le version bump
+          npm run version-packages
+          
+          # Commit et push les changements de version
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          if git diff --staged --quiet; then
+            git add -A
+          fi
+          
+          if ! git diff --cached --quiet; then
+            PACKAGE_VERSION=$(node -p "require('./packages/utopia/package.json').version")
+            git commit -m "chore: release v$PACKAGE_VERSION"
+            git push
+            
+            # Publier directement sur npm
+            npm run release
+            
+            echo "published=true" >> $GITHUB_OUTPUT
+            echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+          else
+            echo "No version changes detected"
+            echo "published=false" >> $GITHUB_OUTPUT
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -65,7 +85,13 @@ jobs:
       - name: Create GitHub Release
         if: steps.changeset-check.outputs.has_changesets == 'true' && steps.changesets.outputs.published == 'true'
         run: |
-          PACKAGE_VERSION=$(node -p "require('./packages/utopia/package.json').version")
+          PACKAGE_VERSION="${{ steps.changesets.outputs.version }}"
+          
+          # Créer le tag Git
+          git tag "v$PACKAGE_VERSION"
+          git push origin "v$PACKAGE_VERSION"
+          
+          # Créer la GitHub Release
           gh release create "v$PACKAGE_VERSION" \
             --title "Release v$PACKAGE_VERSION" \
             --notes "🚀 New release of @club-employes/utopia design system" \
