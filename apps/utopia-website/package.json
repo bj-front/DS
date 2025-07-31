@@ -13,7 +13,14 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "lint:strict": "eslint . --max-warnings 0",
+    "lint:check": "eslint .",
+    "format": "prettier --write src/",
+    "validate": "run-p type-check lint:strict",
+    "validate:fix": "run-s lint type-check",
+    "check-tokens": "echo '🎨 Vérification des tokens du design system...' && npm run lint:check",
+    "validate:design-system": "node validate-design-system.js",
+    "validate:full": "npm run validate:design-system"
   },
   "dependencies": {
     "@club-employes/utopia": "^2.0.1",
