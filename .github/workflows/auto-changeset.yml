@@ -17,6 +17,7 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          ref: ${{ github.head_ref || github.ref_name }}
           
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -89,7 +90,10 @@ jobs:
             echo "📝 Created automatic changeset: $CHANGESET_FILE"
             git add "$CHANGESET_FILE"
             git commit -m "chore: add automatic changeset for component/token changes"
-            git push
+            
+            # Push vers la branche actuelle
+            BRANCH_NAME="${{ github.head_ref || github.ref_name }}"
+            git push origin HEAD:"$BRANCH_NAME"
           else
             echo "ℹ️  No component or token changes detected"
           fi
