@@ -164,12 +164,12 @@ jobs:
           npm run build:tokens
           npm run build
 
-      - name: 🔗 Link utopia locally  
+      - name: 📦 Pack and install utopia locally  
         run: |
           cd packages/utopia
-          npm link
+          npm pack
           cd ../../apps/utopia-website
-          npm link @club-employes/utopia
+          npm install --no-save ../utopia/club-employes-utopia-*.tgz
 
       - name: 🏗️ Build website
         run: |
