@@ -40,7 +40,7 @@ const badgeClasses = computed(() => {
 <style scoped>
 .badge {
   display: inline-flex;
-  align-items: left;
+  align-items: center;
   border-radius: 9999px;
   font-weight: 500;
   white-space: nowrap;

@@ -108,6 +108,9 @@ jobs:
             # Publier sur npm (rebuild et publish en une fois)
             cd packages/utopia && npm run build
             cd ../.. # Retourner à la racine pour changeset publish
+            
+            # Configurer l'authentification npm pour changeset
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
             npx changeset publish
             
             echo "published=true" >> $GITHUB_OUTPUT
