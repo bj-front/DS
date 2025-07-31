@@ -17,6 +17,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      issues: write
     
     steps:
       - name: Checkout
@@ -35,217 +36,51 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # ÉTAPE 1: Vérifier et créer changeset si nécessaire
+      # ÉTAPE 1: Auto-créer un changeset si nécessaire
       - name: Auto-generate changeset
         id: changeset
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # Configurer le token pour les push
-          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-          
-          # Vérifier que le dossier .changeset existe
-          if [ ! -d ".changeset" ]; then
-            echo "❌ .changeset directory not found. Repository not properly configured for changesets."
-            echo "Run: npm run changeset init"
-            exit 1
-          fi
-          
-          # Note: Nous créons toujours un changeset si il y a des modifications
-          # Changesets peut gérer plusieurs changesets et les consolider automatiquement
-          
-          # Détecter les changements
+          # Détecter les changements dans les composants
           COMPONENT_CHANGES=$(git diff --name-only origin/main...HEAD | grep -E "packages/utopia/src/components/" | wc -l)
-          TOKEN_CHANGES=$(git diff --name-only origin/main...HEAD | grep -E "packages/utopia/src/tokens/" | wc -l)
           
-          if [ "$COMPONENT_CHANGES" -gt 0 ] || [ "$TOKEN_CHANGES" -gt 0 ]; then
-            echo "🔍 Detected changes in components or tokens"
+          if [ "$COMPONENT_CHANGES" -gt 0 ]; then
+            echo "🔍 Changes detected in components, creating changeset..."
             
-            # Analyser les types de changements
-            NEW_COMPONENTS=$(git diff --name-only origin/main...HEAD | grep -E "packages/utopia/src/components/.*\.vue$" | grep -v "demo/" | wc -l)
-            UPDATED_COMPONENTS=$(git diff --name-only origin/main...HEAD | grep -E "packages/utopia/src/components/" | grep -v "demo/" | wc -l)
-            UPDATED_TOKENS=$(git diff --name-only origin/main...HEAD | grep -E "packages/utopia/src/tokens/" | wc -l)
-            
-            # Déterminer le type de version
-            if [ "$NEW_COMPONENTS" -gt 0 ]; then
-              VERSION_TYPE="minor"
-              CHANGE_SUMMARY="Add new components"
-            elif [ "$UPDATED_TOKENS" -gt 0 ]; then
-              VERSION_TYPE="minor" 
-              CHANGE_SUMMARY="Update design tokens"
-            else
-              VERSION_TYPE="patch"
-              CHANGE_SUMMARY="Update existing components"
-            fi
-            
-            # Créer le changeset avec un nom unique pour cette branche
-            BRANCH_SAFE=$(echo "$BRANCH_NAME" | sed 's/[^a-zA-Z0-9]/-/g')
+            # Créer un changeset avec un nom unique
+            BRANCH_SAFE=$(echo "${{ github.ref_name }}" | sed 's/[^a-zA-Z0-9]/-/g')
             CHANGESET_FILE=".changeset/auto-$BRANCH_SAFE-$(date +%s).md"
+            
             cat > "$CHANGESET_FILE" << EOF
           ---
-          "@club-employes/utopia": $VERSION_TYPE
+          "@club-employes/utopia": patch
           ---
           
-          $CHANGE_SUMMARY
-          
-          - Components changed: $UPDATED_COMPONENTS
-          - Tokens changed: $UPDATED_TOKENS
-          - New components: $NEW_COMPONENTS
+          Update components from feature branch ${{ github.ref_name }}
           EOF
             
-            echo "📝 Created automatic changeset: $CHANGESET_FILE"
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
             git add "$CHANGESET_FILE"
-            git commit -m "chore: add automatic changeset for component/token changes"
-            
-            # Push vers la branche actuelle
-            BRANCH_NAME="${{ github.head_ref || github.ref_name }}"
-            git push origin HEAD:"$BRANCH_NAME"
+            git commit -m "chore: add changeset for component changes"
+            git push origin ${{ github.ref_name }}
             
             echo "changeset_created=true" >> $GITHUB_OUTPUT
-            echo "📝 Created and pushed automatic changeset: $CHANGESET_FILE"
+            echo "✅ Changeset created: $CHANGESET_FILE"
           else
-            echo "ℹ️  No component or token changes detected"
+            echo "ℹ️  No component changes detected"
             echo "changeset_created=false" >> $GITHUB_OUTPUT
           fi
 
-      # ÉTAPE 2: Créer PR si nécessaire (indépendamment du changeset)
-      - name: Auto-create Pull Request
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+      # ÉTAPE 2: Information pour créer une PR manuellement  
+      - name: PR Instructions
         run: |
-          # Vérifier si une PR existe déjà pour cette branche
-          BRANCH_NAME="${{ github.ref_name }}"
-          
-          # Utiliser GitHub CLI pour vérifier les PRs existantes
-          PR_EXISTS=$(gh pr list --head "$BRANCH_NAME" --json number --jq length)
-          
-          if [ "$PR_EXISTS" -gt 0 ]; then
-            echo "PR already exists for branch $BRANCH_NAME"
-            exit 0
-          fi
-          
-          # Analyser les changements pour générer un titre intelligent
-          COMPONENT_CHANGES=$(git diff --name-only origin/main...HEAD | grep -E "packages/utopia/src/components/" | wc -l)
-          TOKEN_CHANGES=$(git diff --name-only origin/main...HEAD | grep -E "packages/utopia/src/tokens/" | wc -l)
-          NEW_COMPONENTS=$(git diff --name-only --diff-filter=A origin/main...HEAD | grep -E "packages/utopia/src/components/.*\.vue$" | grep -v "demo/" | wc -l)
-          
-          # Générer le titre et la description
-          if [ "$NEW_COMPONENTS" -gt 0 ]; then
-            TITLE="feat: add new component(s)"
-            TYPE="🆕 New Component"
-          elif [ "$COMPONENT_CHANGES" -gt 0 ]; then
-            TITLE="feat: update component(s)"
-            TYPE="🔧 Component Update"
-          elif [ "$TOKEN_CHANGES" -gt 0 ]; then
-            TITLE="feat: update design tokens"
-            TYPE="🎨 Design Tokens"
-          else
-            TITLE="feat: update design system"
-            TYPE="📦 General Update"
-          fi
-          
-          # Générer le corps de la PR
-          cat > pr_body.md << EOF
-          ## $TYPE
-          
-          **Branch:** \`$BRANCH_NAME\`
-          
-          ### 📊 Changes Summary
-          - 🔧 Components changed: **$COMPONENT_CHANGES**
-          - 🎨 Tokens changed: **$TOKEN_CHANGES**
-          - 🆕 New components: **$NEW_COMPONENTS**
-          
-          ### 🔍 Files Changed
-          \`\`\`
-          $(git diff --name-only origin/main...HEAD | head -10)
-          \`\`\`
-          
-          ### ✅ Checklist
-          
-          - [x] 📝 Changeset created (auto-generated)
-          - [ ] 🏗️ Build passes
-          - [ ] 🧪 Tests pass  
-          - [ ] 🎨 Components follow design system guidelines
-          - [ ] 📚 Documentation updated (if needed)
-          - [ ] 🔍 Code review requested
-          
-          ### 🚀 Next Steps
-          
-          1. **Review the changes** in the Files tab
-          2. **Test the components** in Storybook/Demo
-          3. **Check the changeset** for proper versioning
-          4. **Approve & merge** when ready
-          
-          ---
-          
-          > 🤖 *This PR was created automatically by GitHub Actions*
-          > 📦 *A changeset was auto-generated for version management*
-          EOF
-          
-          # Créer les labels s'ils n'existent pas
-          echo "🏷️ Ensuring labels exist..."
-          gh label create "auto-created" --description "Automatically created PR" --color "0E8A16" || true
-          gh label create "design-system" --description "Design system related changes" --color "1D76DB" || true
-          
-          # Essayer d'obtenir l'auteur du commit pour l'assignation
-          COMMIT_AUTHOR_EMAIL=$(git log -1 --pretty=format:'%ae')
-          
-          # Essayer différentes méthodes pour trouver le nom d'utilisateur GitHub
-          POSSIBLE_USERNAMES=(
-            "$(echo $COMMIT_AUTHOR_EMAIL | cut -d'@' -f1)"  # email prefix
-            "$(echo $COMMIT_AUTHOR_EMAIL | cut -d'.' -f1)"  # first part before dot
-            "${{ github.actor }}"  # GitHub actor who triggered the workflow
-          )
-          
-          GITHUB_USER=""
-          for username in "${POSSIBLE_USERNAMES[@]}"; do
-            if [ -n "$username" ] && gh api users/"$username" >/dev/null 2>&1; then
-              GITHUB_USER="$username"
-              echo "✅ Found GitHub user: $GITHUB_USER"
-              break
-            fi
-          done
-          
-          # Créer la PR avec GitHub CLI
-          if [ -n "$GITHUB_USER" ]; then
-            echo "📝 Creating PR and assigning to $GITHUB_USER"
-            gh pr create \
-              --title "$TITLE" \
-              --body-file pr_body.md \
-              --base main \
-              --head "$BRANCH_NAME" \
-              --assignee "$GITHUB_USER" \
-              --label "auto-created,design-system" || \
-            gh pr create \
-              --title "$TITLE" \
-              --body-file pr_body.md \
-              --base main \
-              --head "$BRANCH_NAME" \
-              --label "auto-created,design-system" || \
-            gh pr create \
-              --title "$TITLE" \
-              --body-file pr_body.md \
-              --base main \
-              --head "$BRANCH_NAME"
-          else
-            echo "📝 Creating PR without assignee (no valid GitHub user found)"
-            gh pr create \
-              --title "$TITLE" \
-              --body-file pr_body.md \
-              --base main \
-              --head "$BRANCH_NAME" \
-              --label "auto-created,design-system" || \
-            gh pr create \
-              --title "$TITLE" \
-              --body-file pr_body.md \
-              --base main \
-              --head "$BRANCH_NAME"
-          fi
-            
-          echo "✅ Pull Request created successfully!"
+          echo "📝 To create a Pull Request for this feature:"
+          echo "1. Go to: https://github.com/${{ github.repository }}/compare/main...${{ github.ref_name }}"
+          echo "2. Or use: gh pr create --title 'feat: your feature description' --body 'Description of changes'"
+          echo ""
+          echo "🎯 The changeset has been created automatically and will be included in the next release"
 
   deploy-preview:
     name: 🚀 Deploy Preview to Vercel

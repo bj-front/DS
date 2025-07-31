@@ -73,68 +73,56 @@ jobs:
       - name: Build package
         run: npm run build
         
-      - name: Check for pending changesets
-        id: changeset-check
-        run: |
-          if [ -z "$(ls -A .changeset/*.md 2>/dev/null | grep -v README)" ]; then
-            echo "No pending changesets found, skipping release"
-            echo "has_changesets=false" >> $GITHUB_OUTPUT
-          else
-            echo "Pending changesets found, proceeding with release"
-            echo "has_changesets=true" >> $GITHUB_OUTPUT
-          fi
-        
-      - name: Version packages and publish directly
-        if: steps.changeset-check.outputs.has_changesets == 'true'
+      # Utiliser l'action changesets officielle
+      - name: Create Release Pull Request or Publish
         id: changesets
-        run: |
-          # Configuration Git
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # Consommer les changesets et faire le version bump
-          npx changeset version
-          
-          # Vérifier s'il y a des changements à commiter
-          if ! git diff --cached --quiet || ! git diff --quiet; then
-            # Obtenir la nouvelle version
-            PACKAGE_VERSION=$(node -p "require('./packages/utopia/package.json').version")
-            
-            # Commit et push les changements de version
-            git add -A
-            git commit -m "chore: release v$PACKAGE_VERSION"
-            git push
-            
-            # Publier sur npm (rebuild et publish en une fois)
-            cd packages/utopia && npm run build
-            cd ../.. # Retourner à la racine pour changeset publish
-            npx changeset publish
-            
-            echo "published=true" >> $GITHUB_OUTPUT
-            echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
-          else
-            echo "No version changes detected"
-            echo "published=false" >> $GITHUB_OUTPUT
-          fi
+        uses: changesets/action@v1
+        with:
+          # Commande pour publier les packages
+          publish: npm run release
+          # Titre de la PR de release
+          title: "chore: release new version"
+          # Message de commit
+          commit: "chore: version packages"
+          # Configuration git automatique
+          setupGitUser: true
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           
       - name: Create GitHub Release
-        if: steps.changeset-check.outputs.has_changesets == 'true' && steps.changesets.outputs.published == 'true'
+        if: steps.changesets.outputs.published == 'true'
         run: |
-          PACKAGE_VERSION="${{ steps.changesets.outputs.version }}"
+          # Obtenir la version publiée depuis la sortie de l'action
+          PUBLISHED_PACKAGES='${{ steps.changesets.outputs.publishedPackages }}'
           
-          # Créer le tag Git
-          git tag "v$PACKAGE_VERSION"
-          git push origin "v$PACKAGE_VERSION"
+          # Extraire la version (format JSON)
+          VERSION=$(echo "$PUBLISHED_PACKAGES" | jq -r '.[0].version' 2>/dev/null || echo "")
           
-          # Créer la GitHub Release
-          gh release create "v$PACKAGE_VERSION" \
-            --title "Release v$PACKAGE_VERSION" \
-            --notes "🚀 New release of @club-employes/utopia design system" \
-            --latest
+          if [ -n "$VERSION" ] && [ "$VERSION" != "null" ]; then
+            echo "Creating release for version: $VERSION"
+            
+            # Créer le tag Git s'il n'existe pas
+            if ! git tag -l "v$VERSION" | grep -q "v$VERSION"; then
+              git tag "v$VERSION"
+              git push origin "v$VERSION"
+            fi
+            
+            # Créer la GitHub Release
+            gh release create "v$VERSION" \
+              --title "🚀 Release v$VERSION" \
+              --notes "New release of @club-employes/utopia design system
+
+**Install:**
+\`\`\`bash
+npm install @club-employes/utopia@$VERSION
+\`\`\`
+
+**Changes:** See CHANGELOG.md for details" \
+              --latest
+          else
+            echo "No version information available, skipping GitHub release"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
 
