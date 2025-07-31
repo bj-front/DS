@@ -42,7 +42,7 @@ import { computed } from 'vue'
 
 // Types
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'
-export type ButtonSize = 'small' | 'medium' | 'large' | 'xlarge'
+export type ButtonSize = 'small' | 'medium' | 'large'
 
 // Props
 interface Props {
