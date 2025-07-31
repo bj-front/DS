@@ -1,5 +1,19 @@
 # @club-employes/utopia
 
+## 2.2.2
+
+### Patch Changes
+
+- 7455f35: Fix badge alignment in Badge.vue component
+
+  - 🔧 Component update: Badge alignment improved
+  - 📦 Files changed: packages/utopia/src/components/atoms/Badge/Badge.vue
+
+- 7455f35: Test workflow fix for changeset processing
+
+  - 🔧 Workflow improvement: Fix release process
+  - 🚀 Test: Verify GitHub release creation
+
 ## 2.2.1
 
 ### Patch Changes
