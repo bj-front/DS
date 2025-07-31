@@ -111,14 +111,7 @@ jobs:
             # Créer la GitHub Release
             gh release create "v$VERSION" \
               --title "🚀 Release v$VERSION" \
-              --notes "New release of @club-employes/utopia design system
-
-**Install:**
-\`\`\`bash
-npm install @club-employes/utopia@$VERSION
-\`\`\`
-
-**Changes:** See CHANGELOG.md for details" \
+              --notes "🚀 New release of @club-employes/utopia design system. Install with: npm install @club-employes/utopia@$VERSION" \
               --latest
           else
             echo "No version information available, skipping GitHub release"
