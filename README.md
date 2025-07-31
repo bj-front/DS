@@ -146,4 +146,4 @@ MIT © Club Employés
 
 <p align="center">
   <strong>Design System automatisé avec ❤️ pour Club Employés</strong>
-</p>
+</p># Test automation fix
