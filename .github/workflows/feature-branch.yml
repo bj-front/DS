@@ -5,6 +5,9 @@ on:
     branches-ignore: [main, develop]
     paths:
       - 'packages/utopia/src/**'
+      - '.github/workflows/**'
+      - 'packages/utopia/package.json'
+      - 'package.json'
 
 jobs:
   automation:
@@ -111,9 +114,8 @@ jobs:
             echo "changeset_created=false" >> $GITHUB_OUTPUT
           fi
 
-      # ÉTAPE 2: Créer PR si nécessaire (après changeset)
+      # ÉTAPE 2: Créer PR si nécessaire (indépendamment du changeset)
       - name: Auto-create Pull Request
-        if: steps.changeset.outputs.changeset_created == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
