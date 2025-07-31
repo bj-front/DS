@@ -28,11 +28,12 @@
     "vue": "^3.5.17"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.0",
+    "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.7.0",
     "style-dictionary": "^5.0.1",
     "typescript": "~5.8.3",
-    "vite": "^7.0.4",
+    "vite": "^7.0.6",
+    "vite-plugin-dts": "^4.3.0",
     "vue-tsc": "^2.2.12"
   },
   "keywords": [

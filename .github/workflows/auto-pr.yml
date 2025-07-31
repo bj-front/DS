@@ -1,0 +1,208 @@
+name: Auto Pull Request
+
+on:
+  push:
+    branches-ignore: 
+      - main
+      - develop
+
+jobs:
+  auto-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Check if PR exists
+        id: check-pr
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          # Vérifier si une PR existe déjà pour cette branche
+          BRANCH_NAME="${{ github.ref_name }}"
+          
+          # Utiliser GitHub CLI pour vérifier les PRs existantes
+          PR_EXISTS=$(gh pr list --head "$BRANCH_NAME" --json number --jq length)
+          
+          if [ "$PR_EXISTS" -gt 0 ]; then
+            echo "PR already exists for branch $BRANCH_NAME"
+            echo "create_pr=false" >> $GITHUB_OUTPUT
+          else
+            echo "No PR found for branch $BRANCH_NAME"
+            echo "create_pr=true" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Detect change type
+        id: detect-changes
+        if: steps.check-pr.outputs.create_pr == 'true'
+        run: |
+          # Analyser les changements pour générer un titre intelligent
+          COMPONENT_CHANGES=$(git diff --name-only origin/main...HEAD | grep -E "packages/utopia/src/components/" | wc -l)
+          TOKEN_CHANGES=$(git diff --name-only origin/main...HEAD | grep -E "packages/utopia/src/tokens/" | wc -l)
+          NEW_COMPONENTS=$(git diff --name-only --diff-filter=A origin/main...HEAD | grep -E "packages/utopia/src/components/.*\.vue$" | grep -v "demo/" | wc -l)
+          
+          # Générer le titre et la description
+          if [ "$NEW_COMPONENTS" -gt 0 ]; then
+            TITLE="feat: add new component(s)"
+            TYPE="🆕 New Component"
+          elif [ "$COMPONENT_CHANGES" -gt 0 ]; then
+            TITLE="feat: update component(s)"
+            TYPE="🔧 Component Update"
+          elif [ "$TOKEN_CHANGES" -gt 0 ]; then
+            TITLE="feat: update design tokens"
+            TYPE="🎨 Design Tokens"
+          else
+            TITLE="feat: update design system"
+            TYPE="📦 General Update"
+          fi
+          
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          echo "type=$TYPE" >> $GITHUB_OUTPUT
+          echo "component_changes=$COMPONENT_CHANGES" >> $GITHUB_OUTPUT
+          echo "token_changes=$TOKEN_CHANGES" >> $GITHUB_OUTPUT
+          echo "new_components=$NEW_COMPONENTS" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        if: steps.check-pr.outputs.create_pr == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH_NAME="${{ github.ref_name }}"
+          TITLE="${{ steps.detect-changes.outputs.title }}"
+          TYPE="${{ steps.detect-changes.outputs.type }}"
+          COMPONENT_CHANGES="${{ steps.detect-changes.outputs.component_changes }}"
+          TOKEN_CHANGES="${{ steps.detect-changes.outputs.token_changes }}"
+          NEW_COMPONENTS="${{ steps.detect-changes.outputs.new_components }}"
+          
+          # Générer le corps de la PR
+          cat > pr_body.md << EOF
+          ## $TYPE
+          
+          **Branch:** \`$BRANCH_NAME\`
+          
+          ### 📊 Changes Summary
+          - 🔧 Components changed: **$COMPONENT_CHANGES**
+          - 🎨 Tokens changed: **$TOKEN_CHANGES**
+          - 🆕 New components: **$NEW_COMPONENTS**
+          
+          ### 🔍 Files Changed
+          \`\`\`
+          $(git diff --name-only origin/main...HEAD | head -10)
+          \`\`\`
+          
+          ### ✅ Checklist
+          
+          - [ ] 🏗️ Build passes
+          - [ ] 🧪 Tests pass  
+          - [ ] 📝 Changeset created (auto-generated)
+          - [ ] 🎨 Components follow design system guidelines
+          - [ ] 📚 Documentation updated (if needed)
+          - [ ] 🔍 Code review requested
+          
+          ### 🚀 Next Steps
+          
+          1. **Review the changes** in the Files tab
+          2. **Test the components** in Storybook/Demo
+          3. **Check the changeset** for proper versioning
+          4. **Approve & merge** when ready
+          
+          ---
+          
+          > 🤖 *This PR was created automatically by GitHub Actions*
+          > 📦 *A changeset will be auto-generated for version management*
+          EOF
+          
+          # Essayer d'obtenir l'auteur du commit pour l'assignation
+          COMMIT_AUTHOR_EMAIL=$(git log -1 --pretty=format:'%ae')
+          
+          # Essayer différentes méthodes pour trouver le nom d'utilisateur GitHub
+          POSSIBLE_USERNAMES=(
+            "$(echo $COMMIT_AUTHOR_EMAIL | cut -d'@' -f1)"  # email prefix
+            "$(echo $COMMIT_AUTHOR_EMAIL | cut -d'.' -f1)"  # first part before dot
+            "${{ github.actor }}"  # GitHub actor who triggered the workflow
+          )
+          
+          GITHUB_USER=""
+          for username in "${POSSIBLE_USERNAMES[@]}"; do
+            if [ -n "$username" ] && gh api users/"$username" >/dev/null 2>&1; then
+              GITHUB_USER="$username"
+              echo "✅ Found GitHub user: $GITHUB_USER"
+              break
+            fi
+          done
+          
+          # Créer les labels s'ils n'existent pas
+          echo "🏷️ Ensuring labels exist..."
+          gh label create "auto-created" --description "Automatically created PR" --color "0E8A16" || true
+          gh label create "design-system" --description "Design system related changes" --color "1D76DB" || true
+          
+          # Créer la PR avec GitHub CLI
+          if [ -n "$GITHUB_USER" ]; then
+            echo "📝 Creating PR and assigning to $GITHUB_USER"
+            gh pr create \
+              --title "$TITLE" \
+              --body-file pr_body.md \
+              --base main \
+              --head "$BRANCH_NAME" \
+              --assignee "$GITHUB_USER" \
+              --label "auto-created,design-system" || \
+            gh pr create \
+              --title "$TITLE" \
+              --body-file pr_body.md \
+              --base main \
+              --head "$BRANCH_NAME" \
+              --label "auto-created,design-system" || \
+            gh pr create \
+              --title "$TITLE" \
+              --body-file pr_body.md \
+              --base main \
+              --head "$BRANCH_NAME"
+          else
+            echo "📝 Creating PR without assignee (no valid GitHub user found)"
+            gh pr create \
+              --title "$TITLE" \
+              --body-file pr_body.md \
+              --base main \
+              --head "$BRANCH_NAME" \
+              --label "auto-created,design-system" || \
+            gh pr create \
+              --title "$TITLE" \
+              --body-file pr_body.md \
+              --base main \
+              --head "$BRANCH_NAME"
+          fi
+            
+          echo "✅ Pull Request created successfully!"
+          
+      - name: Add PR comment
+        if: steps.check-pr.outputs.create_pr == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          # Ajouter un commentaire avec des liens utiles
+          BRANCH_NAME="${{ github.ref_name }}"
+          
+          cat > comment.md << EOF
+          ## 🔗 Quick Links
+          
+          - 📚 [Storybook Preview](https://your-storybook-url.com)
+          - 🌐 [Demo Website](https://your-demo-url.com)
+          - 📦 [npm Package](https://www.npmjs.com/package/@club-employes/utopia)
+          - 🏗️ [GitHub Actions](https://github.com/${{ github.repository }}/actions)
+          
+          ## 🤖 Automation Status
+          
+          - ✅ Auto-changeset: Will be created on next push
+          - ✅ CI/CD: Will run automatically  
+          - ✅ Release: Will publish to npm after merge
+          
+          Ready for review! 🚀
+          EOF
+          
+          gh pr comment "$BRANCH_NAME" --body-file comment.md
