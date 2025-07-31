@@ -167,9 +167,10 @@ jobs:
       - name: 📦 Pack and install utopia locally  
         run: |
           cd packages/utopia
-          npm pack
+          TARBALL=$(npm pack)
+          echo "Generated tarball: $TARBALL"
           cd ../../apps/utopia-website
-          npm install --no-save ../utopia/club-employes-utopia-*.tgz
+          npm install --no-save "../utopia/$TARBALL"
 
       - name: 🏗️ Build website
         run: |
