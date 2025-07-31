@@ -88,24 +88,26 @@ jobs:
         if: steps.changeset-check.outputs.has_changesets == 'true'
         id: changesets
         run: |
-          # Consommer les changesets et faire le version bump
-          npm run version-packages
-          
-          # Commit et push les changements de version
+          # Configuration Git
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          if git diff --staged --quiet; then
-            git add -A
-          fi
+          # Consommer les changesets et faire le version bump
+          changeset version
           
-          if ! git diff --cached --quiet; then
+          # Vérifier s'il y a des changements à commiter
+          if ! git diff --cached --quiet || ! git diff --quiet; then
+            # Obtenir la nouvelle version
             PACKAGE_VERSION=$(node -p "require('./packages/utopia/package.json').version")
+            
+            # Commit et push les changements de version
+            git add -A
             git commit -m "chore: release v$PACKAGE_VERSION"
             git push
             
-            # Publier directement sur npm
-            npm run release
+            # Publier sur npm (rebuild et publish en une fois)
+            cd packages/utopia && npm run build
+            changeset publish
             
             echo "published=true" >> $GITHUB_OUTPUT
             echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
