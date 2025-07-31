@@ -1,0 +1,100 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      packages: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build tokens
+        run: npm run build:tokens
+        
+      - name: Build package
+        run: npm run build
+        
+      - name: Check for pending changesets
+        id: changeset-check
+        run: |
+          if [ -z "$(ls -A .changeset/*.md 2>/dev/null | grep -v README)" ]; then
+            echo "No pending changesets found, skipping release"
+            echo "has_changesets=false" >> $GITHUB_OUTPUT
+          else
+            echo "Pending changesets found, proceeding with release"
+            echo "has_changesets=true" >> $GITHUB_OUTPUT
+          fi
+        
+      - name: Version packages and publish directly
+        if: steps.changeset-check.outputs.has_changesets == 'true'
+        id: changesets
+        run: |
+          # Consommer les changesets et faire le version bump
+          npm run version-packages
+          
+          # Commit et push les changements de version
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          if git diff --staged --quiet; then
+            git add -A
+          fi
+          
+          if ! git diff --cached --quiet; then
+            PACKAGE_VERSION=$(node -p "require('./packages/utopia/package.json').version")
+            git commit -m "chore: release v$PACKAGE_VERSION"
+            git push
+            
+            # Publier directement sur npm
+            npm run release
+            
+            echo "published=true" >> $GITHUB_OUTPUT
+            echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+          else
+            echo "No version changes detected"
+            echo "published=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          
+      - name: Create GitHub Release
+        if: steps.changeset-check.outputs.has_changesets == 'true' && steps.changesets.outputs.published == 'true'
+        run: |
+          PACKAGE_VERSION="${{ steps.changesets.outputs.version }}"
+          
+          # Créer le tag Git
+          git tag "v$PACKAGE_VERSION"
+          git push origin "v$PACKAGE_VERSION"
+          
+          # Créer la GitHub Release
+          gh release create "v$PACKAGE_VERSION" \
+            --title "Release v$PACKAGE_VERSION" \
+            --notes "🚀 New release of @club-employes/utopia design system" \
+            --latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
