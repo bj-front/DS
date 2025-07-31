@@ -108,7 +108,19 @@ jobs:
       - name: Build package
         run: npm run build
         
+      - name: Check for pending changesets
+        id: changeset-check
+        run: |
+          if [ -z "$(ls -A .changeset/*.md 2>/dev/null | grep -v README)" ]; then
+            echo "No pending changesets found, skipping release"
+            echo "has_changesets=false" >> $GITHUB_OUTPUT
+          else
+            echo "Pending changesets found, proceeding with release"
+            echo "has_changesets=true" >> $GITHUB_OUTPUT
+          fi
+        
       - name: Create Release Pull Request or Publish
+        if: steps.changeset-check.outputs.has_changesets == 'true'
         id: changesets
         uses: changesets/action@v1
         with:
@@ -121,7 +133,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           
       - name: Create GitHub Release
-        if: steps.changesets.outputs.published == 'true'
+        if: steps.changeset-check.outputs.has_changesets == 'true' && steps.changesets.outputs.published == 'true'
         run: |
           PACKAGE_VERSION=$(node -p "require('./packages/utopia/package.json').version")
           gh release create "v$PACKAGE_VERSION" \
