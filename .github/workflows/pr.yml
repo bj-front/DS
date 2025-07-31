@@ -3,6 +3,13 @@ name: Pull Request CI
 on:
   pull_request:
     branches: [main]
+  push:
+    branches-ignore: [main]
+    paths:
+      - 'packages/utopia/src/**'
+      - '.github/workflows/**'
+      - 'packages/utopia/package.json'
+      - 'package.json'
 
 jobs:
   # Tests et Build pour les PRs
