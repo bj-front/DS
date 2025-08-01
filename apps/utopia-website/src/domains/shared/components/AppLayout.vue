@@ -89,8 +89,9 @@ const toggleTheme = () => {
 
 /* Header */
 .app-header {
-  background: var(--theme-colors-surface-card);
-  border-bottom: var(--border-width-1) solid var(--theme-colors-border-default);
+  height: 60px;
+  background-color: var(--theme-colors-primary-25);
+  border-bottom: 1px solid var(--theme-colors-primary-300);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -101,8 +102,8 @@ const toggleTheme = () => {
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-8);
-  height: var(--spacing-32);
+  padding: var(--spacing-3) var(--spacing-12);
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;

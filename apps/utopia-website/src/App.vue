@@ -10,9 +10,6 @@ import {
   ThemeProvider,
   clubEmployesLight
 } from '@club-employes/utopia'
-import '@club-employes/utopia/styles'
-// Import CSS tokens from the built package
-import '@club-employes/utopia/tokens/club-employes/light'
 
 // Import the shared layout component
 import AppLayout from './domains/shared/components/AppLayout.vue'

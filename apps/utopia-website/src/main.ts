@@ -8,6 +8,7 @@ import router from './domains/shared/router'
 
 // Import du design system Utopia
 import '@club-employes/utopia/styles'
+import '@club-employes/utopia/tokens/club-employes/light'
 
 const app = createApp(App)
 
