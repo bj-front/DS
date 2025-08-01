@@ -18,6 +18,10 @@ inputs:
   github-token:
     description: 'GitHub token for PR comments'
     required: false
+  working-directory:
+    description: 'Working directory for Vercel deployment'
+    required: false
+    default: '.'
 
 outputs:
   preview-url:
@@ -35,7 +39,7 @@ runs:
         vercel-org-id: ${{ inputs.vercel-org-id }}
         vercel-project-id: ${{ inputs.vercel-project-id }}
         vercel-args: ${{ inputs.production == 'true' && '--prod' || '' }}
-        working-directory: apps/utopia-website
+        working-directory: ${{ inputs.working-directory }}
         scope: ${{ inputs.vercel-org-id }}
 
     - name: 💬 Comment PR with preview URL

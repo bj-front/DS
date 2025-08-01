@@ -1,0 +1,16 @@
+{
+  "buildCommand": "cd apps/utopia-website && npm run build",
+  "outputDirectory": "apps/utopia-website/dist",
+  "installCommand": "npm ci",
+  "framework": "vite",
+  "devCommand": "cd apps/utopia-website && npm run dev",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "github": {
+    "silent": true
+  }
+}
