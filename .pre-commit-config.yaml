@@ -1,0 +1,71 @@
+# Configuration pre-commit pour le Design System
+# Installation: pip install pre-commit && pre-commit install
+
+repos:
+  # Hooks généraux
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        name: 🧹 Remove trailing whitespace
+      - id: end-of-file-fixer
+        name: 📝 Fix end of files
+      - id: check-merge-conflict
+        name: 🔍 Check for merge conflicts
+      - id: check-added-large-files
+        name: 📦 Check file sizes
+        args: ['--maxkb=1000']
+      - id: check-yaml
+        name: ✅ Validate YAML
+        files: \.(yaml|yml)$
+      - id: check-json
+        name: ✅ Validate JSON
+        files: \.json$
+
+  # Design System - Validation des tokens et qualité
+  - repo: local
+    hooks:
+      - id: design-system-validation
+        name: 🎨 Design System - Validation complète
+        entry: npm run pre-commit:validate-design-system
+        language: system
+        files: ^packages/utopia/
+        pass_filenames: false
+        
+      - id: design-system-tokens-check
+        name: 🔍 Design System - Vérification tokens (pas de valeurs en dur)
+        entry: bash -c 'cd packages/utopia && npm run validate:tokens'
+        language: system
+        files: ^packages/utopia/src/components/
+        pass_filenames: false
+
+  # Website - Validation des tokens et qualité
+  - repo: local
+    hooks:
+      - id: website-validation
+        name: 🌐 Website - Validation complète
+        entry: npm run pre-commit:validate-website
+        language: system
+        files: ^apps/utopia-website/
+        pass_filenames: false
+        
+      - id: website-tokens-check
+        name: 🔍 Website - Vérification tokens design system
+        entry: bash -c 'cd apps/utopia-website && npm run validate:design-system'
+        language: system
+        files: ^apps/utopia-website/src/
+        pass_filenames: false
+
+  # Changeset validation
+  - repo: local
+    hooks:
+      - id: changeset-check
+        name: 📝 Vérification Changeset
+        entry: npm run pre-commit:changeset-check
+        language: system
+        files: ^packages/utopia/
+        pass_filenames: false
+
+# Configuration globale
+default_stages: [commit]
+fail_fast: false

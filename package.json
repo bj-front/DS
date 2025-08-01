@@ -17,7 +17,11 @@
     "version-packages": "changeset version",
     "release": "cd packages/utopia && npm run build && cd ../.. && NPM_CONFIG_YES=true changeset publish",
     "ci:build": "npm run build:tokens && npm run build",
-    "ci:test": "npm run lint && npm run type-check"
+    "ci:test": "npm run lint && npm run type-check",
+    "pre-commit:install": "pre-commit install",
+    "pre-commit:validate-design-system": "cd packages/utopia && npm run pre-commit:validate",
+    "pre-commit:validate-website": "cd apps/utopia-website && npm run pre-commit:validate",
+    "pre-commit:changeset-check": "node scripts/check-changeset.js"
   },
   "keywords": [
     "design-system",
@@ -32,5 +36,9 @@
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.11",
     "@types/json-schema": "^7.0.15"
+  },
+  "preInstall": "echo '⚙️  Pour activer les hooks pre-commit, exécutez: npm run pre-commit:install'",
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
