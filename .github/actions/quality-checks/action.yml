@@ -17,29 +17,29 @@ runs:
       shell: bash
       run: |
         if [ "${{ inputs.include-dependencies }}" = "true" ]; then
-          turbo lint --filter=...${{ inputs.package-filter }}
+          npx turbo lint --filter=...${{ inputs.package-filter }}
         else
-          turbo lint --filter=${{ inputs.package-filter }}
+          npx turbo lint --filter=${{ inputs.package-filter }}
         fi
 
     - name: 🔍 Type check
       shell: bash
       run: |
         if [ "${{ inputs.include-dependencies }}" = "true" ]; then
-          turbo type-check --filter=...${{ inputs.package-filter }}
+          npx turbo type-check --filter=...${{ inputs.package-filter }}
         else
-          turbo type-check --filter=${{ inputs.package-filter }}
+          npx turbo type-check --filter=${{ inputs.package-filter }}
         fi
 
     - name: 🎨 Validate design system tokens (if applicable)
       shell: bash
       run: |
         # Check if validate:design-system task exists for this package
-        if turbo run validate:design-system --filter=${{ inputs.package-filter }} --dry-run 2>/dev/null; then
+        if npx turbo run validate:design-system --filter=${{ inputs.package-filter }} --dry-run 2>/dev/null; then
           if [ "${{ inputs.include-dependencies }}" = "true" ]; then
-            turbo validate:design-system --filter=...${{ inputs.package-filter }}
+            npx turbo validate:design-system --filter=...${{ inputs.package-filter }}
           else
-            turbo validate:design-system --filter=${{ inputs.package-filter }}
+            npx turbo validate:design-system --filter=${{ inputs.package-filter }}
           fi
         else
           echo "✅ No design system validation needed for this package"
@@ -49,11 +49,11 @@ runs:
       shell: bash
       run: |
         # Check if test task exists for this package
-        if turbo run test --filter=${{ inputs.package-filter }} --dry-run 2>/dev/null; then
+        if npx turbo run test --filter=${{ inputs.package-filter }} --dry-run 2>/dev/null; then
           if [ "${{ inputs.include-dependencies }}" = "true" ]; then
-            turbo test --filter=...${{ inputs.package-filter }}
+            npx turbo test --filter=...${{ inputs.package-filter }}
           else
-            turbo test --filter=${{ inputs.package-filter }}
+            npx turbo test --filter=${{ inputs.package-filter }}
           fi
         else
           echo "✅ No tests configured for this package"

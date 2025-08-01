@@ -17,7 +17,7 @@ runs:
   steps:
     - name: 🔍 Lint, Type check & Validate
       shell: bash
-      run: turbo lint type-check validate:design-system --filter=...${{ inputs.package-name }}
+      run: npx turbo lint type-check validate:design-system --filter=...${{ inputs.package-name }}
 
     - name: 🧪 Run tests
       shell: bash
@@ -25,7 +25,7 @@ runs:
 
     - name: 🏗️ Build website with dependencies
       shell: bash
-      run: turbo build --filter=...${{ inputs.package-name }}
+      run: npx turbo build --filter=...${{ inputs.package-name }}
 
     - name: 📦 Verify build output
       shell: bash

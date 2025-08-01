@@ -17,7 +17,7 @@ runs:
   steps:
     - name: 🎨🔍🏗️ Build, Lint, Type check & Validate
       shell: bash
-      run: turbo build:tokens lint type-check build --filter=${{ inputs.package-name }}
+      run: npx turbo build:tokens lint type-check build --filter=${{ inputs.package-name }}
 
     - name: 🔍 Vérification stricte Tokens (Pas de valeur en dur)
       shell: bash
