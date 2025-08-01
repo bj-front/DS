@@ -55,6 +55,13 @@ jobs:
       - name: 🏗️ Build Website
         uses: ./.github/actions/build-website
 
+      - name: 🔄 Create or update Pull Request
+        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+        uses: ./.github/actions/create-pr
+        with:
+          github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          project-type: 'website'
+
   # Job 2: Déploiement preview Vercel (feature branches uniquement)
   deploy-preview:
     name: 🚀 Deploy Preview
@@ -84,12 +91,6 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
-
-      - name: 🔄 Create or update Pull Request
-        uses: ./.github/actions/create-pr
-        with:
-          github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
-          project-type: 'website'
 
 
 

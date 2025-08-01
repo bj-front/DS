@@ -54,6 +54,7 @@ jobs:
         uses: ./.github/actions/build-design-system
 
       - name: 🔄 Create or update Pull Request
+        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
         uses: ./.github/actions/create-pr
         with:
           github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}

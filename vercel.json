@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cd apps/utopia-website && npm run build",
+  "buildCommand": "npx turbo build --filter=...utopia-website",
   "outputDirectory": "apps/utopia-website/dist",
   "installCommand": "npm ci",
   "framework": "vite",
