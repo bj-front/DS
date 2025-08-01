@@ -65,7 +65,7 @@ import { clubEmployesLight } from '@clubemployes/theme-club-employes'
 
 #### Couleurs produits
 - `--color-product-exclusive-sale-primary` - Vente exclusive
-- `--color-product-promo-code-primary` - Code promo  
+- `--color-product-promo-code-primary` - Code promo
 - `--color-product-physical-product-primary` - Produit physique
 - `--color-product-e-ticket-primary` - E-billet
 - `--color-product-member-card-primary` - Carte membre
@@ -124,7 +124,7 @@ npm run build:tokens
 ## �� Packages
 
 - `@clubemployes/design-system` - Composants et ThemeProvider
-- `@clubemployes/theme-club-employes` - Thème Club Employés  
+- `@clubemployes/theme-club-employes` - Thème Club Employés
 - `@clubemployes/theme-ebank` - Thème eBank (à venir)
 
 ## 🎨 Variables universelles
@@ -142,7 +142,7 @@ Toutes les apps utilisent les **mêmes noms de variables CSS**. Seules les valeu
 // App Club Employés
 import { clubEmployesLight } from '@clubemployes/theme-club-employes'
 
-// App eBank  
+// App eBank
 import { ebankLight } from '@clubemployes/theme-ebank'
 ```
 

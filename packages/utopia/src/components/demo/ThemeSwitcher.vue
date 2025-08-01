@@ -1,6 +1,6 @@
 <template>
   <div class="theme-switcher">
-    <button 
+    <button
       @click="toggleTheme"
       class="theme-toggle-btn"
       :class="{ 'dark-mode': isDarkMode }"
@@ -8,7 +8,7 @@
       <span class="theme-icon">{{ isDarkMode ? '🌙' : '☀️' }}</span>
       <span class="theme-text">{{ isDarkMode ? 'Mode Dark' : 'Mode Light' }}</span>
     </button>
-    
+
     <div class="theme-info">
       <code class="theme-name">{{ currentTheme.name }}</code>
     </div>
@@ -99,4 +99,4 @@ const toggleTheme = () => {
   border-radius: var(--border-radius-sm);
   border: var(--border-width-1) solid var(--color-neutral-200);
 }
-</style> 
+</style>

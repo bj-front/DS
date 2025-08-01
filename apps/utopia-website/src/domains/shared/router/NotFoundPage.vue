@@ -85,19 +85,19 @@ const goBack = () => {
   .not-found-page {
     padding: var(--spacing-4);
   }
-  
+
   .error-code {
     font-size: 6rem;
   }
-  
+
   .error-title {
     font-size: var(--font-size-2xl);
   }
-  
+
   .error-description {
     font-size: var(--font-size-base);
   }
-  
+
   .error-actions {
     flex-direction: column;
     align-items: center;

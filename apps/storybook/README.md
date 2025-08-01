@@ -32,7 +32,7 @@ Storybook est configuré avec des contrôles globaux dans la toolbar :
 
 ### **🔲 Atoms/Button**
 - Tous les variants : primary, secondary, outline, ghost, danger
-- Toutes les tailles : sm, md, lg  
+- Toutes les tailles : sm, md, lg
 - États : normal, disabled, loading
 - Avec icônes
 
@@ -49,7 +49,7 @@ const withThemeProvider = (story, context) => {
   const { globals } = context
   const brand = globals.brand || 'club-employes'
   const mode = globals.mode || 'light'
-  
+
   // Sélection automatique du thème
   let currentTheme
   if (brand === 'club-employes') {

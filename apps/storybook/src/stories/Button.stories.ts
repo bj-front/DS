@@ -107,14 +107,14 @@ export const WithIcons: Story = {
           </template>
           Ajouter
         </Button>
-        
+
         <Button variant="outline">
           Télécharger
           <template #iconAfter>
             <Icon name="download" />
           </template>
         </Button>
-        
+
         <Button variant="ghost" size="sm">
           <template #icon>
             <Icon name="heart" />
@@ -123,4 +123,4 @@ export const WithIcons: Story = {
       </div>
     `,
   }),
-} 
+}

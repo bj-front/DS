@@ -13,7 +13,7 @@
       <p class="section-description">
         Comparaison des couleurs primaires entre les modes clair et sombre.
       </p>
-      
+
       <div class="comparison-grid">
         <div class="theme-column">
           <h3 class="theme-title">☀️ Mode Clair</h3>
@@ -36,7 +36,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="theme-column">
           <h3 class="theme-title">🌙 Mode Sombre</h3>
           <div class="color-samples dark">
@@ -67,7 +67,7 @@
       <p class="section-description">
         Aperçu des composants dans les deux modes de thème.
       </p>
-      
+
       <div class="components-comparison">
         <div class="theme-demo light-theme">
           <h3 class="demo-title">☀️ Mode Clair</h3>
@@ -83,7 +83,7 @@
                 <Button variant="ghost" size="small">Ghost</Button>
               </div>
             </div>
-            
+
             <div class="demo-form">
               <div class="demo-input-group">
                 <label class="demo-label">Label</label>
@@ -99,7 +99,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="theme-demo dark-theme">
           <h3 class="demo-title">🌙 Mode Sombre</h3>
           <div class="demo-content">
@@ -114,7 +114,7 @@
                 <Button variant="ghost" size="small">Ghost</Button>
               </div>
             </div>
-            
+
             <div class="demo-form">
               <div class="demo-input-group">
                 <label class="demo-label">Label</label>
@@ -143,21 +143,21 @@
             Assurez-vous que le contraste est suffisant dans les deux modes pour l'accessibilité.
           </p>
         </div>
-        
+
         <div class="guideline-card">
           <h4 class="guideline-title">🔄 Consistance</h4>
           <p class="guideline-description">
             Les éléments doivent avoir la même hiérarchie visuelle dans les deux modes.
           </p>
         </div>
-        
+
         <div class="guideline-card">
           <h4 class="guideline-title">👁️ Lisibilité</h4>
           <p class="guideline-description">
             Le texte doit rester lisible et confortable à lire dans tous les contextes.
           </p>
         </div>
-        
+
         <div class="guideline-card">
           <h4 class="guideline-title">⚡ Performance</h4>
           <p class="guideline-description">
@@ -447,20 +447,20 @@ import { Button } from '@club-employes/utopia'
   .theme-comparison-page {
     padding: var(--spacing-4);
   }
-  
+
   .comparison-grid,
   .components-comparison {
     grid-template-columns: 1fr;
   }
-  
+
   .color-samples {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .demo-buttons {
     flex-direction: column;
   }
-  
+
   .guidelines-grid {
     grid-template-columns: 1fr;
   }

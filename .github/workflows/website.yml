@@ -33,7 +33,7 @@ jobs:
     defaults:
       run:
         working-directory: apps/utopia-website
-    
+
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -95,7 +95,7 @@ jobs:
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-    
+
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -145,7 +145,7 @@ jobs:
           github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
             const previewUrl = '${{ steps.deploy.outputs.preview-url }}';
-            
+
             // Trouver la PR associée à cette branche
             const { data: prs } = await github.rest.pulls.list({
               owner: context.repo.owner,
@@ -153,32 +153,32 @@ jobs:
               head: context.repo.owner + ':' + context.ref.replace('refs/heads/', ''),
               state: 'open'
             });
-            
+
             if (prs.length > 0) {
               const prNumber = prs[0].number;
-              
+
               const comment = `## 🚀 Preview Deployment Ready!
-            
+
             Your website changes have been deployed to Vercel:
-            
+
             **🔗 Preview URL:** ${previewUrl}
-            
+
             ### ✅ Quality Checks Passed
             - 🔍 Lint & Type check ✅
-            - 🎨 Design system tokens validation ✅  
+            - 🎨 Design system tokens validation ✅
             - 🏗️ Build successful ✅
-            
+
             ### 📱 Test your changes:
             - Desktop & Mobile responsive design
             - Component behavior & styling
             - Theme switching functionality
             - Navigation and routing
-            
+
             ---
-            
+
             > 🤖 *Preview updates automatically with each push*
             `;
-            
+
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -196,7 +196,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    
+
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -221,27 +221,27 @@ jobs:
           title: "feat(website): Updates from ${{ github.ref_name }}"
           body: |
             ## 🌐 Website Update
-            
+
             **Branch:** `${{ github.ref_name }}`
-            
+
             ### ✅ Quality Checks Passed
             - [x] 🔍 Lint & Type check passed
             - [x] 🎨 Design system tokens validation passed
             - [x] 🏗️ Build successful
             - [x] 🚀 Preview deployment ready
-            
+
             ### 🌟 Preview Deployment
             A preview deployment has been created automatically.
             Check the comments above for the preview URL.
-            
+
             ### 🚀 Next Steps
             1. **Review the changes** in the Files tab
             2. **Test the preview** deployment
             3. **Check responsive design** on different devices
             4. **Approve & merge** to deploy to production
-            
+
             ---
-            
+
             > 🤖 *This PR was created automatically*
             > 🌐 *Ready for review and merge to production*
           base: main
@@ -261,7 +261,7 @@ jobs:
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-    
+
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -312,7 +312,7 @@ jobs:
           github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
             const productionUrl = '${{ steps.deploy.outputs.preview-url }}';
-            
+
             // Chercher la dernière PR mergée
             const { data: prs } = await github.rest.pulls.list({
               owner: context.repo.owner,
@@ -322,26 +322,26 @@ jobs:
               direction: 'desc',
               per_page: 1
             });
-            
+
             if (prs.length > 0 && prs[0].merged_at) {
               const prNumber = prs[0].number;
-              
+
               const comment = `## 🎉 Deployed to Production!
-            
+
             Your website changes are now live in production:
-            
+
             **🌟 Production URL:** ${productionUrl}
-            
+
             ### 🚀 Deployment Summary
             - ✅ Quality checks passed
             - ✅ Design system tokens validated
-            - ✅ Build successful  
+            - ✅ Build successful
             - ✅ Production deployment complete
-            
+
             ### 🎊 Great work!
             Your changes have been successfully deployed and are now available to users.
             `;
-            
+
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,

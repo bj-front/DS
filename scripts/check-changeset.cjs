@@ -3,7 +3,7 @@
 /**
  * Script de vérification des changesets
  * Vérifie qu'un changeset existe pour les modifications du design system
- * 
+ *
  * Usage: node scripts/check-changeset.js
  */
 
@@ -34,46 +34,46 @@ const log = {
  */
 function checkChangesetNeeded() {
   log.title('Vérification des changesets')
-  
+
   try {
     // Vérifier s'il y a des changements dans le design system
     const changedFiles = execSync('git diff --cached --name-only', { encoding: 'utf8' }).trim()
-    
+
     if (!changedFiles) {
       log.info('Aucun fichier stagé, vérification ignorée')
       return true
     }
-    
+
     const files = changedFiles.split('\n').filter(Boolean)
-    const utopiaChanges = files.filter(file => 
-      file.startsWith('packages/utopia/src/') && 
+    const utopiaChanges = files.filter(file =>
+      file.startsWith('packages/utopia/src/') &&
       !file.includes('.md') &&
       !file.includes('.json') &&
       !file.includes('demo/')
     )
-    
+
     if (utopiaChanges.length === 0) {
       log.info('Aucun changement dans les composants/tokens Utopia')
       return true
     }
-    
+
     log.info(`${utopiaChanges.length} fichier(s) modifié(s) dans Utopia:`)
     utopiaChanges.forEach(file => {
       console.log(`  📄 ${file}`)
     })
-    
+
     // Vérifier si un changeset existe
     const changesetDir = path.join(process.cwd(), '.changeset')
-    
+
     if (!fs.existsSync(changesetDir)) {
       log.error('Dossier .changeset non trouvé')
       log.info('Exécutez: npm run changeset')
       return false
     }
-    
+
     const changesetFiles = fs.readdirSync(changesetDir)
       .filter(file => file.endsWith('.md') && file !== 'README.md' && file !== 'config.json')
-    
+
     if (changesetFiles.length === 0) {
       log.warning('Aucun changeset trouvé pour les modifications Utopia')
       log.info('Un changeset est requis pour les changements du design system')
@@ -81,14 +81,14 @@ function checkChangesetNeeded() {
       log.info('Puis recommittez vos changements')
       return false
     }
-    
+
     log.success(`${changesetFiles.length} changeset(s) trouvé(s):`)
     changesetFiles.forEach(file => {
       console.log(`  📝 ${file}`)
     })
-    
+
     return true
-    
+
   } catch (error) {
     log.warning('Impossible de vérifier les changements git')
     log.info('Vérification ignorée (probablement un commit initial)')
@@ -101,11 +101,11 @@ function checkChangesetNeeded() {
  */
 function main() {
   console.log('📝 Vérification des changesets\n')
-  
+
   const isValid = checkChangesetNeeded()
-  
+
   console.log('\n' + '='.repeat(60))
-  
+
   if (isValid) {
     log.success('✅ VÉRIFICATION RÉUSSIE')
     log.success('Changeset approprié pour les modifications')

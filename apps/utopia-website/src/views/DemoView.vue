@@ -1,7 +1,7 @@
 <template>
   <div class="demo-container">
     <h1>Démonstration du Design System Utopia</h1>
-    
+
     <section class="demo-section">
       <h2>Boutons</h2>
       <div class="component-group">
@@ -14,7 +14,7 @@
             <Button variant="ghost" size="medium">Ghost</Button>
           </div>
         </div>
-        
+
         <div class="variant-group">
           <h3>Tailles</h3>
           <div class="button-row">
@@ -55,7 +55,7 @@
             <span>calendar</span>
           </div>
         </div>
-        
+
         <div class="variant-group">
           <h3>Tailles d'icônes</h3>
           <div class="button-row">
@@ -87,7 +87,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="token-group">
           <h3>Couleurs sémantiques</h3>
           <div class="color-grid">
@@ -218,16 +218,16 @@ import { Button, Icon } from '@club-employes/utopia'
   .demo-section {
     padding: 1.5rem;
   }
-  
+
   .button-row {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .icon-grid {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
-  
+
   .color-grid {
     grid-template-columns: 1fr;
   }

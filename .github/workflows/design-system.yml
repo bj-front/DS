@@ -33,7 +33,7 @@ jobs:
     defaults:
       run:
         working-directory: packages/utopia
-    
+
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -68,21 +68,21 @@ jobs:
           # Recherche de valeurs en dur dans les composants (couleurs, spacing, typography)
           HARDCODED_COLORS=$(grep -r -n --include="*.vue" --include="*.ts" --include="*.js" -E "(#[0-9a-fA-F]{3,8}|rgba?\(|hsla?\()" src/components/ || true)
           HARDCODED_SIZES=$(grep -r -n --include="*.vue" --include="*.ts" --include="*.js" -E "\b\d+(px|rem|em)\b" src/components/ || true)
-          
+
           ERRORS=0
-          
+
           if [ -n "$HARDCODED_COLORS" ]; then
             echo "❌ Couleurs en dur détectées dans les composants:"
             echo "$HARDCODED_COLORS"
             ERRORS=$((ERRORS + 1))
           fi
-          
+
           if [ -n "$HARDCODED_SIZES" ]; then
             echo "❌ Tailles en dur détectées dans les composants:"
             echo "$HARDCODED_SIZES"
             ERRORS=$((ERRORS + 1))
           fi
-          
+
           if [ $ERRORS -gt 0 ]; then
             echo "❌ Des valeurs en dur ont été détectées. Utilisez uniquement les tokens définis."
             exit 1
@@ -119,7 +119,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    
+
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -143,12 +143,12 @@ jobs:
           COMPONENT_CHANGES=$(git diff --name-only origin/main...HEAD | grep -E "packages/utopia/src/components/" | wc -l)
           TOKEN_CHANGES=$(git diff --name-only origin/main...HEAD | grep -E "packages/utopia/src/tokens/" | wc -l)
           NEW_COMPONENTS=$(git diff --name-only --diff-filter=A origin/main...HEAD | grep -E "packages/utopia/src/components/.*\.vue$" | wc -l)
-          
+
           # Créer un changeset automatique si des changements sont détectés
           if [ "$COMPONENT_CHANGES" -gt 0 ] || [ "$TOKEN_CHANGES" -gt 0 ]; then
             BRANCH_SAFE=$(echo "${{ github.ref_name }}" | sed 's/[^a-zA-Z0-9]/-/g')
             CHANGESET_FILE=".changeset/auto-$BRANCH_SAFE-$(date +%s).md"
-            
+
             if [ "$NEW_COMPONENTS" -gt 0 ]; then
               CHANGE_TYPE="minor"
               DESCRIPTION="Add new component(s) to design system"
@@ -162,21 +162,21 @@ jobs:
               CHANGE_TYPE="patch"
               DESCRIPTION="General design system updates"
             fi
-            
+
             cat > "$CHANGESET_FILE" << EOF
           ---
           "@club-employes/utopia": $CHANGE_TYPE
           ---
-          
+
           $DESCRIPTION from branch ${{ github.ref_name }}
           EOF
-            
+
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add "$CHANGESET_FILE"
             git commit -m "chore: add changeset for design system changes"
             git push origin ${{ github.ref_name }}
-            
+
             echo "✅ Changeset created: $CHANGESET_FILE"
           fi
 
@@ -188,26 +188,26 @@ jobs:
           title: "feat(design-system): Updates from ${{ github.ref_name }}"
           body: |
             ## 🎨 Design System Update
-            
+
             **Branch:** `${{ github.ref_name }}`
-            
+
             ### 📊 Changes Summary
             Automated PR created for design system changes.
-            
+
             ### ✅ Quality Checks
             - [x] 🔍 Lint passed
-            - [x] 🔍 Type check passed  
+            - [x] 🔍 Type check passed
             - [x] 🎨 Token validation passed (no hardcoded values)
             - [x] 🏗️ Build successful
             - [x] 📝 Changeset created
-            
+
             ### 🚀 Next Steps
             1. **Review the changes** in the Files tab
             2. **Test components** in Storybook
             3. **Approve & merge** to trigger NPM release
-            
+
             ---
-            
+
             > 🤖 *This PR was created automatically*
             > 📦 *Ready for review and merge to main*
           base: main
@@ -228,7 +228,7 @@ jobs:
       contents: write
       pull-requests: write
       packages: write
-    
+
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -281,14 +281,14 @@ jobs:
         run: |
           PUBLISHED_PACKAGES='${{ steps.changesets.outputs.publishedPackages }}'
           VERSION=$(echo "$PUBLISHED_PACKAGES" | jq -r '.[0].version' 2>/dev/null || echo "")
-          
+
           if [ -n "$VERSION" ] && [ "$VERSION" != "null" ]; then
             echo "📦 Creating release for version: $VERSION"
-            
+
             # Créer le tag Git
             git tag "v$VERSION"
             git push origin "v$VERSION"
-            
+
             # Créer la GitHub Release
             gh release create "v$VERSION" \
               --title "🚀 Design System v$VERSION" \
@@ -298,15 +298,15 @@ jobs:
             \`\`\`bash
             npm install @club-employes/utopia@$VERSION
             \`\`\`
-            
+
             **What's included:**
-            - 🎨 Design tokens (colors, spacing, typography)  
+            - 🎨 Design tokens (colors, spacing, typography)
             - 🧩 Vue 3 components
             - 📱 Responsive utilities
             - 🌙 Dark mode support
             " \
               --latest
-              
+
             echo "✅ GitHub Release created: v$VERSION"
           else
             echo "ℹ️ No version information available, skipping GitHub release"

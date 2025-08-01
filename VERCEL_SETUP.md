@@ -25,7 +25,7 @@
 1. Va dans **Settings** → **General**
 2. Dans la section **Organization**, copie l'ID
 
-#### C. Project ID  
+#### C. Project ID
 1. Dans ton projet Vercel, va dans **Settings** → **General**
 2. Dans la section **Project**, copie l'ID
 3. **Important:** Assure-toi que le projet Vercel a le bon "Root Directory" configuré à `apps/utopia-website`
@@ -74,7 +74,7 @@ Une fois configuré, voici ce qui se passera :
 - Une URL de preview unique est créée
 - Un commentaire avec l'URL est ajouté automatiquement à la PR
 
-### 🌟 **Main Branch (Production)**  
+### 🌟 **Main Branch (Production)**
 - Chaque merge sur `main` déploie automatiquement en production
 - Le site de production est mis à jour avec les derniers changements
 - Un commentaire de succès est ajouté à la dernière PR mergée

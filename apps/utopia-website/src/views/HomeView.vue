@@ -9,7 +9,7 @@ import { Button, Icon } from '@club-employes/utopia'
       <p class="hero-subtitle">
         Cette application démontre l'utilisation du design system Utopia comme librairie externe
       </p>
-      
+
       <div class="hero-actions">
         <router-link to="/demo">
           <Button variant="primary" size="large">
@@ -57,7 +57,7 @@ import { Button, Icon } from '@club-employes/utopia'
             <Button variant="outline" size="medium">Outline</Button>
           </div>
         </div>
-        
+
         <div class="demo-item">
           <h4>Icônes</h4>
           <div class="icon-showcase">
@@ -204,40 +204,40 @@ import { Button, Icon } from '@club-employes/utopia'
   .hero {
     padding: 2rem 1rem;
   }
-  
+
   .hero h1 {
     font-size: 2rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1.1rem;
   }
-  
+
   .hero-actions {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .features h2 {
     font-size: 2rem;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .feature-card {
     padding: 1.5rem;
   }
-  
+
   .quick-demo {
     padding: 2rem 1rem;
   }
-  
+
   .demo-preview {
     grid-template-columns: 1fr;
   }
-  
+
   .button-showcase {
     flex-direction: column;
     align-items: center;

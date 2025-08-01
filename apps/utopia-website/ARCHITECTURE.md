@@ -61,7 +61,7 @@ Chaque domaine expose ses éléments via un fichier `index.ts` :
 ```typescript
 // domains/design-system/index.ts
 export * from './pages'
-export * from './components' 
+export * from './components'
 export * from './composables'
 export * from './types'
 ```
@@ -151,7 +151,7 @@ Les composants du design system sont importés directement dans les pages et com
 
 Cette architecture permet facilement d'ajouter :
 - **Documentation interactive** (`docs/` domain)
-- **Tests playground** (`testing/` domain)  
+- **Tests playground** (`testing/` domain)
 - **Design tokens editor** (`tokens/` domain)
 - **Storybook integration** (`stories/` domain)
 

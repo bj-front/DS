@@ -27,7 +27,7 @@
         <h2>Composants</h2>
         <p>Des composants réutilisables pour accélérer votre développement</p>
       </div>
-      
+
       <div class="component-grid">
         <!-- Buttons -->
         <div class="component-card">
@@ -78,7 +78,7 @@
         <h2>Design Tokens</h2>
         <p>Les fondations visuelles de notre système</p>
       </div>
-      
+
       <div class="tokens-grid">
         <!-- Colors -->
         <div class="token-category">
@@ -122,7 +122,7 @@
         <h2>Commencer</h2>
         <p>Installation et utilisation en quelques étapes</p>
       </div>
-      
+
       <div class="installation-steps">
         <div class="step">
           <div class="step-number">1</div>
@@ -131,7 +131,7 @@
             <code>npm install @club-employes/utopia</code>
           </div>
         </div>
-        
+
         <div class="step">
           <div class="step-number">2</div>
           <div class="step-content">
@@ -139,7 +139,7 @@
             <code>import { Button, Badge } from '@club-employes/utopia'</code>
           </div>
         </div>
-        
+
         <div class="step">
           <div class="step-number">3</div>
           <div class="step-content">
@@ -153,10 +153,10 @@
 </template>
 
 <script setup lang="ts">
-import { 
+import {
   Button
-  // Badge, 
-  // Icon, 
+  // Badge,
+  // Icon,
   // Logo
 } from '@club-employes/utopia'
 
@@ -166,14 +166,14 @@ const Icon = { template: '<span class="icon"><slot /></span>' }
 const Logo = { template: '<div class="logo">LOGO</div>' }
 
 const scrollToComponents = () => {
-  document.getElementById('components')?.scrollIntoView({ 
-    behavior: 'smooth' 
+  document.getElementById('components')?.scrollIntoView({
+    behavior: 'smooth'
   })
 }
 
 const scrollToTokens = () => {
-  document.getElementById('tokens')?.scrollIntoView({ 
-    behavior: 'smooth' 
+  document.getElementById('tokens')?.scrollIntoView({
+    behavior: 'smooth'
   })
 }
 </script>
@@ -437,29 +437,29 @@ section {
   .hero {
     padding: var(--spacing-24) var(--spacing-4);
   }
-  
+
   .title {
     font-size: var(--font-size-3xl);
   }
-  
+
   .subtitle {
     font-size: var(--font-size-lg);
   }
-  
+
   .cta-buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   section {
     padding: var(--spacing-24) var(--spacing-4);
   }
-  
+
   .component-grid,
   .tokens-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .step {
     flex-direction: column;
     text-align: center;

@@ -57,10 +57,10 @@
     <!-- Section par catégories -->
     <div class="showcase-section">
       <h3>📂 Icônes par catégories</h3>
-      
+
       <div class="category-selector">
-        <button 
-          v-for="category in Object.keys(iconsByCategory)" 
+        <button
+          v-for="category in Object.keys(iconsByCategory)"
           :key="category"
           @click="selectedCategory = category"
           class="category-btn"
@@ -149,10 +149,10 @@
           <pre class="code-block"><code>&lt;template&gt;
   &lt;!-- Icône simple --&gt;
   &lt;Icon name="User" /&gt;
-  
+
   &lt;!-- Avec taille et couleur --&gt;
   &lt;Icon name="Star" size="lg" color="warning" /&gt;
-  
+
   &lt;!-- Dans un bouton --&gt;
   &lt;button&gt;
     &lt;Icon name="Save" size="sm" /&gt;
@@ -198,45 +198,45 @@ const iconColors: Array<{
   description: string
   background: string
 }> = [
-  { 
-    key: 'current', 
-    name: 'Current', 
+  {
+    key: 'current',
+    name: 'Current',
     description: 'Hérite de la couleur du parent',
     background: 'neutral'
   },
-  { 
-    key: 'primary', 
-    name: 'Primary', 
+  {
+    key: 'primary',
+    name: 'Primary',
     description: 'Couleur principale de la marque',
     background: 'neutral'
   },
-  { 
-    key: 'secondary', 
-    name: 'Secondary', 
+  {
+    key: 'secondary',
+    name: 'Secondary',
     description: 'Couleur secondaire de la marque',
     background: 'neutral'
   },
-  { 
-    key: 'success', 
-    name: 'Success', 
+  {
+    key: 'success',
+    name: 'Success',
     description: 'Pour les états de succès',
     background: 'neutral'
   },
-  { 
-    key: 'warning', 
-    name: 'Warning', 
+  {
+    key: 'warning',
+    name: 'Warning',
     description: 'Pour les alertes et avertissements',
     background: 'neutral'
   },
-  { 
-    key: 'danger', 
-    name: 'Danger', 
+  {
+    key: 'danger',
+    name: 'Danger',
     description: 'Pour les erreurs et actions destructives',
     background: 'neutral'
   },
-  { 
-    key: 'neutral', 
-    name: 'Neutral', 
+  {
+    key: 'neutral',
+    name: 'Neutral',
     description: 'Couleur neutre gris',
     background: 'neutral'
   }
@@ -566,13 +566,13 @@ h4 {
   .category-selector {
     justify-content: center;
   }
-  
+
   .category-icons {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   }
-  
+
   .use-cases {
     grid-template-columns: 1fr;
   }
 }
-</style> 
+</style>

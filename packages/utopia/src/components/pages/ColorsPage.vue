@@ -15,7 +15,7 @@
         <br>
         <small>💡 Utilisez le widget en haut à droite pour voir les couleurs des autres marques.</small>
       </p>
-      
+
       <div class="colors-grid">
         <div class="color-group">
           <h4 class="color-group-title">{{ currentBrand.primary.name }}</h4>
@@ -26,9 +26,9 @@
                 <span class="color-name">{{ shade.name }}</span>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -40,7 +40,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="color-group">
           <h4 class="color-group-title">{{ currentBrand.secondary.name }}</h4>
           <div class="color-row">
@@ -50,9 +50,9 @@
                 <span class="color-name">{{ shade.name }}</span>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -64,7 +64,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="color-group">
           <h4 class="color-group-title">{{ currentBrand.accent.name }}</h4>
           <div class="color-row">
@@ -74,9 +74,9 @@
                 <span class="color-name">{{ shade.name }}</span>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -95,10 +95,10 @@
     <section class="section">
       <h2 class="section-title">🌐 Couleurs Communes</h2>
       <p class="section-description">
-        Couleurs partagées entre toutes les marques pour la cohérence du système. 
+        Couleurs partagées entre toutes les marques pour la cohérence du système.
         <strong>Ces couleurs s'adaptent automatiquement selon le mode {{ currentTheme.mode === 'dark' ? 'sombre' : 'clair' }}.</strong>
       </p>
-      
+
       <div class="common-colors-grid">
         <div class="common-color-group">
           <h4 class="color-group-title">⚫ Slate</h4>
@@ -109,9 +109,9 @@
                 <span class="color-name">{{ shade.name }}</span>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -123,7 +123,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="common-color-group">
           <h4 class="color-group-title">✅ Success</h4>
           <div class="color-row">
@@ -133,9 +133,9 @@
                 <span class="color-name">{{ shade.name }}</span>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -147,7 +147,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="common-color-group">
           <h4 class="color-group-title">⚠️ Warning</h4>
           <div class="color-row">
@@ -157,9 +157,9 @@
                 <span class="color-name">{{ shade.name }}</span>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -171,7 +171,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="common-color-group">
           <h4 class="color-group-title">🚨 Danger</h4>
           <div class="color-row">
@@ -181,9 +181,9 @@
                 <span class="color-name">{{ shade.name }}</span>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -491,15 +491,15 @@ const dangerColors = [
   .colors-page {
     padding: var(--spacing-4);
   }
-  
+
   .color-row {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: var(--spacing-2);
   }
-  
+
   .color-swatch {
     width: 50px;
     height: 50px;
   }
 }
-</style> 
+</style>

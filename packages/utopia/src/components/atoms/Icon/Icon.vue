@@ -40,13 +40,13 @@ const iconSvg = ref<string>('')
 
 // Computed
 const iconClasses = computed(() => {
-  // Map size names to CSS classes  
+  // Map size names to CSS classes
   const sizeMap: Record<IconSize, string> = {
     'small': 'sm',
     'medium': 'md',
     'large': 'lg'
   }
-  
+
   return [
     'icon',
     `icon--${sizeMap[props.size]}`,
@@ -77,21 +77,21 @@ const loadIcon = async (iconName: string) => {
   try {
     // Construire le chemin vers l'icône traitée
     const iconPath = `/src/assets/icons-processed/${iconName}.svg`
-    
+
     // Charger le contenu SVG via fetch
     const response = await fetch(iconPath)
     if (!response.ok) {
       throw new Error(`Icon not found: ${iconName}`)
     }
-    
+
     const svgContent = await response.text()
-    
+
     // Nettoyer le SVG pour retirer les attributs de taille fixe
     const cleanedSvg = svgContent
       .replace(/width="[^"]*"/g, '')
       .replace(/height="[^"]*"/g, '')
       .replace(/<svg([^>]*)>/g, '<svg$1 width="100%" height="100%">')
-    
+
     iconSvg.value = cleanedSvg
   } catch (error) {
     console.error(`Failed to load icon: ${iconName}`, error)
@@ -129,7 +129,7 @@ watch(() => props.name, (newName) => {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  
+
   /* Transition pour les changements */
   transition: color 0.2s ease, transform 0.2s ease;
 }
@@ -211,4 +211,4 @@ watch(() => props.name, (newName) => {
 .icon :deep([fill-opacity]) {
   fill: currentColor;
 }
-</style> 
+</style>

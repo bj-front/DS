@@ -31,7 +31,7 @@ repos:
         language: system
         files: ^packages/utopia/
         pass_filenames: false
-        
+
       - id: design-system-tokens-check
         name: 🔍 Design System - Vérification tokens (pas de valeurs en dur)
         entry: bash -c 'cd packages/utopia && npm run validate:tokens'
@@ -48,7 +48,7 @@ repos:
         language: system
         files: ^apps/utopia-website/
         pass_filenames: false
-        
+
       - id: website-tokens-check
         name: 🔍 Website - Vérification tokens design system
         entry: bash -c 'cd apps/utopia-website && npm run validate:design-system'
@@ -67,5 +67,5 @@ repos:
         pass_filenames: false
 
 # Configuration globale
-default_stages: [commit]
+default_stages: [pre-commit]
 fail_fast: false

@@ -11,4 +11,4 @@ export interface ThemeProviderProps {
   theme: ThemeConfig
 }
 
-export type ThemeMode = 'light' | 'dark' 
+export type ThemeMode = 'light' | 'dark'

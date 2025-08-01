@@ -7,10 +7,10 @@ export const gifteoLight: ThemeConfig = {
 }
 
 export const gifteoDark: ThemeConfig = {
-  name: 'gifteo-dark', 
+  name: 'gifteo-dark',
   mode: 'dark',
   cssFile: '/src/tokens/generated/gifteo/dark.css'
 }
 
 // Export par défaut pour la compatibilité
-export default gifteoLight 
+export default gifteoLight

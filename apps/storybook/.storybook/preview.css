@@ -22,7 +22,7 @@ html, body {
 }
 
 /* Styles pour la zone principale de Storybook */
-.sb-show-main, 
+.sb-show-main,
 .sb-main-padded,
 .sb-main-centered,
 .sb-main-fullscreen {
@@ -128,7 +128,7 @@ textarea {
 
 /* Contrôles Storybook spécifiques - ciblage plus précis */
 #panel-tab-content input,
-#panel-tab-content select, 
+#panel-tab-content select,
 #panel-tab-content textarea,
 [id^="panel-tab-content"] input,
 [id^="panel-tab-content"] select,
@@ -182,4 +182,4 @@ textarea {
 button {
   height: auto !important;
   min-height: auto !important;
-} 
+}

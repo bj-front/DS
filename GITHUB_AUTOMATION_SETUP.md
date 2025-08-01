@@ -3,7 +3,7 @@
 ## 🔧 **Étape 1 : Créer un Personal Access Token**
 
 ### **1.1 Aller aux paramètres GitHub**
-- Va sur **GitHub.com** 
+- Va sur **GitHub.com**
 - Clique sur ta **photo de profil** (en haut à droite)
 - **Settings** (paramètres de ton compte, pas du repo)
 
@@ -21,7 +21,7 @@
 
 **Scopes à cocher :**
 - ✅ `repo` (Full control of private repositories)
-  - ✅ `repo:status` 
+  - ✅ `repo:status`
   - ✅ `repo_deployment`
   - ✅ `public_repo`
   - ✅ `repo:invite`
@@ -88,7 +88,7 @@ git push -u origin test/automation-fix
 Avec le PAT_TOKEN configuré, les workflows devraient :
 
 1. ✅ **Auto Changeset** : Créer et pusher automatiquement le changeset
-2. ✅ **Auto PR** : Créer automatiquement la Pull Request  
+2. ✅ **Auto PR** : Créer automatiquement la Pull Request
 3. ✅ **PR Helper** : Ajouter des commentaires et analyses intelligentes
 
 ## 🔍 **Diagnostic**
@@ -119,7 +119,7 @@ Avec le PAT_TOKEN configuré, les workflows devraient :
 
 ## 💡 **Pourquoi ça fonctionne**
 
-Le **GITHUB_TOKEN** par défaut a des permissions limitées pour la sécurité. 
+Le **GITHUB_TOKEN** par défaut a des permissions limitées pour la sécurité.
 
 Le **PAT_TOKEN** utilise **tes permissions personnelles**, donc il peut :
 - ✅ Pusher des commits
@@ -142,7 +142,7 @@ git push -u origin feature/awesome-thing
 
 # 🤖 AUTOMATIQUE :
 # ✅ Changeset créé et pushé automatiquement
-# ✅ PR créée automatiquement avec description intelligente  
+# ✅ PR créée automatiquement avec description intelligente
 # ✅ CI lancé automatiquement
 # ✅ Ready for review !
 ```

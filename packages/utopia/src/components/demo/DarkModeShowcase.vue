@@ -1,7 +1,7 @@
 <template>
   <div class="dark-mode-showcase">
     <h2 class="showcase-title">🌗 Light/Dark Mode Showcase</h2>
-    
+
     <div class="showcase-grid">
       <!-- Surface colors -->
       <div class="showcase-card">
@@ -236,4 +236,4 @@ const currentMode = computed(() => {
   font-size: var(--font-size-sm);
   margin: 0;
 }
-</style> 
+</style>

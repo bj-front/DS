@@ -168,8 +168,8 @@ var(--shadow-xl)    /* Ombre extra-large */
   <div class="card">
     <h2 class="title">{{ title }}</h2>
     <p class="description">{{ description }}</p>
-    <Button 
-      :variant="buttonVariant" 
+    <Button
+      :variant="buttonVariant"
       @click="handleClick"
     >
       {{ buttonText }}

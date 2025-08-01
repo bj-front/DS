@@ -41,7 +41,7 @@
     <div class="showcase-section">
       <h3>🔢 Matrice complète</h3>
       <p>Toutes les combinaisons de tailles et variantes :</p>
-      
+
       <div class="matrix">
         <div class="matrix-header">
           <div class="matrix-cell matrix-header-cell">Taille</div>
@@ -49,7 +49,7 @@
             {{ variant.name }}
           </div>
         </div>
-        
+
         <div v-for="size in logoSizes.slice(1, -1)" :key="size.key" class="matrix-row">
           <div class="matrix-cell matrix-size-cell">
             <strong>{{ size.name }}</strong>
@@ -114,10 +114,10 @@
           <pre class="code-block"><code>&lt;template&gt;
   &lt;!-- Logo adaptatif au thème --&gt;
   &lt;Logo size="lg" variant="auto" alt="Mon application" /&gt;
-  
+
   &lt;!-- Logo fixe blanc --&gt;
   &lt;Logo size="md" variant="white" alt="Logo blanc" /&gt;
-  
+
   &lt;!-- Logo compact pour espaces restreints --&gt;
   &lt;Logo size="sm" variant="small" alt="Logo compact" /&gt;
 &lt;/template&gt;
@@ -156,33 +156,33 @@ const logoVariants: Array<{
   description: string
   background: string
 }> = [
-  { 
-    key: 'auto', 
-    name: 'Auto', 
+  {
+    key: 'auto',
+    name: 'Auto',
     description: 'S\'adapte automatiquement au thème',
     background: 'neutral'
   },
-  { 
-    key: 'default', 
-    name: 'Default', 
+  {
+    key: 'default',
+    name: 'Default',
     description: 'Logo principal pour fond clair',
     background: 'neutral'
   },
-  { 
-    key: 'white', 
-    name: 'White', 
+  {
+    key: 'white',
+    name: 'White',
     description: 'Logo blanc pour fond sombre',
     background: 'dark'
   },
-  { 
-    key: 'small', 
-    name: 'Small', 
+  {
+    key: 'small',
+    name: 'Small',
     description: 'Version compacte adaptative',
     background: 'neutral'
   },
-  { 
-    key: 'small-white', 
-    name: 'Small White', 
+  {
+    key: 'small-white',
+    name: 'Small White',
     description: 'Version compacte blanche',
     background: 'dark'
   }
@@ -447,7 +447,7 @@ h4 {
   .matrix-row {
     grid-template-columns: 120px repeat(5, 1fr);
   }
-  
+
   .matrix-cell {
     padding: 0.5rem;
     font-size: 0.875rem;
@@ -460,15 +460,15 @@ h4 {
   .use-cases {
     grid-template-columns: 1fr;
   }
-  
+
   .matrix-header,
   .matrix-row {
     grid-template-columns: 100px repeat(3, 1fr);
   }
-  
+
   /* Masquer les 2 dernières colonnes sur très petit écran */
   .matrix-cell:nth-child(n+5) {
     display: none;
   }
 }
-</style> 
+</style>

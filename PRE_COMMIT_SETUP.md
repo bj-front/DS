@@ -10,7 +10,7 @@ Ce document explique comment configurer et utiliser les hooks pre-commit pour va
 - ✅ **Type check** : Vérification TypeScript
 - ✅ **Build** : Test de compilation
 
-### 🌐 Website (`apps/utopia-website/`)  
+### 🌐 Website (`apps/utopia-website/`)
 - ✅ **Validation design system** : Utilisation exclusive des tokens Utopia
 - ✅ **Lint** : ESLint + Prettier
 - ✅ **Type check** : Vérification TypeScript
@@ -163,7 +163,7 @@ cd packages/utopia
 npm run build
 
 # OU pour le website
-cd apps/utopia-website  
+cd apps/utopia-website
 npm run build
 
 # Corriger les erreurs et recommitter

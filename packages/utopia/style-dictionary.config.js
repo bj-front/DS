@@ -135,4 +135,4 @@ export const gifteoDark = {
   }
 };
 
-export default clubEmployesLight; 
+export default clubEmployesLight;

@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { 
+import {
   ThemeProvider,
   clubEmployesLight
 } from '@club-employes/utopia'

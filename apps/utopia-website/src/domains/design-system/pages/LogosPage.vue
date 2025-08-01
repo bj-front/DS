@@ -13,7 +13,7 @@
       <p class="section-description">
         Logos et variations pour la marque Club Employés.
       </p>
-      
+
       <div class="logos-grid">
         <div class="logo-card">
           <div class="logo-preview">
@@ -84,7 +84,7 @@
       <p class="section-description">
         Logos et variations pour la marque Gifteo.
       </p>
-      
+
       <div class="logos-grid">
         <div class="logo-card">
           <div class="logo-preview">
@@ -161,7 +161,7 @@
             <li>Choisir la version adaptée au contraste</li>
           </ul>
         </div>
-        
+
         <div class="guideline-card error">
           <h4 class="guideline-title">❌ À éviter</h4>
           <ul class="guideline-list">
@@ -180,7 +180,7 @@
       <p class="section-description">
         Respectez toujours un espace minimum autour des logos pour garantir leur lisibilité.
       </p>
-      
+
       <div class="spacing-example">
         <div class="spacing-demo">
           <div class="spacing-lines">
@@ -485,12 +485,12 @@ import { Button } from '@club-employes/utopia'
   .logos-page {
     padding: var(--spacing-4);
   }
-  
+
   .logos-grid,
   .guidelines-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .logo-actions {
     flex-direction: column;
   }

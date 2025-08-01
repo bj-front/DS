@@ -8,7 +8,7 @@
       <p class="welcome-subtitle">
         Utilisez le widget en haut à droite pour basculer entre les thèmes et la navigation pour explorer les différentes sections.
       </p>
-      
+
       <div class="theme-info-card">
         <h3 class="theme-info-title">Thème actuel</h3>
         <div class="theme-details">
@@ -21,7 +21,7 @@
             <span class="theme-value">{{ currentTheme.mode === 'dark' ? '🌙 Sombre' : '☀️ Clair' }}</span>
           </div>
         </div>
-        
+
         <div class="theme-preview">
           <div class="preview-colors">
             <div class="color-swatch primary" title="Couleur primaire"></div>
@@ -33,8 +33,8 @@
     </div>
 
     <div class="features-grid">
-      <div 
-        v-for="feature in features" 
+      <div
+        v-for="feature in features"
         :key="feature.page"
         class="feature-card"
       >
@@ -44,7 +44,7 @@
           {{ feature.description }}
         </p>
         <div class="feature-actions">
-          <Button 
+          <Button
             :variant="feature.buttonVariant"
             size="md"
             @click="navigateToPage(feature.page)"
@@ -59,7 +59,7 @@
     </div>
 
     <!-- Section actions principales -->
-    
+
   </div>
 </template>
 
@@ -291,18 +291,18 @@ const features = [
   .home-page {
     padding: var(--spacing-4);
   }
-  
+
   .welcome-title {
     font-size: var(--font-size-3xl);
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-4);
   }
-  
+
   .theme-info-card {
     padding: var(--spacing-6);
   }
 }
-</style> 
+</style>

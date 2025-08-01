@@ -28,7 +28,7 @@
     "preview": "vite preview",
     "lint": "echo '✅ Linting passed'",
     "type-check": "echo '✅ Type checking passed'",
-    "validate:tokens": "node scripts/validate-tokens.js",
+    "validate:tokens": "node scripts/validate-tokens.cjs",
     "pre-commit:validate": "npm run validate:tokens && npm run lint && npm run type-check && npm run build"
   },
   "dependencies": {

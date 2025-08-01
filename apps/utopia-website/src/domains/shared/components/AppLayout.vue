@@ -9,17 +9,17 @@
             <span class="brand-text">Utopia</span>
           </router-link>
         </div>
-        
+
         <div class="nav-links">
-          <router-link 
-            to="/" 
+          <router-link
+            to="/"
             class="nav-link"
             :class="{ 'active': $route.name === 'home' }"
           >
             Design System
           </router-link>
-          <router-link 
-            to="/showcase" 
+          <router-link
+            to="/showcase"
             class="nav-link"
             :class="{ 'active': $route.name === 'showcase' }"
           >
@@ -29,8 +29,8 @@
 
         <!-- Theme Toggle (placeholder for later) -->
         <div class="nav-actions">
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             size="small"
             @click="toggleTheme"
             aria-label="Changer de thème"
@@ -217,16 +217,16 @@ const toggleTheme = () => {
   .nav-container {
     padding: 0 var(--spacing-4);
   }
-  
+
   .nav-links {
     gap: var(--spacing-4);
   }
-  
+
   .nav-link {
     padding: var(--spacing-1) var(--spacing-2);
     font-size: var(--font-size-sm);
   }
-  
+
   .footer-content {
     flex-direction: column;
     gap: var(--spacing-4);
@@ -239,11 +239,11 @@ const toggleTheme = () => {
   .brand-text {
     display: none;
   }
-  
+
   .nav-links {
     gap: var(--spacing-2);
   }
-  
+
   .nav-actions {
     gap: var(--spacing-2);
   }

@@ -13,7 +13,7 @@
       <p class="section-description">
         Couleurs principales utilisées pour les éléments interactifs et les accents.
       </p>
-      
+
       <div class="colors-grid">
         <div class="color-group">
           <h4 class="color-group-title">Primary</h4>
@@ -24,9 +24,9 @@
                 <span class="color-name">{{ shade.name }}</span>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
-                  <Button 
-                    variant="ghost" 
-                    size="small" 
+                  <Button
+                    variant="ghost"
+                    size="small"
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -47,7 +47,7 @@
       <p class="section-description">
         Couleurs partagées entre toutes les marques pour la cohérence du système.
       </p>
-      
+
       <div class="common-colors-grid">
         <div class="common-color-group">
           <h4 class="color-group-title">⚫ Slate</h4>
@@ -58,9 +58,9 @@
                 <span class="color-name">{{ shade.name }}</span>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
-                  <Button 
-                    variant="ghost" 
-                    size="small" 
+                  <Button
+                    variant="ghost"
+                    size="small"
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -72,7 +72,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="common-color-group">
           <h4 class="color-group-title">✅ Success</h4>
           <div class="color-row">
@@ -82,9 +82,9 @@
                 <span class="color-name">{{ shade.name }}</span>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
-                  <Button 
-                    variant="ghost" 
-                    size="small" 
+                  <Button
+                    variant="ghost"
+                    size="small"
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -96,7 +96,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="common-color-group">
           <h4 class="color-group-title">⚠️ Warning</h4>
           <div class="color-row">
@@ -106,9 +106,9 @@
                 <span class="color-name">{{ shade.name }}</span>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
-                  <Button 
-                    variant="ghost" 
-                    size="small" 
+                  <Button
+                    variant="ghost"
+                    size="small"
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -120,7 +120,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="common-color-group">
           <h4 class="color-group-title">🚨 Danger</h4>
           <div class="color-row">
@@ -130,9 +130,9 @@
                 <span class="color-name">{{ shade.name }}</span>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
-                  <Button 
-                    variant="ghost" 
-                    size="small" 
+                  <Button
+                    variant="ghost"
+                    size="small"
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -153,7 +153,7 @@
       <p class="section-description">
         Couleurs utilisées pour les arrière-plans et les surfaces.
       </p>
-      
+
       <div class="common-colors-grid">
         <div class="common-color-group">
           <h4 class="color-group-title">Surfaces</h4>
@@ -164,9 +164,9 @@
                 <span class="color-name">{{ surface.name }}</span>
                 <div class="color-code-group">
                   <code class="color-code">{{ surface.variable }}</code>
-                  <Button 
-                    variant="ghost" 
-                    size="small" 
+                  <Button
+                    variant="ghost"
+                    size="small"
                     @click="copyToClipboard(surface.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${surface.variable}`"
@@ -416,12 +416,12 @@ const surfaceColors = [
   .colors-page {
     padding: var(--spacing-4);
   }
-  
+
   .color-row {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: var(--spacing-2);
   }
-  
+
   .color-swatch {
     width: 50px;
     height: 50px;

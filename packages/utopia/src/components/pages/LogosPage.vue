@@ -9,12 +9,12 @@
     <section class="logos-section">
       <h2>🎯 Logos adaptatifs au thème</h2>
       <p>Ces logos s'adaptent automatiquement en fonction du thème actuel ({{ currentTheme?.mode === 'dark' ? 'sombre' : 'clair' }}) et de la marque sélectionnée ({{ currentBrandInfo.name }}).</p>
-      
+
       <div class="logos-grid">
         <div class="logo-card" v-for="logoType in adaptiveLogos" :key="logoType.key">
           <div class="logo-preview" :class="logoType.background">
-            <div 
-              class="logo-display" 
+            <div
+              class="logo-display"
               :style="{ backgroundImage: `var(${logoType.variable})` }"
             ></div>
           </div>
@@ -22,9 +22,9 @@
             <h3>{{ logoType.name }}</h3>
             <div class="code-group">
               <code>{{ logoType.variable }}</code>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 @click="copyToClipboard(logoType.variable)"
                 aria-label="Copier"
               >
@@ -41,15 +41,15 @@
     <section class="logos-section">
       <h2>🎨 Logos spécifiques par marque</h2>
       <p>Accès direct aux logos de chaque marque, indépendamment du thème actuel.</p>
-      
+
       <!-- Club Employés -->
       <div class="brand-section">
         <h3>🏢 Club Employés</h3>
         <div class="logos-grid">
           <div class="logo-card" v-for="logo in clubEmployesLogos" :key="logo.key">
             <div class="logo-preview" :class="logo.background">
-              <div 
-                class="logo-display" 
+              <div
+                class="logo-display"
                 :style="{ backgroundImage: `var(${logo.variable})` }"
               ></div>
             </div>
@@ -57,9 +57,9 @@
               <h4>{{ logo.name }}</h4>
               <div class="code-group">
                 <code>{{ logo.variable }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   @click="copyToClipboard(logo.variable)"
                   aria-label="Copier"
                 >
@@ -78,8 +78,8 @@
         <div class="logos-grid">
           <div class="logo-card" v-for="logo in gifteoLogos" :key="logo.key">
             <div class="logo-preview" :class="logo.background">
-              <div 
-                class="logo-display" 
+              <div
+                class="logo-display"
                 :style="{ backgroundImage: `var(${logo.variable})` }"
               ></div>
             </div>
@@ -87,9 +87,9 @@
               <h4>{{ logo.name }}</h4>
               <div class="code-group">
                 <code>{{ logo.variable }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   @click="copyToClipboard(logo.variable)"
                   aria-label="Copier"
                 >
@@ -106,7 +106,7 @@
     <!-- Section Guide d'usage -->
     <section class="usage-section">
       <h2>💡 Guide d'utilisation</h2>
-      
+
       <div class="usage-examples">
         <div class="example-card">
           <h3>CSS</h3>
@@ -135,7 +135,7 @@
         <div class="example-card">
           <h3>Vue.js</h3>
           <pre class="code-block"><code>&lt;template&gt;
-  &lt;div 
+  &lt;div
     class="logo"
     :style="{
       backgroundImage: 'var(--theme-assets-logo-default)'
@@ -524,4 +524,4 @@ const gifteoLogos = [
   color: var(--theme-colors-common-slate-600);
   margin: 0;
 }
-</style> 
+</style>

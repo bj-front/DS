@@ -23,20 +23,20 @@ export const ThemeSwitchTest: Story = {
         <h1 style="color: var(--theme-colors-text-primary); font-family: var(--font-family-sans); margin-bottom: 32px;">
           🧪 Test du Switch de Thèmes
         </h1>
-        
+
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 32px;">
           <!-- Surface Background -->
           <div style="padding: 16px; background-color: var(--theme-colors-surface-background); border: 2px solid var(--theme-colors-border-default); border-radius: 12px;">
             <h3 style="color: var(--theme-colors-text-primary); margin-bottom: 8px;">Surface Background</h3>
             <code style="font-family: var(--font-family-mono); font-size: 12px; color: var(--theme-colors-text-muted);">--theme-colors-surface-background</code>
           </div>
-          
+
           <!-- Surface Card -->
           <div style="padding: 16px; background-color: var(--theme-colors-surface-card); border: 2px solid var(--theme-colors-border-default); border-radius: 12px;">
             <h3 style="color: var(--theme-colors-text-primary); margin-bottom: 8px;">Surface Card</h3>
             <code style="font-family: var(--font-family-mono); font-size: 12px; color: var(--theme-colors-text-muted);">--theme-colors-surface-card</code>
           </div>
-          
+
           <!-- Primary Color -->
           <div style="padding: 16px; background-color: var(--theme-colors-primary-500); color: var(--theme-colors-text-inverse); border-radius: 12px;">
             <h3 style="margin-bottom: 8px;">Primary 500</h3>
@@ -104,7 +104,7 @@ export const SimpleColorTest: Story = {
         <h1 style="color: var(--theme-colors-text-primary); text-align: center; margin-bottom: 40px;">
           Simple Color Test
         </h1>
-        
+
         <div style="max-width: 600px; margin: 0 auto;">
           <!-- Card de test -->
           <div style="
@@ -121,7 +121,7 @@ export const SimpleColorTest: Story = {
             <p style="color: var(--theme-colors-text-secondary); margin-bottom: 24px;">
               Ce texte doit être lisible dans tous les modes
             </p>
-            
+
             <!-- Bouton simulé -->
             <div style="
               display: inline-block;
@@ -134,7 +134,7 @@ export const SimpleColorTest: Story = {
             ">
               Bouton Primaire
             </div>
-            
+
             <p style="color: var(--theme-colors-text-muted); font-size: 14px;">
               Texte atténué pour informations secondaires
             </p>
@@ -143,4 +143,4 @@ export const SimpleColorTest: Story = {
       </div>
     `,
   }),
-} 
+}

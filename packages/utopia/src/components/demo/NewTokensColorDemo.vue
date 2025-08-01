@@ -2,11 +2,11 @@
   <div class="new-tokens-demo">
     <h1 class="demo-title">🎨 Nouveaux Tokens de Couleurs</h1>
     <p class="demo-description">Découvrez toutes les nouvelles couleurs brand et sémantiques ajoutées au design system</p>
-    
+
     <!-- Couleurs Brand Club Employés -->
     <section class="demo-section">
       <h2 class="demo-subtitle">🏢 Club Employés - Couleurs Brand</h2>
-      
+
       <div class="brand-group">
         <h3 class="brand-title">Primary (#275CF1)</h3>
         <div class="color-grid">
@@ -134,7 +134,7 @@
     <!-- Couleurs Brand Gifteo -->
     <section class="demo-section">
       <h2 class="demo-subtitle">❤️ Gifteo - Couleurs Brand</h2>
-      
+
       <div class="brand-group">
         <h3 class="brand-title">Primary (#F43E40)</h3>
         <div class="color-grid">
@@ -263,7 +263,7 @@
     <section class="demo-section">
       <h2 class="demo-subtitle">🖼️ Backgrounds & Surfaces</h2>
       <p class="section-description">Tous les backgrounds disponibles dans le design system avec leurs variations selon le thème actuel</p>
-      
+
       <div class="backgrounds-showcase">
         <!-- Surface Backgrounds -->
         <div class="backgrounds-category">
@@ -281,7 +281,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="background-demo-card">
               <div class="background-preview bg-surface-card">
                 <div class="background-content">
@@ -294,7 +294,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="background-demo-card">
               <div class="background-preview bg-surface-overlay">
                 <div class="background-content overlay-content">
@@ -326,7 +326,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="background-demo-card">
               <div class="background-preview bg-state-success">
                 <div class="background-content">
@@ -339,7 +339,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="background-demo-card">
               <div class="background-preview bg-state-warning">
                 <div class="background-content">
@@ -360,7 +360,7 @@
     <!-- Couleurs Sémantiques Communes -->
     <section class="demo-section">
       <h2 class="demo-subtitle">🌐 Couleurs Sémantiques Communes</h2>
-      
+
       <div class="semantic-group">
         <h3 class="semantic-title">⚫ Slate</h3>
         <div class="color-grid">
@@ -801,34 +801,34 @@
 .gifteo-accent-500 { background-color: var(--color-brand-accent-500, #FF8B3D); color: #fff; }
 
 /* Background Classes */
-.bg-surface-background { 
-  background-color: var(--theme-colors-surface-background); 
+.bg-surface-background {
+  background-color: var(--theme-colors-surface-background);
   color: var(--theme-colors-text-primary);
 }
 
-.bg-surface-card { 
-  background-color: var(--theme-colors-surface-card); 
+.bg-surface-card {
+  background-color: var(--theme-colors-surface-card);
   color: var(--theme-colors-text-primary);
   border: 1px solid var(--theme-colors-border-default);
 }
 
-.bg-surface-overlay { 
-  background-color: var(--theme-colors-surface-overlay); 
+.bg-surface-overlay {
+  background-color: var(--theme-colors-surface-overlay);
   color: white;
 }
 
-.bg-state-error { 
-  background-color: var(--theme-colors-state-error-background); 
+.bg-state-error {
+  background-color: var(--theme-colors-state-error-background);
   color: var(--theme-colors-state-error);
 }
 
-.bg-state-success { 
-  background-color: var(--theme-colors-state-success-background); 
+.bg-state-success {
+  background-color: var(--theme-colors-state-success-background);
   color: var(--theme-colors-state-success);
 }
 
-.bg-state-warning { 
-  background-color: var(--theme-colors-state-warning-background); 
+.bg-state-warning {
+  background-color: var(--theme-colors-state-warning-background);
   color: var(--theme-colors-state-warning);
 }
 
@@ -873,7 +873,7 @@
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: var(--spacing-3);
   }
-  
+
   .color-card {
     min-height: 100px;
     padding: var(--spacing-4);

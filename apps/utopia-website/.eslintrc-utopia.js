@@ -9,8 +9,8 @@ const UTOPIA_CSS_TOKENS = {
     '--spacing-5', '--spacing-6', '--spacing-8', '--spacing-10', '--spacing-12',
     '--spacing-16', '--spacing-20', '--spacing-24', '--spacing-32'
   ],
-  
-  // Color tokens  
+
+  // Color tokens
   colors: [
     '--theme-colors-primary-50', '--theme-colors-primary-100', '--theme-colors-primary-200',
     '--theme-colors-primary-300', '--theme-colors-primary-400', '--theme-colors-primary-500',
@@ -20,12 +20,12 @@ const UTOPIA_CSS_TOKENS = {
     '--theme-colors-brand-secondary-25', '--theme-colors-brand-secondary-50',
     '--theme-colors-brand-accent-25', '--theme-colors-brand-accent-50',
     '--theme-colors-surface-background', '--theme-colors-surface-card',
-    '--theme-colors-text-primary', '--theme-colors-text-secondary', 
+    '--theme-colors-text-primary', '--theme-colors-text-secondary',
     '--theme-colors-text-muted', '--theme-colors-text-inverse',
     '--theme-colors-border-default', '--theme-colors-border-muted',
     '--theme-colors-state-error', '--theme-colors-state-success', '--theme-colors-state-warning'
   ],
-  
+
   // Typography tokens
   typography: [
     '--font-size-xs', '--font-size-sm', '--font-size-base', '--font-size-lg',
@@ -35,14 +35,14 @@ const UTOPIA_CSS_TOKENS = {
     '--font-line-height-tight', '--font-line-height-normal', '--font-line-height-relaxed',
     '--font-family-sans', '--font-family-mono'
   ],
-  
+
   // Border tokens
   borders: [
     '--border-width-0', '--border-width-1', '--border-width-2', '--border-width-4',
     '--border-radius-none', '--border-radius-sm', '--border-radius-base',
     '--border-radius-md', '--border-radius-lg', '--border-radius-xl', '--border-radius-full'
   ],
-  
+
   // Shadow tokens
   shadows: [
     '--shadow-none', '--shadow-sm', '--shadow-base', '--shadow-md', '--shadow-lg', '--shadow-xl'
@@ -65,10 +65,10 @@ const noHardcodedCSSValues = {
     fixable: null,
     schema: [],
   },
-  
+
   create(context) {
     const hardcodedValueRegex = /^(\d+(?:\.\d+)?(?:px|rem|em|%|vh|vw)|#[0-9a-fA-F]{3,8}|rgba?\(|hsla?\()/
-    
+
     return {
       // Vérifier les propriétés CSS dans les objets de style
       'Property[key.name=/^(margin|padding|width|height|fontSize|color|backgroundColor|borderRadius|border|top|left|right|bottom|gap|gridGap)$/]'(node) {
@@ -76,7 +76,7 @@ const noHardcodedCSSValues = {
           if (hardcodedValueRegex.test(node.value.value)) {
             const property = node.key.name
             const suggestedToken = getSuggestedToken(property, node.value.value)
-            
+
             context.report({
               node: node.value,
               message: `❌ Valeur CSS en dur détectée pour "${property}". ${suggestedToken ? `Utilisez plutôt: var(${suggestedToken})` : 'Utilisez un token du design system Utopia.'}`
@@ -84,7 +84,7 @@ const noHardcodedCSSValues = {
           }
         }
       },
-      
+
       // Vérifier les template literals contenant du CSS
       'TemplateLiteral'(node) {
         node.quasis.forEach(quasi => {
@@ -103,7 +103,7 @@ const noHardcodedCSSValues = {
 /**
  * Suggérer un token approprié basé sur la propriété CSS
  */
-function getSuggestedToken(property, value) {
+function getSuggestedToken(property) {
   if (['margin', 'padding', 'gap', 'gridGap', 'top', 'left', 'right', 'bottom'].includes(property)) {
     return '--spacing-*'
   }

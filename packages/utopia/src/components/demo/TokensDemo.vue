@@ -1,7 +1,7 @@
 <template>
   <div class="tokens-demo">
     <h1 class="demo-title">🎨 Design Tokens Demo</h1>
-    
+
     <!-- Couleurs principales -->
     <section class="demo-section">
       <h2 class="demo-subtitle">Couleurs principales</h2>
@@ -185,4 +185,4 @@ const isGifteoTheme = computed(() => {
 .text-base { font-size: var(--font-size-base); }
 .text-xl { font-size: var(--font-size-xl); }
 .text-3xl { font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); }
-</style> 
+</style>

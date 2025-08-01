@@ -28,7 +28,7 @@ function fileNameToTokenName(filename) {
 // Fonction pour catégoriser les icônes basée sur leur nom
 function categorizeIcon(filename) {
   const name = filename.toLowerCase()
-  
+
   if (name.includes('user') || name.includes('person')) return 'users'
   if (name.includes('sort') || name.includes('arrow') || name.includes('up') || name.includes('down')) return 'navigation'
   if (name.includes('star') || name.includes('heart') || name.includes('thumb')) return 'feedback'
@@ -40,17 +40,17 @@ function categorizeIcon(filename) {
   if (name.includes('shop') || name.includes('wallet') || name.includes('ticket')) return 'commerce'
   if (name.includes('world') || name.includes('map') || name.includes('location')) return 'location'
   if (name.includes('weather') || name.includes('sun') || name.includes('storm')) return 'weather'
-  
+
   return 'general'
 }
 
 // Fonction pour traiter un fichier SVG
 function processSVG(content, filename) {
   let processed = content
-  
+
   // Remplacer les couleurs hardcodées par currentColor, mais PRÉSERVER fill="none"
   processed = processed.replace(/stroke="[^"]*"(?!"none")/g, 'stroke="currentColor"')
-  
+
   // Ne remplacer fill que s'il n'est pas "none"
   processed = processed.replace(/fill="([^"]*)"(?!\s*=\s*"none")/g, (match, colorValue) => {
     if (colorValue === 'none') {
@@ -58,12 +58,12 @@ function processSVG(content, filename) {
     }
     return 'fill="currentColor"'
   })
-  
+
   // AUGMENTER légèrement le stroke-width pour des lignes plus visibles
   processed = processed.replace(/stroke-width="([^"]*)"/g, (match, widthValue) => {
     const currentWidth = parseFloat(widthValue)
     let newWidth
-    
+
     if (currentWidth <= 1) {
       newWidth = 1.5 // 1 → 1.5
     } else if (currentWidth <= 1.5) {
@@ -75,10 +75,10 @@ function processSVG(content, filename) {
     } else {
       newWidth = currentWidth + 0.5 // Autres : +0.5
     }
-    
+
     return `stroke-width="${newWidth}"`
   })
-  
+
   // PRÉSERVER les opacités importantes - ne les supprimer que si elles sont >= 0.8
   processed = processed.replace(/stroke-opacity="([^"]*)"/g, (match, opacityValue) => {
     const opacity = parseFloat(opacityValue)
@@ -87,7 +87,7 @@ function processSVG(content, filename) {
     }
     return match // Garder les opacités significatives
   })
-  
+
   processed = processed.replace(/fill-opacity="([^"]*)"/g, (match, opacityValue) => {
     const opacity = parseFloat(opacityValue)
     if (opacity >= 0.8) {
@@ -95,75 +95,75 @@ function processSVG(content, filename) {
     }
     return match // Garder les opacités significatives
   })
-  
+
   // Nettoyer les espaces multiples mais préserver la structure
   processed = processed.replace(/\s+/g, ' ')
   processed = processed.replace(/>\s+</g, '><') // Supprimer les espaces entre les balises
-  
+
   return processed
 }
 
 // Fonction principale
 async function processIcons() {
   console.log('🎯 Traitement des icônes SVG...')
-  
+
   // Lire tous les fichiers SVG
   const files = fs.readdirSync(ICONS_DIR).filter(file => file.endsWith('.svg'))
   console.log(`📁 ${files.length} icônes trouvées`)
-  
+
   const tokens = {
     icons: {}
   }
-  
+
   let processedCount = 0
-  
+
   for (const file of files) {
     try {
       const inputPath = path.join(ICONS_DIR, file)
       const outputPath = path.join(PROCESSED_ICONS_DIR, file)
-      
+
       // Lire le contenu SVG
       const content = fs.readFileSync(inputPath, 'utf8')
-      
+
       // Traiter le SVG
       const processedContent = processSVG(content, file)
-      
+
       // Écrire le fichier traité
       fs.writeFileSync(outputPath, processedContent)
-      
+
       // Ajouter au système de tokens
       const tokenName = fileNameToTokenName(file)
       const category = categorizeIcon(file)
-      
+
       if (!tokens.icons[category]) {
         tokens.icons[category] = {}
       }
-      
+
       tokens.icons[category][tokenName] = {
         value: `/src/assets/icons-processed/${file}`,
         type: "asset",
         description: `Icône ${tokenName} (catégorie: ${category})`
       }
-      
+
       processedCount++
-      
+
       if (processedCount % 20 === 0) {
         console.log(`⚙️  Traité ${processedCount}/${files.length} icônes...`)
       }
-      
+
     } catch (error) {
       console.error(`❌ Erreur lors du traitement de ${file}:`, error.message)
     }
   }
-  
+
   // Écrire le fichier de tokens
   fs.writeFileSync(TOKENS_FILE, JSON.stringify(tokens, null, 2))
-  
+
   console.log(`✅ Traitement terminé !`)
   console.log(`📁 ${processedCount} icônes traitées dans: ${PROCESSED_ICONS_DIR}`)
   console.log(`🎯 Tokens générés dans: ${TOKENS_FILE}`)
   console.log(`📊 Catégories créées: ${Object.keys(tokens.icons).join(', ')}`)
-  
+
   // Afficher un résumé par catégorie
   console.log('\n📈 Résumé par catégorie:')
   Object.entries(tokens.icons).forEach(([category, icons]) => {
@@ -172,4 +172,4 @@ async function processIcons() {
 }
 
 // Lancer le script
-processIcons().catch(console.error) 
+processIcons().catch(console.error)

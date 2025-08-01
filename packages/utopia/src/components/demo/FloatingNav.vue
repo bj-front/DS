@@ -1,8 +1,8 @@
 <template>
   <div class="floating-nav">
     <div class="nav-content">
-      <button 
-        v-for="page in pages" 
+      <button
+        v-for="page in pages"
         :key="page.key"
         @click="$emit('pageChange', page.key)"
         class="nav-btn"
@@ -151,14 +151,14 @@ const pages: Page[] = [
     top: calc(var(--spacing-4) + 40px);
     right: var(--spacing-4);
   }
-  
+
   .nav-btn {
     padding: var(--spacing-1) var(--spacing-2);
     min-width: 80px;
   }
-  
+
   .nav-label {
     font-size: var(--font-size-xs);
   }
 }
-</style> 
+</style>

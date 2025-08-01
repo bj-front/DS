@@ -28,7 +28,7 @@ const badgeClasses = computed(() => {
     'small': 'sm',
     'medium': 'md'
   }
-  
+
   return [
     'badge',
     `badge--${props.variant}`,

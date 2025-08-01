@@ -13,7 +13,7 @@
       <p class="section-description">
         Système d'espacement basé sur une progression logique pour maintenir la cohérence.
       </p>
-      
+
       <div class="spacing-grid">
         <div class="spacing-card" v-for="space in spacingValues" :key="space.name">
           <div class="spacing-preview">
@@ -22,9 +22,9 @@
             <div class="spacing-info">
               <div class="code-group">
                 <code class="spacing-var">--spacing-{{ space.name }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="small" 
+                <Button
+                  variant="ghost"
+                  size="small"
                   @click="copyToClipboard(`--spacing-${space.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --spacing-${space.name}`"
@@ -45,7 +45,7 @@
       <p class="section-description">
         Exemples concrets d'utilisation des différents espacements dans des composants.
       </p>
-      
+
       <div class="examples-grid">
         <div class="example-card">
           <h4 class="example-title">Padding de composants</h4>
@@ -398,11 +398,11 @@ const spacingValues = [
   .spacing-page {
     padding: var(--spacing-4);
   }
-  
+
   .spacing-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
-  
+
   .examples-grid,
   .guidelines-grid {
     grid-template-columns: 1fr;

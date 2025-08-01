@@ -48,7 +48,7 @@ const toggleTheme = () => {
 ## 🎨 Couleurs adaptées
 
 ### Palette bleue (inversée)
-- **Light**: `#eff6ff` → **Dark**: `#0c1426` 
+- **Light**: `#eff6ff` → **Dark**: `#0c1426`
 - **Light**: `#3b82f6` → **Dark**: `#3b82f6` (identique)
 - **Light**: `#1e3a8a` → **Dark**: `#eff6ff`
 
@@ -85,7 +85,7 @@ Le **grand avantage** : vos composants n'ont **aucun changement** à faire !
 ```
 src/tokens/generated/club-employes/
 ├── light.css    # Variables CSS mode light
-├── light.js     # Exports JS mode light  
+├── light.js     # Exports JS mode light
 ├── dark.css     # Variables CSS mode dark
 └── dark.js      # Exports JS mode dark
 ```
@@ -141,4 +141,4 @@ const loadThemePreference = (): ThemeConfig => {
 
 ---
 
-Le mode dark Club Employés est **prêt pour la production** ! 🎉 
+Le mode dark Club Employés est **prêt pour la production** ! 🎉

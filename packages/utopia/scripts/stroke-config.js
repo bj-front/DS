@@ -2,17 +2,17 @@
 export const STROKE_CONFIG = {
   // Mode d'augmentation : 'multiply' ou 'add'
   mode: 'add',
-  
+
   // Valeur à ajouter (si mode = 'add')
   addValue: 0.5,
-  
-  // Multiplicateur (si mode = 'multiply') 
+
+  // Multiplicateur (si mode = 'multiply')
   multiplier: 1.25,
-  
+
   // Règles spécifiques par valeur
   customRules: {
     1: 1.5,    // stroke-width="1" devient "1.5"
-    1.5: 2,    // stroke-width="1.5" devient "2"  
+    1.5: 2,    // stroke-width="1.5" devient "2"
     2: 2.5,    // stroke-width="2" devient "2.5"
     3: 3.5     // stroke-width="3" devient "3.5"
   }
@@ -33,7 +33,7 @@ export const STROKE_CONFIG = {
 
 // Option 2: Augmentation plus marquée (+0.75)
 // export const STROKE_CONFIG = {
-//   mode: 'add', 
+//   mode: 'add',
 //   addValue: 0.75,
 //   customRules: {
 //     1: 1.75,
@@ -47,4 +47,4 @@ export const STROKE_CONFIG = {
 //   mode: 'multiply',
 //   multiplier: 1.3,
 //   customRules: {}
-// } 
+// }

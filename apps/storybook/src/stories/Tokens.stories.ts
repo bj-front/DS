@@ -23,7 +23,7 @@ export const Colors: Story = {
         <h1 style="color: var(--theme-colors-text-primary); font-family: var(--font-family-sans); margin-bottom: 32px;">
           🎨 Design Tokens - Couleurs
         </h1>
-        
+
         <!-- Couleurs primaires -->
         <section style="margin-bottom: 40px;">
           <h2 style="color: var(--theme-colors-text-primary); font-family: var(--font-family-sans); margin-bottom: 16px;">
@@ -129,7 +129,7 @@ export const Typography: Story = {
         <h1 style="color: var(--theme-colors-text-primary); font-family: var(--font-family-sans); margin-bottom: 32px;">
           📝 Design Tokens - Typographie
         </h1>
-        
+
         <!-- Tailles de polices -->
         <section style="margin-bottom: 40px;">
           <h2 style="color: var(--theme-colors-text-primary); font-family: var(--font-family-sans); margin-bottom: 16px; font-size: var(--font-size-2xl);">
@@ -198,4 +198,4 @@ export const Typography: Story = {
       </div>
     `,
   }),
-} 
+}

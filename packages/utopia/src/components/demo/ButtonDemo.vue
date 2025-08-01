@@ -15,28 +15,28 @@
           </Button>
           <code class="code-snippet">variant="primary"</code>
         </div>
-        
+
         <div class="button-item">
           <Button variant="secondary" @click="handleClick('secondary')">
             Secondary
           </Button>
           <code class="code-snippet">variant="secondary"</code>
         </div>
-        
+
         <div class="button-item">
           <Button variant="outline" @click="handleClick('outline')">
             Outline
           </Button>
           <code class="code-snippet">variant="outline"</code>
         </div>
-        
+
         <div class="button-item">
           <Button variant="ghost" @click="handleClick('ghost')">
             Ghost
           </Button>
           <code class="code-snippet">variant="ghost"</code>
         </div>
-        
+
         <div class="button-item">
           <Button variant="danger" @click="handleClick('danger')">
             Danger
@@ -56,14 +56,14 @@
           </Button>
           <code class="code-snippet">size="sm"</code>
         </div>
-        
+
         <div class="button-item">
           <Button size="md" @click="handleClick('medium')">
             Medium
           </Button>
           <code class="code-snippet">size="md"</code>
         </div>
-        
+
         <div class="button-item">
           <Button size="lg" @click="handleClick('large')">
             Large
@@ -83,14 +83,14 @@
           </Button>
           <code class="code-snippet">:disabled="true"</code>
         </div>
-        
+
         <div class="button-item">
           <Button :loading="true" @click="handleClick('loading')">
             Loading
           </Button>
           <code class="code-snippet">:loading="true"</code>
         </div>
-        
+
         <div class="button-item">
           <Button block @click="handleClick('block')">
             Block (Full Width)
@@ -113,7 +113,7 @@
            </Button>
            <code class="code-snippet">&lt;template #icon&gt;</code>
          </div>
-         
+
          <div class="button-item">
            <Button variant="outline" @click="handleClick('icon-after')">
              Télécharger
@@ -123,7 +123,7 @@
            </Button>
            <code class="code-snippet">&lt;template #iconAfter&gt;</code>
          </div>
-         
+
          <div class="button-item">
            <Button variant="ghost" size="sm" @click="handleClick('icon-only')">
              <template #icon>
@@ -292,4 +292,4 @@ const handleClick = (buttonType: string) => {
   color: var(--theme-colors-primary-700);
   font-weight: var(--font-weight-medium);
 }
-</style> 
+</style>

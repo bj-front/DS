@@ -13,7 +13,7 @@
       <p class="section-description">
         Polices principales utilisées dans le design system.
       </p>
-      
+
       <div class="font-families-grid">
         <div class="font-family-card">
           <div class="font-family-preview font-sans">
@@ -23,9 +23,9 @@
             <div class="font-family-info">
               <div class="code-group">
                 <code class="font-family-var">--font-family-sans</code>
-                <Button 
-                  variant="ghost" 
-                  size="small" 
+                <Button
+                  variant="ghost"
+                  size="small"
                   @click="copyToClipboard('--font-family-sans')"
                   class="copy-btn"
                   aria-label="Copier --font-family-sans"
@@ -37,7 +37,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="font-family-card">
           <div class="font-family-preview font-mono">
             <h3 class="font-family-name">Monospace</h3>
@@ -46,9 +46,9 @@
             <div class="font-family-info">
               <div class="code-group">
                 <code class="font-family-var">--font-family-mono</code>
-                <Button 
-                  variant="ghost" 
-                  size="small" 
+                <Button
+                  variant="ghost"
+                  size="small"
                   @click="copyToClipboard('--font-family-mono')"
                   class="copy-btn"
                   aria-label="Copier --font-family-mono"
@@ -69,7 +69,7 @@
       <p class="section-description">
         Échelle typographique avec différentes tailles pour créer une hiérarchie visuelle.
       </p>
-      
+
       <div class="font-sizes-grid">
         <div class="font-size-card" v-for="size in fontSizes" :key="size.name">
           <div class="font-size-preview" :style="{ fontSize: `var(--font-size-${size.name})` }">
@@ -78,9 +78,9 @@
               <span class="font-size-name">{{ size.label }}</span>
               <div class="code-group">
                 <code class="font-size-var">--font-size-{{ size.name }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="small" 
+                <Button
+                  variant="ghost"
+                  size="small"
                   @click="copyToClipboard(`--font-size-${size.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --font-size-${size.name}`"
@@ -101,7 +101,7 @@
       <p class="section-description">
         Différents poids disponibles pour créer des hiérarchies et des emphases.
       </p>
-      
+
       <div class="font-weights-grid">
         <div class="font-weight-card" v-for="weight in fontWeights" :key="weight.name">
           <div class="font-weight-preview" :style="{ fontWeight: `var(--font-weight-${weight.name})` }">
@@ -110,9 +110,9 @@
               <span class="font-weight-name">{{ weight.label }}</span>
               <div class="code-group">
                 <code class="font-weight-var">--font-weight-{{ weight.name }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="small" 
+                <Button
+                  variant="ghost"
+                  size="small"
                   @click="copyToClipboard(`--font-weight-${weight.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --font-weight-${weight.name}`"
@@ -133,7 +133,7 @@
       <p class="section-description">
         Couleurs utilisées pour les différents types de texte.
       </p>
-      
+
       <div class="text-colors-grid">
         <div class="text-color-card" v-for="color in textColors" :key="color.name">
           <div class="text-color-preview" :style="{ color: `var(${color.variable})` }">
@@ -142,9 +142,9 @@
               <span class="text-color-name">{{ color.label }}</span>
               <div class="code-group">
                 <code class="text-color-var">{{ color.variable }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="small" 
+                <Button
+                  variant="ghost"
+                  size="small"
                   @click="copyToClipboard(color.variable)"
                   class="copy-btn"
                   :aria-label="`Copier ${color.variable}`"
@@ -430,7 +430,7 @@ const textColors = [
   .typography-page {
     padding: var(--spacing-4);
   }
-  
+
   .font-families-grid,
   .font-sizes-grid,
   .font-weights-grid,

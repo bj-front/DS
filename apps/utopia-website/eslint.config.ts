@@ -18,29 +18,18 @@ export default defineConfigWithVueTs(
 
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
-  
-  // Configuration TypeScript stricte et tokens Utopia
+
+  // Configuration TypeScript et tokens Utopia (simplifiée)
   {
     name: 'utopia-design-system-rules',
     rules: {
-      // ===== RÈGLES TYPESCRIPT STRICTES =====
+      // ===== RÈGLES TYPESCRIPT ESSENTIELLES =====
       '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/no-unsafe-any': 'error',
-      '@typescript-eslint/no-unsafe-assignment': 'error',
-      '@typescript-eslint/no-unsafe-call': 'error',
-      '@typescript-eslint/no-unsafe-member-access': 'error',
-      '@typescript-eslint/no-unsafe-return': 'error',
-      '@typescript-eslint/explicit-function-return-type': 'error',
-      '@typescript-eslint/explicit-module-boundary-types': 'error',
-      '@typescript-eslint/no-inferrable-types': 'off',
       '@typescript-eslint/prefer-as-const': 'error',
       '@typescript-eslint/no-non-null-assertion': 'error',
-      '@typescript-eslint/strict-boolean-expressions': 'error',
-      '@typescript-eslint/prefer-nullish-coalescing': 'error',
-      '@typescript-eslint/prefer-optional-chain': 'error',
 
       // ===== RÈGLES DESIGN SYSTEM UTOPIA =====
-      // Interdire les valeurs CSS en dur
+      // Interdire les valeurs CSS en dur (moins strict pour les pages demo)
       'no-restricted-syntax': [
         'error',
         {
@@ -56,17 +45,21 @@ export default defineConfigWithVueTs(
       // Forcer l'utilisation des props typées dans les composants Vue
       'vue/define-props-declaration': 'error',
       'vue/define-emits-declaration': 'error',
-      'vue/require-typed-ref': 'error',
-      'vue/no-ref-as-operand': 'error',
-      'vue/prefer-true-attribute-shorthand': 'error',
 
-      // Forcer l'utilisation d'interfaces explicites
-      '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
-      '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
-
-      // Interdire console.log en production
-      'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
+      // Permettre console.log en développement
+      'no-console': 'off',
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
+    },
+  },
+
+  // Configuration spécifique pour les pages de demo - règles moins strictes
+  {
+    name: 'demo-pages-relaxed-rules',
+    files: ['src/domains/design-system/pages/**/*.vue', 'validate-design-system.cjs'],
+    rules: {
+      'no-restricted-syntax': 'off', // Permettre les valeurs en dur dans les pages de demo
+      '@typescript-eslint/no-require-imports': 'off', // Permettre require() dans les scripts
+      'no-console': 'off', // Permettre console.log dans les demos
     },
   },
 

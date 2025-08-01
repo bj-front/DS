@@ -13,16 +13,16 @@
       <p class="section-description">
         Valeurs d'espacement basées sur une progression harmonique pour maintenir la cohérence visuelle.
       </p>
-      
+
       <div class="spacing-scale">
         <div class="spacing-item" v-for="space in spacingValues" :key="space.name">
           <div class="spacing-info">
             <span class="spacing-name">{{ space.name }}</span>
             <div class="code-group">
               <code class="spacing-var">--spacing-{{ space.name }}</code>
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 @click="copyToClipboard(`--spacing-${space.name}`)"
                 class="copy-btn"
                 :aria-label="`Copier --spacing-${space.name}`"
@@ -46,7 +46,7 @@
       <p class="section-description">
         Application des valeurs d'espacement comme padding interne des éléments.
       </p>
-      
+
       <div class="padding-examples-grid">
         <div class="example-card" v-for="padding in paddingExamples" :key="padding.name">
           <h3 class="example-title">Padding {{ padding.name }}</h3>
@@ -68,7 +68,7 @@
       <p class="section-description">
         Application des valeurs d'espacement comme margin externe des éléments.
       </p>
-      
+
       <div class="margin-examples-grid">
         <div class="example-card" v-for="margin in marginExamples" :key="margin.name">
           <h3 class="example-title">Margin {{ margin.name }}</h3>
@@ -92,7 +92,7 @@
       <p class="section-description">
         Application des valeurs d'espacement comme gap dans les layouts flexbox et grid.
       </p>
-      
+
       <div class="gap-examples-grid">
         <div class="example-card" v-for="gap in gapExamples" :key="gap.name">
           <h3 class="example-title">Gap {{ gap.name }}</h3>
@@ -114,7 +114,7 @@
       <p class="section-description">
         Combinaisons typiques d'espacement pour différents types de layouts.
       </p>
-      
+
       <div class="layout-examples">
         <div class="layout-example">
           <h3 class="layout-title">Card Layout</h3>
@@ -182,7 +182,7 @@
       <p class="section-description">
         Exemples pratiques d'espacement dans les composants du design system.
       </p>
-      
+
       <div class="action-examples">
         <div class="action-example">
           <h3 class="example-title">Groupes de boutons avec espacement</h3>
@@ -195,7 +195,7 @@
                 <Button variant="outline" size="md">Aide</Button>
               </div>
             </div>
-            
+
             <div class="button-demo-group">
               <span class="demo-label">Gap: var(--spacing-4) - 16px</span>
               <div class="button-group" style="gap: var(--spacing-4)">
@@ -204,7 +204,7 @@
                 <Button variant="outline" size="md">Aide</Button>
               </div>
             </div>
-            
+
             <div class="button-demo-group">
               <span class="demo-label">Gap: var(--spacing-6) - 24px</span>
               <div class="button-group" style="gap: var(--spacing-6)">
@@ -224,13 +224,13 @@
               <p>Contenu de la carte avec espacement réduit.</p>
               <Button variant="outline" size="sm">Action</Button>
             </div>
-            
+
             <div class="demo-card" style="padding: var(--spacing-6)">
               <h4>Padding: --spacing-6 (24px)</h4>
               <p>Contenu de la carte avec espacement confortable.</p>
               <Button variant="outline" size="sm">Action</Button>
             </div>
-            
+
             <div class="demo-card" style="padding: var(--spacing-10)">
               <h4>Padding: --spacing-10 (40px)</h4>
               <p>Contenu de la carte avec espacement généreux.</p>
@@ -247,13 +247,13 @@
               <p>Margin-bottom: --spacing-4 (16px)</p>
               <Button variant="ghost" size="sm">Plus de détails</Button>
             </div>
-            
+
             <div class="demo-section" style="margin-bottom: var(--spacing-8)">
               <h4>Section 2</h4>
               <p>Margin-bottom: --spacing-8 (32px)</p>
               <Button variant="ghost" size="sm">Plus de détails</Button>
             </div>
-            
+
             <div class="demo-section">
               <h4>Section 3</h4>
               <p>Pas de margin-bottom</p>
@@ -815,36 +815,36 @@ const gapExamples = [
   .spacing-page {
     padding: var(--spacing-4);
   }
-  
+
   .spacing-item {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--spacing-4);
   }
-  
+
   .spacing-info {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--spacing-2);
     min-width: auto;
   }
-  
+
   .layout-examples {
     grid-template-columns: 1fr;
   }
-  
+
   .nav-example {
     flex-direction: column;
     gap: var(--spacing-4);
   }
-  
+
   .button-group {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .card-spacing-demo {
     grid-template-columns: 1fr;
   }
 }
-</style> 
+</style>

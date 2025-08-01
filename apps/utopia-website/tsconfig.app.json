@@ -4,8 +4,6 @@
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-
-    // ===== CONFIGURATION TYPESCRIPT STRICTE =====
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -21,20 +19,14 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
-    
-    // Type checking avancé
     "noPropertyAccessFromIndexSignature": true,
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
-    
-    // Modules et imports
     "moduleResolution": "bundler",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "verbatimModuleSyntax": true,
-    
-    // Paths pour le design system
     "paths": {
       "@/*": ["./src/*"],
       "@/domains/*": ["./src/domains/*"],

@@ -5,16 +5,16 @@ Ce projet utilise GitHub Actions pour automatiser la publication et la gestion d
 ## 📋 Actions disponibles
 
 ### 1. 🔄 **CI (Continuous Integration)**
-**Fichier**: `.github/workflows/ci.yml`  
-**Déclencheur**: Push sur `main` ou Pull Request vers `main`  
-**Fonction**: 
+**Fichier**: `.github/workflows/ci.yml`
+**Déclencheur**: Push sur `main` ou Pull Request vers `main`
+**Fonction**:
 - Build et test du design system
 - Vérification des changesets manquants
 - Tests visuels de régression (optionnel)
 
 ### 2. 🚀 **Release (Publication automatique)**
-**Fichier**: `.github/workflows/release.yml`  
-**Déclencheur**: Push sur `main` avec changements dans `packages/utopia/` ou `.changeset/`  
+**Fichier**: `.github/workflows/release.yml`
+**Déclencheur**: Push sur `main` avec changements dans `packages/utopia/` ou `.changeset/`
 **Fonction**:
 - Build automatique
 - Application des changesets
@@ -22,8 +22,8 @@ Ce projet utilise GitHub Actions pour automatiser la publication et la gestion d
 - Création des releases GitHub
 
 ### 3. 🔧 **Auto Changeset**
-**Fichier**: `.github/workflows/auto-changeset.yml`  
-**Déclencheur**: Ouverture/modification d'une PR avec changements dans les composants ou tokens  
+**Fichier**: `.github/workflows/auto-changeset.yml`
+**Déclencheur**: Ouverture/modification d'une PR avec changements dans les composants ou tokens
 **Fonction**:
 - Détection automatique des types de changements
 - Création de changesets automatiques

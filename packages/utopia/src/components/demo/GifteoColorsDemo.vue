@@ -1,13 +1,13 @@
 <template>
   <div class="gifteo-colors-demo">
     <h2 class="demo-title">❤️ Palette Gifteo</h2>
-    
+
     <!-- Variable Gifteo - Palette principale Rouge -->
     <section class="demo-section">
       <h3 class="demo-subtitle">Variable Gifteo - Rouge</h3>
       <div class="color-grid main-palette">
-        <div class="color-card" 
-             v-for="shade in redShades" 
+        <div class="color-card"
+             v-for="shade in redShades"
              :key="shade.name"
              :style="{ backgroundColor: `var(--color-red-${shade.value})` }"
         >
@@ -21,8 +21,8 @@
     <section class="demo-section">
       <h3 class="demo-subtitle">Neutrals Orange</h3>
       <div class="color-grid neutral-palette">
-        <div class="color-card neutral" 
-             v-for="shade in orangeShades" 
+        <div class="color-card neutral"
+             v-for="shade in orangeShades"
              :key="shade.name"
              :style="{ backgroundColor: `var(--color-orange-${shade.value})` }"
         >
@@ -206,4 +206,4 @@ const orangeShades = [
 .color-card.voucher {
   background-color: var(--color-product-voucher-primary) !important;
 }
-</style> 
+</style>

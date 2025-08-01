@@ -13,7 +13,7 @@
       <p class="section-description">
         Polices principales utilisées dans le design system.
       </p>
-      
+
       <div class="font-families-grid">
         <div class="font-family-card">
           <div class="font-family-preview font-sans">
@@ -23,9 +23,9 @@
             <div class="font-family-info">
               <div class="code-group">
                 <code class="font-family-var">--font-family-sans</code>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   @click="copyToClipboard('--font-family-sans')"
                   class="copy-btn"
                   aria-label="Copier --font-family-sans"
@@ -37,7 +37,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="font-family-card">
           <div class="font-family-preview font-mono">
             <h3 class="font-family-name">Monospace</h3>
@@ -46,9 +46,9 @@
             <div class="font-family-info">
               <div class="code-group">
                 <code class="font-family-var">--font-family-mono</code>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   @click="copyToClipboard('--font-family-mono')"
                   class="copy-btn"
                   aria-label="Copier --font-family-mono"
@@ -69,7 +69,7 @@
       <p class="section-description">
         Échelle typographique avec différentes tailles pour créer une hiérarchie visuelle.
       </p>
-      
+
       <div class="font-sizes-grid">
         <div class="font-size-card" v-for="size in fontSizes" :key="size.name">
           <div class="font-size-preview" :style="{ fontSize: `var(--font-size-${size.name})` }">
@@ -78,9 +78,9 @@
               <span class="font-size-name">{{ size.label }}</span>
               <div class="code-group">
                 <code class="font-size-var">--font-size-{{ size.name }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   @click="copyToClipboard(`--font-size-${size.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --font-size-${size.name}`"
@@ -101,7 +101,7 @@
       <p class="section-description">
         Différents poids pour créer des contrastes et des emphases.
       </p>
-      
+
       <div class="font-weights-grid">
         <div class="font-weight-card" v-for="weight in fontWeights" :key="weight.name">
           <div class="font-weight-preview" :style="{ fontWeight: `var(--font-weight-${weight.name})` }">
@@ -110,9 +110,9 @@
               <span class="font-weight-name">{{ weight.label }}</span>
               <div class="code-group">
                 <code class="font-weight-var">--font-weight-{{ weight.name }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   @click="copyToClipboard(`--font-weight-${weight.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --font-weight-${weight.name}`"
@@ -133,7 +133,7 @@
       <p class="section-description">
         Espacement vertical entre les lignes pour améliorer la lisibilité.
       </p>
-      
+
       <div class="line-heights-grid">
         <div class="line-height-card" v-for="lineHeight in lineHeights" :key="lineHeight.name">
           <div class="line-height-preview" :style="{ lineHeight: `var(--line-height-${lineHeight.name})` }">
@@ -156,7 +156,7 @@
       <p class="section-description">
         Combinaisons typographiques courantes pour différents contextes.
       </p>
-      
+
       <div class="typography-examples">
         <div class="example-card">
           <h3 class="example-title">Titres</h3>
@@ -169,7 +169,7 @@
             <h6 class="heading-lg">Titre H6 - LG</h6>
           </div>
         </div>
-        
+
         <div class="example-card">
           <h3 class="example-title">Corps de texte</h3>
           <div class="example-content">
@@ -179,7 +179,7 @@
             <p class="text-xs">Texte extra-small - Pour les mentions légales et petites annotations.</p>
           </div>
         </div>
-        
+
         <div class="example-card">
           <h3 class="example-title">Code et données</h3>
           <div class="example-content">
@@ -641,19 +641,19 @@ const lineHeights = [
   .typography-page {
     padding: var(--spacing-4);
   }
-  
+
   .font-families-grid,
   .typography-examples {
     grid-template-columns: 1fr;
   }
-  
+
   .button-row, .icons-showcase {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .states-showcase {
     grid-template-columns: 1fr;
   }
 }
-</style> 
+</style>

@@ -32,4 +32,4 @@ console.log('  Gifteo:');
 console.log('    - src/tokens/generated/gifteo/light.css');
 console.log('    - src/tokens/generated/gifteo/light.js');
 console.log('    - src/tokens/generated/gifteo/dark.css');
-console.log('    - src/tokens/generated/gifteo/dark.js'); 
+console.log('    - src/tokens/generated/gifteo/dark.js');

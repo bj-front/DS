@@ -12,4 +12,4 @@ export type IconName = string
 export type IconSize = 'small' | 'medium' | 'large'
 export type IconColor = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral' | 'current'
 export type LogoVariant = 'auto' | 'default' | 'white' | 'small' | 'small-white'
-export type LogoSize = 'small' | 'medium' | 'large' 
+export type LogoSize = 'small' | 'medium' | 'large'

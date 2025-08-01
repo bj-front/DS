@@ -13,7 +13,7 @@
       <p class="section-description">
         Surfaces utilisées pour les composants principaux de l'interface.
       </p>
-      
+
       <div class="surfaces-grid">
         <div class="surface-card background">
           <div class="card-content">
@@ -22,8 +22,8 @@
             <div class="card-info">
               <div class="code-group">
                 <code class="color-var">--theme-colors-surface-background</code>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   size="small"
                   @click="copyToClipboard('--theme-colors-surface-background')"
                   class="copy-btn"
@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="surface-card card">
           <div class="card-content">
             <h4 class="card-title">Card</h4>
@@ -43,8 +43,8 @@
             <div class="card-info">
               <div class="code-group">
                 <code class="color-var">--theme-colors-surface-card</code>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   size="small"
                   @click="copyToClipboard('--theme-colors-surface-card')"
                   class="copy-btn"
@@ -56,7 +56,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="surface-card elevated">
           <div class="card-content">
             <h4 class="card-title">Elevated</h4>
@@ -64,8 +64,8 @@
             <div class="card-info">
               <div class="code-group">
                 <code class="color-var">--theme-colors-surface-elevated</code>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   size="small"
                   @click="copyToClipboard('--theme-colors-surface-elevated')"
                   class="copy-btn"
@@ -77,7 +77,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="surface-card overlay">
           <div class="card-content">
             <h4 class="card-title">Overlay</h4>
@@ -85,8 +85,8 @@
             <div class="card-info">
               <div class="code-group">
                 <code class="color-var">--theme-colors-surface-overlay</code>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   size="small"
                   @click="copyToClipboard('--theme-colors-surface-overlay')"
                   class="copy-btn"
@@ -107,7 +107,7 @@
       <p class="section-description">
         Exemples concrets d'utilisation des différentes surfaces.
       </p>
-      
+
       <div class="examples-grid">
         <div class="example-card">
           <div class="example-preview">
@@ -347,11 +347,11 @@ const copyToClipboard = async (text: string) => {
   .surfaces-page {
     padding: var(--spacing-4);
   }
-  
+
   .surfaces-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .examples-grid {
     grid-template-columns: 1fr;
   }

@@ -33,13 +33,13 @@ export interface LogoProps {
 // Declare the Vue component types
 declare module '@club-employes/utopia' {
   import { DefineComponent } from 'vue'
-  
+
   export const Badge: DefineComponent<BadgeProps>
   export const Button: DefineComponent<ButtonProps>
   export const Icon: DefineComponent<IconProps>
   export const Logo: DefineComponent<LogoProps>
   export const ThemeProvider: DefineComponent<ThemeProviderProps>
-  
+
   // Theme objects
   export const clubEmployesLight: ThemeConfig
   export const clubEmployesDark: ThemeConfig

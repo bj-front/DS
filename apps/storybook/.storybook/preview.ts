@@ -1,11 +1,11 @@
 import type { Preview } from '@storybook/vue3-vite'
 import { h } from 'vue'
-import { 
-  ThemeProvider, 
-  clubEmployesLight, 
-  clubEmployesDark, 
-  gifteoLight, 
-  gifteoDark 
+import {
+  ThemeProvider,
+  clubEmployesLight,
+  clubEmployesDark,
+  gifteoLight,
+  gifteoDark
 } from '../../../packages/utopia/src/index'
 
 // Import du CSS global pour styler l'interface Storybook
@@ -14,13 +14,13 @@ import './preview.css'
 // Global decorator pour injecter le ThemeProvider
 const withThemeProvider = (story: any, context: any) => {
   const { globals } = context
-  
+
   // Déterminer le thème basé sur les contrôles globaux
   const brand = globals.brand || 'club-employes'
   const mode = globals.mode || 'light'
-  
+
   console.log('🎨 Storybook Theme Switch:', { brand, mode }) // Debug
-  
+
   let currentTheme
   if (brand === 'club-employes') {
     currentTheme = mode === 'dark' ? clubEmployesDark : clubEmployesLight
@@ -33,17 +33,17 @@ const withThemeProvider = (story: any, context: any) => {
   // Calculer les couleurs selon la marque et le mode
   let bgColor = '#ffffff'
   let textColor = '#111827'
-  
+
   if (mode === 'dark') {
     if (brand === 'club-employes') {
       bgColor = '#111827'  // Club Employés dark background
       textColor = '#f9fafb' // Club Employés dark text
     } else {
-      bgColor = '#1c1917'  // Gifteo dark background  
+      bgColor = '#1c1917'  // Gifteo dark background
       textColor = '#fafaf9' // Gifteo dark text
     }
   }
-  
+
   console.log('🎨 Applying background colors:', { brand, mode, bgColor, textColor }) // Debug
 
   // Fonction pour appliquer le styling à un élément
@@ -56,19 +56,19 @@ const withThemeProvider = (story: any, context: any) => {
   const applyThemeToPanels = () => {
     const panelSelectors = [
       '#storybook-panel-root',
-      '#panel-tab-content', 
+      '#panel-tab-content',
       '.panel-content',
       '[id^="panel-tab-content"]',
       '.docblock-argstable',
       '.sb-addon-panel',
       '.addon-panel',
       '.docblock-argstable table',
-      '.docblock-argstable tbody', 
+      '.docblock-argstable tbody',
       '.docblock-argstable tr',
       '.docblock-argstable td',
       '.docblock-argstable th'
     ]
-    
+
     panelSelectors.forEach(selector => {
       const elements = document.querySelectorAll(selector)
       elements.forEach((element: Element) => {
@@ -77,14 +77,14 @@ const withThemeProvider = (story: any, context: any) => {
         }
       })
     })
-    
+
     // Appliquer spécifiquement aux contrôles (inputs, selects, etc.)
     const controlSelectors = [
       '#panel-tab-content input',
       '#panel-tab-content select',
       '#panel-tab-content textarea',
       '[id^="panel-tab-content"] input',
-      '[id^="panel-tab-content"] select', 
+      '[id^="panel-tab-content"] select',
       '[id^="panel-tab-content"] textarea',
       '.sb-addon-panel input',
       '.sb-addon-panel select',
@@ -94,9 +94,9 @@ const withThemeProvider = (story: any, context: any) => {
       'input[type="email"]',
       'input[type="password"]'
     ]
-    
+
     const cardBgColor = mode === 'dark' ? (brand === 'club-employes' ? '#1f2937' : '#292524') : '#f3f4f6'
-    
+
     controlSelectors.forEach(selector => {
       const elements = document.querySelectorAll(selector)
       elements.forEach((element: Element) => {
@@ -111,28 +111,28 @@ const withThemeProvider = (story: any, context: any) => {
 
   // Forcer le changement de background via JavaScript
   if (typeof window !== 'undefined') {
-    
+
     setTimeout(() => {
       const rootEl = document.documentElement
       const bodyEl = document.body
       const sbRoot = document.getElementById('storybook-root')
-      
+
       // Appliquer aux éléments principaux
       applyThemeToElement(rootEl)
       applyThemeToElement(bodyEl)
-      
+
       if (sbRoot) {
         applyThemeToElement(sbRoot)
       }
-      
+
       // Appliquer aux panels existants
       applyThemeToPanels()
-      
+
       // Réappliquer périodiquement pour s'assurer que les panels dynamiques sont couverts
       const intervalId = setInterval(() => {
         applyThemeToPanels()
       }, 500)
-      
+
       // Nettoyer après 10 secondes
       setTimeout(() => {
         clearInterval(intervalId)
@@ -141,7 +141,7 @@ const withThemeProvider = (story: any, context: any) => {
   }
 
   // Return simple avec key pour forcer le re-render
-  return h(ThemeProvider, { 
+  return h(ThemeProvider, {
     theme: currentTheme,
     key: `${brand}-${mode}` // Force re-render sur changement
   }, {
@@ -152,7 +152,7 @@ const withThemeProvider = (story: any, context: any) => {
 const preview: Preview = {
   // Décorateurs globaux
   decorators: [withThemeProvider],
-  
+
   // Contrôles globaux
   globalTypes: {
     brand: {

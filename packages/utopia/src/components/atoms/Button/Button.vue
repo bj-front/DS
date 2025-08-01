@@ -23,12 +23,12 @@
       <span v-if="$slots.icon" class="button-icon button-icon--before">
         <slot name="icon" />
       </span>
-      
+
       <!-- Contenu principal -->
       <span class="button-text">
         <slot />
       </span>
-      
+
       <!-- Icon après le texte -->
       <span v-if="$slots.iconAfter" class="button-icon button-icon--after">
         <slot name="iconAfter" />
@@ -74,10 +74,10 @@ const buttonClasses = computed(() => {
   // Map size names to CSS classes
   const sizeMap: Record<ButtonSize, string> = {
     'small': 'sm',
-    'medium': 'md', 
+    'medium': 'md',
     'large': 'lg'
   }
-  
+
   return [
     'button',
     `button--${props.variant}`,
@@ -108,31 +108,31 @@ const handleClick = (event: MouseEvent) => {
   outline: none;
   text-decoration: none;
   cursor: pointer;
-  
+
   /* Layout */
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-2);
-  
+
   /* Typography - utilise les tokens */
   font-family: var(--font-family-sans);
   font-weight: var(--font-weight-medium);
   line-height: var(--font-line-height-normal);
   text-align: center;
   white-space: nowrap;
-  
+
   /* Interaction */
   transition: all 0.2s ease;
   user-select: none;
-  
+
   /* Border radius depuis les tokens */
   border-radius: var(--border-radius-base);
-  
+
   /* Border width depuis les tokens */
   border: var(--border-width-1) solid transparent;
-  
+
   /* Focus ring avec les couleurs de tokens */
 }
 
@@ -297,7 +297,7 @@ const handleClick = (event: MouseEvent) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
 }
 
 .button-icon--before {
@@ -333,4 +333,4 @@ const handleClick = (event: MouseEvent) => {
   width: 18px;
   height: 18px;
 }
-</style> 
+</style>

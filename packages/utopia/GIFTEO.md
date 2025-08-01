@@ -50,7 +50,7 @@ import { ThemeProvider, gifteoLight } from '@clubemployes/design-system'
 ```vue
 <template>
   <ThemeProvider :theme="currentTheme">
-    <BrandSwitcher 
+    <BrandSwitcher
       :gifteoLight="gifteoLight"
       :gifteoDark="gifteoDark"
       :clubEmployesLight="clubEmployesLight"
@@ -195,4 +195,4 @@ Pour migrer une app de Club Employés vers Gifteo :
 
 ---
 
-Gifteo est maintenant **prêt pour la production** avec une identité visuelle distincte et une intégration transparente ! ❤️ 
+Gifteo est maintenant **prêt pour la production** avec une identité visuelle distincte et une intégration transparente ! ❤️

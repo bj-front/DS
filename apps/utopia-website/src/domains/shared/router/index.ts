@@ -2,16 +2,16 @@ import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 
 // Import pages from domains
-import { 
-  HomePage, 
-  ColorsPage, 
-  SurfacesPage, 
-  TypographyPage, 
-  SpacingPage, 
-  LogosPage, 
-  ThemeComparison 
+import {
+  HomePage,
+  ColorsPage,
+  SurfacesPage,
+  TypographyPage,
+  SpacingPage,
+  LogosPage,
+  ThemeComparison
 } from '../../design-system'
-// Dynamic import for lazy loading  
+// Dynamic import for lazy loading
 const NotFoundPage = () => import('./NotFoundPage.vue')
 
 const routes: Array<RouteRecordRaw> = [
@@ -129,13 +129,13 @@ router.beforeEach((to, _, next) => {
   if (to.meta?.title) {
     document.title = to.meta.title
   }
-  
+
   // Update meta description
   const descriptionMeta = document.querySelector('meta[name="description"]')
   if (to.meta?.description && descriptionMeta) {
     descriptionMeta.setAttribute('content', to.meta.description)
   }
-  
+
   next()
 })
 

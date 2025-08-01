@@ -3,8 +3,8 @@
     <div class="widget-content">
       <!-- Brand buttons -->
       <div class="brand-buttons">
-        <button 
-          v-for="brand in brands" 
+        <button
+          v-for="brand in brands"
           :key="brand.key"
           @click="selectBrand(brand)"
           class="brand-widget-btn"
@@ -14,12 +14,12 @@
           <span class="brand-widget-icon">{{ brand.icon }}</span>
         </button>
       </div>
-      
+
       <!-- Separator -->
       <div class="separator"></div>
-      
+
       <!-- Mode toggle -->
-      <button 
+      <button
         @click="toggleMode"
         class="mode-widget-toggle"
         :class="{ 'dark': isDarkMode }"
@@ -78,8 +78,8 @@ const brands: Brand[] = [
 const isDarkMode = ref(false)
 
 const currentBrand = computed(() => {
-  return brands.find(brand => 
-    brand.lightTheme.name === props.currentTheme.name || 
+  return brands.find(brand =>
+    brand.lightTheme.name === props.currentTheme.name ||
     brand.darkTheme.name === props.currentTheme.name
   ) || brands[0]
 })
@@ -94,8 +94,8 @@ const selectBrand = (brand: Brand) => {
 
 const toggleMode = () => {
   isDarkMode.value = !isDarkMode.value
-  const newTheme = isDarkMode.value 
-    ? currentBrand.value.darkTheme 
+  const newTheme = isDarkMode.value
+    ? currentBrand.value.darkTheme
     : currentBrand.value.lightTheme
   emit('themeChange', newTheme)
 }
@@ -207,7 +207,7 @@ const toggleMode = () => {
     top: var(--spacing-4);
     right: var(--spacing-4);
   }
-  
+
   .brand-widget-btn,
   .mode-widget-toggle {
     width: 32px;
@@ -215,4 +215,4 @@ const toggleMode = () => {
     font-size: var(--font-size-base);
   }
 }
-</style> 
+</style>

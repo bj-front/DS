@@ -31,9 +31,9 @@ const handlePageChange = (page: string) => {
         <h1>🎨 Design System Utopia</h1>
         <p>Système de tokens multi-marques - Club Employés & Gifteo</p>
       </header>
-      
+
       <!-- Floating Brand Switcher -->
-      <BrandSwitcher 
+      <BrandSwitcher
         :clubEmployesLight="clubEmployesLight"
         :clubEmployesDark="clubEmployesDark"
         :gifteoLight="gifteoLight"
@@ -41,39 +41,39 @@ const handlePageChange = (page: string) => {
         :currentTheme="currentTheme"
         @themeChange="handleThemeChange"
       />
-      
+
       <!-- Floating Navigation -->
-      <FloatingNav 
+      <FloatingNav
         :currentPage="currentPage"
         @pageChange="handlePageChange"
       />
-      
+
       <main class="app-main">
         <!-- Page Content -->
-        <HomePage 
+        <HomePage
           v-if="currentPage === 'home'"
           :currentTheme="currentTheme"
           @navigate="handlePageChange"
         />
-        <ColorsPage 
+        <ColorsPage
           v-else-if="currentPage === 'colors'"
           :currentTheme="currentTheme"
         />
-        <SurfacesPage 
+        <SurfacesPage
           v-else-if="currentPage === 'surfaces'"
           :currentTheme="currentTheme"
         />
-        <TypographyPage 
+        <TypographyPage
           v-else-if="currentPage === 'typography'"
         />
-        <SpacingPage 
+        <SpacingPage
           v-else-if="currentPage === 'spacing'"
         />
-        <LogosPage 
+        <LogosPage
           v-else-if="currentPage === 'logos'"
           :currentTheme="currentTheme"
         />
-        <ThemeComparison 
+        <ThemeComparison
           v-else-if="currentPage === 'theme-comparison'"
           :currentTheme="currentTheme"
         />

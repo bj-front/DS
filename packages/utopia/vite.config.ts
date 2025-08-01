@@ -14,7 +14,7 @@ export default defineConfig({
       include: ['src/index.d.ts']
     })
   ],
-  
+
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),

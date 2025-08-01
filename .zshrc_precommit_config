@@ -1,0 +1,8 @@
+# Configuration pour pre-commit (à ajouter à votre ~/.zshrc)
+# Ajoutez cette ligne à votre ~/.zshrc pour rendre pre-commit accessible partout :
+
+export PATH="/Users/benoitjolly/Library/Python/3.9/bin:$PATH"
+
+# Après avoir ajouté cette ligne :
+# 1. Redémarrez votre terminal OU exécutez : source ~/.zshrc
+# 2. Vérifiez avec : pre-commit --version

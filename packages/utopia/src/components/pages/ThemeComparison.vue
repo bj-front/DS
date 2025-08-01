@@ -23,7 +23,7 @@
       <p class="section-description">
         Couleurs spécifiques à cette marque qui s'adaptent automatiquement au mode {{ currentTheme.mode === 'dark' ? 'sombre' : 'clair' }}.
       </p>
-      
+
       <div class="correspondences-grid">
         <!-- Primary Brand Colors -->
         <div class="correspondence-group">
@@ -32,9 +32,9 @@
             <div class="correspondence-item" v-for="shade in brandPrimaryShades" :key="shade.name">
               <div class="variable-info">
                 <code class="css-variable">--theme-colors-brand-primary-{{ shade.name }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   @click="copyToClipboard(`--theme-colors-brand-primary-${shade.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --theme-colors-brand-primary-${shade.name}`"
@@ -44,7 +44,7 @@
               </div>
               <div class="theme-values">
                 <div class="theme-value">
-                  <div class="color-preview" 
+                  <div class="color-preview"
                        :style="{ backgroundColor: `var(--theme-colors-brand-primary-${shade.name})` }">
                   </div>
                   <div class="value-info">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="arrow">↔️</div>
                 <div class="theme-value opposite">
-                  <div class="color-preview" 
+                  <div class="color-preview"
                        :style="{ backgroundColor: shade.oppositeValue }">
                   </div>
                   <div class="value-info">
@@ -74,9 +74,9 @@
             <div class="correspondence-item" v-for="shade in brandSecondaryShades" :key="shade.name">
               <div class="variable-info">
                 <code class="css-variable">--theme-colors-brand-secondary-{{ shade.name }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   @click="copyToClipboard(`--theme-colors-brand-secondary-${shade.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --theme-colors-brand-secondary-${shade.name}`"
@@ -86,7 +86,7 @@
               </div>
               <div class="theme-values">
                 <div class="theme-value">
-                  <div class="color-preview" 
+                  <div class="color-preview"
                        :style="{ backgroundColor: `var(--theme-colors-brand-secondary-${shade.name})` }">
                   </div>
                   <div class="value-info">
@@ -96,7 +96,7 @@
                 </div>
                 <div class="arrow">↔️</div>
                 <div class="theme-value opposite">
-                  <div class="color-preview" 
+                  <div class="color-preview"
                        :style="{ backgroundColor: shade.oppositeValue }">
                   </div>
                   <div class="value-info">
@@ -116,9 +116,9 @@
             <div class="correspondence-item" v-for="shade in brandAccentShades" :key="shade.name">
               <div class="variable-info">
                 <code class="css-variable">--theme-colors-brand-accent-{{ shade.name }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   @click="copyToClipboard(`--theme-colors-brand-accent-${shade.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --theme-colors-brand-accent-${shade.name}`"
@@ -128,7 +128,7 @@
               </div>
               <div class="theme-values">
                 <div class="theme-value">
-                  <div class="color-preview" 
+                  <div class="color-preview"
                        :style="{ backgroundColor: `var(--theme-colors-brand-accent-${shade.name})` }">
                   </div>
                   <div class="value-info">
@@ -138,7 +138,7 @@
                 </div>
                 <div class="arrow">↔️</div>
                 <div class="theme-value opposite">
-                  <div class="color-preview" 
+                  <div class="color-preview"
                        :style="{ backgroundColor: shade.oppositeValue }">
                   </div>
                   <div class="value-info">
@@ -159,7 +159,7 @@
       <p class="section-description">
         Couleurs partagées entre toutes les marques, la même variable CSS donne des valeurs différentes selon le thème actuel.
       </p>
-      
+
       <div class="correspondences-grid">
         <!-- Slate Colors -->
         <div class="correspondence-group">
@@ -168,9 +168,9 @@
             <div class="correspondence-item" v-for="shade in slateShades" :key="shade.name">
               <div class="variable-info">
                 <code class="css-variable">--theme-colors-common-slate-{{ shade.name }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   @click="copyToClipboard(`--theme-colors-common-slate-${shade.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --theme-colors-common-slate-${shade.name}`"
@@ -180,7 +180,7 @@
               </div>
               <div class="theme-values">
                 <div class="theme-value">
-                  <div class="color-preview" 
+                  <div class="color-preview"
                        :style="{ backgroundColor: `var(--theme-colors-common-slate-${shade.name})` }">
                   </div>
                   <div class="value-info">
@@ -190,7 +190,7 @@
                 </div>
                 <div class="arrow">↔️</div>
                 <div class="theme-value opposite">
-                  <div class="color-preview" 
+                  <div class="color-preview"
                        :style="{ backgroundColor: shade.oppositeValue }">
                   </div>
                   <div class="value-info">
@@ -210,9 +210,9 @@
             <div class="correspondence-item" v-for="shade in successShades" :key="shade.name">
               <div class="variable-info">
                 <code class="css-variable">--theme-colors-common-succeed-{{ shade.name }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   @click="copyToClipboard(`--theme-colors-common-succeed-${shade.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --theme-colors-common-succeed-${shade.name}`"
@@ -222,7 +222,7 @@
               </div>
               <div class="theme-values">
                 <div class="theme-value">
-                  <div class="color-preview" 
+                  <div class="color-preview"
                        :style="{ backgroundColor: `var(--theme-colors-common-succeed-${shade.name})` }">
                   </div>
                   <div class="value-info">
@@ -232,7 +232,7 @@
                 </div>
                 <div class="arrow">↔️</div>
                 <div class="theme-value opposite">
-                  <div class="color-preview" 
+                  <div class="color-preview"
                        :style="{ backgroundColor: shade.oppositeValue }">
                   </div>
                   <div class="value-info">
@@ -252,9 +252,9 @@
             <div class="correspondence-item" v-for="shade in warningShades" :key="shade.name">
               <div class="variable-info">
                 <code class="css-variable">--theme-colors-common-warning-{{ shade.name }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   @click="copyToClipboard(`--theme-colors-common-warning-${shade.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --theme-colors-common-warning-${shade.name}`"
@@ -264,7 +264,7 @@
               </div>
               <div class="theme-values">
                 <div class="theme-value">
-                  <div class="color-preview" 
+                  <div class="color-preview"
                        :style="{ backgroundColor: `var(--theme-colors-common-warning-${shade.name})` }">
                   </div>
                   <div class="value-info">
@@ -274,7 +274,7 @@
                 </div>
                 <div class="arrow">↔️</div>
                 <div class="theme-value opposite">
-                  <div class="color-preview" 
+                  <div class="color-preview"
                        :style="{ backgroundColor: shade.oppositeValue }">
                   </div>
                   <div class="value-info">
@@ -294,9 +294,9 @@
             <div class="correspondence-item" v-for="shade in dangerShades" :key="shade.name">
               <div class="variable-info">
                 <code class="css-variable">--theme-colors-common-danger-{{ shade.name }}</code>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   @click="copyToClipboard(`--theme-colors-common-danger-${shade.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --theme-colors-common-danger-${shade.name}`"
@@ -306,7 +306,7 @@
               </div>
               <div class="theme-values">
                 <div class="theme-value">
-                  <div class="color-preview" 
+                  <div class="color-preview"
                        :style="{ backgroundColor: `var(--theme-colors-common-danger-${shade.name})` }">
                   </div>
                   <div class="value-info">
@@ -316,7 +316,7 @@
                 </div>
                 <div class="arrow">↔️</div>
                 <div class="theme-value opposite">
-                  <div class="color-preview" 
+                  <div class="color-preview"
                        :style="{ backgroundColor: shade.oppositeValue }">
                   </div>
                   <div class="value-info">
@@ -442,87 +442,87 @@ const copyToClipboard = async (text: string) => {
 
 // Color correspondences data
 const slateShades = [
-  { 
-    name: '50', 
+  {
+    name: '50',
     currentValue: props.currentTheme.mode === 'dark' ? '#020618' : '#F8FAFC',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#F8FAFC' : '#020618'
   },
-  { 
-    name: '200', 
+  {
+    name: '200',
     currentValue: props.currentTheme.mode === 'dark' ? '#1D293D' : '#E2E8F0',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#E2E8F0' : '#1D293D'
   },
-  { 
-    name: '400', 
+  {
+    name: '400',
     currentValue: props.currentTheme.mode === 'dark' ? '#45556C' : '#90A1B9',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#90A1B9' : '#45556C'
   },
-  { 
-    name: '600', 
+  {
+    name: '600',
     currentValue: props.currentTheme.mode === 'dark' ? '#90A1B9' : '#45556C',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#45556C' : '#90A1B9'
   },
-  { 
-    name: '800', 
+  {
+    name: '800',
     currentValue: props.currentTheme.mode === 'dark' ? '#E2E8F0' : '#1D293D',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#1D293D' : '#E2E8F0'
   },
-  { 
-    name: '950', 
+  {
+    name: '950',
     currentValue: props.currentTheme.mode === 'dark' ? '#F8FAFC' : '#020618',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#020618' : '#F8FAFC'
   }
 ]
 
 const successShades = [
-  { 
-    name: '50', 
+  {
+    name: '50',
     currentValue: props.currentTheme.mode === 'dark' ? '#052e16' : '#e2fcf0',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#e2fcf0' : '#052e16'
   },
-  { 
-    name: '200', 
+  {
+    name: '200',
     currentValue: props.currentTheme.mode === 'dark' ? '#166534' : '#a7f3d0',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#a7f3d0' : '#166534'
   },
-  { 
-    name: '400', 
+  {
+    name: '400',
     currentValue: props.currentTheme.mode === 'dark' ? '#22c55e' : '#4ade80',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#4ade80' : '#22c55e'
   }
 ]
 
 const warningShades = [
-  { 
-    name: '50', 
+  {
+    name: '50',
     currentValue: props.currentTheme.mode === 'dark' ? '#451a03' : '#fff5db',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#fff5db' : '#451a03'
   },
-  { 
-    name: '200', 
+  {
+    name: '200',
     currentValue: props.currentTheme.mode === 'dark' ? '#a16207' : '#fed7aa',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#fed7aa' : '#a16207'
   },
-  { 
-    name: '400', 
+  {
+    name: '400',
     currentValue: props.currentTheme.mode === 'dark' ? '#f59e0b' : '#fb923c',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#fb923c' : '#f59e0b'
   }
 ]
 
 const dangerShades = [
-  { 
-    name: '50', 
+  {
+    name: '50',
     currentValue: props.currentTheme.mode === 'dark' ? '#450a0a' : '#fef2f2',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#fef2f2' : '#450a0a'
   },
-  { 
-    name: '200', 
+  {
+    name: '200',
     currentValue: props.currentTheme.mode === 'dark' ? '#dc2626' : '#fecaca',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#fecaca' : '#dc2626'
   },
-  { 
-    name: '400', 
+  {
+    name: '400',
     currentValue: props.currentTheme.mode === 'dark' ? '#ef4444' : '#f87171',
     oppositeValue: props.currentTheme.mode === 'dark' ? '#f87171' : '#ef4444'
   }
@@ -532,38 +532,38 @@ const dangerShades = [
 const brandPrimaryShades = computed(() => {
   if (currentBrand.value.key === 'club-employes') {
     return [
-      { 
-        name: '25', 
+      {
+        name: '25',
         currentValue: props.currentTheme.mode === 'dark' ? '#0A1B3E' : '#FAFBFE',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FAFBFE' : '#0A1B3E'
       },
-      { 
-        name: '50', 
+      {
+        name: '50',
         currentValue: props.currentTheme.mode === 'dark' ? '#172554' : '#F6F8FE',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#F6F8FE' : '#172554'
       },
-      { 
-        name: '100', 
+      {
+        name: '100',
         currentValue: props.currentTheme.mode === 'dark' ? '#1E3A8A' : '#F2F5FE',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#F2F5FE' : '#1E3A8A'
       },
-      { 
-        name: '200', 
+      {
+        name: '200',
         currentValue: props.currentTheme.mode === 'dark' ? '#1E40AF' : '#E9EEFE',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#E9EEFE' : '#1E40AF'
       },
-      { 
-        name: '300', 
+      {
+        name: '300',
         currentValue: props.currentTheme.mode === 'dark' ? '#2563EB' : '#C9D6FB',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#C9D6FB' : '#2563EB'
       },
-      { 
-        name: '400', 
+      {
+        name: '400',
         currentValue: props.currentTheme.mode === 'dark' ? '#3B82F6' : '#93AEF8',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#93AEF8' : '#3B82F6'
       },
-      { 
-        name: '500', 
+      {
+        name: '500',
         currentValue: props.currentTheme.mode === 'dark' ? '#275CF1' : '#275CF1',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#275CF1' : '#275CF1'
       }
@@ -571,38 +571,38 @@ const brandPrimaryShades = computed(() => {
   } else {
     // Gifteo brand
     return [
-      { 
-        name: '25', 
+      {
+        name: '25',
         currentValue: props.currentTheme.mode === 'dark' ? '#2A0A0A' : '#FFFBFB',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FFFBFB' : '#2A0A0A'
       },
-      { 
-        name: '50', 
+      {
+        name: '50',
         currentValue: props.currentTheme.mode === 'dark' ? '#7F1D1D' : '#FFF7F7',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FFF7F7' : '#7F1D1D'
       },
-      { 
-        name: '100', 
+      {
+        name: '100',
         currentValue: props.currentTheme.mode === 'dark' ? '#991B1B' : '#FEF3F4',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FEF3F4' : '#991B1B'
       },
-      { 
-        name: '200', 
+      {
+        name: '200',
         currentValue: props.currentTheme.mode === 'dark' ? '#B91C1C' : '#FEECEC',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FEECEC' : '#B91C1C'
       },
-      { 
-        name: '300', 
+      {
+        name: '300',
         currentValue: props.currentTheme.mode === 'dark' ? '#DC2626' : '#FCCFCF',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FCCFCF' : '#DC2626'
       },
-      { 
-        name: '400', 
+      {
+        name: '400',
         currentValue: props.currentTheme.mode === 'dark' ? '#EF4444' : '#FA9FA0',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FA9FA0' : '#EF4444'
       },
-      { 
-        name: '500', 
+      {
+        name: '500',
         currentValue: props.currentTheme.mode === 'dark' ? '#F43E40' : '#F43E40',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#F43E40' : '#F43E40'
       }
@@ -613,38 +613,38 @@ const brandPrimaryShades = computed(() => {
 const brandSecondaryShades = computed(() => {
   if (currentBrand.value.key === 'club-employes') {
     return [
-      { 
-        name: '25', 
+      {
+        name: '25',
         currentValue: props.currentTheme.mode === 'dark' ? '#0A0A0A' : '#FAFAFE',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FAFAFE' : '#0A0A0A'
       },
-      { 
-        name: '50', 
+      {
+        name: '50',
         currentValue: props.currentTheme.mode === 'dark' ? '#1F2937' : '#F5F6F8',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#F5F6F8' : '#1F2937'
       },
-      { 
-        name: '100', 
+      {
+        name: '100',
         currentValue: props.currentTheme.mode === 'dark' ? '#374151' : '#F0F1F4',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#F0F1F4' : '#374151'
       },
-      { 
-        name: '200', 
+      {
+        name: '200',
         currentValue: props.currentTheme.mode === 'dark' ? '#4B5563' : '#E7E8ED',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#E7E8ED' : '#4B5563'
       },
-      { 
-        name: '300', 
+      {
+        name: '300',
         currentValue: props.currentTheme.mode === 'dark' ? '#6B7280' : '#C8CAD1',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#C8CAD1' : '#6B7280'
       },
-      { 
-        name: '400', 
+      {
+        name: '400',
         currentValue: props.currentTheme.mode === 'dark' ? '#9CA3AF' : '#A1A6B4',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#A1A6B4' : '#9CA3AF'
       },
-      { 
-        name: '500', 
+      {
+        name: '500',
         currentValue: props.currentTheme.mode === 'dark' ? '#3E424A' : '#3E424A',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#3E424A' : '#3E424A'
       }
@@ -652,38 +652,38 @@ const brandSecondaryShades = computed(() => {
   } else {
     // Gifteo brand
     return [
-      { 
-        name: '25', 
+      {
+        name: '25',
         currentValue: props.currentTheme.mode === 'dark' ? '#0A0101' : '#FAFAFA',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FAFAFA' : '#0A0101'
       },
-      { 
-        name: '50', 
+      {
+        name: '50',
         currentValue: props.currentTheme.mode === 'dark' ? '#130101' : '#F6F5F5',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#F6F5F5' : '#130101'
       },
-      { 
-        name: '100', 
+      {
+        name: '100',
         currentValue: props.currentTheme.mode === 'dark' ? '#292524' : '#F1F0F0',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#F1F0F0' : '#292524'
       },
-      { 
-        name: '200', 
+      {
+        name: '200',
         currentValue: props.currentTheme.mode === 'dark' ? '#44403C' : '#E7E6E6',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#E7E6E6' : '#44403C'
       },
-      { 
-        name: '300', 
+      {
+        name: '300',
         currentValue: props.currentTheme.mode === 'dark' ? '#78716C' : '#C8C5C2',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#C8C5C2' : '#78716C'
       },
-      { 
-        name: '400', 
+      {
+        name: '400',
         currentValue: props.currentTheme.mode === 'dark' ? '#A8A29E' : '#A1A099',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#A1A099' : '#A8A29E'
       },
-      { 
-        name: '500', 
+      {
+        name: '500',
         currentValue: props.currentTheme.mode === 'dark' ? '#423F3C' : '#423F3C',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#423F3C' : '#423F3C'
       }
@@ -694,38 +694,38 @@ const brandSecondaryShades = computed(() => {
 const brandAccentShades = computed(() => {
   if (currentBrand.value.key === 'club-employes') {
     return [
-      { 
-        name: '25', 
+      {
+        name: '25',
         currentValue: props.currentTheme.mode === 'dark' ? '#0F0C1A' : '#FAFBFE',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FAFBFE' : '#0F0C1A'
       },
-      { 
-        name: '50', 
+      {
+        name: '50',
         currentValue: props.currentTheme.mode === 'dark' ? '#1E1835' : '#F6F8FE',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#F6F8FE' : '#1E1835'
       },
-      { 
-        name: '100', 
+      {
+        name: '100',
         currentValue: props.currentTheme.mode === 'dark' ? '#3C2F6B' : '#F2F5FE',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#F2F5FE' : '#3C2F6B'
       },
-      { 
-        name: '200', 
+      {
+        name: '200',
         currentValue: props.currentTheme.mode === 'dark' ? '#5B4BA1' : '#E9EEFE',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#E9EEFE' : '#5B4BA1'
       },
-      { 
-        name: '300', 
+      {
+        name: '300',
         currentValue: props.currentTheme.mode === 'dark' ? '#7A67D7' : '#C9D6FB',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#C9D6FB' : '#7A67D7'
       },
-      { 
-        name: '400', 
+      {
+        name: '400',
         currentValue: props.currentTheme.mode === 'dark' ? '#9A83ED' : '#93AEF8',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#93AEF8' : '#9A83ED'
       },
-      { 
-        name: '500', 
+      {
+        name: '500',
         currentValue: props.currentTheme.mode === 'dark' ? '#6D3FF5' : '#6D3FF5',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#6D3FF5' : '#6D3FF5'
       }
@@ -733,38 +733,38 @@ const brandAccentShades = computed(() => {
   } else {
     // Gifteo brand
     return [
-      { 
-        name: '25', 
+      {
+        name: '25',
         currentValue: props.currentTheme.mode === 'dark' ? '#7C2D12' : '#FFFAF7',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FFFAF7' : '#7C2D12'
       },
-      { 
-        name: '50', 
+      {
+        name: '50',
         currentValue: props.currentTheme.mode === 'dark' ? '#9A3412' : '#FFF8F3',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FFF8F3' : '#9A3412'
       },
-      { 
-        name: '100', 
+      {
+        name: '100',
         currentValue: props.currentTheme.mode === 'dark' ? '#C2410C' : '#FFF3EC',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FFF3EC' : '#C2410C'
       },
-      { 
-        name: '200', 
+      {
+        name: '200',
         currentValue: props.currentTheme.mode === 'dark' ? '#EA580C' : '#FFE2CF',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FFE2CF' : '#EA580C'
       },
-      { 
-        name: '300', 
+      {
+        name: '300',
         currentValue: props.currentTheme.mode === 'dark' ? '#F97316' : '#FFC59E',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FFC59E' : '#F97316'
       },
-      { 
-        name: '400', 
+      {
+        name: '400',
         currentValue: props.currentTheme.mode === 'dark' ? '#FF8B3D' : '#FF8B3D',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FF8B3D' : '#FF8B3D'
       },
-      { 
-        name: '500', 
+      {
+        name: '500',
         currentValue: props.currentTheme.mode === 'dark' ? '#FF8B3D' : '#FF8B3D',
         oppositeValue: props.currentTheme.mode === 'dark' ? '#FF8B3D' : '#FF8B3D'
       }
@@ -1052,4 +1052,4 @@ const brandAccentShades = computed(() => {
     text-align: center;
   }
 }
-</style> 
+</style>

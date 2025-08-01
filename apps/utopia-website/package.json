@@ -19,7 +19,7 @@
     "validate": "run-p type-check lint:strict",
     "validate:fix": "run-s lint type-check",
     "check-tokens": "echo '🎨 Vérification des tokens du design system...' && npm run lint:check",
-    "validate:design-system": "node validate-design-system.js",
+    "validate:design-system": "node validate-design-system.cjs",
     "validate:full": "npm run validate:design-system",
     "pre-commit:validate": "npm run lint:check && npm run type-check && npm run validate:design-system && npm run build"
   },

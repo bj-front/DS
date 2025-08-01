@@ -8,7 +8,7 @@
         <p class="logo-label">Via CSS variable</p>
         <code class="logo-var">var(--theme-assets-logo)</code>
       </div>
-      
+
       <!-- Logo via JavaScript import -->
       <div class="logo-js" v-if="currentTheme.logo">
         <img :src="currentTheme.logo" :alt="`Logo ${currentTheme.name}`" class="logo-js-img" />
@@ -16,7 +16,7 @@
         <code class="logo-var">theme.logo</code>
       </div>
     </div>
-    
+
     <!-- Showcase des différents logos disponibles -->
     <div class="logos-showcase">
       <h4 class="showcase-title">Logos disponibles</h4>
@@ -38,11 +38,11 @@
 import { inject } from 'vue'
 import type { ThemeConfig } from '../../theme-provider'
 
-const theme = inject('theme', { 
-  config: { 
-    name: 'unknown', 
-    cssContent: '', 
-    logo: undefined 
+const theme = inject('theme', {
+  config: {
+    name: 'unknown',
+    cssContent: '',
+    logo: undefined
   } as ThemeConfig
 })
 const currentTheme = theme.config
@@ -152,4 +152,4 @@ const currentTheme = theme.config
   border-radius: var(--border-radius-sm);
   display: block;
 }
-</style> 
+</style>

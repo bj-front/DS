@@ -46,14 +46,14 @@ const logoStyles = computed(() => {
   // Mapping des variantes vers les tokens CSS
   const variantTokens: Record<LogoVariant, string> = {
     'auto': '--theme-assets-logo-default',
-    'default': '--theme-assets-logo-default', 
+    'default': '--theme-assets-logo-default',
     'white': '--theme-assets-logo-white',
     'small': '--theme-assets-logo-small',
     'small-white': '--theme-assets-logo-small-white'
   }
 
   // Pour les petites variantes, on utilise les logos small en auto
-  const token = props.variant === 'auto' && (props.size === 'xs' || props.size === 'sm') 
+  const token = props.variant === 'auto' && (props.size === 'xs' || props.size === 'sm')
     ? '--theme-assets-logo-small'
     : variantTokens[props.variant]
 
@@ -70,10 +70,10 @@ const logoStyles = computed(() => {
   background-repeat: no-repeat;
   background-position: center;
   display: inline-block;
-  
+
   /* Ratio aspect maintenu (approximativement 4:1 basé sur les logos) */
   aspect-ratio: 4 / 1;
-  
+
   /* Transition pour les changements de taille */
   transition: all 0.2s ease;
 }
@@ -163,7 +163,7 @@ const logoStyles = computed(() => {
     width: 160px;
     height: 40px;
   }
-  
+
   .logo--xxl {
     width: 200px;
     height: 50px;
@@ -175,15 +175,15 @@ const logoStyles = computed(() => {
     width: 120px;
     height: 30px;
   }
-  
+
   .logo--xl {
     width: 120px;
     height: 30px;
   }
-  
+
   .logo--xxl {
     width: 160px;
     height: 40px;
   }
 }
-</style> 
+</style>

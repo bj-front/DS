@@ -13,7 +13,7 @@
       <p class="section-description">
         Surfaces utilisant les couleurs spécifiques à cette marque, adaptées au mode {{ currentTheme.mode === 'dark' ? 'sombre' : 'clair' }}.
       </p>
-      
+
       <div class="surfaces-grid">
         <!-- Primary Surfaces -->
         <div class="surface-group">
@@ -26,9 +26,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-brand-primary-25</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-brand-primary-25')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-brand-primary-25"
@@ -39,7 +39,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="surface-card primary-50">
               <div class="card-content">
                 <h4 class="card-title">Primary 50</h4>
@@ -47,9 +47,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-brand-primary-50</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-brand-primary-50')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-brand-primary-50"
@@ -60,7 +60,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="surface-card primary-100">
               <div class="card-content">
                 <h4 class="card-title">Primary 100</h4>
@@ -68,9 +68,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-brand-primary-100</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-brand-primary-100')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-brand-primary-100"
@@ -95,9 +95,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-brand-secondary-25</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-brand-secondary-25')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-brand-secondary-25"
@@ -108,7 +108,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="surface-card secondary-50">
               <div class="card-content">
                 <h4 class="card-title">Secondary 50</h4>
@@ -116,9 +116,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-brand-secondary-50</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-brand-secondary-50')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-brand-secondary-50"
@@ -129,7 +129,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="surface-card secondary-100">
               <div class="card-content">
                 <h4 class="card-title">Secondary 100</h4>
@@ -137,9 +137,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-brand-secondary-100</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-brand-secondary-100')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-brand-secondary-100"
@@ -164,9 +164,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-brand-accent-25</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-brand-accent-25')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-brand-accent-25"
@@ -177,7 +177,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="surface-card accent-50">
               <div class="card-content">
                 <h4 class="card-title">Accent 50</h4>
@@ -185,9 +185,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-brand-accent-50</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-brand-accent-50')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-brand-accent-50"
@@ -198,7 +198,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="surface-card accent-100">
               <div class="card-content">
                 <h4 class="card-title">Accent 100</h4>
@@ -206,9 +206,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-brand-accent-100</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-brand-accent-100')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-brand-accent-100"
@@ -230,7 +230,7 @@
       <p class="section-description">
         Surfaces utilisant les couleurs partagées, communes à toutes les marques.
       </p>
-      
+
       <div class="surfaces-grid">
         <!-- Surfaces Système -->
         <div class="surface-group">
@@ -243,9 +243,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-surface-background</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-surface-background')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-surface-background"
@@ -256,7 +256,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="surface-card surface-card-bg">
               <div class="card-content">
                 <h4 class="card-title">Card</h4>
@@ -264,9 +264,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-surface-card</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-surface-card')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-surface-card"
@@ -277,7 +277,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="surface-card surface-overlay">
               <div class="card-content">
                 <h4 class="card-title">Overlay</h4>
@@ -285,9 +285,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-surface-overlay</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-surface-overlay')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-surface-overlay"
@@ -312,9 +312,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-state-success-background</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-state-success-background')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-state-success-background"
@@ -325,7 +325,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="surface-card warning-surface">
               <div class="card-content">
                 <h4 class="card-title">Warning</h4>
@@ -333,9 +333,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-state-warning-background</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-state-warning-background')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-state-warning-background"
@@ -346,7 +346,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="surface-card danger-surface">
               <div class="card-content">
                 <h4 class="card-title">Danger</h4>
@@ -354,9 +354,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-state-error-background</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-state-error-background')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-state-error-background"
@@ -381,9 +381,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-common-slate-50</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-common-slate-50')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-common-slate-50"
@@ -394,7 +394,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="surface-card slate-200">
               <div class="card-content">
                 <h4 class="card-title">Slate 200</h4>
@@ -402,9 +402,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-common-slate-200</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-common-slate-200')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-common-slate-200"
@@ -415,7 +415,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="surface-card slate-400">
               <div class="card-content">
                 <h4 class="card-title">Slate 400</h4>
@@ -423,9 +423,9 @@
                 <div class="card-info">
                   <div class="code-group">
                     <code class="color-var">--theme-colors-common-slate-400</code>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       @click="copyToClipboard('--theme-colors-common-slate-400')"
                       class="copy-btn"
                       aria-label="Copier --theme-colors-common-slate-400"
@@ -706,14 +706,14 @@ const currentBrand = computed(() => {
   .surfaces-page {
     padding: var(--spacing-4);
   }
-  
+
   .cards-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-4);
   }
-  
+
   .surface-group {
     padding: var(--spacing-6);
   }
 }
-</style> 
+</style>

@@ -21,7 +21,7 @@
     "pre-commit:install": "pre-commit install",
     "pre-commit:validate-design-system": "cd packages/utopia && npm run pre-commit:validate",
     "pre-commit:validate-website": "cd apps/utopia-website && npm run pre-commit:validate",
-    "pre-commit:changeset-check": "node scripts/check-changeset.js"
+    "pre-commit:changeset-check": "node scripts/check-changeset.cjs"
   },
   "keywords": [
     "design-system",
