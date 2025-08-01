@@ -17,7 +17,13 @@
     "version-packages": "changeset version",
     "release": "cd packages/utopia && npm run build && cd ../.. && NPM_CONFIG_YES=true changeset publish",
     "ci:build": "npm run build:tokens && npm run build",
-    "ci:test": "npm run lint && npm run type-check"
+    "ci:test": "npm run lint && npm run type-check",
+    "prepare": "husky",
+    "precommit": "lint-staged",
+    "setup:hooks": "husky install && husky add .husky/pre-commit \"npm run precommit\"",
+    "lint:all": "cd apps/utopia-website && npm run lint && cd ../../packages/utopia && npm run lint",
+    "format:all": "cd apps/utopia-website && npm run format",
+    "validate:all": "cd apps/utopia-website && npm run validate:design-system && npm run type-check"
   },
   "keywords": [
     "design-system",
@@ -31,6 +37,20 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.11",
-    "@types/json-schema": "^7.0.15"
+    "@types/json-schema": "^7.0.15",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0"
+  },
+  "lint-staged": {
+    "apps/utopia-website/**/*.{js,ts,vue}": [
+      "cd apps/utopia-website && npm run lint",
+      "cd apps/utopia-website && npm run format"
+    ],
+    "packages/utopia/**/*.{js,ts,vue}": [
+      "cd packages/utopia && npm run lint"
+    ],
+    "apps/utopia-website/**/*.{ts,vue}": [
+      "cd apps/utopia-website && npm run type-check"
+    ]
   }
 }

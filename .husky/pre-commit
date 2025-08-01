@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Exécution des vérifications pre-commit..."
+
+# Lint et format pour le website
+if git diff --cached --name-only | grep -q "^apps/utopia-website/.*\.(js|ts|vue)$"; then
+    echo "🔍 Lint du website..."
+    cd apps/utopia-website && npm run lint:check
+    echo "✨ Format du website..."
+    cd apps/utopia-website && npm run format
+fi
+
+# Type check pour le website
+if git diff --cached --name-only | grep -q "^apps/utopia-website/.*\.(ts|vue)$"; then
+    echo "🔍 Type check du website..."
+    cd apps/utopia-website && npm run type-check
+fi
+
+# Validation du design system
+if git diff --cached --name-only | grep -qE "^(apps/utopia-website/.*|packages/utopia/src/tokens/.*)$"; then
+    echo "🎨 Validation des tokens du design system..."
+    cd apps/utopia-website && npm run validate:design-system
+fi
+
+# Lint pour le package utopia
+if git diff --cached --name-only | grep -q "^packages/utopia/.*\.(js|ts|vue)$"; then
+    echo "🔍 Lint du package utopia..."
+    cd packages/utopia && npm run lint
+fi
+
+echo "✅ Toutes les vérifications sont passées !"

@@ -12,7 +12,7 @@ import {
   ThemeComparison 
 } from '../../design-system'
 // Dynamic import for lazy loading  
-const NotFoundPage = () => import('./NotFoundPage.vue')
+const NotFoundPage = (): Promise<typeof import('./NotFoundPage.vue')> => import('./NotFoundPage.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {

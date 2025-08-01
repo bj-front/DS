@@ -74,8 +74,8 @@ const Logo = { template: '<div class="logo">LOGO</div>' }
 const Icon = { template: '<span class="icon"><slot /></span>' }
 
 // Placeholder for theme toggle functionality
-const toggleTheme = () => {
-  console.log('Theme toggle - à implémenter')
+const toggleTheme = (): void => {
+  // TODO: Implémenter le toggle de thème
 }
 </script>
 

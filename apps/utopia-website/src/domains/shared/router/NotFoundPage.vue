@@ -24,11 +24,11 @@ import { Button } from '@club-employes/utopia'
 
 const router = useRouter()
 
-const goHome = () => {
+const goHome = (): void => {
   router.push('/')
 }
 
-const goBack = () => {
+const goBack = (): void => {
   router.go(-1)
 }
 </script>

@@ -63,7 +63,7 @@ import { Button } from '@club-employes/utopia'
 
 const router = useRouter()
 
-const navigateToPage = (page: string) => {
+const navigateToPage = (page: string): void => {
   router.push({ name: page })
 }
 

@@ -16,7 +16,7 @@ import { Button } from '@club-employes/utopia'
 
 const router = useRouter()
 
-const goHome = () => {
+const goHome = (): void => {
   router.push('/')
 }
 </script>

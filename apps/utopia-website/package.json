@@ -19,7 +19,7 @@
     "validate": "run-p type-check lint:strict",
     "validate:fix": "run-s lint type-check",
     "check-tokens": "echo '🎨 Vérification des tokens du design system...' && npm run lint:check",
-    "validate:design-system": "node validate-design-system.js",
+    "validate:design-system": "node validate-design-system.cjs",
     "validate:full": "npm run validate:design-system"
   },
   "dependencies": {
@@ -31,6 +31,8 @@
   "devDependencies": {
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.16.5",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.6.0",

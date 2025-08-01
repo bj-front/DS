@@ -165,13 +165,13 @@ const Badge = { template: '<span class="badge"><slot /></span>' }
 const Icon = { template: '<span class="icon"><slot /></span>' }
 const Logo = { template: '<div class="logo">LOGO</div>' }
 
-const scrollToComponents = () => {
+const scrollToComponents = (): void => {
   document.getElementById('components')?.scrollIntoView({ 
     behavior: 'smooth' 
   })
 }
 
-const scrollToTokens = () => {
+const scrollToTokens = (): void => {
   document.getElementById('tokens')?.scrollIntoView({ 
     behavior: 'smooth' 
   })

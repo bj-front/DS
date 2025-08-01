@@ -18,7 +18,7 @@ on:
       force_release:
         description: 'Force release to NPM (main branch only)'
         required: false
-        default: 'false'
+        default: false
         type: boolean
 
 concurrency:

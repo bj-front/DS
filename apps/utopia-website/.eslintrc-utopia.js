@@ -103,7 +103,7 @@ const noHardcodedCSSValues = {
 /**
  * Suggérer un token approprié basé sur la propriété CSS
  */
-function getSuggestedToken(property, value) {
+function getSuggestedToken(property) {
   if (['margin', 'padding', 'gap', 'gridGap', 'top', 'left', 'right', 'bottom'].includes(property)) {
     return '--spacing-*'
   }
