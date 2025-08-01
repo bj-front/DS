@@ -1,24 +1,17 @@
 #!/bin/bash
 
-# Script de build pour Vercel
-# Construit d'abord le package utopia, puis l'installe localement avant de builder l'app
+# ⚠️  OBSOLÈTE : Ce script n'est plus utilisé avec Turborepo
+# 
+# Maintenant Vercel utilise directement :
+# - installCommand: "cd ../.. && npm ci"
+# - buildCommand: "cd ../.. && npx turbo build --filter=...utopia-website"
+#
+# Cette nouvelle approche :
+# ✅ Utilise les workspaces NPM
+# ✅ Exploite le cache Turborepo
+# ✅ Gère automatiquement les dépendances
+# ✅ Plus rapide et plus fiable
 
-set -e
-
-echo "🔨 Building utopia package..."
-cd ../../packages/utopia
-npm run build:tokens
-npm run build
-
-echo "📦 Packing utopia package..."
-TARBALL=$(npm pack)
-echo "Generated tarball: $TARBALL"
-
-echo "💿 Installing utopia package locally..."
-cd ../../apps/utopia-website
-npm install --no-save "../../packages/utopia/$TARBALL"
-
-echo "🏗️ Building website..."
-npm run build
-
-echo "✅ Build completed successfully!"
+echo "⚠️  Ce script est obsolète depuis la migration Turborepo"
+echo "✅ Vercel utilise maintenant Turborepo directement"
+exit 1

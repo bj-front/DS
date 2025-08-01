@@ -1,7 +1,7 @@
 {
-  "buildCommand": "bash scripts/build-for-vercel.sh",
+  "buildCommand": "cd ../.. && npx turbo build --filter=...utopia-website",
   "outputDirectory": "dist",
-  "installCommand": "npm install && cd ../../packages/utopia && npm install",
+  "installCommand": "cd ../.. && npm ci",
   "framework": "vite",
   "devCommand": "npm run dev",
   "rewrites": [
