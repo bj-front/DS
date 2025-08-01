@@ -9,7 +9,10 @@ import { computed, provide, onMounted, onBeforeUnmount, watch } from 'vue'
 
 interface ThemeConfig {
   name: string
-  cssContent: string
+  mode?: 'light' | 'dark'
+  cssFile?: string
+  cssContent?: string
+  logo?: string
 }
 
 interface Props {
@@ -23,16 +26,9 @@ let styleElement: HTMLStyleElement | null = null
 
 // Fonction pour injecter les styles CSS
 const injectStyles = () => {
-  // Supprimer l'ancien style si il existe
-  if (styleElement) {
-    document.head.removeChild(styleElement)
-  }
-
-  // Créer et injecter le nouveau style
-  styleElement = document.createElement('style')
-  styleElement.setAttribute('data-theme-provider', themeName.value)
-  styleElement.textContent = props.theme.cssContent
-  document.head.appendChild(styleElement)
+  // Pour l'instant, on se contente de définir l'attribut data-theme
+  // Les styles CSS sont chargés globalement via les imports
+  console.log('Theme applied:', themeName.value)
 }
 
 // Fonction pour nettoyer les styles
@@ -69,5 +65,7 @@ watch(() => props.theme, () => {
 .theme-provider {
   height: 100%;
   width: 100%;
+  margin: 0;
+  padding: 0;
 }
 </style> 

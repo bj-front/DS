@@ -13,10 +13,17 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "lint:strict": "eslint . --max-warnings 0",
+    "lint:check": "eslint .",
+    "format": "prettier --write src/",
+    "validate": "run-p type-check lint:strict",
+    "validate:fix": "run-s lint type-check",
+    "check-tokens": "echo '🎨 Vérification des tokens du design system...' && npm run lint:check",
+    "validate:design-system": "node design-system-validator.cjs",
+    "validate:full": "npm run validate:design-system"
   },
   "dependencies": {
-    "@club-employes/utopia": "^2.0.1",
+    "@club-employes/utopia": "*",
     "pinia": "^3.0.3",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"
@@ -24,6 +31,8 @@
   "devDependencies": {
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.16.5",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.6.0",

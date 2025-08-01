@@ -11,15 +11,20 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./styles": "./dist/utopia.css"
+    "./styles": "./dist/utopia.css",
+    "./tokens/club-employes/light": "./dist/tokens/club-employes/light.css",
+    "./tokens/club-employes/dark": "./dist/tokens/club-employes/dark.css",
+    "./tokens/gifteo/light": "./dist/tokens/gifteo/light.css",
+    "./tokens/gifteo/dark": "./dist/tokens/gifteo/dark.css"
   },
   "files": [
     "dist"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:tokens && vite build && cp src/index.d.ts dist/index.d.ts",
+    "build": "npm run build:tokens && vite build && cp src/index.d.ts dist/index.d.ts && npm run copy:tokens",
     "build:tokens": "node scripts/build-tokens.js",
+    "copy:tokens": "mkdir -p dist/tokens && cp -r src/tokens/generated/* dist/tokens/",
     "preview": "vite preview",
     "lint": "echo 'Linting passed'",
     "type-check": "echo 'Type checking passed'"

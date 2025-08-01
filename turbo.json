@@ -1,0 +1,80 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!dist/**",
+        "!build/**",
+        "!.turbo/**"
+      ],
+      "outputs": [
+        "dist/**",
+        "build/**"
+      ]
+    },
+    "build:tokens": {
+      "inputs": [
+        "src/tokens/**",
+        "style-dictionary.config.js",
+        "scripts/build-tokens.js"
+      ],
+      "outputs": [
+        "src/tokens/generated/**"
+      ]
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!dist/**",
+        "!build/**"
+      ]
+    },
+    "type-check": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!dist/**",
+        "!build/**"
+      ]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!dist/**",
+        "!build/**"
+      ]
+    },
+    "format": {
+      "inputs": [
+        "src/**/*.{js,ts,vue,css,scss,json,md}"
+      ]
+    },
+    "validate:design-system": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "design-system-validator.cjs"
+      ]
+    }
+  },
+  "globalDependencies": [
+    ".env",
+    ".env.local",
+    "package.json"
+  ],
+  "globalEnv": [
+    "NODE_ENV",
+    "VERCEL_TOKEN",
+    "VERCEL_ORG_ID", 
+    "VERCEL_PROJECT_ID",
+    "NPM_TOKEN"
+  ]
+}
