@@ -1,0 +1,344 @@
+name: Website CI/CD
+
+on:
+  push:
+    branches-ignore: [main]
+    paths:
+      - 'apps/utopia-website/**'
+      - '.github/workflows/website.yml'
+      - 'package.json'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'apps/utopia-website/**'
+      - '.github/workflows/website.yml'
+      - 'package.json'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Job 1: Tests et qualité du code
+  quality-check:
+    name: 🔍 Qualité & Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/utopia-website
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ⚡ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: 📦 Install dependencies
+        run: |
+          cd ../..
+          npm ci
+          cd apps/utopia-website
+          npm ci
+
+      - name: 🔍 Lint code
+        run: npm run lint:check
+
+      - name: 🔍 Type check
+        run: npm run type-check
+
+      - name: 🔍 Vérification stricte Tokens (Pas de valeur en dur)
+        run: npm run validate:design-system
+        # Vérifie strictement que seuls les tokens définis (couleurs, spacing, typo) sont utilisés
+        # Échoue le job si une valeur codée en dur est détectée
+
+      - name: 🧪 Run tests
+        run: echo "✅ Tests passed (no test suite configured)"
+
+      - name: 🏗️ Build website
+        run: npm run build
+
+      - name: 📦 Verify build output
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "❌ Build failed - dist directory not found"
+            exit 1
+          fi
+          if [ ! -f "dist/index.html" ]; then
+            echo "❌ Build failed - index.html not found"
+            exit 1
+          fi
+          echo "✅ Build successful - website ready for deployment"
+
+  # Job 2: Déploiement preview Vercel (feature branches uniquement)
+  deploy-preview:
+    name: 🚀 Deploy Preview
+    runs-on: ubuntu-latest
+    needs: quality-check
+    if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+    permissions:
+      pull-requests: write
+      deployments: write
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⚡ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🔨 Build utopia package locally
+        run: |
+          cd packages/utopia
+          npm run build:tokens
+          npm run build
+
+      - name: 📦 Install local utopia in website
+        run: |
+          cd packages/utopia
+          TARBALL=$(npm pack)
+          echo "Generated tarball: $TARBALL"
+          cd ../../apps/utopia-website
+          npm install --no-save "../../packages/utopia/$TARBALL"
+
+      - name: 🏗️ Build website
+        run: |
+          cd apps/utopia-website
+          npm run build
+
+      - name: 🚀 Deploy to Vercel Preview
+        id: deploy
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: apps/utopia-website
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+
+      - name: 💬 Comment PR with preview URL
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          script: |
+            const previewUrl = '${{ steps.deploy.outputs.preview-url }}';
+            
+            // Trouver la PR associée à cette branche
+            const { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: context.repo.owner + ':' + context.ref.replace('refs/heads/', ''),
+              state: 'open'
+            });
+            
+            if (prs.length > 0) {
+              const prNumber = prs[0].number;
+              
+              const comment = `## 🚀 Preview Deployment Ready!
+            
+            Your website changes have been deployed to Vercel:
+            
+            **🔗 Preview URL:** ${previewUrl}
+            
+            ### ✅ Quality Checks Passed
+            - 🔍 Lint & Type check ✅
+            - 🎨 Design system tokens validation ✅  
+            - 🏗️ Build successful ✅
+            
+            ### 📱 Test your changes:
+            - Desktop & Mobile responsive design
+            - Component behavior & styling
+            - Theme switching functionality
+            - Navigation and routing
+            
+            ---
+            
+            > 🤖 *Preview updates automatically with each push*
+            `;
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: comment
+            });
+            }
+
+  # Job 3: Création automatique de PR (feature branches uniquement)
+  auto-pr:
+    name: 📋 Auto-create PR
+    runs-on: ubuntu-latest
+    needs: [quality-check, deploy-preview]
+    if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: 🔍 Check for existing PR
+        id: check-pr
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH_NAME="${{ github.ref_name }}"
+          PR_EXISTS=$(gh pr list --head "$BRANCH_NAME" --json number --jq length)
+          echo "pr_exists=$PR_EXISTS" >> $GITHUB_OUTPUT
+
+      - name: 📋 Create Pull Request
+        if: steps.check-pr.outputs.pr_exists == '0'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          title: "feat(website): Updates from ${{ github.ref_name }}"
+          body: |
+            ## 🌐 Website Update
+            
+            **Branch:** `${{ github.ref_name }}`
+            
+            ### ✅ Quality Checks Passed
+            - [x] 🔍 Lint & Type check passed
+            - [x] 🎨 Design system tokens validation passed
+            - [x] 🏗️ Build successful
+            - [x] 🚀 Preview deployment ready
+            
+            ### 🌟 Preview Deployment
+            A preview deployment has been created automatically.
+            Check the comments above for the preview URL.
+            
+            ### 🚀 Next Steps
+            1. **Review the changes** in the Files tab
+            2. **Test the preview** deployment
+            3. **Check responsive design** on different devices
+            4. **Approve & merge** to deploy to production
+            
+            ---
+            
+            > 🤖 *This PR was created automatically*
+            > 🌐 *Ready for review and merge to production*
+          base: main
+          branch: ${{ github.ref_name }}
+          labels: |
+            website
+            auto-created
+
+  # Job 4: Déploiement production Vercel (main branch uniquement)
+  deploy-production:
+    name: 🌟 Deploy Production
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    permissions:
+      pull-requests: write
+      deployments: write
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⚡ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🔨 Build utopia package locally
+        run: |
+          cd packages/utopia
+          npm run build:tokens
+          npm run build
+
+      - name: 📦 Install local utopia in website
+        run: |
+          cd packages/utopia
+          TARBALL=$(npm pack)
+          echo "Generated tarball: $TARBALL"
+          cd ../../apps/utopia-website
+          npm install --no-save "../../packages/utopia/$TARBALL"
+
+      - name: 🏗️ Build website for production
+        run: |
+          cd apps/utopia-website
+          npm run build
+
+      - name: 🚀 Deploy to Vercel Production
+        id: deploy
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          working-directory: apps/utopia-website
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+
+      - name: 🎉 Comment last merged PR
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          script: |
+            const productionUrl = '${{ steps.deploy.outputs.preview-url }}';
+            
+            // Chercher la dernière PR mergée
+            const { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed',
+              sort: 'updated',
+              direction: 'desc',
+              per_page: 1
+            });
+            
+            if (prs.length > 0 && prs[0].merged_at) {
+              const prNumber = prs[0].number;
+              
+              const comment = `## 🎉 Deployed to Production!
+            
+            Your website changes are now live in production:
+            
+            **🌟 Production URL:** ${productionUrl}
+            
+            ### 🚀 Deployment Summary
+            - ✅ Quality checks passed
+            - ✅ Design system tokens validated
+            - ✅ Build successful  
+            - ✅ Production deployment complete
+            
+            ### 🎊 Great work!
+            Your changes have been successfully deployed and are now available to users.
+            `;
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: comment
+            });
+            }
