@@ -17,6 +17,7 @@ import AppLayout from './domains/shared/components/AppLayout.vue'
 // Theme management (placeholder for future theme switching)
 const currentTheme = ref(clubEmployesLight)
 
+
 // Global styles and theme will be managed here
 </script>
 
