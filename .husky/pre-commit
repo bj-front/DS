@@ -1,32 +1,24 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 echo "🔍 Exécution des vérifications pre-commit..."
 
-# Lint et format pour le website
-if git diff --cached --name-only | grep -q "^apps/utopia-website/.*\.(js|ts|vue)$"; then
-    echo "🔍 Lint du website..."
-    cd apps/utopia-website && npm run lint:check
-    echo "✨ Format du website..."
-    cd apps/utopia-website && npm run format
+# Utilise Turborepo pour optimiser les vérifications
+CHANGED_FILES=$(git diff --cached --name-only)
+
+# Détecte les changements pour le website
+if echo "$CHANGED_FILES" | grep -q "^apps/utopia-website/.*\.(js|ts|vue)$"; then
+    echo "🔍 Vérifications website..."
+    npx turbo lint type-check --filter=utopia-website
 fi
 
-# Type check pour le website
-if git diff --cached --name-only | grep -q "^apps/utopia-website/.*\.(ts|vue)$"; then
-    echo "🔍 Type check du website..."
-    cd apps/utopia-website && npm run type-check
+# Détecte les changements pour le design system
+if echo "$CHANGED_FILES" | grep -q "^packages/utopia/.*\.(js|ts|vue)$"; then
+    echo "🎨 Vérifications design system..."
+    npx turbo lint type-check build:tokens --filter=@club-employes/utopia
 fi
 
-# Validation du design system
-if git diff --cached --name-only | grep -qE "^(apps/utopia-website/.*|packages/utopia/src/tokens/.*)$"; then
+# Validation globale si changements tokens
+if echo "$CHANGED_FILES" | grep -qE "^(apps/utopia-website/.*|packages/utopia/src/tokens/.*)$"; then
     echo "🎨 Validation des tokens du design system..."
-    cd apps/utopia-website && npm run validate:design-system
-fi
-
-# Lint pour le package utopia
-if git diff --cached --name-only | grep -q "^packages/utopia/.*\.(js|ts|vue)$"; then
-    echo "🔍 Lint du package utopia..."
-    cd packages/utopia && npm run lint
+    npx turbo validate:design-system --filter=utopia-website
 fi
 
 echo "✅ Toutes les vérifications sont passées !"
