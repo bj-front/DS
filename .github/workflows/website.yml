@@ -47,18 +47,20 @@ jobs:
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
 
-      - name: 🏗️ Build utopia package first
+      - name: 📦 Install dependencies & Build utopia package
         run: |
-          cd ../../packages/utopia
+          # 1. Installer les dépendances root (inclut husky)
+          cd ../..
+          npm ci
+          
+          # 2. Builder le package utopia d'abord  
+          cd packages/utopia
           npm ci
           npm run build
           npm pack
           
-      - name: 📦 Install dependencies
-        run: |
-          cd ../..
-          npm ci
-          cd apps/utopia-website
+          # 3. Installer les dépendances du website
+          cd ../apps/utopia-website
           npm ci
 
       - name: 🔍 Lint code
