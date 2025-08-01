@@ -112,7 +112,7 @@ runs:
         🤖 *Auto-generated from branch \`$BRANCH_NAME\`*"
         fi
         
-        # Créer la PR
+        # Créer la PR avec les labels appropriés
         PR_URL=$(gh pr create \
           --title "$PR_TITLE" \
           --body "$PR_BODY" \
