@@ -13,6 +13,13 @@ on:
       - 'packages/utopia/**'
       - '.github/workflows/design-system.yml'
       - 'package.json'
+  workflow_dispatch:
+    inputs:
+      force_release:
+        description: 'Force release to NPM (main branch only)'
+        required: false
+        default: 'false'
+        type: boolean
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

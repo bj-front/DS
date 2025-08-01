@@ -13,6 +13,13 @@ on:
       - 'apps/utopia-website/**'
       - '.github/workflows/website.yml'
       - 'package.json'
+  workflow_dispatch:
+    inputs:
+      force_deploy:
+        description: 'Force production deployment (main branch only)'
+        required: false
+        default: 'false'
+        type: boolean
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
