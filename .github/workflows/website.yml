@@ -6,13 +6,17 @@ on:
     paths:
       - 'apps/utopia-website/**'
       - '.github/workflows/website.yml'
+      - '.github/actions/**'
       - 'package.json'
+      - 'turbo.json'
   pull_request:
     branches: [main]
     paths:
       - 'apps/utopia-website/**'
       - '.github/workflows/website.yml'
+      - '.github/actions/**'
       - 'package.json'
+      - 'turbo.json'
   workflow_dispatch:
     inputs:
       force_deploy:

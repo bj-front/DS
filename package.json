@@ -1,7 +1,7 @@
 {
   "name": "ds",
   "version": "1.0.0",
-  "description": "Design System monorepo with automated CI/CD",
+  "description": "Design System monorepo with automated CI/CD and optimized workflows",
   "main": "index.js",
   "packageManager": "npm@10.0.0",
   "workspaces": [

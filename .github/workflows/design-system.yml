@@ -6,13 +6,17 @@ on:
     paths:
       - 'packages/utopia/**'
       - '.github/workflows/design-system.yml'
+      - '.github/actions/**'
       - 'package.json'
+      - 'turbo.json'
   pull_request:
     branches: [main]
     paths:
       - 'packages/utopia/**'
       - '.github/workflows/design-system.yml'
+      - '.github/actions/**'
       - 'package.json'
+      - 'turbo.json'
   workflow_dispatch:
     inputs:
       force_release:
