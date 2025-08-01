@@ -1,9 +1,10 @@
 {
-  "buildCommand": "cd ../.. && npx turbo build --filter=...utopia-website",
-  "outputDirectory": "dist",
-  "installCommand": "cd ../.. && npm ci",
+  "buildCommand": "npx turbo build --filter=...utopia-website",
+  "outputDirectory": "apps/utopia-website/dist",
+  "installCommand": "npm ci",
   "framework": "vite",
-  "devCommand": "npm run dev",
+  "devCommand": "cd apps/utopia-website && npm run dev",
+  "rootDirectory": ".",
   "rewrites": [
     {
       "source": "/(.*)",
