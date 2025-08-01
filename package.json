@@ -3,27 +3,30 @@
   "version": "1.0.0",
   "description": "Design System monorepo with automated CI/CD",
   "main": "index.js",
+  "packageManager": "npm@10.0.0",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "apps/utopia-website"
   ],
   "scripts": {
-    "dev": "cd packages/utopia && npm run dev",
-    "build": "cd packages/utopia && npm run build",
-    "build:tokens": "cd packages/utopia && npm run build:tokens",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "cd packages/utopia && npm run lint",
-    "type-check": "cd packages/utopia && npm run type-check",
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "build:tokens": "turbo build:tokens",
+    "test": "turbo test",
+    "lint": "turbo lint",
+    "type-check": "turbo type-check",
+    "format": "turbo format",
+    "validate": "turbo validate:design-system",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "cd packages/utopia && npm run build && cd ../.. && NPM_CONFIG_YES=true changeset publish",
-    "ci:build": "npm run build:tokens && npm run build",
-    "ci:test": "npm run lint && npm run type-check",
+    "release": "turbo build && NPM_CONFIG_YES=true changeset publish",
+    "ci:build": "turbo build",
+    "ci:test": "turbo lint type-check",
+    "ci:validate": "turbo validate:design-system",
     "prepare": "husky",
     "precommit": "lint-staged",
     "setup:hooks": "husky install && husky add .husky/pre-commit \"npm run precommit\"",
-    "lint:all": "cd apps/utopia-website && npm run lint && cd ../../packages/utopia && npm run lint",
-    "format:all": "cd apps/utopia-website && npm run format",
-    "validate:all": "cd apps/utopia-website && npm run validate:design-system && npm run type-check"
+    "clean": "turbo clean && rm -rf node_modules/.cache"
   },
   "keywords": [
     "design-system",
@@ -39,18 +42,16 @@
     "@changesets/cli": "^2.27.11",
     "@types/json-schema": "^7.0.15",
     "husky": "^9.0.0",
-    "lint-staged": "^15.0.0"
+    "lint-staged": "^15.0.0",
+    "turbo": "^2.3.0"
   },
   "lint-staged": {
-    "apps/utopia-website/**/*.{js,ts,vue}": [
-      "cd apps/utopia-website && npm run lint",
-      "cd apps/utopia-website && npm run format"
+    "**/*.{js,ts,vue}": [
+      "turbo lint --filter=...{apps/utopia-website,packages/utopia}[HEAD^1]",
+      "turbo format --filter=...{apps/utopia-website}[HEAD^1]"
     ],
-    "packages/utopia/**/*.{js,ts,vue}": [
-      "cd packages/utopia && npm run lint"
-    ],
-    "apps/utopia-website/**/*.{ts,vue}": [
-      "cd apps/utopia-website && npm run type-check"
+    "**/*.{ts,vue}": [
+      "turbo type-check --filter=...{apps/utopia-website}[HEAD^1]"
     ]
   }
 }

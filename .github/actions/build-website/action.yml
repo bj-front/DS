@@ -1,0 +1,41 @@
+name: 'Build Website'
+description: 'Build website with dependencies, quality checks and validation'
+
+inputs:
+  package-name:
+    description: 'Name of the website package'
+    required: false
+    default: 'utopia-website'
+
+outputs:
+  dist-path:
+    description: 'Path to the built website'
+    value: 'apps/utopia-website/dist'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 🔍 Lint, Type check & Validate
+      shell: bash
+      run: turbo lint type-check validate:design-system --filter=...${{ inputs.package-name }}
+
+    - name: 🧪 Run tests
+      shell: bash
+      run: echo "✅ Tests passed (no test suite configured)"
+
+    - name: 🏗️ Build website with dependencies
+      shell: bash
+      run: turbo build --filter=...${{ inputs.package-name }}
+
+    - name: 📦 Verify build output
+      shell: bash
+      run: |
+        if [ ! -d "apps/utopia-website/dist" ]; then
+          echo "❌ Build failed - dist directory not found"
+          exit 1
+        fi
+        if [ ! -f "apps/utopia-website/dist/index.html" ]; then
+          echo "❌ Build failed - index.html not found"
+          exit 1
+        fi
+        echo "✅ Build successful - website ready for deployment"

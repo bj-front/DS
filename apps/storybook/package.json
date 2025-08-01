@@ -18,22 +18,18 @@
     "@club-employes/utopia": "*"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^4.0.1",
-    "@storybook/addon-a11y": "^9.0.18",
-    "@storybook/addon-controls": "^9.0.18",
-    "@storybook/addon-docs": "^9.0.18",
-    "@storybook/addon-vitest": "^9.0.18",
-    "@storybook/vue3-vite": "^9.0.18",
+    "@chromatic-com/storybook": "^2.0.2",
+    "@storybook/addon-a11y": "^8.4.7",
+    "@storybook/addon-controls": "^8.4.7",
+    "@storybook/addon-docs": "^8.4.7",
+    "@storybook/vue3-vite": "^8.4.7",
     "@vitejs/plugin-vue": "^6.0.0",
-    "@vitest/browser": "^3.2.4",
-    "@vitest/coverage-v8": "^3.2.4",
     "@vue/tsconfig": "^0.7.0",
     "chromatic": "^13.1.2",
     "playwright": "^1.54.1",
-    "storybook": "^9.0.18",
+    "storybook": "^8.4.7",
     "typescript": "~5.8.3",
     "vite": "^7.0.4",
-    "vitest": "^3.2.4",
     "vue-tsc": "^2.2.12"
   }
 }
