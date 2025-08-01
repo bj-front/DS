@@ -85,6 +85,12 @@ jobs:
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
 
+      - name: 🔄 Create or update Pull Request
+        uses: ./.github/actions/create-pr
+        with:
+          github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          project-type: 'website'
+
 
 
   # Job 4: Déploiement production Vercel (main branch uniquement)

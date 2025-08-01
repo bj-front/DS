@@ -5,7 +5,7 @@ import { Button, Icon } from '@club-employes/utopia'
 <template>
   <div class="home">
     <section class="hero">
-      <h1>Bienvenue sur Utopia Website Test 3</h1>
+      <h1>Bienvenue sur Utopia Website Test 4</h1>
       <p class="hero-subtitle">
         Cette application démontre l'utilisation du design system Utopia comme librairie externe
       </p>

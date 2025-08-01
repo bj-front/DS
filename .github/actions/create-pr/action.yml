@@ -1,0 +1,170 @@
+name: 'Create Pull Request'
+description: 'Creates or updates a pull request for the current branch'
+
+inputs:
+  github-token:
+    description: 'GitHub token with PR permissions'
+    required: true
+  project-type:
+    description: 'Type of project (design-system, website)'
+    required: true
+  force-create:
+    description: 'Force creation even if PR exists'
+    required: false
+    default: 'false'
+
+outputs:
+  pr-number:
+    description: 'Number of the created or existing PR'
+    value: ${{ steps.pr-result.outputs.pr-number }}
+  pr-url:
+    description: 'URL of the created or existing PR'
+    value: ${{ steps.pr-result.outputs.pr-url }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 🔍 Check if PR already exists
+      id: check-pr
+      shell: bash
+      run: |
+        BRANCH_NAME="${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}"
+        echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
+        
+        # Vérifier si une PR existe déjà pour cette branche
+        PR_EXISTS=$(gh pr list --head "$BRANCH_NAME" --state open --json number --jq length)
+        echo "pr_exists=$PR_EXISTS" >> $GITHUB_OUTPUT
+        
+        if [[ "$PR_EXISTS" -gt 0 ]]; then
+          PR_NUMBER=$(gh pr list --head "$BRANCH_NAME" --state open --json number --jq '.[0].number')
+          PR_URL=$(gh pr list --head "$BRANCH_NAME" --state open --json url --jq '.[0].url')
+          echo "existing_pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "existing_pr_url=$PR_URL" >> $GITHUB_OUTPUT
+        fi
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+
+    - name: ✨ Create new PR
+      id: create-pr
+      if: steps.check-pr.outputs.pr_exists == '0'
+      shell: bash
+      run: |
+        BRANCH_NAME="${{ steps.check-pr.outputs.branch_name }}"
+        PROJECT_TYPE="${{ inputs.project-type }}"
+        
+        # Générer titre et corps dynamiques
+        if [[ "$PROJECT_TYPE" == "design-system" ]]; then
+          PR_TITLE="🎨 Design System: Update from \`$BRANCH_NAME\`"
+          PR_BODY="## 🎨 Design System Changes
+
+        This PR contains updates to the Design System package.
+
+        ### 🔄 Changes included:
+        - Design system components updates
+        - Token system modifications  
+        - Theme improvements
+
+        ### 🧪 Testing:
+        - [ ] Components render correctly
+        - [ ] Tokens are properly generated
+        - [ ] No breaking changes in API
+
+        ### 📦 Release:
+        This will trigger a new package version via Changeset when merged.
+
+        ---
+        🤖 *Auto-generated from branch \`$BRANCH_NAME\`*"
+        
+        elif [[ "$PROJECT_TYPE" == "website" ]]; then
+          PR_TITLE="🌐 Website: Update from \`$BRANCH_NAME\`"
+          PR_BODY="## 🌐 Website Changes
+
+        This PR contains updates to the Design System website.
+
+        ### 🔄 Changes included:
+        - Documentation updates
+        - UI/UX improvements
+        - New examples or pages
+
+        ### 🧪 Testing:
+        - [ ] Website builds successfully
+        - [ ] All pages load correctly
+        - [ ] Responsive design works
+        - [ ] Dark/Light themes function
+
+        ### 🚀 Deployment:
+        A preview deployment will be available once this PR is ready.
+
+        ---
+        🤖 *Auto-generated from branch \`$BRANCH_NAME\`*"
+        else
+          PR_TITLE="🔄 Mixed changes from \`$BRANCH_NAME\`"
+          PR_BODY="## 🔄 Mixed Changes
+
+        This PR contains changes to multiple parts of the monorepo.
+
+        ### 📋 Review checklist:
+        - [ ] Design system changes are valid
+        - [ ] Website changes work correctly
+        - [ ] No breaking changes
+
+        ---
+        🤖 *Auto-generated from branch \`$BRANCH_NAME\`*"
+        fi
+        
+        # Créer la PR
+        PR_URL=$(gh pr create \
+          --title "$PR_TITLE" \
+          --body "$PR_BODY" \
+          --head "$BRANCH_NAME" \
+          --base main \
+          --label "automated-pr,$PROJECT_TYPE")
+        
+        PR_NUMBER=$(gh pr view "$PR_URL" --json number --jq '.number')
+        
+        echo "new_pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+        echo "new_pr_url=$PR_URL" >> $GITHUB_OUTPUT
+        
+        echo "✅ Created PR #$PR_NUMBER: $PR_URL"
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+
+    - name: 💬 Update existing PR
+      id: update-pr
+      if: steps.check-pr.outputs.pr_exists != '0'
+      shell: bash
+      run: |
+        PR_NUMBER="${{ steps.check-pr.outputs.existing_pr_number }}"
+        PROJECT_TYPE="${{ inputs.project-type }}"
+        BRANCH_NAME="${{ steps.check-pr.outputs.branch_name }}"
+        
+        # Commenter la PR existante
+        gh pr comment $PR_NUMBER --body "## 🔄 New changes detected!
+
+        Fresh changes have been pushed to \`$BRANCH_NAME\` and successfully built.
+
+        ### ✅ Latest status:
+        - 🔍 Quality checks: **PASSED**
+        - 🏗️ Build: **SUCCESS**
+        - 🎯 Type: **$PROJECT_TYPE**
+
+        The PR is ready for review! 🚀
+
+        ---
+        🤖 *Updated automatically*"
+        
+        echo "✅ Updated existing PR #$PR_NUMBER"
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+
+    - name: 📋 Set final outputs
+      id: pr-result
+      shell: bash
+      run: |
+        if [[ "${{ steps.check-pr.outputs.pr_exists }}" == "0" ]]; then
+          echo "pr-number=${{ steps.create-pr.outputs.new_pr_number }}" >> $GITHUB_OUTPUT
+          echo "pr-url=${{ steps.create-pr.outputs.new_pr_url }}" >> $GITHUB_OUTPUT
+        else
+          echo "pr-number=${{ steps.check-pr.outputs.existing_pr_number }}" >> $GITHUB_OUTPUT
+          echo "pr-url=${{ steps.check-pr.outputs.existing_pr_url }}" >> $GITHUB_OUTPUT
+        fi

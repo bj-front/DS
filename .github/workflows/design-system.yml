@@ -53,6 +53,12 @@ jobs:
       - name: 🎨 Build Design System
         uses: ./.github/actions/build-design-system
 
+      - name: 🔄 Create or update Pull Request
+        uses: ./.github/actions/create-pr
+        with:
+          github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          project-type: 'design-system'
+
   
 
   # Job 3: Release et publication NPM (main branch uniquement)
