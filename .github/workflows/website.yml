@@ -6,17 +6,23 @@ on:
     paths:
       - 'apps/utopia-website/**'
       - '.github/workflows/website.yml'
-      - '.github/actions/**'
+      - '.github/actions/setup-node-cache/**'
+      - '.github/actions/build-website/**'
+      - '.github/actions/deploy-vercel/**'
       - 'package.json'
       - 'turbo.json'
+      - 'vercel.json'
   pull_request:
     branches: [main]
     paths:
       - 'apps/utopia-website/**'
       - '.github/workflows/website.yml'
-      - '.github/actions/**'
+      - '.github/actions/setup-node-cache/**'
+      - '.github/actions/build-website/**'
+      - '.github/actions/deploy-vercel/**'
       - 'package.json'
       - 'turbo.json'
+      - 'vercel.json'
   workflow_dispatch:
     inputs:
       force_deploy:

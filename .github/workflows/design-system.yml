@@ -6,7 +6,9 @@ on:
     paths:
       - 'packages/utopia/**'
       - '.github/workflows/design-system.yml'
-      - '.github/actions/**'
+      - '.github/actions/setup-node-cache/**'
+      - '.github/actions/build-design-system/**'
+      - '.github/actions/quality-checks/**'
       - 'package.json'
       - 'turbo.json'
   pull_request:
@@ -14,7 +16,9 @@ on:
     paths:
       - 'packages/utopia/**'
       - '.github/workflows/design-system.yml'
-      - '.github/actions/**'
+      - '.github/actions/setup-node-cache/**'
+      - '.github/actions/build-design-system/**'
+      - '.github/actions/quality-checks/**'
       - 'package.json'
       - 'turbo.json'
   workflow_dispatch:
