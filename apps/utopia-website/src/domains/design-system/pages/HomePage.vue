@@ -4,6 +4,7 @@
       <h1 class="welcome-title">🎨 Design System Utopia</h1>
       <p class="welcome-description">
         Bienvenue dans notre système de design multi-marques pour Club Employés et Gifteo.
+        🚀 Test déploiement Vercel optimisé !
       </p>
       <p class="welcome-subtitle">
         Explorez notre documentation complète et nos exemples interactifs.
