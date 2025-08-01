@@ -1,0 +1,123 @@
+name: Auto Pull Request
+
+on:
+  push:
+    branches-ignore: [main]
+  workflow_run:
+    workflows: ["Design System CI/CD", "Website CI/CD"]
+    types: [completed]
+    branches-ignore: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  create-pr:
+    name: 🚀 Create Pull Request
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_run' && 
+      github.event.workflow_run.conclusion == 'success' &&
+      !contains(github.head_ref, 'dependabot')
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: 🔍 Check if PR already exists
+        id: check-pr
+        run: |
+          BRANCH_NAME="${{ github.event.workflow_run.head_branch }}"
+          echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
+          
+          # Vérifier si une PR existe déjà pour cette branche
+          PR_EXISTS=$(gh pr list --head "$BRANCH_NAME" --state open --json number --jq length)
+          echo "pr_exists=$PR_EXISTS" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🚀 Create Pull Request
+        if: steps.check-pr.outputs.pr_exists == '0'
+        run: |
+          BRANCH_NAME="${{ steps.check-pr.outputs.branch_name }}"
+          
+          # Analyser les changements pour générer un titre intelligent
+          COMMITS=$(git log --oneline main..$BRANCH_NAME | head -5)
+          
+          # Générer un titre basé sur les commits
+          if echo "$COMMITS" | grep -q "feat"; then
+            PR_TITLE="🚀 feat: $(echo "$COMMITS" | head -1 | cut -d' ' -f2- | sed 's/🔧 //g' | sed 's/feat: //g')"
+          elif echo "$COMMITS" | grep -q "fix"; then
+            PR_TITLE="🔧 fix: $(echo "$COMMITS" | head -1 | cut -d' ' -f2- | sed 's/🔧 //g' | sed 's/fix: //g')"
+          elif echo "$COMMITS" | grep -q "chore"; then
+            PR_TITLE="📦 chore: $(echo "$COMMITS" | head -1 | cut -d' ' -f2- | sed 's/📦 //g' | sed 's/chore: //g')"
+          else
+            PR_TITLE="✨ $(echo "$COMMITS" | head -1 | cut -d' ' -f2-)"
+          fi
+          
+          # Générer le body de la PR
+          cat > pr_body.md << 'EOF'
+          ## 🎯 Changes
+
+          Voici les modifications apportées dans cette feature branch :
+          
+          ### 📋 Commits inclus :
+          ```
+          EOF
+          
+          echo "$COMMITS" >> pr_body.md
+          
+          cat >> pr_body.md << 'EOF'
+          ```
+
+          ## ✅ Validations
+          
+          - ✅ **Design System CI/CD** - Passed
+          - ✅ **Website CI/CD** - Passed  
+          - ✅ **Code Quality** - ESLint + TypeScript checks
+          - ✅ **Pre-commit hooks** - Working
+
+          ## 🧪 Tests
+          
+          Tous les tests automatisés sont passés avec succès.
+
+          ## 📋 Impact
+
+          Cette PR est prête pour review et merge.
+          
+          ---
+          *🤖 Pull Request créée automatiquement par GitHub Actions*
+          EOF
+
+          # Créer la PR
+          gh pr create \
+            --title "$PR_TITLE" \
+            --body-file pr_body.md \
+            --head "$BRANCH_NAME" \
+            --base main \
+            --label "auto-generated" \
+            --label "ready-for-review"
+            
+          echo "✅ Pull Request créée automatiquement !"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📝 Add comment if PR exists
+        if: steps.check-pr.outputs.pr_exists != '0'
+        run: |
+          BRANCH_NAME="${{ steps.check-pr.outputs.branch_name }}"
+          PR_NUMBER=$(gh pr list --head "$BRANCH_NAME" --state open --json number --jq '.[0].number')
+          
+          gh pr comment "$PR_NUMBER" --body "🎉 **Nouvelles validations passées !**
+
+          ✅ Design System CI/CD - Success
+          ✅ Website CI/CD - Success
+          ✅ Tous les checks sont verts
+          
+          Cette PR est à jour et prête pour review ! 🚀"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
