@@ -22,6 +22,7 @@ interface Props {
   alt?: string
   /** Classes CSS personnalisées */
   class?: string
+  test?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
