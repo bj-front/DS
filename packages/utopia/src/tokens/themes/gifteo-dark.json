@@ -1,26 +1,6 @@
 {
   "theme": {
     "name": "gifteo-dark",
-    "assets": {
-      "logo": {
-        "default": {
-          "value": "{assets.logos.gifteo.white}",
-          "type": "asset"
-        },
-        "small": {
-          "value": "{assets.logos.gifteo.small-white}",
-          "type": "asset"
-        },
-        "white": {
-          "value": "{assets.logos.gifteo.white}",
-          "type": "asset"
-        },
-        "small-white": {
-          "value": "{assets.logos.gifteo.small-white}",
-          "type": "asset"
-        }
-      }
-    },
     "colors": {
       "brand": {
         "primary": {
@@ -336,4 +316,4 @@
       }
     }
   }
-} 
+}

@@ -1,22 +1,20 @@
 <template>
   <div
     :class="logoClasses"
-    :style="logoStyles"
-    :aria-label="alt || 'Logo'"
+    :aria-label="alt || `Logo ${brandName}`"
     role="img"
   />
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-
-// Types
-export type LogoVariant = 'auto' | 'default' | 'white' | 'small' | 'small-white'
-export type LogoSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
+import type { LogoBrand, LogoSize, LogoVariant } from './types'
 
 // Props
 interface Props {
-  /** Variante du logo */
+  /** Marque du logo (auto-détectée depuis le thème CSS si non spécifiée) */
+  brand?: LogoBrand
+  /** Variante du logo (auto = adaptatif selon le thème) */
   variant?: LogoVariant
   /** Taille du logo */
   size?: LogoSize
@@ -28,42 +26,31 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   variant: 'auto',
-  size: 'md',
-  alt: 'Logo'
+  size: 'md'
 })
 
-// Computed
+// Simple computed pour les classes
 const logoClasses = computed(() => {
+  const brandClass = props.brand ? `logo--${props.brand}` : 'logo--auto-brand'
+  
   return [
     'logo',
     `logo--${props.size}`,
     `logo--${props.variant}`,
+    brandClass,
     props.class
   ].filter(Boolean)
 })
 
-const logoStyles = computed(() => {
-  // Mapping des variantes vers les tokens CSS
-  const variantTokens: Record<LogoVariant, string> = {
-    'auto': '--theme-assets-logo-default',
-    'default': '--theme-assets-logo-default', 
-    'white': '--theme-assets-logo-white',
-    'small': '--theme-assets-logo-small',
-    'small-white': '--theme-assets-logo-small-white'
-  }
-
-  // Pour les petites variantes, on utilise les logos small en auto
-  const token = props.variant === 'auto' && (props.size === 'xs' || props.size === 'sm') 
-    ? '--theme-assets-logo-small'
-    : variantTokens[props.variant]
-
-  return {
-    backgroundImage: `var(${token})`
-  }
+// Brand name pour l'accessibilité
+const brandName = computed(() => {
+  if (props.brand === 'gifteo') return 'Gifteo'
+  if (props.brand === 'club-employes') return 'Club Employés'
+  return 'Logo' // pour auto-détection
 })
 </script>
 
-<style scoped>
+<style>
 .logo {
   /* Base styles */
   background-size: contain;
@@ -78,7 +65,83 @@ const logoStyles = computed(() => {
   transition: all 0.2s ease;
 }
 
-/* Tailles */
+/* === AUTO DETECTION VIA CSS === */
+
+/* Club Employés - Thème Light */
+body[data-theme*="club-employes"]:not([data-theme*="dark"]) .logo--auto-brand.logo--auto,
+body[data-theme*="club-employes"]:not([data-theme*="dark"]) .logo--club-employes.logo--auto,
+.logo--club-employes.logo--default {
+  background-image: var(--assets-logos-club-employes-default);
+}
+
+/* Club Employés - Thème Dark */
+body[data-theme*="club-employes"][data-theme*="dark"] .logo--auto-brand.logo--auto,
+body[data-theme*="club-employes"][data-theme*="dark"] .logo--club-employes.logo--auto,
+.logo--club-employes.logo--white {
+  background-image: var(--assets-logos-club-employes-white);
+}
+
+/* Club Employés - Small Light */
+body[data-theme*="club-employes"]:not([data-theme*="dark"]) .logo--auto-brand.logo--auto.logo--xs,
+body[data-theme*="club-employes"]:not([data-theme*="dark"]) .logo--auto-brand.logo--auto.logo--sm,
+body[data-theme*="club-employes"]:not([data-theme*="dark"]) .logo--club-employes.logo--auto.logo--xs,
+body[data-theme*="club-employes"]:not([data-theme*="dark"]) .logo--club-employes.logo--auto.logo--sm,
+.logo--club-employes.logo--small {
+  background-image: var(--assets-logos-club-employes-small);
+}
+
+/* Club Employés - Small Dark */
+body[data-theme*="club-employes"][data-theme*="dark"] .logo--auto-brand.logo--auto.logo--xs,
+body[data-theme*="club-employes"][data-theme*="dark"] .logo--auto-brand.logo--auto.logo--sm,
+body[data-theme*="club-employes"][data-theme*="dark"] .logo--club-employes.logo--auto.logo--xs,
+body[data-theme*="club-employes"][data-theme*="dark"] .logo--club-employes.logo--auto.logo--sm,
+.logo--club-employes.logo--small-white {
+  background-image: var(--assets-logos-club-employes-small-white);
+}
+
+/* Gifteo - Thème Light */
+body[data-theme*="gifteo"]:not([data-theme*="dark"]) .logo--auto-brand.logo--auto,
+body[data-theme*="gifteo"]:not([data-theme*="dark"]) .logo--gifteo.logo--auto,
+.logo--gifteo.logo--default {
+  background-image: var(--assets-logos-gifteo-default);
+}
+
+/* Gifteo - Thème Dark */
+body[data-theme*="gifteo"][data-theme*="dark"] .logo--auto-brand.logo--auto,
+body[data-theme*="gifteo"][data-theme*="dark"] .logo--gifteo.logo--auto,
+.logo--gifteo.logo--white {
+  background-image: var(--assets-logos-gifteo-white);
+}
+
+/* Gifteo - Small Light */
+body[data-theme*="gifteo"]:not([data-theme*="dark"]) .logo--auto-brand.logo--auto.logo--xs,
+body[data-theme*="gifteo"]:not([data-theme*="dark"]) .logo--auto-brand.logo--auto.logo--sm,
+body[data-theme*="gifteo"]:not([data-theme*="dark"]) .logo--gifteo.logo--auto.logo--xs,
+body[data-theme*="gifteo"]:not([data-theme*="dark"]) .logo--gifteo.logo--auto.logo--sm,
+.logo--gifteo.logo--small {
+  background-image: var(--assets-logos-gifteo-small);
+}
+
+/* Gifteo - Small Dark */
+body[data-theme*="gifteo"][data-theme*="dark"] .logo--auto-brand.logo--auto.logo--xs,
+body[data-theme*="gifteo"][data-theme*="dark"] .logo--auto-brand.logo--auto.logo--sm,
+body[data-theme*="gifteo"][data-theme*="dark"] .logo--gifteo.logo--auto.logo--xs,
+body[data-theme*="gifteo"][data-theme*="dark"] .logo--gifteo.logo--auto.logo--sm,
+.logo--gifteo.logo--small-white {
+  background-image: var(--assets-logos-gifteo-small-white);
+}
+
+/* Fallback par défaut (Club Employés Light) */
+.logo--auto-brand.logo--auto {
+  background-image: var(--assets-logos-club-employes-default);
+}
+
+.logo--auto-brand.logo--auto.logo--xs,
+.logo--auto-brand.logo--auto.logo--sm {
+  background-image: var(--assets-logos-club-employes-small);
+}
+
+/* === TAILLES === */
 .logo--xs {
   width: 60px;
   height: 15px;
@@ -109,21 +172,22 @@ const logoStyles = computed(() => {
   height: 70px;
 }
 
-/* Variantes spécifiques pour ajustements fins */
+/* Variantes small (ratio différent) */
 .logo--small,
 .logo--small-white {
-  /* Les logos small ont un ratio différent (plus carré) */
   aspect-ratio: 2 / 1;
 }
 
 .logo--xs.logo--small,
-.logo--xs.logo--small-white {
+.logo--xs.logo--small-white,
+.logo--xs.logo--auto.logo--xs {
   width: 30px;
   height: 30px;
 }
 
 .logo--sm.logo--small,
-.logo--sm.logo--small-white {
+.logo--sm.logo--small-white,
+.logo--sm.logo--auto.logo--sm {
   width: 40px;
   height: 40px;
 }

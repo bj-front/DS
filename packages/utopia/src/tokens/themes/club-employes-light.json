@@ -4,19 +4,19 @@
     "assets": {
       "logo": {
         "default": {
-          "value": "{assets.logos.club-employes.default}",
+          "value": "/assets/logos/club-employes/logo.svg",
           "type": "asset"
         },
         "small": {
-          "value": "{assets.logos.club-employes.small}",
+          "value": "/assets/logos/club-employes/logo-small.svg",
           "type": "asset"
         },
         "white": {
-          "value": "{assets.logos.club-employes.white}",
+          "value": "/assets/logos/club-employes/logo-white.svg",
           "type": "asset"
         },
         "small-white": {
-          "value": "{assets.logos.club-employes.small-white}",
+          "value": "/assets/logos/club-employes/logo-small-white.svg",
           "type": "asset"
         }
       }
@@ -336,4 +336,4 @@
       }
     }
   }
-} 
+}

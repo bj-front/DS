@@ -5,17 +5,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { 
-  ThemeProvider,
-  clubEmployesLight
-} from '@club-employes/utopia'
+import { ThemeProvider } from '@club-employes/utopia'
 
 // Import the shared layout component
 import AppLayout from './domains/shared/components/AppLayout.vue'
 
-// Theme management (placeholder for future theme switching)
-const currentTheme = ref(clubEmployesLight)
+// Import theme management composable
+import { useTheme } from '@club-employes/utopia'
+
+// Use theme composable for global theme management
+const { currentTheme } = useTheme()
 
 // Global styles and theme will be managed here
 </script>

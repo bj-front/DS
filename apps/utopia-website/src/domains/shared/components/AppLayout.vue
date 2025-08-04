@@ -5,7 +5,7 @@
       <nav class="nav-container">
         <div class="nav-brand">
           <router-link to="/" class="brand-link">
-            <Logo variant="primary" size="small" />
+            <Logo size="xs" />
             <span class="brand-text">Utopia</span>
           </router-link>
         </div>
@@ -27,15 +27,36 @@
           </router-link>
         </div>
 
-        <!-- Theme Toggle (placeholder for later) -->
+        <!-- Theme Switch -->
         <div class="nav-actions">
+          <!-- Brand buttons -->
+          <div class="brand-buttons">
+            <button 
+              v-for="brand in availableBrands" 
+              :key="brand.key"
+              @click="setBrand(brand.key)"
+              class="brand-btn"
+              :class="{ 'active': currentBrand === brand.key }"
+              :title="brand.name"
+            >
+              <div class="brand-logo">
+                <Logo :brand="brand.key" variant="small" size="xs" />
+              </div>
+            </button>
+          </div>
+          
+          <!-- Mode toggle -->
           <Button 
             variant="ghost" 
             size="small"
-            @click="toggleTheme"
-            aria-label="Changer de thème"
+            @click="toggleMode"
+            :aria-label="`Basculer vers le mode ${currentMode === 'light' ? 'sombre' : 'clair'}`"
+            class="mode-toggle"
+            :class="{ 'dark': currentMode === 'dark' }"
           >
-            <Icon name="sun" size="small" />
+            <span class="mode-icon">
+              {{ currentMode === 'light' ? '🌙' : '☀️' }}
+            </span>
           </Button>
         </div>
       </nav>
@@ -50,7 +71,7 @@
     <footer class="app-footer">
       <div class="footer-content">
         <div class="footer-brand">
-          <Logo variant="primary" size="small" />
+          <Logo variant="small" size="xs" />
           <span class="footer-text">Utopia Design System</span>
         </div>
         <div class="footer-links">
@@ -67,16 +88,21 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from '@club-employes/utopia'
+import { Button, Logo, useFavicon, useTheme } from '@club-employes/utopia';
 
-// Import temporaire - à remplacer par les vrais composants
-const Logo = { template: '<div class="logo">LOGO</div>' }
-const Icon = { template: '<span class="icon"><slot /></span>' }
+// Use theme composable
+const { 
+  currentBrand, 
+  currentMode, 
+  availableBrands, 
+  toggleMode, 
+  setBrand 
+} = useTheme()
 
-// Placeholder for theme toggle functionality
-const toggleTheme = (): void => {
-  // TODO: Implémenter le toggle de thème
-}
+// Use favicon composable for dynamic favicon
+useFavicon()
+
+
 </script>
 
 <style scoped>
@@ -157,6 +183,91 @@ const toggleTheme = (): void => {
   display: flex;
   align-items: center;
   gap: var(--spacing-4);
+}
+
+/* Brand Buttons */
+.brand-buttons {
+  display: flex;
+  gap: var(--spacing-1);
+}
+
+.brand-btn {
+  width: 36px;
+  height: 36px;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-full);
+  background: var(--theme-colors-slate-100);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  opacity: 0.95;
+}
+
+.brand-btn:hover {
+  background: var(--theme-colors-primary-50);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.brand-btn.active {
+  border-color: var(--theme-colors-primary-500);
+  background: var(--theme-colors-primary-500);
+  opacity: 1;
+  box-shadow: 0 0 0 2px var(--theme-colors-primary-200);
+}
+
+/* Force logo blanc quand le bouton est actif (fond bleu) */
+.brand-btn.active .brand-logo :deep(.logo) {
+  filter: brightness(0) invert(1);
+}
+
+.brand-logo {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.brand-logo :deep(.logo) {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 24px;
+  max-height: 24px;
+}
+
+/* Mode Toggle */
+.mode-toggle {
+  padding: var(--spacing-2) !important;
+  min-width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: var(--border-radius-full) !important;
+  transition: all 0.2s ease !important;
+}
+
+.mode-toggle.dark {
+  background: var(--theme-colors-primary-500) !important;
+  border-color: var(--theme-colors-primary-500) !important;
+  color: white !important;
+  box-shadow: 0 0 0 2px var(--theme-colors-primary-200) !important;
+}
+
+.mode-toggle:hover {
+  transform: scale(1.05) !important;
+}
+
+.mode-icon {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Main Content */
@@ -246,6 +357,26 @@ const toggleTheme = (): void => {
   
   .nav-actions {
     gap: var(--spacing-2);
+  }
+  
+  .brand-btn,
+  .mode-toggle {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  
+  .brand-btn {
+    padding: 2px !important;
+  }
+  
+  .brand-logo {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  
+  .brand-logo :deep(.logo) {
+    max-width: 20px !important;
+    max-height: 20px !important;
   }
 }
 </style>

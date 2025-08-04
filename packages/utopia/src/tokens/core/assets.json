@@ -3,48 +3,48 @@
     "logos": {
       "club-employes": {
         "default": {
-          "value": "/src/assets/logos/club-employes/logo.svg",
+          "value": "/assets/logos/club-employes/logo.svg",
           "type": "asset",
           "description": "Logo principal Club Employés"
         },
         "small": {
-          "value": "/src/assets/logos/club-employes/logo-small.svg",
+          "value": "/assets/logos/club-employes/logo-small.svg",
           "type": "asset",
           "description": "Logo Club Employés version compacte"
         },
         "white": {
-          "value": "/src/assets/logos/club-employes/logo-white.svg",
+          "value": "/assets/logos/club-employes/logo-white.svg",
           "type": "asset",
           "description": "Logo Club Employés version blanche (sur fond sombre)"
         },
         "small-white": {
-          "value": "/src/assets/logos/club-employes/logo-small-white.svg",
+          "value": "/assets/logos/club-employes/logo-small-white.svg",
           "type": "asset",
           "description": "Logo Club Employés version compacte et blanche"
         }
       },
       "gifteo": {
         "default": {
-          "value": "/src/assets/logos/gifteo/logo.svg",
+          "value": "/assets/logos/gifteo/logo.svg",
           "type": "asset",
           "description": "Logo principal Gifteo"
         },
         "small": {
-          "value": "/src/assets/logos/gifteo/logo-small.svg",
+          "value": "/assets/logos/gifteo/logo-small.svg",
           "type": "asset",
           "description": "Logo Gifteo version compacte"
         },
         "white": {
-          "value": "/src/assets/logos/gifteo/logo-white.svg",
+          "value": "/assets/logos/gifteo/logo-white.svg",
           "type": "asset",
           "description": "Logo Gifteo version blanche (sur fond sombre)"
         },
         "small-white": {
-          "value": "/src/assets/logos/gifteo/logo-small-white.svg",
+          "value": "/assets/logos/gifteo/logo-small-white.svg",
           "type": "asset",
           "description": "Logo Gifteo version compacte et blanche"
         }
       }
     }
   }
-} 
+}
