@@ -1,5 +1,5 @@
 // Type definitions for @club-employes/utopia
-import { DefineComponent, ComputedRef } from 'vue'
+import { ComputedRef, DefineComponent } from 'vue'
 
 // Component prop types
 export interface BadgeProps {
@@ -21,7 +21,10 @@ export interface IconProps {
 
 export interface LogoProps {
   variant?: 'auto' | 'default' | 'white' | 'small' | 'small-white'
-  size?: 'small' | 'medium' | 'large'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
+  brand?: 'club-employes' | 'gifteo'
+  alt?: string
+  class?: string
 }
 
 export interface ThemeConfig {
@@ -63,8 +66,15 @@ export interface UseThemeReturn {
   setMode: (mode: ThemeMode) => void
 }
 
+export interface UseFaviconReturn {
+  faviconUrl: ComputedRef<string>
+  refreshFavicon: () => void
+  updateFavicon: (faviconUrl: string) => void
+}
+
 // Composable exports
 export declare function useTheme(): UseThemeReturn
+export declare function useFavicon(): UseFaviconReturn
 
 // Type exports
 export type BadgeVariant = 'default' | 'success' | 'warning' | 'danger'
@@ -75,4 +85,5 @@ export type IconName = string
 export type IconSize = 'small' | 'medium' | 'large'
 export type IconColor = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral' | 'current'
 export type LogoVariant = 'auto' | 'default' | 'white' | 'small' | 'small-white'
-export type LogoSize = 'small' | 'medium' | 'large'
+export type LogoSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
+export type LogoBrand = 'club-employes' | 'gifteo'

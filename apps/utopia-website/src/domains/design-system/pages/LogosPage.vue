@@ -11,67 +11,102 @@
     <section class="section">
       <h2 class="section-title">🏢 Club Employés</h2>
       <p class="section-description">
-        Logos et variations pour la marque Club Employés.
+        Logos et variations pour la marque Club Employés disponibles via le composant Logo du design system.
       </p>
       
       <div class="logos-grid">
         <div class="logo-card">
           <div class="logo-preview">
-            <!-- Placeholder pour le logo -->
-            <div class="logo-placeholder club-employes">
-              <span>CLUB EMPLOYÉS</span>
-            </div>
+            <Logo brand="club-employes" variant="default" size="lg" />
           </div>
           <div class="logo-info">
             <h4 class="logo-name">Logo principal</h4>
-            <p class="logo-description">Version complète du logo avec texte</p>
-            <div class="logo-actions">
-              <Button variant="outline" size="small">
-                Télécharger SVG
-              </Button>
-              <Button variant="ghost" size="small">
-                Télécharger PNG
-              </Button>
+            <p class="logo-description">Version complète du logo</p>
+            <div class="code-snippet">
+              <div class="code-with-copy">
+                <code>&lt;Logo brand="club-employes" variant="default" size="lg" /&gt;</code>
+                <Button 
+                  variant="ghost" 
+                  size="small" 
+                  @click="copyToClipboard('&lt;Logo brand=&quot;club-employes&quot; variant=&quot;default&quot; size=&quot;lg&quot; /&gt;')"
+                  class="copy-btn"
+                  aria-label="Copier le code du composant"
+                >
+                  📋
+                </Button>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="logo-card">
           <div class="logo-preview">
-            <div class="logo-placeholder club-employes-small">
-              <span>CE</span>
-            </div>
+            <Logo brand="club-employes" variant="small" size="md" />
           </div>
           <div class="logo-info">
             <h4 class="logo-name">Logo compact</h4>
             <p class="logo-description">Version compacte pour petits espaces</p>
-            <div class="logo-actions">
-              <Button variant="outline" size="small">
-                Télécharger SVG
-              </Button>
-              <Button variant="ghost" size="small">
-                Télécharger PNG
-              </Button>
+            <div class="code-snippet">
+              <div class="code-with-copy">
+                <code>&lt;Logo brand="club-employes" variant="small" size="md" /&gt;</code>
+                <Button 
+                  variant="ghost" 
+                  size="small" 
+                  @click="copyToClipboard('&lt;Logo brand=&quot;club-employes&quot; variant=&quot;small&quot; size=&quot;md&quot; /&gt;')"
+                  class="copy-btn"
+                  aria-label="Copier le code du composant"
+                >
+                  📋
+                </Button>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="logo-card dark">
           <div class="logo-preview">
-            <div class="logo-placeholder club-employes-white">
-              <span>CLUB EMPLOYÉS</span>
-            </div>
+            <Logo brand="club-employes" variant="white" size="lg" />
           </div>
           <div class="logo-info">
             <h4 class="logo-name">Logo blanc</h4>
             <p class="logo-description">Version pour fonds sombres</p>
-            <div class="logo-actions">
-              <Button variant="outline" size="small">
-                Télécharger SVG
-              </Button>
-              <Button variant="ghost" size="small">
-                Télécharger PNG
-              </Button>
+            <div class="code-snippet">
+              <div class="code-with-copy">
+                <code>&lt;Logo brand="club-employes" variant="white" size="lg" /&gt;</code>
+                <Button 
+                  variant="ghost" 
+                  size="small" 
+                  @click="copyToClipboard('&lt;Logo brand=&quot;club-employes&quot; variant=&quot;white&quot; size=&quot;lg&quot; /&gt;')"
+                  class="copy-btn"
+                  aria-label="Copier le code du composant"
+                >
+                  📋
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="logo-card">
+          <div class="logo-preview">
+            <Logo size="lg" />
+          </div>
+          <div class="logo-info">
+            <h4 class="logo-name">Logo intelligent</h4>
+            <p class="logo-description">S'adapte automatiquement au thème et à la marque</p>
+            <div class="code-snippet">
+              <div class="code-with-copy">
+                <code>&lt;Logo size="lg" /&gt;</code>
+                <Button 
+                  variant="ghost" 
+                  size="small" 
+                  @click="copyToClipboard('&lt;Logo size=&quot;lg&quot; /&gt;')"
+                  class="copy-btn"
+                  aria-label="Copier le code du composant"
+                >
+                  📋
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -82,68 +117,155 @@
     <section class="section">
       <h2 class="section-title">❤️ Gifteo</h2>
       <p class="section-description">
-        Logos et variations pour la marque Gifteo.
+        Logos et variations pour la marque Gifteo disponibles via le composant Logo du design system.
       </p>
       
       <div class="logos-grid">
         <div class="logo-card">
           <div class="logo-preview">
-            <div class="logo-placeholder gifteo">
-              <span>❤️ GIFTEO</span>
-            </div>
+            <Logo brand="gifteo" variant="default" size="lg" />
           </div>
           <div class="logo-info">
             <h4 class="logo-name">Logo principal</h4>
-            <p class="logo-description">Version complète du logo avec icône</p>
-            <div class="logo-actions">
-              <Button variant="outline" size="small">
-                Télécharger SVG
-              </Button>
-              <Button variant="ghost" size="small">
-                Télécharger PNG
-              </Button>
+            <p class="logo-description">Version complète du logo</p>
+            <div class="code-snippet">
+              <div class="code-with-copy">
+                <code>&lt;Logo brand="gifteo" variant="default" size="lg" /&gt;</code>
+                <Button 
+                  variant="ghost" 
+                  size="small" 
+                  @click="copyToClipboard('&lt;Logo brand=&quot;gifteo&quot; variant=&quot;default&quot; size=&quot;lg&quot; /&gt;')"
+                  class="copy-btn"
+                  aria-label="Copier le code du composant"
+                >
+                  📋
+                </Button>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="logo-card">
           <div class="logo-preview">
-            <div class="logo-placeholder gifteo-small">
-              <span>❤️</span>
-            </div>
+            <Logo brand="gifteo" variant="small" size="md" />
           </div>
           <div class="logo-info">
             <h4 class="logo-name">Logo compact</h4>
-            <p class="logo-description">Version icône seule</p>
-            <div class="logo-actions">
-              <Button variant="outline" size="small">
-                Télécharger SVG
-              </Button>
-              <Button variant="ghost" size="small">
-                Télécharger PNG
-              </Button>
+            <p class="logo-description">Version compacte</p>
+            <div class="code-snippet">
+              <div class="code-with-copy">
+                <code>&lt;Logo brand="gifteo" variant="small" size="md" /&gt;</code>
+                <Button 
+                  variant="ghost" 
+                  size="small" 
+                  @click="copyToClipboard('&lt;Logo brand=&quot;gifteo&quot; variant=&quot;small&quot; size=&quot;md&quot; /&gt;')"
+                  class="copy-btn"
+                  aria-label="Copier le code du composant"
+                >
+                  📋
+                </Button>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="logo-card dark">
           <div class="logo-preview">
-            <div class="logo-placeholder gifteo-white">
-              <span>❤️ GIFTEO</span>
-            </div>
+            <Logo brand="gifteo" variant="white" size="lg" />
           </div>
           <div class="logo-info">
             <h4 class="logo-name">Logo blanc</h4>
             <p class="logo-description">Version pour fonds sombres</p>
-            <div class="logo-actions">
-              <Button variant="outline" size="small">
-                Télécharger SVG
-              </Button>
-              <Button variant="ghost" size="small">
-                Télécharger PNG
-              </Button>
+            <div class="code-snippet">
+              <div class="code-with-copy">
+                <code>&lt;Logo brand="gifteo" variant="white" size="lg" /&gt;</code>
+                <Button 
+                  variant="ghost" 
+                  size="small" 
+                  @click="copyToClipboard('&lt;Logo brand=&quot;gifteo&quot; variant=&quot;white&quot; size=&quot;lg&quot; /&gt;')"
+                  class="copy-btn"
+                  aria-label="Copier le code du composant"
+                >
+                  📋
+                </Button>
+              </div>
             </div>
           </div>
+        </div>
+
+        <div class="logo-card">
+          <div class="logo-preview">
+            <Logo size="lg" />
+          </div>
+          <div class="logo-info">
+            <h4 class="logo-name">Logo intelligent</h4>
+            <p class="logo-description">S'adapte automatiquement au thème et à la marque</p>
+            <div class="code-snippet">
+              <div class="code-with-copy">
+                <code>&lt;Logo size="lg" /&gt;</code>
+                <Button 
+                  variant="ghost" 
+                  size="small" 
+                  @click="copyToClipboard('&lt;Logo size=&quot;lg&quot; /&gt;')"
+                  class="copy-btn"
+                  aria-label="Copier le code du composant"
+                >
+                  📋
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exemples d'utilisation -->
+    <section class="section">
+      <h2 class="section-title">💻 Exemples d'utilisation</h2>
+      <p class="section-description">
+        Comment utiliser les tokens de logos dans votre code.
+      </p>
+      
+      <div class="example-grid">
+        <div class="example-card">
+          <h3 class="example-title">Composant Vue.js</h3>
+          <pre class="code-block"><code>&lt;template&gt;
+  &lt;!-- Logo intelligent (recommandé) --&gt;
+  &lt;Logo /&gt;
+  
+  &lt;!-- Avec taille personnalisée --&gt;
+  &lt;Logo size="lg" /&gt;
+  
+  &lt;!-- Logo spécifique pour une autre marque --&gt;
+  &lt;Logo brand="gifteo" /&gt;
+  
+  &lt;!-- Logo blanc forcé --&gt;
+  &lt;Logo variant="white" /&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { Logo } from '@club-employes/utopia'
+&lt;/script&gt;</code></pre>
+        </div>
+
+        <div class="example-card">
+          <h3 class="example-title">Props disponibles</h3>
+          <pre class="code-block"><code>interface LogoProps {
+  // Marque (détectée automatiquement depuis le thème)
+  brand?: 'club-employes' | 'gifteo'
+  
+  // Variante (auto = s'adapte au thème dark/light)
+  variant?: 'auto' | 'default' | 'white' | 'small' | 'small-white'
+  
+  // Taille
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
+  
+  // Accessibilité
+  alt?: string
+}
+
+// Usage le plus simple :
+&lt;Logo /&gt;  // ✨ Détecte tout automatiquement !</code></pre>
         </div>
       </div>
     </section>
@@ -202,7 +324,18 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from '@club-employes/utopia'
+import { Button, Logo } from '@club-employes/utopia';
+
+// Copy to clipboard function
+const copyToClipboard = async (text: string): Promise<void> => {
+  try {
+    await navigator.clipboard.writeText(text);
+    // You could add a toast notification here
+    console.log('Copied to clipboard:', text);
+  } catch (err) {
+    console.error('Failed to copy: ', err);
+  }
+};
 </script>
 
 <style scoped>
@@ -281,61 +414,7 @@ import { Button } from '@club-employes/utopia'
   justify-content: center;
 }
 
-.logo-placeholder {
-  padding: var(--spacing-4) var(--spacing-6);
-  border-radius: var(--border-radius-md);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-lg);
-  border: 2px dashed var(--theme-colors-border-default);
-}
 
-.club-employes {
-  color: var(--theme-colors-primary-600);
-  background: var(--theme-colors-primary-50);
-  border-color: var(--theme-colors-primary-300);
-}
-
-.club-employes-small {
-  color: var(--theme-colors-primary-600);
-  background: var(--theme-colors-primary-50);
-  border-color: var(--theme-colors-primary-300);
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-
-.club-employes-white {
-  color: white;
-  background: var(--theme-colors-primary-600);
-  border-color: var(--theme-colors-primary-400);
-}
-
-.gifteo {
-  color: var(--theme-colors-danger-600);
-  background: var(--theme-colors-danger-50);
-  border-color: var(--theme-colors-danger-300);
-}
-
-.gifteo-small {
-  color: var(--theme-colors-danger-600);
-  background: var(--theme-colors-danger-50);
-  border-color: var(--theme-colors-danger-300);
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-
-.gifteo-white {
-  color: white;
-  background: var(--theme-colors-danger-600);
-  border-color: var(--theme-colors-danger-400);
-}
 
 .logo-info {
   padding: var(--spacing-6);
@@ -359,9 +438,73 @@ import { Button } from '@club-employes/utopia'
   margin-bottom: var(--spacing-4);
 }
 
-.logo-actions {
+.code-with-copy {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: var(--spacing-2);
+}
+
+.copy-btn {
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.copy-btn:hover {
+  opacity: 1;
+}
+
+
+
+.code-snippet {
+  margin-bottom: var(--spacing-4);
+  padding: var(--spacing-2);
+  background: var(--theme-colors-surface-card);
+  border: 1px solid var(--theme-colors-border-default);
+  border-radius: var(--border-radius-sm);
+}
+
+.code-snippet code {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: var(--font-size-sm);
+  color: var(--theme-colors-primary-600);
+  word-break: break-all;
+}
+
+.example-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
+}
+
+.example-card {
+  background: var(--theme-colors-surface-card);
+  border: 1px solid var(--theme-colors-border-default);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-6);
+}
+
+.example-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--theme-colors-text-primary);
+  margin-bottom: var(--spacing-4);
+}
+
+.code-block {
+  background: var(--theme-colors-slate-50);
+  border: 1px solid var(--theme-colors-border-default);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-4);
+  overflow-x: auto;
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.code-block code {
+  color: var(--theme-colors-text-primary);
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
 }
 
 .guidelines-grid {
@@ -491,8 +634,6 @@ import { Button } from '@club-employes/utopia'
     grid-template-columns: 1fr;
   }
   
-  .logo-actions {
-    flex-direction: column;
-  }
+
 }
 </style>

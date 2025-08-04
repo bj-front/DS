@@ -1,11 +1,7 @@
 import { ref, computed } from 'vue'
-import { 
-  clubEmployesLight, 
-  clubEmployesDark,
-  gifteoLight, 
-  gifteoDark,
-  type ThemeConfig
-} from '../index'
+import { clubEmployesLight, clubEmployesDark } from '../themes/club-employes'
+import { gifteoLight, gifteoDark } from '../themes/gifteo'
+import type { ThemeConfig } from '../theme-provider'
 
 export type BrandTheme = 'club-employes' | 'gifteo'
 export type ThemeMode = 'light' | 'dark'

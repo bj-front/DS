@@ -5,7 +5,7 @@
       <nav class="nav-container">
         <div class="nav-brand">
           <router-link to="/" class="brand-link">
-            <Logo variant="small" size="small" />
+            <Logo size="xs" />
             <span class="brand-text">Utopia</span>
           </router-link>
         </div>
@@ -39,7 +39,9 @@
               :class="{ 'active': currentBrand === brand.key }"
               :title="brand.name"
             >
-              <span class="brand-icon">{{ getBrandIcon(brand.key) }}</span>
+              <div class="brand-logo">
+                <Logo :brand="brand.key" variant="small" size="xs" />
+              </div>
             </button>
           </div>
           
@@ -69,7 +71,7 @@
     <footer class="app-footer">
       <div class="footer-content">
         <div class="footer-brand">
-          <Logo variant="small" size="small" />
+          <Logo variant="small" size="xs" />
           <span class="footer-text">Utopia Design System</span>
         </div>
         <div class="footer-links">
@@ -86,11 +88,7 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from '@club-employes/utopia'
-import { useTheme, type BrandTheme } from '@club-employes/utopia'
-
-// Import du composant Logo depuis le design system
-import { Logo } from '@club-employes/utopia'
+import { Button, Logo, useFavicon, useTheme } from '@club-employes/utopia';
 
 // Use theme composable
 const { 
@@ -101,10 +99,10 @@ const {
   setBrand 
 } = useTheme()
 
-// Get brand icon
-const getBrandIcon = (brandKey: BrandTheme): string => {
-  return brandKey === 'club-employes' ? '🏢' : '❤️'
-}
+// Use favicon composable for dynamic favicon
+useFavicon()
+
+
 </script>
 
 <style scoped>
@@ -198,31 +196,48 @@ const getBrandIcon = (brandKey: BrandTheme): string => {
   height: 36px;
   border: 2px solid transparent;
   border-radius: var(--border-radius-full);
-  background: transparent;
-  color: var(--theme-colors-text-secondary);
+  background: var(--theme-colors-slate-100);
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--font-size-lg);
+  padding: 4px;
+  opacity: 0.95;
 }
 
 .brand-btn:hover {
-  background: var(--theme-colors-surface-background);
-  color: var(--theme-colors-text-primary);
+  background: var(--theme-colors-primary-50);
+  opacity: 1;
   transform: scale(1.05);
 }
 
 .brand-btn.active {
   border-color: var(--theme-colors-primary-500);
   background: var(--theme-colors-primary-500);
-  color: white;
+  opacity: 1;
   box-shadow: 0 0 0 2px var(--theme-colors-primary-200);
 }
 
-.brand-icon {
-  font-size: inherit;
+/* Force logo blanc quand le bouton est actif (fond bleu) */
+.brand-btn.active .brand-logo :deep(.logo) {
+  filter: brightness(0) invert(1);
+}
+
+.brand-logo {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.brand-logo :deep(.logo) {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 24px;
+  max-height: 24px;
 }
 
 /* Mode Toggle */
@@ -348,7 +363,20 @@ const getBrandIcon = (brandKey: BrandTheme): string => {
   .mode-toggle {
     width: 32px !important;
     height: 32px !important;
-    font-size: var(--font-size-base) !important;
+  }
+  
+  .brand-btn {
+    padding: 2px !important;
+  }
+  
+  .brand-logo {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  
+  .brand-logo :deep(.logo) {
+    max-width: 20px !important;
+    max-height: 20px !important;
   }
 }
 </style>

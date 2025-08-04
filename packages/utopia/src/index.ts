@@ -4,14 +4,14 @@ export type { ThemeConfig, ThemeProviderProps } from './theme-provider'
 
 // Components
 export { Badge, Button, Icon, Logo } from './components/atoms'
-export type { BadgeVariant, BadgeSize, ButtonVariant, ButtonSize, IconName, IconSize, IconColor, LogoVariant, LogoSize } from './components/atoms'
+export type { BadgeSize, BadgeVariant, ButtonSize, ButtonVariant, IconColor, IconName, IconSize, LogoBrand, LogoSize, LogoVariant } from './components/atoms'
 
 // Themes
-export { clubEmployesLight, clubEmployesDark } from './themes/club-employes'
-export { gifteoLight, gifteoDark } from './themes/gifteo'
+export { clubEmployesDark, clubEmployesLight } from './themes/club-employes'
+export { gifteoDark, gifteoLight } from './themes/gifteo'
 
 // Composables
-export { useTheme } from './composables/useTheme'
+export { useFavicon, useTheme } from './composables'
 export type { BrandTheme, ThemeMode } from './composables/useTheme'
 
 // Design Tokens (JavaScript exports)
