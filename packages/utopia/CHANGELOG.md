@@ -1,11 +1,26 @@
 # @club-employes/utopia
 
-## 2.10.1
+## 2.11.0
+
+### Minor Changes
+
+- fd51aea: Add new components
+
+  - Components changed: 1
+  - Tokens changed: 0
+  - New components: 1
+
+- 06ba0f7: Add new components
+
+  - Components changed: 1
+  - Tokens changed: 0
+  - New components: 1
 
 ### Patch Changes
 
 - 9e2764e: Update components from feature branch feat/auto-deploy
 - 1e8246a: Update components from feature branch feat/auto-deploy
+- 53ebc13: Update components from feature branch feat/auto-deploy
 
 ## 2.10.0
 
