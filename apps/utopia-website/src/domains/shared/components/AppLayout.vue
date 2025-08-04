@@ -121,7 +121,7 @@ useFavicon()
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: blur(var(--spacing-2));
+  backdrop-filter: blur(13px);
   width: 100%;
 }
 
