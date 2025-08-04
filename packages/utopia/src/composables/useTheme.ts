@@ -4,14 +4,11 @@ import {
   clubEmployesDark,
   gifteoLight, 
   gifteoDark,
-  type ThemeConfig as UtopiaThemeConfig
-} from '@club-employes/utopia'
+  type ThemeConfig
+} from '../index'
 
 export type BrandTheme = 'club-employes' | 'gifteo'
 export type ThemeMode = 'light' | 'dark'
-
-// Re-export the ThemeConfig type from utopia
-export type { UtopiaThemeConfig as ThemeConfig }
 
 // Global theme state
 const currentBrand = ref<BrandTheme>('club-employes')
@@ -32,7 +29,7 @@ const themes = {
 } as const
 
 export function useTheme(): {
-  currentTheme: import('vue').ComputedRef<UtopiaThemeConfig>
+  currentTheme: import('vue').ComputedRef<ThemeConfig>
   currentBrand: import('vue').ComputedRef<BrandTheme>
   currentMode: import('vue').ComputedRef<ThemeMode>
   currentBrandName: import('vue').ComputedRef<string>

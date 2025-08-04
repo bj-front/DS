@@ -1,5 +1,5 @@
 // Type definitions for @club-employes/utopia
-import { DefineComponent } from 'vue'
+import { DefineComponent, ComputedRef } from 'vue'
 
 // Component prop types
 export interface BadgeProps {
@@ -46,6 +46,25 @@ export declare const clubEmployesLight: ThemeConfig
 export declare const clubEmployesDark: ThemeConfig
 export declare const gifteoLight: ThemeConfig
 export declare const gifteoDark: ThemeConfig
+
+// Composable types
+export type BrandTheme = 'club-employes' | 'gifteo'
+export type ThemeMode = 'light' | 'dark'
+
+export interface UseThemeReturn {
+  currentTheme: ComputedRef<ThemeConfig>
+  currentBrand: ComputedRef<BrandTheme>
+  currentMode: ComputedRef<ThemeMode>
+  currentBrandName: ComputedRef<string>
+  availableBrands: ComputedRef<Array<{ key: BrandTheme; name: string }>>
+  toggleBrand: () => void
+  toggleMode: () => void
+  setBrand: (brand: BrandTheme) => void
+  setMode: (mode: ThemeMode) => void
+}
+
+// Composable exports
+export declare function useTheme(): UseThemeReturn
 
 // Type exports
 export type BadgeVariant = 'default' | 'success' | 'warning' | 'danger'

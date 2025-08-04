@@ -87,8 +87,7 @@
 
 <script setup lang="ts">
 import { Button } from '@club-employes/utopia'
-import { useTheme } from '../composables/useTheme'
-import type { BrandTheme } from '../composables/useTheme'
+import { useTheme, type BrandTheme } from '@club-employes/utopia'
 
 // Import du composant Logo depuis le design system
 import { Logo } from '@club-employes/utopia'

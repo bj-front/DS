@@ -10,6 +10,10 @@ export type { BadgeVariant, BadgeSize, ButtonVariant, ButtonSize, IconName, Icon
 export { clubEmployesLight, clubEmployesDark } from './themes/club-employes'
 export { gifteoLight, gifteoDark } from './themes/gifteo'
 
+// Composables
+export { useTheme } from './composables/useTheme'
+export type { BrandTheme, ThemeMode } from './composables/useTheme'
+
 // Design Tokens (JavaScript exports)
 // Note: Commented temporarily to fix TypeScript issues
 // @ts-ignore - Generated file

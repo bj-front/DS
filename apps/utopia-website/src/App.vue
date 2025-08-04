@@ -11,7 +11,7 @@ import { ThemeProvider } from '@club-employes/utopia'
 import AppLayout from './domains/shared/components/AppLayout.vue'
 
 // Import theme management composable
-import { useTheme } from './domains/shared/composables/useTheme'
+import { useTheme } from '@club-employes/utopia'
 
 // Use theme composable for global theme management
 const { currentTheme } = useTheme()
