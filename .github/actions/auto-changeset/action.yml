@@ -20,7 +20,7 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - name: 🔍 Check if changeset directory exists
+    - name: "Check if changeset directory exists"
       shell: bash
       run: |
         if [ ! -d ".changeset" ]; then
@@ -29,7 +29,7 @@ runs:
           exit 1
         fi
 
-    - name: 🔍 Analyze changes in design system
+    - name: "Analyze changes in design system"
       id: analyze
       shell: bash
       run: |
@@ -70,7 +70,7 @@ runs:
         echo "change_type=$CHANGE_TYPE" >> $GITHUB_OUTPUT
         echo "🎯 Final change type: $CHANGE_TYPE"
 
-    - name: 🔍 Check for existing changeset
+    - name: "Check for existing changeset"
       id: check-changeset
       if: steps.analyze.outputs.has_changes == 'true'
       shell: bash
@@ -98,7 +98,7 @@ runs:
           echo "📭 No existing changesets found"
         fi
 
-    - name: 📝 Create changeset
+    - name: "Create changeset"
       id: create-changeset
       if: steps.analyze.outputs.has_changes == 'true' && steps.check-changeset.outputs.has_utopia_changeset == 'false'
       shell: bash
@@ -130,13 +130,11 @@ runs:
         esac
         
         # Create changeset content
-        cat > "$CHANGESET_FILE" << EOF
----
-"@club-employes/utopia": $CHANGE_TYPE
----
-
-$DESCRIPTION
-EOF
+        echo "---" > "$CHANGESET_FILE"
+        echo "\"@club-employes/utopia\": $CHANGE_TYPE" >> "$CHANGESET_FILE"
+        echo "---" >> "$CHANGESET_FILE"
+        echo "" >> "$CHANGESET_FILE"
+        echo "$DESCRIPTION" >> "$CHANGESET_FILE"
         
         echo "✅ Created changeset: $CHANGESET_FILE"
         echo "📄 Content:"
@@ -145,7 +143,7 @@ EOF
         echo "changeset-created=true" >> $GITHUB_OUTPUT
         echo "changeset-file=$CHANGESET_FILE" >> $GITHUB_OUTPUT
 
-    - name: 🚀 Commit changeset
+    - name: "Commit changeset"
       if: steps.create-changeset.outputs.changeset-created == 'true'
       shell: bash
       run: |
@@ -172,7 +170,7 @@ EOF
           fi
         done
 
-    - name: 📊 Output summary
+    - name: "Output summary"
       shell: bash
       run: |
         if [ "${{ steps.analyze.outputs.has_changes }}" == "true" ]; then
