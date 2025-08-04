@@ -1,0 +1,189 @@
+name: 'Auto Changeset'
+description: 'Automatically create changesets for design system changes'
+
+inputs:
+  github-token:
+    description: 'GitHub token with PR permissions'
+    required: true
+  branch-name:
+    description: 'Current branch name'
+    required: true
+
+outputs:
+  changeset-created:
+    description: 'Whether a changeset was created'
+    value: ${{ steps.create-changeset.outputs.changeset-created }}
+  change-type:
+    description: 'Type of change detected (patch, minor, major)'
+    value: ${{ steps.analyze.outputs.change_type }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 🔍 Check if changeset directory exists
+      shell: bash
+      run: |
+        if [ ! -d ".changeset" ]; then
+          echo "❌ .changeset directory not found!"
+          echo "Please run 'npm run changeset init' to initialize changeset"
+          exit 1
+        fi
+
+    - name: 🔍 Analyze changes in design system
+      id: analyze
+      shell: bash
+      run: |
+        # Get list of changed files in packages/utopia
+        CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep "^packages/utopia/" | grep -v "dist/" | grep -v "node_modules/" || true)
+        
+        if [ -z "$CHANGED_FILES" ]; then
+          echo "No relevant changes detected in packages/utopia"
+          echo "has_changes=false" >> $GITHUB_OUTPUT
+          exit 0
+        fi
+        
+        echo "has_changes=true" >> $GITHUB_OUTPUT
+        echo "📋 Changed files in design system:"
+        echo "$CHANGED_FILES"
+        
+        # Determine change type based on files
+        CHANGE_TYPE="patch"
+        
+        # Check for minor changes (new components, new features)
+        if echo "$CHANGED_FILES" | grep -E "(src/components/.*\.vue|src/composables/.*\.ts|src/types\.ts|src/index\.ts)" | grep -v test; then
+          CHANGE_TYPE="minor"
+          echo "🆕 Detected new components or features → MINOR change"
+        fi
+        
+        # Check for token changes (usually minor)
+        if echo "$CHANGED_FILES" | grep -q "src/tokens/"; then
+          CHANGE_TYPE="minor"
+          echo "🎨 Detected token changes → MINOR change"
+        fi
+        
+        # Check for breaking changes
+        if echo "$CHANGED_FILES" | grep -qE "(BREAKING|breaking)" || git log --oneline origin/main...HEAD | grep -qE "(BREAKING|breaking)"; then
+          CHANGE_TYPE="major"
+          echo "⚠️ Detected breaking changes → MAJOR change"
+        fi
+        
+        echo "change_type=$CHANGE_TYPE" >> $GITHUB_OUTPUT
+        echo "🎯 Final change type: $CHANGE_TYPE"
+
+    - name: 🔍 Check for existing changeset
+      id: check-changeset
+      if: steps.analyze.outputs.has_changes == 'true'
+      shell: bash
+      run: |
+        # Check if there's already a changeset for utopia in this PR
+        EXISTING_CHANGESETS=$(git diff --name-only origin/main...HEAD | grep "^\.changeset/.*\.md$" | grep -v "README.md" || true)
+        
+        if [ -n "$EXISTING_CHANGESETS" ]; then
+          echo "existing_changeset=true" >> $GITHUB_OUTPUT
+          echo "📋 Found existing changesets:"
+          echo "$EXISTING_CHANGESETS"
+          
+          # Check if any existing changeset mentions utopia
+          HAS_UTOPIA_CHANGESET="false"
+          for file in $EXISTING_CHANGESETS; do
+            if [ -f "$file" ] && grep -q "@club-employes/utopia" "$file"; then
+              HAS_UTOPIA_CHANGESET="true"
+              break
+            fi
+          done
+          echo "has_utopia_changeset=$HAS_UTOPIA_CHANGESET" >> $GITHUB_OUTPUT
+        else
+          echo "existing_changeset=false" >> $GITHUB_OUTPUT
+          echo "has_utopia_changeset=false" >> $GITHUB_OUTPUT
+          echo "📭 No existing changesets found"
+        fi
+
+    - name: 📝 Create changeset
+      id: create-changeset
+      if: steps.analyze.outputs.has_changes == 'true' && steps.check-changeset.outputs.has_utopia_changeset == 'false'
+      shell: bash
+      run: |
+        BRANCH_NAME="${{ inputs.branch-name }}"
+        CHANGE_TYPE="${{ steps.analyze.outputs.change_type }}"
+        
+        # Generate clean branch name for filename
+        CLEAN_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's/[^a-zA-Z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-\|-$//g')
+        
+        # Generate changeset filename
+        TIMESTAMP=$(date +%s)
+        CHANGESET_FILE=".changeset/auto-${CLEAN_BRANCH_NAME}-${TIMESTAMP}.md"
+        
+        # Determine description based on change type
+        case $CHANGE_TYPE in
+          "major")
+            DESCRIPTION="Breaking changes in design system from branch $BRANCH_NAME"
+            ;;
+          "minor")
+            DESCRIPTION="Add new components or features from branch $BRANCH_NAME"
+            ;;
+          "patch")
+            DESCRIPTION="Update components from branch $BRANCH_NAME"
+            ;;
+          *)
+            DESCRIPTION="Update components from branch $BRANCH_NAME"
+            ;;
+        esac
+        
+        # Create changeset content
+        cat > "$CHANGESET_FILE" << EOF
+---
+"@club-employes/utopia": $CHANGE_TYPE
+---
+
+$DESCRIPTION
+EOF
+        
+        echo "✅ Created changeset: $CHANGESET_FILE"
+        echo "📄 Content:"
+        cat "$CHANGESET_FILE"
+        
+        echo "changeset-created=true" >> $GITHUB_OUTPUT
+        echo "changeset-file=$CHANGESET_FILE" >> $GITHUB_OUTPUT
+
+    - name: 🚀 Commit changeset
+      if: steps.create-changeset.outputs.changeset-created == 'true'
+      shell: bash
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        git add .changeset/
+        
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+          exit 0
+        fi
+        
+        git commit -m "chore: add automatic changeset for design system changes"
+        
+        # Push with retry logic
+        for i in {1..3}; do
+          if git push origin ${{ inputs.branch-name }}; then
+            echo "✅ Successfully pushed changeset"
+            break
+          else
+            echo "⚠️ Push failed, retrying in 2 seconds... (attempt $i/3)"
+            sleep 2
+          fi
+        done
+
+    - name: 📊 Output summary
+      shell: bash
+      run: |
+        if [ "${{ steps.analyze.outputs.has_changes }}" == "true" ]; then
+          echo "🎯 Design system changes detected"
+          echo "📝 Change type: ${{ steps.analyze.outputs.change_type }}"
+          
+          if [ "${{ steps.create-changeset.outputs.changeset-created }}" == "true" ]; then
+            echo "✅ New changeset created and committed"
+          elif [ "${{ steps.check-changeset.outputs.has_utopia_changeset }}" == "true" ]; then
+            echo "✅ Existing changeset found, no action needed"
+          fi
+        else
+          echo "📭 No design system changes detected"
+        fi

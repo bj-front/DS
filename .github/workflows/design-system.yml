@@ -54,6 +54,13 @@ jobs:
       - name: 🎨 Build Design System
         uses: ./.github/actions/build-design-system
 
+      - name: 🔄 Auto Create Changeset
+        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+        uses: ./.github/actions/auto-changeset
+        with:
+          github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          branch-name: ${{ github.ref_name }}
+
       - name: 🔄 Create or update Pull Request
         if: github.event_name == 'push' && github.ref != 'refs/heads/main'
         uses: ./.github/actions/create-pr
