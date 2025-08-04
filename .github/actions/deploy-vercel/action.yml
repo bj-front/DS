@@ -1,0 +1,137 @@
+name: 'Deploy to Vercel'
+description: 'Deploy website to Vercel (preview or production)'
+
+inputs:
+  vercel-token:
+    description: 'Vercel deployment token'
+    required: true
+  vercel-org-id:
+    description: 'Vercel organization ID'
+    required: true
+  vercel-project-id:
+    description: 'Vercel project ID'
+    required: true
+  production:
+    description: 'Deploy to production'
+    required: false
+    default: 'false'
+  github-token:
+    description: 'GitHub token for PR comments'
+    required: false
+  working-directory:
+    description: 'Working directory for Vercel deployment'
+    required: false
+    default: '.'
+
+outputs:
+  preview-url:
+    description: 'Preview URL of the deployment'
+    value: ${{ steps.deploy.outputs.preview-url }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 🚀 Deploy to Vercel
+      id: deploy
+      uses: amondnet/vercel-action@v25
+      with:
+        vercel-token: ${{ inputs.vercel-token }}
+        vercel-org-id: ${{ inputs.vercel-org-id }}
+        vercel-project-id: ${{ inputs.vercel-project-id }}
+        vercel-args: ${{ inputs.production == 'true' && '--prod' || '' }}
+        working-directory: ${{ inputs.working-directory }}
+        scope: ${{ inputs.vercel-org-id }}
+
+    - name: 💬 Comment PR with preview URL
+      if: inputs.production == 'false' && inputs.github-token != ''
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ inputs.github-token }}
+        script: |
+          const previewUrl = '${{ steps.deploy.outputs.preview-url }}';
+          
+          // Trouver la PR associée à cette branche
+          const { data: prs } = await github.rest.pulls.list({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            head: context.repo.owner + ':' + context.ref.replace('refs/heads/', ''),
+            state: 'open'
+          });
+          
+          if (prs.length > 0) {
+            const prNumber = prs[0].number;
+            
+            const comment = `## 🚀 Preview Deployment Ready!
+          
+          Your website changes have been deployed to Vercel:
+          
+          **🔗 Preview URL:** ${previewUrl}
+          
+          ### ✅ Quality Checks Passed
+          - 🔍 Lint & Type check ✅
+          - 🎨 Design system tokens validation ✅  
+          - 🏗️ Build successful ✅
+          
+          ### 📱 Test your changes:
+          - Desktop & Mobile responsive design
+          - Component behavior & styling
+          - Theme switching functionality
+          - Navigation and routing
+          
+          ---
+          
+          > 🤖 *Preview updates automatically with each push*
+          `;
+          
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: prNumber,
+            body: comment
+          });
+          }
+
+    - name: 🎉 Comment last merged PR (production only)
+      if: inputs.production == 'true' && inputs.github-token != ''
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ inputs.github-token }}
+        script: |
+          const productionUrl = '${{ steps.deploy.outputs.preview-url }}';
+          
+          // Chercher la dernière PR mergée
+          const { data: prs } = await github.rest.pulls.list({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'closed',
+            sort: 'updated',
+            direction: 'desc',
+            per_page: 1
+          });
+          
+          if (prs.length > 0 && prs[0].merged_at) {
+            const prNumber = prs[0].number;
+            
+            const comment = `## 🎉 Deployed to Production!
+          
+          Your website changes are now live in production:
+          
+          **🌟 Production URL:** ${productionUrl}
+          
+          ### 🚀 Deployment Summary
+          - ✅ Quality checks passed
+          - ✅ Design system tokens validated
+          - ✅ Build successful  
+          - ✅ Production deployment complete
+          
+          ### 🎊 Great work!
+          Your changes have been successfully deployed and are now available to users.
+          `;
+          
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: prNumber,
+            body: comment
+          });
+          }

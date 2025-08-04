@@ -1,0 +1,24 @@
+echo "🔍 Exécution des vérifications pre-commit..."
+
+# Utilise Turborepo pour optimiser les vérifications
+CHANGED_FILES=$(git diff --cached --name-only)
+
+# Détecte les changements pour le website
+if echo "$CHANGED_FILES" | grep -q "^apps/utopia-website/.*\.(js|ts|vue)$"; then
+    echo "🔍 Vérifications website..."
+    npx turbo lint type-check --filter=utopia-website
+fi
+
+# Détecte les changements pour le design system
+if echo "$CHANGED_FILES" | grep -q "^packages/utopia/.*\.(js|ts|vue)$"; then
+    echo "🎨 Vérifications design system..."
+    npx turbo lint type-check build:tokens --filter=@club-employes/utopia
+fi
+
+# Validation globale si changements tokens
+if echo "$CHANGED_FILES" | grep -qE "^(apps/utopia-website/.*|packages/utopia/src/tokens/.*)$"; then
+    echo "🎨 Validation des tokens du design system..."
+    npx turbo validate:design-system --filter=utopia-website
+fi
+
+echo "✅ Toutes les vérifications sont passées !"

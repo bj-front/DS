@@ -1,23 +1,32 @@
 {
   "name": "ds",
   "version": "1.0.0",
-  "description": "Design System monorepo with automated CI/CD",
+  "description": "Design System monorepo with automated CI/CD and optimized workflows",
   "main": "index.js",
+  "packageManager": "npm@10.0.0",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "apps/utopia-website"
   ],
   "scripts": {
-    "dev": "cd packages/utopia && npm run dev",
-    "build": "cd packages/utopia && npm run build",
-    "build:tokens": "cd packages/utopia && npm run build:tokens",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "cd packages/utopia && npm run lint",
-    "type-check": "cd packages/utopia && npm run type-check",
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "build:tokens": "turbo build:tokens",
+    "test": "turbo test",
+    "lint": "turbo lint",
+    "type-check": "turbo type-check",
+    "format": "turbo format",
+    "validate": "turbo validate:design-system",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "cd packages/utopia && npm run build && cd ../.. && NPM_CONFIG_YES=true changeset publish",
-    "ci:build": "npm run build:tokens && npm run build",
-    "ci:test": "npm run lint && npm run type-check"
+    "release": "turbo build && NPM_CONFIG_YES=true changeset publish",
+    "ci:build": "turbo build",
+    "ci:test": "turbo lint type-check",
+    "ci:validate": "turbo validate:design-system",
+    "prepare": "husky",
+    "precommit": "lint-staged",
+    "setup:hooks": "husky install && husky add .husky/pre-commit \"npm run precommit\"",
+    "clean": "turbo clean && rm -rf node_modules/.cache"
   },
   "keywords": [
     "design-system",
@@ -31,6 +40,18 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.11",
-    "@types/json-schema": "^7.0.15"
+    "@types/json-schema": "^7.0.15",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
+    "turbo": "^2.3.0"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,vue}": [
+      "turbo lint --filter=...{apps/utopia-website,packages/utopia}[HEAD^1]",
+      "turbo format --filter=...{apps/utopia-website}[HEAD^1]"
+    ],
+    "**/*.{ts,vue}": [
+      "turbo type-check --filter=...{apps/utopia-website}[HEAD^1]"
+    ]
   }
 }

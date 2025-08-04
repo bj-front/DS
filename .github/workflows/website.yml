@@ -1,0 +1,125 @@
+name: Website CI/CD
+
+on:
+  push:
+    branches-ignore: [main]
+    paths:
+      - 'apps/utopia-website/**'
+      - '.github/workflows/website.yml'
+      - '.github/actions/setup-node-cache/**'
+      - '.github/actions/build-website/**'
+      - '.github/actions/deploy-vercel/**'
+      - 'package.json'
+      - 'turbo.json'
+      - 'vercel.json'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'apps/utopia-website/**'
+      - '.github/workflows/website.yml'
+      - '.github/actions/setup-node-cache/**'
+      - '.github/actions/build-website/**'
+      - '.github/actions/deploy-vercel/**'
+      - 'package.json'
+      - 'turbo.json'
+      - 'vercel.json'
+  workflow_dispatch:
+    inputs:
+      force_deploy:
+        description: 'Force production deployment (main branch only)'
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Job 1: Tests et qualité du code
+  quality-check:
+    name: 🔍 Qualité & Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ⚡ Setup Node.js and Cache
+        uses: ./.github/actions/setup-node-cache
+        with:
+          cache-prefix: 'website'
+
+      - name: 🏗️ Build Website
+        uses: ./.github/actions/build-website
+
+      - name: 🔄 Create or update Pull Request
+        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+        uses: ./.github/actions/create-pr
+        with:
+          github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          project-type: 'website'
+
+  # Job 2: Déploiement preview Vercel (feature branches uniquement)
+  deploy-preview:
+    name: 🚀 Deploy Preview
+    runs-on: ubuntu-latest
+    needs: quality-check
+    if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+    permissions:
+      pull-requests: write
+      deployments: write
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⚡ Setup Node.js and Cache
+        uses: ./.github/actions/setup-node-cache
+        with:
+          cache-prefix: 'preview'
+
+      - name: 🏗️ Build Website
+        uses: ./.github/actions/build-website
+
+      - name: 🚀 Deploy to Vercel Preview
+        uses: ./.github/actions/deploy-vercel
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+
+
+
+  # Job 4: Déploiement production Vercel (main branch uniquement)
+  deploy-production:
+    name: 🌟 Deploy Production
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    permissions:
+      pull-requests: write
+      deployments: write
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⚡ Setup Node.js and Cache
+        uses: ./.github/actions/setup-node-cache
+        with:
+          cache-prefix: 'production'
+
+      - name: 🏗️ Build Website
+        uses: ./.github/actions/build-website
+
+      - name: 🚀 Deploy to Vercel Production
+        uses: ./.github/actions/deploy-vercel
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          production: 'true'
+          github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}

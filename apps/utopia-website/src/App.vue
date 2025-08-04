@@ -1,88 +1,68 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import { Button, ThemeProvider } from '@club-employes/utopia'
-import { clubEmployesLight } from '@club-employes/utopia'
-</script>
-
 <template>
-  <ThemeProvider :theme="clubEmployesLight">
-    <div id="app">
-      <header class="header">
-        <h1>Utopia Website</h1>
-        <p>Démonstration du Design System Utopia</p>
-        
-        <nav class="navigation">
-          <RouterLink to="/" class="nav-link">
-            <Button variant="secondary" size="medium">Accueil</Button>
-          </RouterLink>
-          <RouterLink to="/about" class="nav-link">
-            <Button variant="outline" size="medium">À propos</Button>
-          </RouterLink>
-          <RouterLink to="/demo" class="nav-link">
-            <Button variant="primary" size="medium">Démo</Button>
-          </RouterLink>
-        </nav>
-      </header>
-
-      <main class="main">
-        <RouterView />
-      </main>
-    </div>
+  <ThemeProvider :theme="currentTheme">
+    <AppLayout />
   </ThemeProvider>
 </template>
 
-<style scoped>
-.header {
-  padding: 2rem;
-  text-align: center;
-  border-bottom: 1px solid var(--color-border-default);
-  background: var(--color-surface-background);
+<script setup lang="ts">
+import { ref } from 'vue'
+import { 
+  ThemeProvider,
+  clubEmployesLight
+} from '@club-employes/utopia'
+
+// Import the shared layout component
+import AppLayout from './domains/shared/components/AppLayout.vue'
+
+// Theme management (placeholder for future theme switching)
+const currentTheme = ref(clubEmployesLight)
+
+// Global styles and theme will be managed here
+</script>
+
+<style>
+/* Global styles reset using design system tokens */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.header h1 {
-  margin: 0 0 0.5rem 0;
-  color: var(--color-text-primary);
-  font-size: 2.5rem;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: var(--font-family-sans);
+  line-height: var(--font-line-height-normal);
+  background-color: var(--theme-colors-surface-background);
+  color: var(--theme-colors-text-primary);
+  overflow-x: hidden;
 }
 
-.header p {
-  margin: 0 0 2rem 0;
-  color: var(--color-text-secondary);
-  font-size: 1.1rem;
+#app {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--theme-colors-surface-background);
 }
 
-.navigation {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
+/* Les tokens CSS sont maintenant gérés par le design system Utopia */
+/* Pas besoin de fallbacks - les tokens sont définis dans @club-employes/utopia */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-.nav-link {
-  text-decoration: none;
+/* Focus styles for accessibility using design system tokens */
+*:focus {
+  outline: var(--border-width-2) solid var(--theme-colors-primary-500);
+  outline-offset: var(--border-width-2);
 }
 
-.main {
-  min-height: calc(100vh - 200px);
-  padding: 2rem;
-}
-
-@media (max-width: 768px) {
-  .navigation {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  
-  .header {
-    padding: 1.5rem;
-  }
-  
-  .header h1 {
-    font-size: 2rem;
-  }
-  
-  .main {
-    padding: 1.5rem;
-  }
+/* Remove focus outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
 }
 </style>

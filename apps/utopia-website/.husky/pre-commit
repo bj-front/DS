@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Vérification du code avant commit..."
+
+# Vérifier TypeScript
+echo "📝 Type checking..."
+npm run type-check
+
+# Vérifier les règles ESLint strictes
+echo "🎨 Vérification des tokens du design system..."
+npm run lint:strict
+
+# Vérifier le formatage
+echo "💅 Vérification du formatage..."
+npm run format
+
+echo "✅ Toutes les vérifications sont passées ! Commit autorisé."
