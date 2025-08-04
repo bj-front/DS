@@ -1,7 +1,7 @@
-import { ref, computed } from 'vue'
-import { clubEmployesLight, clubEmployesDark } from '../themes/club-employes'
-import { gifteoLight, gifteoDark } from '../themes/gifteo'
+import { computed, ref } from 'vue'
 import type { ThemeConfig } from '../theme-provider'
+import { clubEmployesDark, clubEmployesLight } from '../themes/club-employes'
+import { gifteoDark, gifteoLight } from '../themes/gifteo'
 
 export type BrandTheme = 'club-employes' | 'gifteo'
 export type ThemeMode = 'light' | 'dark'
@@ -80,7 +80,7 @@ export function useTheme(): {
     currentMode: computed(() => currentMode.value),
     currentBrandName,
     availableBrands,
-    
+
     // Actions
     toggleBrand,
     toggleMode,
