@@ -2,7 +2,7 @@ name: Website CI/CD
 
 on:
   push:
-    branches-ignore: [main]
+    branches: ['**']
     paths:
       - 'apps/utopia-website/**'
       - '.github/workflows/website.yml'
@@ -40,6 +40,7 @@ jobs:
   quality-check:
     name: 🔍 Qualité & Tests
     runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main'
     
     steps:
       - name: 📥 Checkout code
