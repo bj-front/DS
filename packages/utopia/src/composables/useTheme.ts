@@ -1,4 +1,4 @@
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import type { ThemeConfig } from '../theme-provider'
 import { clubEmployesDark, clubEmployesLight } from '../themes/club-employes'
 import { gifteoDark, gifteoLight } from '../themes/gifteo'
@@ -6,9 +6,40 @@ import { gifteoDark, gifteoLight } from '../themes/gifteo'
 export type BrandTheme = 'club-employes' | 'gifteo'
 export type ThemeMode = 'light' | 'dark'
 
-// Global theme state
-const currentBrand = ref<BrandTheme>('club-employes')
-const currentMode = ref<ThemeMode>('light')
+// LocalStorage keys
+const STORAGE_KEYS = {
+  BRAND: 'utopia-theme-brand',
+  MODE: 'utopia-theme-mode'
+} as const
+
+// Helper functions for localStorage
+const getStoredBrand = (): BrandTheme => {
+  if (typeof window === 'undefined') return 'club-employes'
+  const stored = localStorage.getItem(STORAGE_KEYS.BRAND)
+  return (stored === 'club-employes' || stored === 'gifteo') ? stored : 'club-employes'
+}
+
+const getStoredMode = (): ThemeMode => {
+  if (typeof window === 'undefined') return 'light'
+  const stored = localStorage.getItem(STORAGE_KEYS.MODE)
+  return (stored === 'light' || stored === 'dark') ? stored : 'light'
+}
+
+const saveBrandToStorage = (brand: BrandTheme): void => {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(STORAGE_KEYS.BRAND, brand)
+  }
+}
+
+const saveModeToStorage = (mode: ThemeMode): void => {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(STORAGE_KEYS.MODE, mode)
+  }
+}
+
+// Global theme state - initialized from localStorage
+const currentBrand = ref<BrandTheme>(getStoredBrand())
+const currentMode = ref<ThemeMode>(getStoredMode())
 
 // Available themes configuration
 const themes = {
@@ -44,6 +75,15 @@ export function useTheme(): {
   const currentBrandName = computed(() => {
     return themes[currentBrand.value].name
   })
+
+  // Watch for changes and save to localStorage
+  watch(currentBrand, (newBrand) => {
+    saveBrandToStorage(newBrand)
+  }, { immediate: false })
+
+  watch(currentMode, (newMode) => {
+    saveModeToStorage(newMode)
+  }, { immediate: false })
 
   // Switch between brands
   const toggleBrand = (): void => {
