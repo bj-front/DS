@@ -130,7 +130,7 @@ DS/
 
 - [🤖 Automatisation](.github/AUTOMATION.md)
 - [📝 Changesets](.changeset/README.md)
-- [🌐 Demo en ligne](http://localhost:5173) (en développement)
+- [🌐 Demo en ligne](https://ds-utopia.vercel.app/)
 
 ## 🔗 Liens utiles
 

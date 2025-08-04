@@ -5,7 +5,7 @@
       <nav class="nav-container">
         <div class="nav-brand">
           <router-link to="/" class="brand-link">
-            <Logo variant="primary" size="small" />
+            <Logo variant="small" size="small" />
             <span class="brand-text">Utopia</span>
           </router-link>
         </div>
@@ -27,15 +27,34 @@
           </router-link>
         </div>
 
-        <!-- Theme Toggle (placeholder for later) -->
+        <!-- Theme Switch -->
         <div class="nav-actions">
+          <!-- Brand buttons -->
+          <div class="brand-buttons">
+            <button 
+              v-for="brand in availableBrands" 
+              :key="brand.key"
+              @click="setBrand(brand.key)"
+              class="brand-btn"
+              :class="{ 'active': currentBrand === brand.key }"
+              :title="brand.name"
+            >
+              <span class="brand-icon">{{ getBrandIcon(brand.key) }}</span>
+            </button>
+          </div>
+          
+          <!-- Mode toggle -->
           <Button 
             variant="ghost" 
             size="small"
-            @click="toggleTheme"
-            aria-label="Changer de thème"
+            @click="toggleMode"
+            :aria-label="`Basculer vers le mode ${currentMode === 'light' ? 'sombre' : 'clair'}`"
+            class="mode-toggle"
+            :class="{ 'dark': currentMode === 'dark' }"
           >
-            <Icon name="sun" size="small" />
+            <span class="mode-icon">
+              {{ currentMode === 'light' ? '🌙' : '☀️' }}
+            </span>
           </Button>
         </div>
       </nav>
@@ -50,7 +69,7 @@
     <footer class="app-footer">
       <div class="footer-content">
         <div class="footer-brand">
-          <Logo variant="primary" size="small" />
+          <Logo variant="small" size="small" />
           <span class="footer-text">Utopia Design System</span>
         </div>
         <div class="footer-links">
@@ -68,14 +87,24 @@
 
 <script setup lang="ts">
 import { Button } from '@club-employes/utopia'
+import { useTheme } from '../composables/useTheme'
+import type { BrandTheme } from '../composables/useTheme'
 
-// Import temporaire - à remplacer par les vrais composants
-const Logo = { template: '<div class="logo">LOGO</div>' }
-const Icon = { template: '<span class="icon"><slot /></span>' }
+// Import du composant Logo depuis le design system
+import { Logo } from '@club-employes/utopia'
 
-// Placeholder for theme toggle functionality
-const toggleTheme = (): void => {
-  // TODO: Implémenter le toggle de thème
+// Use theme composable
+const { 
+  currentBrand, 
+  currentMode, 
+  availableBrands, 
+  toggleMode, 
+  setBrand 
+} = useTheme()
+
+// Get brand icon
+const getBrandIcon = (brandKey: BrandTheme): string => {
+  return brandKey === 'club-employes' ? '🏢' : '❤️'
 }
 </script>
 
@@ -157,6 +186,74 @@ const toggleTheme = (): void => {
   display: flex;
   align-items: center;
   gap: var(--spacing-4);
+}
+
+/* Brand Buttons */
+.brand-buttons {
+  display: flex;
+  gap: var(--spacing-1);
+}
+
+.brand-btn {
+  width: 36px;
+  height: 36px;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-full);
+  background: transparent;
+  color: var(--theme-colors-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+}
+
+.brand-btn:hover {
+  background: var(--theme-colors-surface-background);
+  color: var(--theme-colors-text-primary);
+  transform: scale(1.05);
+}
+
+.brand-btn.active {
+  border-color: var(--theme-colors-primary-500);
+  background: var(--theme-colors-primary-500);
+  color: white;
+  box-shadow: 0 0 0 2px var(--theme-colors-primary-200);
+}
+
+.brand-icon {
+  font-size: inherit;
+}
+
+/* Mode Toggle */
+.mode-toggle {
+  padding: var(--spacing-2) !important;
+  min-width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: var(--border-radius-full) !important;
+  transition: all 0.2s ease !important;
+}
+
+.mode-toggle.dark {
+  background: var(--theme-colors-primary-500) !important;
+  border-color: var(--theme-colors-primary-500) !important;
+  color: white !important;
+  box-shadow: 0 0 0 2px var(--theme-colors-primary-200) !important;
+}
+
+.mode-toggle:hover {
+  transform: scale(1.05) !important;
+}
+
+.mode-icon {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Main Content */
@@ -246,6 +343,13 @@ const toggleTheme = (): void => {
   
   .nav-actions {
     gap: var(--spacing-2);
+  }
+  
+  .brand-btn,
+  .mode-toggle {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: var(--font-size-base) !important;
   }
 }
 </style>

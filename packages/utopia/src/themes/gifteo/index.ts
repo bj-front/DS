@@ -2,14 +2,12 @@ import type { ThemeConfig } from '../../theme-provider'
 
 export const gifteoLight: ThemeConfig = {
   name: 'gifteo-light',
-  mode: 'light',
-  cssFile: '/src/tokens/generated/gifteo/light.css'
+  mode: 'light'
 }
 
 export const gifteoDark: ThemeConfig = {
   name: 'gifteo-dark', 
-  mode: 'dark',
-  cssFile: '/src/tokens/generated/gifteo/dark.css'
+  mode: 'dark'
 }
 
 // Export par défaut pour la compatibilité
