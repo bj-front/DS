@@ -8,8 +8,7 @@ export { default as AppLayout } from './components/AppLayout.vue'
 // export * from './stores'
 
 // Export composables
-export { useTheme } from './composables/useTheme'
-export type { BrandTheme, ThemeMode } from './composables/useTheme'
+export { useTheme, type BrandTheme, type ThemeMode } from '@club-employes/utopia'
 
 // Export types (à ajouter ultérieurement)
 // export * from './types'
