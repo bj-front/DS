@@ -211,63 +211,46 @@ const primaryColors = [
   { name: '900', variable: '--theme-colors-primary-900' }
 ]
 
-// Common Colors
+// Common Colors - using actual generated variable names
 const slateColors = [
-  { name: '50', variable: '--theme-colors-slate-50' },
-  { name: '100', variable: '--theme-colors-slate-100' },
-  { name: '200', variable: '--theme-colors-slate-200' },
-  { name: '300', variable: '--theme-colors-slate-300' },
-  { name: '400', variable: '--theme-colors-slate-400' },
-  { name: '500', variable: '--theme-colors-slate-500' },
-  { name: '600', variable: '--theme-colors-slate-600' },
-  { name: '700', variable: '--theme-colors-slate-700' },
-  { name: '800', variable: '--theme-colors-slate-800' },
-  { name: '900', variable: '--theme-colors-slate-900' }
+  { name: '50', variable: '--theme-colors-common-slate-50' },
+  { name: '200', variable: '--theme-colors-common-slate-200' },
+  { name: '400', variable: '--theme-colors-common-slate-400' },
+  { name: '600', variable: '--theme-colors-common-slate-600' },
+  { name: '800', variable: '--theme-colors-common-slate-800' },
+  { name: '950', variable: '--theme-colors-common-slate-950' }
 ]
 
 const successColors = [
-  { name: '50', variable: '--theme-colors-success-50' },
-  { name: '100', variable: '--theme-colors-success-100' },
-  { name: '200', variable: '--theme-colors-success-200' },
-  { name: '300', variable: '--theme-colors-success-300' },
-  { name: '400', variable: '--theme-colors-success-400' },
-  { name: '500', variable: '--theme-colors-success-500' },
-  { name: '600', variable: '--theme-colors-success-600' },
-  { name: '700', variable: '--theme-colors-success-700' },
-  { name: '800', variable: '--theme-colors-success-800' },
-  { name: '900', variable: '--theme-colors-success-900' }
+  { name: '50', variable: '--theme-colors-common-succeed-50' },
+  { name: '200', variable: '--theme-colors-common-succeed-200' },
+  { name: '400', variable: '--theme-colors-common-succeed-400' },
+  { name: '600', variable: '--theme-colors-common-succeed-600' },
+  { name: '800', variable: '--theme-colors-common-succeed-800' },
+  { name: '950', variable: '--theme-colors-common-succeed-950' }
 ]
 
 const warningColors = [
-  { name: '50', variable: '--theme-colors-warning-50' },
-  { name: '100', variable: '--theme-colors-warning-100' },
-  { name: '200', variable: '--theme-colors-warning-200' },
-  { name: '300', variable: '--theme-colors-warning-300' },
-  { name: '400', variable: '--theme-colors-warning-400' },
-  { name: '500', variable: '--theme-colors-warning-500' },
-  { name: '600', variable: '--theme-colors-warning-600' },
-  { name: '700', variable: '--theme-colors-warning-700' },
-  { name: '800', variable: '--theme-colors-warning-800' },
-  { name: '900', variable: '--theme-colors-warning-900' }
+  { name: '50', variable: '--theme-colors-common-warning-50' },
+  { name: '200', variable: '--theme-colors-common-warning-200' },
+  { name: '400', variable: '--theme-colors-common-warning-400' },
+  { name: '600', variable: '--theme-colors-common-warning-600' },
+  { name: '800', variable: '--theme-colors-common-warning-800' },
+  { name: '950', variable: '--theme-colors-common-warning-950' }
 ]
 
 const dangerColors = [
-  { name: '50', variable: '--theme-colors-danger-50' },
-  { name: '100', variable: '--theme-colors-danger-100' },
-  { name: '200', variable: '--theme-colors-danger-200' },
-  { name: '300', variable: '--theme-colors-danger-300' },
-  { name: '400', variable: '--theme-colors-danger-400' },
-  { name: '500', variable: '--theme-colors-danger-500' },
-  { name: '600', variable: '--theme-colors-danger-600' },
-  { name: '700', variable: '--theme-colors-danger-700' },
-  { name: '800', variable: '--theme-colors-danger-800' },
-  { name: '900', variable: '--theme-colors-danger-900' }
+  { name: '50', variable: '--theme-colors-common-danger-50' },
+  { name: '200', variable: '--theme-colors-common-danger-200' },
+  { name: '400', variable: '--theme-colors-common-danger-400' },
+  { name: '600', variable: '--theme-colors-common-danger-600' },
+  { name: '800', variable: '--theme-colors-common-danger-800' },
+  { name: '950', variable: '--theme-colors-common-danger-950' }
 ]
 
 const surfaceColors = [
   { name: 'Background', variable: '--theme-colors-surface-background' },
   { name: 'Card', variable: '--theme-colors-surface-card' },
-  { name: 'Elevated', variable: '--theme-colors-surface-elevated' },
   { name: 'Overlay', variable: '--theme-colors-surface-overlay' }
 ]
 </script>
