@@ -3,11 +3,15 @@ import {
   clubEmployesLight, 
   clubEmployesDark,
   gifteoLight, 
-  gifteoDark 
+  gifteoDark,
+  type ThemeConfig as UtopiaThemeConfig
 } from '@club-employes/utopia'
 
 export type BrandTheme = 'club-employes' | 'gifteo'
 export type ThemeMode = 'light' | 'dark'
+
+// Re-export the ThemeConfig type from utopia
+export type { UtopiaThemeConfig as ThemeConfig }
 
 // Global theme state
 const currentBrand = ref<BrandTheme>('club-employes')
@@ -27,7 +31,17 @@ const themes = {
   }
 } as const
 
-export function useTheme() {
+export function useTheme(): {
+  currentTheme: import('vue').ComputedRef<UtopiaThemeConfig>
+  currentBrand: import('vue').ComputedRef<BrandTheme>
+  currentMode: import('vue').ComputedRef<ThemeMode>
+  currentBrandName: import('vue').ComputedRef<string>
+  availableBrands: import('vue').ComputedRef<Array<{ key: BrandTheme; name: string }>>
+  toggleBrand: () => void
+  toggleMode: () => void
+  setBrand: (brand: BrandTheme) => void
+  setMode: (mode: ThemeMode) => void
+} {
   // Computed current theme config
   const currentTheme = computed(() => {
     return themes[currentBrand.value][currentMode.value]
@@ -39,28 +53,22 @@ export function useTheme() {
   })
 
   // Switch between brands
-  const toggleBrand = () => {
-    console.log('🔄 Toggling brand from:', currentBrand.value)
+  const toggleBrand = (): void => {
     currentBrand.value = currentBrand.value === 'club-employes' ? 'gifteo' : 'club-employes'
-    console.log('🔄 Toggled brand to:', currentBrand.value)
   }
 
   // Switch between light/dark modes
-  const toggleMode = () => {
-    console.log('🌓 Toggling mode from:', currentMode.value)
+  const toggleMode = (): void => {
     currentMode.value = currentMode.value === 'light' ? 'dark' : 'light'
-    console.log('🌓 Toggled mode to:', currentMode.value)
   }
 
   // Set specific brand
-  const setBrand = (brand: BrandTheme) => {
-    console.log('🎯 Setting brand to:', brand)
+  const setBrand = (brand: BrandTheme): void => {
     currentBrand.value = brand
   }
 
   // Set specific mode
-  const setMode = (mode: ThemeMode) => {
-    console.log('🎯 Setting mode to:', mode)
+  const setMode = (mode: ThemeMode): void => {
     currentMode.value = mode
   }
 
