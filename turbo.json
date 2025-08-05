@@ -2,7 +2,9 @@
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build"
+      ],
       "inputs": [
         "$TURBO_DEFAULT$",
         "!dist/**",
@@ -25,7 +27,24 @@
       ]
     },
     "dev": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build"
+      ],
+      "cache": false,
+      "persistent": true
+    },
+    "dev:build": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!dist/**",
+        "!build/**",
+        "!.turbo/**"
+      ],
+      "outputs": [
+        "dist/**"
+      ]
+    },
+    "dev:watch": {
       "cache": false,
       "persistent": true
     },
@@ -37,7 +56,9 @@
       ]
     },
     "type-check": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build"
+      ],
       "inputs": [
         "$TURBO_DEFAULT$",
         "!dist/**",
@@ -45,7 +66,9 @@
       ]
     },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build"
+      ],
       "inputs": [
         "$TURBO_DEFAULT$",
         "!dist/**",
@@ -58,7 +81,9 @@
       ]
     },
     "validate:design-system": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build"
+      ],
       "inputs": [
         "$TURBO_DEFAULT$",
         "design-system-validator.cjs"
@@ -73,7 +98,7 @@
   "globalEnv": [
     "NODE_ENV",
     "VERCEL_TOKEN",
-    "VERCEL_ORG_ID", 
+    "VERCEL_ORG_ID",
     "VERCEL_PROJECT_ID",
     "NPM_TOKEN"
   ]

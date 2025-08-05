@@ -1,16 +1,18 @@
 import './assets/main.css'
 
-import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { createApp } from 'vue'
 
 import App from './App.vue'
 import router from './domains/shared/router'
 
 // Import du design system Utopia (styles des composants)
-import '@club-employes/utopia/styles'
+// En production: utilise le package NPM, en dev: utilise les sources via l'alias Vite
+import '@club-employes/utopia/utopia.css'
 
 // Charger le thème par défaut immédiatement pour éviter le FOUC
-import defaultThemeCSS from '@club-employes/utopia/tokens/club-employes/light?inline'
+// En production: utilise le package NPM, en dev: utilise les sources via l'alias Vite
+import defaultThemeCSS from '@club-employes/utopia/tokens/generated/club-employes/light.css?inline'
 
 // Injecter le CSS du thème par défaut avant l'initialisation de Vue
 const defaultThemeStyle = document.createElement('style')

@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
 // https://vite.dev/config/
@@ -14,7 +14,7 @@ export default defineConfig({
       include: ['src/index.d.ts']
     })
   ],
-  
+
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
@@ -27,10 +27,12 @@ export default defineConfig({
       output: {
         globals: {
           vue: 'Vue'
-        }
+        },
+        assetFileNames: 'utopia.css'
       }
     },
-    emptyOutDir: true
+    emptyOutDir: false,
+    cssCodeSplit: false
   },
 
   // Optimisations CSS
