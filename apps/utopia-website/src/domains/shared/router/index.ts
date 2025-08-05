@@ -1,15 +1,16 @@
-import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 // Import pages from domains
-import { 
-  HomePage, 
-  ColorsPage, 
-  SurfacesPage, 
-  TypographyPage, 
-  SpacingPage, 
-  LogosPage, 
-  ThemeComparison 
+import {
+  ColorsPage,
+  HomePage,
+  IconsPage,
+  LogosPage,
+  SpacingPage,
+  SurfacesPage,
+  ThemeComparison,
+  TypographyPage
 } from '../../design-system'
 // Dynamic import for lazy loading  
 const NotFoundPage = (): Promise<typeof import('./NotFoundPage.vue')> => import('./NotFoundPage.vue')
@@ -80,6 +81,15 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/design-system/icons',
+    name: 'design-system-icons',
+    component: IconsPage,
+    meta: {
+      title: 'Icônes - Design System Utopia',
+      description: 'Bibliothèque complète des icônes disponibles'
+    }
+  },
+  {
     path: '/design-system/themes',
     name: 'design-system-themes',
     component: ThemeComparison,
@@ -129,13 +139,13 @@ router.beforeEach((to, _, next) => {
   if (to.meta?.title) {
     document.title = to.meta.title
   }
-  
+
   // Update meta description
   const descriptionMeta = document.querySelector('meta[name="description"]')
   if (to.meta?.description && descriptionMeta) {
     descriptionMeta.setAttribute('content', to.meta.description)
   }
-  
+
   next()
 })
 

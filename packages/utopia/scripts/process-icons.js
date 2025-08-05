@@ -86,42 +86,13 @@ function processSVG(content, filename) {
     return 'fill="currentColor"'
   })
 
-  // AUGMENTER légèrement le stroke-width pour des lignes plus visibles
-  processed = processed.replace(/stroke-width="([^"]*)"/g, (match, widthValue) => {
-    const currentWidth = parseFloat(widthValue)
-    let newWidth
+  // STANDARDISER le stroke-width à 2 pour toutes les icônes
+  processed = processed.replace(/stroke-width="([^"]*)"/g, 'stroke-width="2"')
 
-    if (currentWidth <= 1) {
-      newWidth = 1.5 // 1 → 1.5
-    } else if (currentWidth <= 1.5) {
-      newWidth = 2 // 1.5 → 2
-    } else if (currentWidth <= 2) {
-      newWidth = 2.5 // 2 → 2.5
-    } else if (currentWidth <= 3) {
-      newWidth = 3.5 // 3 → 3.5
-    } else {
-      newWidth = currentWidth + 0.5 // Autres : +0.5
-    }
-
-    return `stroke-width="${newWidth}"`
-  })
-
-  // PRÉSERVER les opacités importantes - ne les supprimer que si elles sont >= 0.8
-  processed = processed.replace(/stroke-opacity="([^"]*)"/g, (match, opacityValue) => {
-    const opacity = parseFloat(opacityValue)
-    if (opacity >= 0.8) {
-      return '' // Supprimer les opacités proches de 1
-    }
-    return match // Garder les opacités significatives
-  })
-
-  processed = processed.replace(/fill-opacity="([^"]*)"/g, (match, opacityValue) => {
-    const opacity = parseFloat(opacityValue)
-    if (opacity >= 0.8) {
-      return '' // Supprimer les opacités proches de 1
-    }
-    return match // Garder les opacités significatives
-  })
+  // SUPPRIMER toutes les opacités pour avoir des couleurs pleines
+  processed = processed.replace(/stroke-opacity="[^"]*"/g, '')
+  processed = processed.replace(/fill-opacity="[^"]*"/g, '')
+  processed = processed.replace(/opacity="[^"]*"/g, '')
 
   // Nettoyer les espaces multiples mais préserver la structure
   processed = processed.replace(/\s+/g, ' ')

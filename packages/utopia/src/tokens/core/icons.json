@@ -1836,6 +1836,11 @@
         "type": "asset",
         "description": "Icône md_icon (catégorie: general)"
       },
+      "md_left_icon": {
+        "value": "./assets/icons-processed/md_left_icon.svg",
+        "type": "asset",
+        "description": "Icône md_left_icon (catégorie: general)"
+      },
       "mobile": {
         "value": "./assets/icons-processed/mobile.svg",
         "type": "asset",
