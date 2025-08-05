@@ -3,8 +3,10 @@ export { ThemeProvider } from './theme-provider'
 export type { ThemeConfig, ThemeProviderProps } from './theme-provider'
 
 // Components
-export { Badge, Button, Icon, Logo } from './components/atoms'
-export type { BadgeSize, BadgeVariant, ButtonSize, ButtonVariant, IconColor, IconName, IconSize, LogoBrand, LogoSize, LogoVariant } from './components/atoms'
+export * from './components'
+
+// Explicit exports for better IDE support
+export { Header } from './components/layouts'
 
 // Themes
 export { clubEmployesDark, clubEmployesLight } from './themes/club-employes'

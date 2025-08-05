@@ -1,66 +1,61 @@
 <template>
   <div class="app-layout">
     <!-- Header Navigation -->
-    <header class="app-header">
-      <nav class="nav-container">
-        <div class="nav-brand">
-          <router-link to="/" class="brand-link">
-            <Logo size="xs" />
-            <span class="brand-text">Utopia</span>
-          </router-link>
-        </div>
+    <Header>
+      <!-- Left Slot: Brand/Logo -->
+      <template #left>
+        <router-link to="/" class="brand-link">
+          <Logo size="xs" />
+          <span class="brand-text">Utopia</span>
+        </router-link>
         
+        <!-- Navigation Links -->
         <div class="nav-links">
           <router-link 
-            to="/" 
+            v-for="link in navigationLinks"
+            :key="link.key"
+            :to="link.to"
             class="nav-link"
-            :class="{ 'active': $route.name === 'home' }"
+            :class="{ 'active': isLinkActive(link) }"
           >
-            Design System
-          </router-link>
-          <router-link 
-            to="/showcase" 
-            class="nav-link"
-            :class="{ 'active': $route.name === 'showcase' }"
-          >
-            Showcase
+            {{ link.label }}
           </router-link>
         </div>
-
-        <!-- Theme Switch -->
-        <div class="nav-actions">
-          <!-- Brand buttons -->
-          <div class="brand-buttons">
-            <button 
-              v-for="brand in availableBrands" 
-              :key="brand.key"
-              @click="setBrand(brand.key)"
-              class="brand-btn"
-              :class="{ 'active': currentBrand === brand.key }"
-              :title="brand.name"
-            >
-              <div class="brand-logo">
-                <Logo :brand="brand.key" variant="small" size="xs" />
-              </div>
-            </button>
-          </div>
-          
-          <!-- Mode toggle -->
-          <Button 
-            variant="ghost" 
-            size="small"
-            @click="toggleMode"
-            :aria-label="`Basculer vers le mode ${currentMode === 'light' ? 'sombre' : 'clair'}`"
-            class="mode-toggle"
-            :class="{ 'dark': currentMode === 'dark' }"
+      </template>
+      
+      <!-- Right Slot: Actions -->
+      <template #right>
+        <!-- Brand Switcher -->
+        <div class="brand-buttons">
+          <button 
+            v-for="brand in availableBrands" 
+            :key="brand.key"
+            @click="setBrand(brand.key)"
+            class="brand-btn"
+            :class="{ 'active': currentBrand === brand.key }"
+            :title="brand.name"
           >
-            <span class="mode-icon">
-              {{ currentMode === 'light' ? '🌙' : '☀️' }}
-            </span>
-          </Button>
+            <div class="brand-logo">
+              <Logo :brand="brand.key" variant="small" size="xs" />
+            </div>
+          </button>
         </div>
-      </nav>
-    </header>
+        
+        <!-- Theme Toggle -->
+        <Button 
+          variant="ghost" 
+          size="small"
+          @click="toggleMode"
+          :aria-label="`Basculer vers le mode ${currentMode === 'light' ? 'sombre' : 'clair'}`"
+          class="mode-toggle"
+          :class="{ 'dark': currentMode === 'dark' }"
+        >
+          <span class="mode-icon">
+            {{ currentMode === 'light' ? '🌙' : '☀️' }}
+          </span>
+        </Button>
+      </template>
+    </Header>
 
     <!-- Main Content -->
     <main class="app-main">
@@ -88,7 +83,8 @@
 </template>
 
 <script setup lang="ts">
-import { Button, Logo, useFavicon, useTheme } from '@club-employes/utopia';
+import { Button, Header, Logo, useFavicon, useTheme } from '@club-employes/utopia';
+import { useRoute } from 'vue-router';
 
 // Use theme composable
 const { 
@@ -102,6 +98,36 @@ const {
 // Use favicon composable for dynamic favicon
 useFavicon()
 
+// Use route for active link detection
+const route = useRoute()
+
+// Navigation links configuration
+const navigationLinks = [
+  {
+    key: 'home',
+    label: 'Design System',
+    component: 'router-link',
+    to: '/'
+  },
+  {
+    key: 'showcase', 
+    label: 'Showcase',
+    component: 'router-link',
+    to: '/showcase'
+  }
+]
+
+// Function to check if a link is active
+const isLinkActive = (link: { key?: string; [key: string]: unknown }): boolean => {
+  if (link.key === 'home') {
+    return route.name === 'home'
+  }
+  if (link.key === 'showcase') {
+    return route.name === 'showcase'
+  }
+  return false
+}
+
 
 </script>
 
@@ -113,33 +139,7 @@ useFavicon()
   flex-direction: column;
 }
 
-/* Header */
-.app-header {
-  height: 60px;
-  background-color: var(--theme-colors-primary-25);
-  border-bottom: 1px solid var(--theme-colors-primary-300);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(13px);
-  width: 100%;
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-3) var(--spacing-12);
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-brand {
-  display: flex;
-  align-items: center;
-}
-
+/* Header Content Styles */
 .brand-link {
   display: flex;
   align-items: center;
@@ -157,6 +157,7 @@ useFavicon()
 .nav-links {
   display: flex;
   gap: var(--spacing-8);
+  margin-left: var(--spacing-8);
 }
 
 .nav-link {
@@ -177,12 +178,6 @@ useFavicon()
 .nav-link.active {
   color: var(--theme-colors-primary-600);
   background: var(--theme-colors-primary-50);
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-4);
 }
 
 /* Brand Buttons */
@@ -270,6 +265,7 @@ useFavicon()
   justify-content: center;
 }
 
+
 /* Main Content */
 .app-main {
   flex: 1;
@@ -325,12 +321,9 @@ useFavicon()
 
 /* Responsive */
 @media (max-width: 768px) {
-  .nav-container {
-    padding: 0 var(--spacing-4);
-  }
-  
   .nav-links {
     gap: var(--spacing-4);
+    margin-left: var(--spacing-4);
   }
   
   .nav-link {
@@ -353,10 +346,7 @@ useFavicon()
   
   .nav-links {
     gap: var(--spacing-2);
-  }
-  
-  .nav-actions {
-    gap: var(--spacing-2);
+    margin-left: var(--spacing-2);
   }
   
   .brand-btn,
