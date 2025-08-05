@@ -1,4 +1,5 @@
 <template>
+  <!-- Navigation item component with hover and active states -->
   <div 
     class="nav-item" 
     :class="{ 
