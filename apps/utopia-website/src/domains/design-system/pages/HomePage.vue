@@ -105,6 +105,13 @@ const features = [
     buttonVariant: 'outline' as const
   },
   {
+    icon: '🎯',
+    title: 'Icônes',
+    description: 'Bibliothèque complète de 495+ icônes optimisées et prêtes à utiliser.',
+    page: 'design-system-icons',
+    buttonVariant: 'outline' as const
+  },
+  {
     icon: '🌓',
     title: 'Thèmes',
     description: 'Comparaison entre les modes clair et sombre.',

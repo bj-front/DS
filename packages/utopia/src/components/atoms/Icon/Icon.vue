@@ -58,12 +58,12 @@ const iconClasses = computed(() => {
 const iconStyles = computed(() => {
   // Mapping des couleurs vers les tokens CSS
   const colorTokens: Record<IconColor, string> = {
-    'primary': 'var(--theme-colors-brand-primary-600)',
-    'secondary': 'var(--theme-colors-brand-secondary-600)',
-    'success': 'var(--theme-colors-common-succeed-600)',
-    'warning': 'var(--theme-colors-common-warning-600)',
-    'danger': 'var(--theme-colors-common-danger-600)',
-    'neutral': 'var(--theme-colors-common-slate-600)',
+    'primary': 'var(--color-brand-primary-500)',
+    'secondary': 'var(--color-brand-secondary-500)',
+    'success': 'var(--color-semantic-success-primary)',
+    'warning': 'var(--color-warning-500)',
+    'danger': 'var(--color-semantic-attention-primary)',
+    'neutral': 'var(--color-neutral-600)',
     'current': 'currentColor'
   }
 
@@ -72,19 +72,12 @@ const iconStyles = computed(() => {
   }
 })
 
-// Fonction pour charger l'icône SVG
+// Fonction pour charger l'icône SVG via import dynamique (tree-shakable)
 const loadIcon = async (iconName: string) => {
   try {
-    // Construire le chemin vers l'icône traitée
-    const iconPath = `/src/assets/icons-processed/${iconName}.svg`
-    
-    // Charger le contenu SVG via fetch
-    const response = await fetch(iconPath)
-    if (!response.ok) {
-      throw new Error(`Icon not found: ${iconName}`)
-    }
-    
-    const svgContent = await response.text()
+    // Utiliser import dynamique avec Vite pour tree-shaking
+    const iconModule = await import(`../../../assets/icons-processed/${iconName}.svg?raw`)
+    const svgContent = iconModule.default || iconModule
     
     // Nettoyer le SVG pour retirer les attributs de taille fixe
     const cleanedSvg = svgContent
