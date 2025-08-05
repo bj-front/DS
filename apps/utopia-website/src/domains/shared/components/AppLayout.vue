@@ -1,90 +1,101 @@
 <template>
   <div class="app-layout">
-    <!-- Header Navigation -->
-    <Header>
-      <!-- Left Slot: Brand/Logo -->
-      <template #left>
-        <router-link to="/" class="brand-link">
-          <Logo size="xs" />
-          <span class="brand-text">Utopia</span>
-        </router-link>
+          <!-- Sidebar Menu (fixe à gauche) -->
+      <Menu v-model:collapsed="menuCollapsed" v-model:headerCollapsed="headerCollapsed">
+        <template #header>
+          <div class="menu-header-content">
+            <Logo size="xs" />
+            <span v-if="!menuCollapsed" class="menu-brand-text">Utopia</span>
+          </div>
+        </template>
         
-        <!-- Navigation Links -->
-        <div class="nav-links">
-          <router-link 
-            v-for="link in navigationLinks"
-            :key="link.key"
-            :to="link.to"
-            class="nav-link"
-            :class="{ 'active': isLinkActive(link) }"
-          >
-            {{ link.label }}
-          </router-link>
-        </div>
-      </template>
-      
-      <!-- Right Slot: Actions -->
-      <template #right>
-        <!-- Brand Switcher -->
-        <div class="brand-buttons">
-          <button 
-            v-for="brand in availableBrands" 
-            :key="brand.key"
-            @click="setBrand(brand.key)"
-            class="brand-btn"
-            :class="{ 'active': currentBrand === brand.key }"
-            :title="brand.name"
-          >
-            <div class="brand-logo">
-              <Logo :brand="brand.key" variant="small" size="xs" />
-            </div>
-          </button>
-        </div>
+        <template #nav-items>
+          <NavItem 
+            v-for="item in menuItems"
+            :key="item.key"
+            :icon="item.icon"
+            :label="item.label"
+            :active="isMenuActive(item)"
+            :collapsed="menuCollapsed"
+            :headerCollapsed="headerCollapsed"
+            @click="navigateTo(item.to)"
+          />
+        </template>
+      </Menu>
+
+    <!-- Main Content Area -->
+    <div class="main-content" :class="{ 'menu-collapsed': menuCollapsed }">
+      <!-- Header Navigation -->
+      <Header>
+        <!-- Left Slot: Brand/Logo -->
+        <template #left>
+         
+        </template>
         
-        <!-- Theme Toggle -->
-        <Button 
-          variant="ghost" 
-          size="small"
-          @click="toggleMode"
-          :aria-label="`Basculer vers le mode ${currentMode === 'light' ? 'sombre' : 'clair'}`"
-          class="mode-toggle"
-          :class="{ 'dark': currentMode === 'dark' }"
-        >
-          <span class="mode-icon">
-            {{ currentMode === 'light' ? '🌙' : '☀️' }}
-          </span>
-        </Button>
-      </template>
-    </Header>
+        <!-- Right Slot: Actions -->
+        <template #right>
+          <!-- Brand Switcher -->
+          <div class="brand-buttons">
+            <button 
+              v-for="brand in availableBrands" 
+              :key="brand.key"
+              @click="setBrand(brand.key)"
+              class="brand-btn"
+              :class="{ 'active': currentBrand === brand.key }"
+              :title="brand.name"
+            >
+              <div class="brand-logo">
+                <Logo :brand="brand.key" variant="small" size="xs" />
+              </div>
+            </button>
+          </div>
+          
+          <!-- Theme Toggle -->
+          <Button 
+            variant="ghost" 
+            size="small"
+            @click="toggleMode"
+            :aria-label="`Basculer vers le mode ${currentMode === 'light' ? 'sombre' : 'clair'}`"
+            class="mode-toggle"
+            :class="{ 'dark': currentMode === 'dark' }"
+          >
+            <span class="mode-icon">
+              {{ currentMode === 'light' ? '🌙' : '☀️' }}
+            </span>
+          </Button>
+        </template>
+      </Header>
 
-    <!-- Main Content -->
-    <main class="app-main">
-      <router-view />
-    </main>
+      <!-- Main Content -->
+      <main class="app-main">
+        <router-view />
+      </main>
 
-    <!-- Footer -->
-    <footer class="app-footer">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <Logo variant="small" size="xs" />
-          <span class="footer-text">Utopia Design System</span>
+      <!-- Footer -->
+      <footer class="app-footer">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <Logo variant="small" size="xs" />
+            <span class="footer-text">Utopia Design System</span>
+          </div>
+          <div class="footer-links">
+            <a href="https://github.com/club-employes/ds" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+            <a href="https://npmjs.com/package/@club-employes/utopia" target="_blank" rel="noopener noreferrer">
+              npm
+            </a>
+          </div>
         </div>
-        <div class="footer-links">
-          <a href="https://github.com/club-employes/ds" target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-          <a href="https://npmjs.com/package/@club-employes/utopia" target="_blank" rel="noopener noreferrer">
-            npm
-          </a>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Button, Header, Logo, useFavicon, useTheme } from '@club-employes/utopia';
-import { useRoute } from 'vue-router';
+import { Button, Header, Logo, Menu, NavItem, useFavicon, useTheme } from '@club-employes/utopia';
+import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
 // Use theme composable
 const { 
@@ -98,35 +109,59 @@ const {
 // Use favicon composable for dynamic favicon
 useFavicon()
 
-// Use route for active link detection
+// Use route and router for navigation
 const route = useRoute()
+const router = useRouter()
 
-// Navigation links configuration
-const navigationLinks = [
+// Menu state
+const menuCollapsed = ref(false)
+const headerCollapsed = ref(false)
+
+
+
+// Menu items configuration
+const menuItems = [
   {
     key: 'home',
     label: 'Design System',
-    component: 'router-link',
+    icon: 'Settings',
     to: '/'
   },
   {
-    key: 'showcase', 
+    key: 'colors',
+    label: 'Couleurs',
+    icon: 'Palette',
+    to: '/design-system/colors'
+  },
+  {
+    key: 'icons',
+    label: 'Icônes',
+    icon: 'Search',
+    to: '/design-system/icons'
+  },
+  {
+    key: 'showcase',
     label: 'Showcase',
-    component: 'router-link',
+    icon: 'Frame',
     to: '/showcase'
   }
 ]
 
-// Function to check if a link is active
-const isLinkActive = (link: { key?: string; [key: string]: unknown }): boolean => {
-  if (link.key === 'home') {
-    return route.name === 'home'
-  }
-  if (link.key === 'showcase') {
-    return route.name === 'showcase'
-  }
-  return false
+
+
+// Function to check if a menu item is active
+const isMenuActive = (item: { key: string; to: string }): boolean => {
+  return route.path === item.to
 }
+
+// Function to navigate to a route
+const navigateTo = (to: string): void => {
+  router.push(to)
+}
+
+
+
+
 
 
 </script>
@@ -136,8 +171,110 @@ const isLinkActive = (link: { key?: string; [key: string]: unknown }): boolean =
   min-height: 100vh;
   width: 100%;
   display: flex;
-  flex-direction: column;
 }
+
+.main-content {
+  flex: 1;
+  margin-left: 200px; /* Espace pour le menu fixe */
+  transition: margin-left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Hauteur minimale au lieu de fixe */
+  overflow: visible; /* Permet le scroll */
+}
+
+.main-content.menu-collapsed {
+  margin-left: 80px; /* Espace réduit quand le menu est rétracté */
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0; /* Prend toute la largeur sur mobile */
+    width: 100%;
+  }
+  
+  .main-content.menu-collapsed {
+    margin-left: 0; /* Pas de marge même quand le menu est rétracté */
+  }
+  
+  /* Menu passe au-dessus du contenu sur mobile */
+  .app-layout :deep(.utopia-menu) {
+    z-index: 1000; /* Plus haut que le contenu */
+  }
+  
+  /* Contenu passe sous le menu quand il est ouvert */
+  .app-layout :deep(.utopia-menu:not(.collapsed)) + .main-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Header s'adapte au mobile */
+  .app-layout :deep(.utopia-header) {
+    width: 100%;
+    left: 0;
+  }
+  
+  /* Footer s'adapte au mobile */
+  .app-footer {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+}
+
+.app-main {
+  flex: 1;
+  padding: var(--spacing-6);
+  padding-bottom: calc(var(--spacing-6) + 200px); /* Marge en bas pour déclencher le footer */
+  overflow-y: auto; /* Permet le scroll dans le contenu principal */
+  overflow-x: hidden;
+  margin-top: -60px; /* Permet au contenu de passer derrière le header */
+  padding-top: calc(var(--spacing-6) + 60px); /* Compense la marge négative */
+  min-height: calc(100vh - 60px - 80px); /* Hauteur minimale : viewport - header - footer */
+  z-index: 60; /* Passe au-dessus du footer */
+  position: relative; /* Pour que le z-index fonctionne */
+  background-color: var(--theme-colors-surface-background);
+  border-bottom: 1px solid var(--theme-colors-border-default);
+}
+
+.app-footer {
+  position: sticky;
+  bottom: 0;
+  padding: var(--spacing-4) var(--spacing-6);
+  background-color: var(--theme-colors-background-primary);
+  z-index: 40; /* En dessous du contenu */
+  backdrop-filter: blur(13px);
+  background-color: rgba(255, 255, 255, 0.9);
+  margin-top: auto; /* Pousse le footer en bas */
+  flex-shrink: 0; /* Empêche le footer de se rétrécir */
+}
+
+/* Footer adapté quand le menu est rétracté */
+.main-content.menu-collapsed .app-footer {
+  left: 80px;
+}
+
+/* Dark mode support for footer */
+@media (prefers-color-scheme: dark) {
+  .app-footer {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+}
+
+.menu-header-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.menu-brand-text {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--theme-colors-text-primary);
+}
+
+
 
 /* Header Content Styles */
 .brand-link {

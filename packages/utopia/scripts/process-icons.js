@@ -86,8 +86,8 @@ function processSVG(content, filename) {
     return 'fill="currentColor"'
   })
 
-  // STANDARDISER le stroke-width à 2 pour toutes les icônes
-  processed = processed.replace(/stroke-width="([^"]*)"/g, 'stroke-width="2"')
+  // STANDARDISER le stroke-width à 1 pour un style bold
+  processed = processed.replace(/stroke-width="([^"]*)"/g, 'stroke-width="1"')
 
   // SUPPRIMER toutes les opacités pour avoir des couleurs pleines
   processed = processed.replace(/stroke-opacity="[^"]*"/g, '')
