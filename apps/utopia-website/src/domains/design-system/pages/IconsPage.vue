@@ -309,19 +309,19 @@ const formatColorName = (color: string): string => {
     neutral: 'Neutral',
     current: 'Current'
   }
-  return colorNames[color] || color
+  return colorNames[color] ?? color
 }
 
-const selectIcon = (iconName: string) => {
+const selectIcon = (iconName: string): void => {
   selectedIcon.value = iconName
 }
 
-const resetFilters = () => {
+const resetFilters = (): void => {
   searchQuery.value = ''
   selectedColor.value = 'current'
 }
 
-const copyToClipboard = async (text: string) => {
+const copyToClipboard = async (text: string): Promise<void> => {
   try {
     await navigator.clipboard.writeText(text)
     // Optionnel : afficher une notification de succès
@@ -331,7 +331,7 @@ const copyToClipboard = async (text: string) => {
 }
 
 // Charger la liste des icônes disponibles
-const loadAvailableIcons = async () => {
+const loadAvailableIcons = async (): Promise<void> => {
   try {
     // Charger la liste des icônes depuis le fichier généré
     const response = await fetch('/icons-list.json')
@@ -340,7 +340,7 @@ const loadAvailableIcons = async () => {
     }
     
     const data = await response.json()
-    allIcons.value = data.icons || []
+    allIcons.value = data.icons ?? []
     
     console.log(`🎯 ${data.count} icônes chargées depuis le fichier généré`)
   } catch (error) {
