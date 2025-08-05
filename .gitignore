@@ -73,9 +73,9 @@ yarn.lock
 # TypeScript cache
 *.tsbuildinfo
 
-# Changeset release artifacts
-.changeset/*.md
+# Changeset config (keep README, ignore auto-generated ones if needed)
 !.changeset/config.json
+!.changeset/README.md
 
 # Local development
 *.local
