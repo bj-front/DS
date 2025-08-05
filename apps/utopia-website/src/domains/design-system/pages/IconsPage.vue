@@ -40,6 +40,18 @@
               {{ color }}
             </option>
           </select>
+          
+          <label class="control-label">Épaisseur du trait :</label>
+          <div class="stroke-width-controls">
+            <button
+              v-for="width in strokeWidthOptions"
+              :key="width"
+              @click="selectedStrokeWidth = width"
+              :class="['stroke-btn', { 'active': selectedStrokeWidth === width }]"
+            >
+              {{ width }}
+            </button>
+          </div>
         </div>
       </div>
       
@@ -71,6 +83,7 @@
               :name="iconName"
               :size="selectedSize"
               :color="selectedColor"
+              :stroke-width="selectedStrokeWidth"
             />
           </div>
           <div class="icon-info">
@@ -82,7 +95,7 @@
       
       <!-- Message si aucune icône trouvée -->
       <div v-if="filteredIcons.length === 0" class="no-results">
-        <Icon name="Search" size="large" color="neutral" />
+        <Icon name="Search" size="large" color="neutral" :stroke-width="selectedStrokeWidth" />
         <h3>Aucune icône trouvée</h3>
         <p>Essayez d'ajuster vos critères de recherche ou de réinitialiser les filtres.</p>
       </div>
@@ -105,7 +118,7 @@
       <div class="details-content">
         <div class="details-preview">
           <div class="preview-large">
-            <Icon :name="selectedIcon" size="large" :color="selectedColor" />
+            <Icon :name="selectedIcon" size="large" :color="selectedColor" :stroke-width="selectedStrokeWidth" />
           </div>
           <h3 class="selected-icon-name">{{ formatIconName(selectedIcon) }}</h3>
           <p class="selected-icon-filename">{{ selectedIcon }}.svg</p>
@@ -123,7 +136,7 @@
               :class="{ 'active': selectedColor === color }"
             >
               <div class="variant-preview">
-                <Icon :name="selectedIcon" size="medium" :color="color" />
+                <Icon :name="selectedIcon" size="medium" :color="color" :stroke-width="selectedStrokeWidth" />
               </div>
               <div class="variant-info">
                 <span class="variant-name">{{ formatColorName(color) }}</span>
@@ -193,16 +206,35 @@
             </div>
           </div>
           
+          <!-- Exemple avec stroke-width -->
+          <div class="code-example">
+            <h5>Avec épaisseur de trait personnalisée</h5>
+            <div class="code-snippet">
+              <div class="code-with-copy">
+                <code>&lt;Icon name="{{ selectedIcon }}" :stroke-width="{{ selectedStrokeWidth }}" /&gt;</code>
+                <Button
+                  variant="ghost"
+                  size="small"
+                  @click="copyToClipboard(`&lt;Icon name=&quot;${selectedIcon}&quot; :stroke-width=&quot;${selectedStrokeWidth}&quot; /&gt;`)"
+                  class="copy-btn"
+                  aria-label="Copier le code avec stroke-width"
+                >
+                  📋
+                </Button>
+              </div>
+            </div>
+          </div>
+          
           <!-- Exemple complet -->
           <div class="code-example">
             <h5>Exemple complet</h5>
             <div class="code-snippet">
               <div class="code-with-copy">
-                <code>&lt;Icon name="{{ selectedIcon }}" size="{{ selectedSize }}" color="{{ selectedColor }}" alt="Description de l'icône" /&gt;</code>
+                <code>&lt;Icon name="{{ selectedIcon }}" size="{{ selectedSize }}" color="{{ selectedColor }}" :stroke-width="{{ selectedStrokeWidth }}" alt="Description de l'icône" /&gt;</code>
                 <Button
                   variant="ghost"
                   size="small"
-                  @click="copyToClipboard(`&lt;Icon name=&quot;${selectedIcon}&quot; size=&quot;${selectedSize}&quot; color=&quot;${selectedColor}&quot; alt=&quot;Description de l'icône&quot; /&gt;`)"
+                  @click="copyToClipboard(`&lt;Icon name=&quot;${selectedIcon}&quot; size=&quot;${selectedSize}&quot; color=&quot;${selectedColor}&quot; :stroke-width=&quot;${selectedStrokeWidth}&quot; alt=&quot;Description de l'icône&quot; /&gt;`)"
                   class="copy-btn"
                   aria-label="Copier le code complet"
                 >
@@ -224,7 +256,7 @@
           <h3>🎨 Tailles disponibles</h3>
           <div class="size-examples">
             <div v-for="size in sizeOptions" :key="size" class="size-example">
-              <Icon name="Basket" :size="size" />
+              <Icon name="Shopping-basket" :size="size" :stroke-width="selectedStrokeWidth" />
               <span class="size-label">{{ size }}</span>
             </div>
           </div>
@@ -234,10 +266,23 @@
           <h3>🌈 Couleurs disponibles</h3>
           <div class="color-examples">
             <div v-for="color in colorOptions" :key="color" class="color-example">
-              <Icon name="Happy" :color="color" size="medium" />
+              <Icon name="Smile" :color="color" size="medium" :stroke-width="selectedStrokeWidth" />
               <span class="color-label">{{ color }}</span>
             </div>
           </div>
+        </div>
+        
+        <div class="guide-item">
+          <h3>✏️ Épaisseur du trait</h3>
+          <div class="stroke-examples">
+            <div v-for="width in strokeWidthOptions" :key="width" class="stroke-example">
+              <Icon name="Settings" :stroke-width="width" size="medium" color="primary" />
+              <span class="stroke-label">{{ width }}px</span>
+            </div>
+          </div>
+          <p class="stroke-description">
+            Contrôlez l'épaisseur du trait des icônes avec la propriété <code>stroke-width</code>.
+          </p>
         </div>
         
         <div class="guide-item">
@@ -266,12 +311,14 @@ type IconColor = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'n
 const searchQuery = ref('')
 const selectedSize = ref<IconSize>('medium')
 const selectedColor = ref<IconColor>('current')
+const selectedStrokeWidth = ref<number>(1)
 const selectedIcon = ref<string | null>(null)
 const allIcons = ref<string[]>([])
 
 // Options
 const sizeOptions: IconSize[] = ['small', 'medium', 'large']
 const colorOptions: IconColor[] = ['primary', 'secondary', 'success', 'warning', 'danger', 'neutral', 'current']
+const strokeWidthOptions: number[] = [1, 2, 3]
 
 // Computed
 const totalIcons = computed(() => allIcons.value.length)
@@ -319,6 +366,8 @@ const selectIcon = (iconName: string): void => {
 const resetFilters = (): void => {
   searchQuery.value = ''
   selectedColor.value = 'current'
+  selectedSize.value = 'medium'
+  selectedStrokeWidth.value = 1
 }
 
 const copyToClipboard = async (text: string): Promise<void> => {
@@ -348,10 +397,10 @@ const loadAvailableIcons = async (): Promise<void> => {
     // Fallback: utiliser une liste d'icônes de base en cas d'erreur
     allIcons.value = [
       'Add_round', 'Alarm', 'Angry', 'Archive_alt_big', 'Arrow_down_long', 'Arrow_left_long', 
-      'Arrow_right_long', 'Arrow_top_long', 'Atom', 'Back', 'Bag', 'Basket', 'Bell', 'Book', 
+              'Arrow_right_long', 'Arrow_top_long', 'Atom', 'Back', 'Bag', 'Shopping-basket', 'Bell', 'Book', 
       'Bookmark', 'Box', 'Bug', 'Calendar', 'Camera', 'Cancel', 'Chart', 'Chat', 'Check_ring', 
       'Clock', 'Close_round', 'Cloud', 'Copy', 'CPU', 'Database', 'Desktop', 'Direction', 
-      'Done', 'Download_circle', 'Happy', 'Home', 'Lightning', 'Link', 'Mobile', 'Phone', 
+              'Done', 'Download_circle', 'Smile', 'Home', 'Lightning', 'Link', 'Mobile', 'Phone', 
       'Search', 'User', 'Video', 'Wallet', 'Widget'
     ]
   }
@@ -463,11 +512,29 @@ onMounted(() => {
   text-transform: capitalize;
 }
 
-.size-btn:hover {
+.stroke-width-controls {
+  display: flex;
+  gap: var(--spacing-1);
+}
+
+.stroke-btn {
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--theme-colors-border-default);
+  background: var(--theme-colors-surface-background);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: var(--font-size-sm);
+  min-width: 40px;
+}
+
+.size-btn:hover,
+.stroke-btn:hover {
   border-color: var(--theme-colors-primary-500);
 }
 
-.size-btn.active {
+.size-btn.active,
+.stroke-btn.active {
   background: var(--theme-colors-primary-500);
   border-color: var(--theme-colors-primary-500);
   color: white;
@@ -621,7 +688,9 @@ onMounted(() => {
 }
 
 .usage-examples {
-  space-y: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
 }
 
 .usage-title {
@@ -700,7 +769,7 @@ onMounted(() => {
 }
 
 .color-variant:hover {
-  border-color: var(--theme-colors-border-primary);
+  border-color: var(--theme-colors-primary);
   box-shadow: var(--shadow-sm);
   transform: translateY(-1px);
 }
@@ -792,10 +861,48 @@ onMounted(() => {
 }
 
 .size-label,
-.color-label {
+.color-label,
+.stroke-label {
   font-size: var(--font-size-xs);
   color: var(--theme-colors-text-secondary);
   text-transform: capitalize;
+}
+
+.stroke-label {
+  font-family: var(--font-family-mono);
+}
+
+.stroke-examples {
+  display: flex;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-3);
+}
+
+.stroke-example {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3);
+  border: 1px solid var(--theme-colors-border-default);
+  border-radius: var(--border-radius-sm);
+  background: var(--theme-colors-primary-25);
+}
+
+.stroke-description {
+  font-size: var(--font-size-sm);
+  color: var(--theme-colors-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.stroke-description code {
+  font-family: var(--font-family-mono);
+  background: var(--theme-colors-slate-100);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.9em;
 }
 
 /* Responsive */
@@ -820,7 +927,8 @@ onMounted(() => {
   }
   
   .size-examples,
-  .color-examples {
+  .color-examples,
+  .stroke-examples {
     justify-content: center;
   }
 }

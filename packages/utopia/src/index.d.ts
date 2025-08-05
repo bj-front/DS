@@ -43,6 +43,8 @@ export declare const Button: DefineComponent<ButtonProps>
 export declare const Header: DefineComponent<{}>
 export declare const Icon: DefineComponent<IconProps>
 export declare const Logo: DefineComponent<LogoProps>
+export declare const Menu: DefineComponent<{}>
+export declare const NavItem: DefineComponent<{}>
 export declare const ThemeProvider: DefineComponent<ThemeProviderProps>
 
 // Theme exports

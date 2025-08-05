@@ -28,7 +28,9 @@
   z-index: 100;
   backdrop-filter: blur(13px);
   width: 100%;
+  flex-shrink: 0;
 }
+
 
 .nav-container {
   max-width: 1200px;

@@ -43,7 +43,7 @@
             <span>archive_alt_big</span>
           </div>
           <div class="icon-item">
-            <Icon name="basket" size="medium" />
+            <Icon name="Shopping-basket" size="medium" />
             <span>basket</span>
           </div>
           <div class="icon-item">
@@ -111,7 +111,7 @@
 </template>
 
 <script setup lang="ts">
-import { Button, Icon } from '@club-employes/utopia'
+import { Button, Icon } from '@club-employes/utopia';
 </script>
 
 <style scoped>

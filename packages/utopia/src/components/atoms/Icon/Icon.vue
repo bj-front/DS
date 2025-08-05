@@ -24,6 +24,8 @@ interface Props {
   size?: IconSize
   /** Couleur de l'icône */
   color?: IconColor
+  /** Épaisseur du trait (stroke-width) */
+  strokeWidth?: number | string
   /** Texte alternatif pour l'accessibilité */
   alt?: string
   /** Classes CSS personnalisées */
@@ -68,7 +70,8 @@ const iconStyles = computed(() => {
   }
 
   return {
-    color: colorTokens[props.color]
+    color: colorTokens[props.color],
+    '--stroke-width': props.strokeWidth ? String(props.strokeWidth) : '1'
   }
 })
 
@@ -166,7 +169,7 @@ watch(() => props.name, (newName) => {
 
 /* États d'interaction */
 .icon:hover {
-  transform: scale(1.05);
+  /* background-color: var(--theme-colors-border-muted); */
 }
 
 /* Styles pour le SVG injecté */
@@ -184,6 +187,8 @@ watch(() => props.name, (newName) => {
   /* S'assurer que les éléments SVG héritent de la couleur */
   stroke: currentColor;
   fill: currentColor;
+  /* Forcer la préservation de la stroke-width SVG */
+  stroke-width: var(--stroke-width, 1) !important;
 }
 
 /* Pour les icônes en outline uniquement */
