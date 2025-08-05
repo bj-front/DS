@@ -333,8 +333,8 @@ const copyToClipboard = async (text: string): Promise<void> => {
 // Charger la liste des icônes disponibles
 const loadAvailableIcons = async (): Promise<void> => {
   try {
-    // Charger la liste des icônes depuis le fichier généré
-    const response = await fetch('/icons-list.json')
+    // Charger la liste des icônes depuis le design system
+    const response = await fetch('/node_modules/@club-employes/utopia/dist/icons-list.json')
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
@@ -342,7 +342,7 @@ const loadAvailableIcons = async (): Promise<void> => {
     const data = await response.json()
     allIcons.value = data.icons ?? []
     
-    console.log(`🎯 ${data.count} icônes chargées depuis le fichier généré`)
+    console.log(`🎯 ${data.count} icônes chargées depuis le design system`)
   } catch (error) {
     console.error('Erreur lors du chargement des icônes:', error)
     // Fallback: utiliser une liste d'icônes de base en cas d'erreur
