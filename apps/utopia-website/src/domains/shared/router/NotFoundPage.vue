@@ -19,8 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
 import { Button } from '@club-employes/utopia'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
@@ -35,12 +35,12 @@ const goBack = (): void => {
 
 <style scoped>
 .not-found-page {
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--spacing-8);
   background: linear-gradient(135deg, var(--theme-colors-primary-50) 0%, var(--theme-colors-surface-background) 100%);
+  flex: 1;
 }
 
 .not-found-content {

@@ -153,11 +153,11 @@
 </template>
 
 <script setup lang="ts">
-import { 
-  Button
-  // Badge, 
-  // Icon, 
-  // Logo
+import {
+    Button
+    // Badge, 
+    // Icon, 
+    // Logo
 } from '@club-employes/utopia'
 
 // Import temporaire - à remplacer par les vrais composants
@@ -180,8 +180,8 @@ const scrollToTokens = (): void => {
 
 <style scoped>
 .presentation-page {
-  min-height: 100vh;
   width: 100%;
+  flex: 1;
 }
 
 /* Hero Section */

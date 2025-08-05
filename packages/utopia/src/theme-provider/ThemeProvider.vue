@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, provide, onMounted, onBeforeUnmount, watch, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, provide, ref, watch } from 'vue'
 
 interface ThemeConfig {
   name: string
@@ -196,7 +196,6 @@ injectGlobalTransitionStyles()
 
 <style scoped>
 .theme-provider {
-  height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;

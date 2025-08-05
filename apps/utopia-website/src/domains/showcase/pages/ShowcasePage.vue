@@ -11,8 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
 import { Button } from '@club-employes/utopia'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
@@ -23,11 +23,11 @@ const goHome = (): void => {
 
 <style scoped>
 .showcase-page {
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--spacing-8);
+  flex: 1;
 }
 
 .showcase-content {

@@ -35,11 +35,9 @@ html, body {
   line-height: var(--font-line-height-normal);
   background-color: var(--theme-colors-surface-background);
   color: var(--theme-colors-text-primary);
-  overflow-x: hidden;
 }
 
 #app {
-  min-height: 100vh;
   width: 100%;
   margin: 0;
   padding: 0;
