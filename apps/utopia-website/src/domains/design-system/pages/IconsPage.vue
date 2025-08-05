@@ -334,7 +334,7 @@ const copyToClipboard = async (text: string): Promise<void> => {
 const loadAvailableIcons = async (): Promise<void> => {
   try {
     // Charger la liste des icônes depuis le design system
-    const response = await fetch('/node_modules/@club-employes/utopia/dist/icons-list.json')
+    const response = await fetch('/icons-list.json')
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
