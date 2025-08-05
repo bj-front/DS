@@ -40,6 +40,7 @@ export interface ThemeProviderProps {
 // Component exports
 export declare const Badge: DefineComponent<BadgeProps>
 export declare const Button: DefineComponent<ButtonProps>
+export declare const Header: DefineComponent<{}>
 export declare const Icon: DefineComponent<IconProps>
 export declare const Logo: DefineComponent<LogoProps>
 export declare const ThemeProvider: DefineComponent<ThemeProviderProps>
