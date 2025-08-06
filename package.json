@@ -6,10 +6,12 @@
   "packageManager": "npm@10.0.0",
   "workspaces": [
     "packages/*",
-    "apps/utopia-website"
+    "apps/*"
   ],
   "scripts": {
     "dev": "turbo dev",
+    "dev:website": "turbo dev --filter=utopia-website",
+    "dev:storybook": "turbo dev --filter=storybook",
     "build": "turbo build",
     "build:tokens": "turbo build:tokens",
     "test": "turbo test",
