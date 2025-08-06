@@ -17,7 +17,9 @@
     "./tokens/club-employes/light": "./dist/tokens/club-employes/light.css",
     "./tokens/club-employes/dark": "./dist/tokens/club-employes/dark.css",
     "./tokens/gifteo/light": "./dist/tokens/gifteo/light.css",
-    "./tokens/gifteo/dark": "./dist/tokens/gifteo/dark.css"
+    "./tokens/gifteo/dark": "./dist/tokens/gifteo/dark.css",
+    "./tokens/generated/club-employes/light.css": "./dist/tokens/club-employes/light.css",
+    "./tokens/generated/club-employes/dark.css": "./dist/tokens/club-employes/dark.css"
   },
   "files": [
     "dist"
