@@ -9,11 +9,8 @@ import router from './domains/shared/router'
 // Import du design system Utopia (styles des composants)
 import '@club-employes/utopia/styles'
 
-// // En mode développement, importer directement les tokens CSS
-// if (import.meta.env.DEV) {
-//   // Import direct des tokens pour le développement
-//   import('../../packages/utopia/src/tokens/generated/club-employes/light.css')
-// }
+// Import SYNCHRONE des tokens CSS pour éviter le FOUC
+import '@club-employes/utopia/tokens/club-employes/light'
 
 // Appliquer l'attribut data-theme par défaut
 document.body.setAttribute('data-theme', 'club-employes-light')
