@@ -1,37 +1,27 @@
-/// <reference types="vitest/config" />
-import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import { fileURLToPath } from 'node:url';
+import { defineConfig } from 'vite';
 
 // https://vite.dev/config/
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
-const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
-
-// More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [vue()],
-  test: {
-    projects: [{
-      extends: true,
-      plugins: [
-      // The plugin will run tests for the stories defined in your Storybook config
-      // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
-      storybookTest({
-        configDir: path.join(dirname, '.storybook')
-      })],
-      test: {
-        name: 'storybook',
-        browser: {
-          enabled: true,
-          headless: true,
-          provider: 'playwright',
-          instances: [{
-            browser: 'chromium'
-          }]
-        },
-        setupFiles: ['.storybook/vitest.setup.ts']
-      }
-    }]
+  resolve: {
+    alias: {
+      // En mode développement, utiliser les sources du design system pour le hot reload
+      ...(mode === 'development' && {
+        '@club-employes/utopia/styles': fileURLToPath(new URL('../../packages/utopia/src/style.css', import.meta.url)),
+        '@club-employes/utopia/tokens/club-employes/light': fileURLToPath(new URL('../../packages/utopia/src/tokens/generated/club-employes/light.css', import.meta.url)),
+        '@club-employes/utopia/tokens/club-employes/dark': fileURLToPath(new URL('../../packages/utopia/src/tokens/generated/club-employes/dark.css', import.meta.url)),
+        '@club-employes/utopia/tokens/gifteo/light': fileURLToPath(new URL('../../packages/utopia/src/tokens/generated/gifteo/light.css', import.meta.url)),
+        '@club-employes/utopia/tokens/gifteo/dark': fileURLToPath(new URL('../../packages/utopia/src/tokens/generated/gifteo/dark.css', import.meta.url)),
+        '@club-employes/utopia/tokens': fileURLToPath(new URL('../../packages/utopia/src/tokens/generated', import.meta.url)),
+        '@club-employes/utopia': fileURLToPath(new URL('../../packages/utopia/src', import.meta.url))
+      })
+    },
+  },
+  // Optimiser la découverte des dépendances en mode dev
+  optimizeDeps: {
+    include: mode === 'development' ? ['vue'] : undefined,
+    exclude: mode === 'development' ? ['@club-employes/utopia'] : undefined
   }
-});
+}));
