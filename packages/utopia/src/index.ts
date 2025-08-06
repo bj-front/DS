@@ -5,9 +5,6 @@ export type { ThemeConfig, ThemeProviderProps } from './theme-provider'
 // Components
 export * from './components'
 
-// Explicit exports for better IDE support
-export { Header, Menu, NavItem } from './components/layouts'
-
 // Themes
 export { clubEmployesDark, clubEmployesLight } from './themes/club-employes'
 export { gifteoDark, gifteoLight } from './themes/gifteo'
