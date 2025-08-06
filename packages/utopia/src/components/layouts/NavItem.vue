@@ -10,7 +10,7 @@
     @click="$emit('click')"
   >
     <div class="nav-item-icon">
-      <Icon :name="icon" size="medium" :stroke-width="2" :color="active ? 'primary' : 'neutral'" />
+      <Icon :name="icon" size="medium" :stroke-width="3" :color="active ? 'primary' : 'neutral'" />
     </div>
     <div class="nav-item-label" v-if="!collapsed && !headerCollapsed">
       <slot>{{ label }}</slot>
