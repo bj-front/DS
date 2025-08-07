@@ -6,7 +6,7 @@ export type { ThemeConfig, ThemeProviderProps } from './theme-provider'
 export * from './components'
 
 // Explicit exports for better IDE support
-export { Header, Menu, NavItem } from './components/layouts'
+export { Header, Menu, NavItem, WebsiteAppLayout } from './components/layouts'
 
 // Themes
 export { clubEmployesDark, clubEmployesLight } from './themes/club-employes'

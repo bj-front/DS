@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ThemeProvider, clubEmployesLight, clubEmployesDark, gifteoLight, gifteoDark } from './index'
 import BrandSwitcher from './components/demo/BrandSwitcher.vue'
 import FloatingNav from './components/demo/FloatingNav.vue'
-import HomePage from './components/pages/HomePage.vue'
+import MobileMenuDemo from './components/demo/MobileMenuDemo.vue'
+import { Header } from './components/layouts'
+
 import ColorsPage from './components/pages/ColorsPage.vue'
-import SurfacesPage from './components/pages/SurfacesPage.vue'
-import TypographyPage from './components/pages/TypographyPage.vue'
-import SpacingPage from './components/pages/SpacingPage.vue'
+import HomePage from './components/pages/HomePage.vue'
 import LogosPage from './components/pages/LogosPage.vue'
+import SpacingPage from './components/pages/SpacingPage.vue'
+import SurfacesPage from './components/pages/SurfacesPage.vue'
 import ThemeComparison from './components/pages/ThemeComparison.vue'
+import TypographyPage from './components/pages/TypographyPage.vue'
+import { ThemeProvider, clubEmployesDark, clubEmployesLight, gifteoDark, gifteoLight } from './index'
 import type { ThemeConfig } from './theme-provider'
 
 const currentTheme = ref<ThemeConfig>(clubEmployesLight)
@@ -22,15 +25,27 @@ const handleThemeChange = (newTheme: ThemeConfig) => {
 const handlePageChange = (page: string) => {
   currentPage.value = page
 }
+
+const handleNavClick = (page: string) => {
+  console.log('Navigation mobile vers:', page)
+  // Ici on peut gérer la navigation mobile
+  // Pour l'instant, on affiche juste un message
+}
+
+
 </script>
 
 <template>
   <ThemeProvider :theme="currentTheme">
     <div class="app">
-      <header class="app-header">
-        <h1>🎨 Design System Utopia</h1>
-        <p>Système de tokens multi-marques - Club Employés & Gifteo</p>
-      </header>
+      <Header @nav-click="handleNavClick">
+        <template #left>
+          <h1>🎨 Design System Utopia</h1>
+        </template>
+        <template #right>
+          <p>Système de tokens multi-marques - Club Employés & Gifteo</p>
+        </template>
+      </Header>
       
       <!-- Floating Brand Switcher -->
       <BrandSwitcher 
@@ -77,6 +92,9 @@ const handlePageChange = (page: string) => {
           v-else-if="currentPage === 'theme-comparison'"
           :currentTheme="currentTheme"
         />
+        <MobileMenuDemo 
+          v-else-if="currentPage === 'mobile-menu'"
+        />
       </main>
     </div>
   </ThemeProvider>
@@ -89,23 +107,7 @@ const handlePageChange = (page: string) => {
   color: var(--theme-colors-text-primary);
 }
 
-.app-header {
-  background: linear-gradient(135deg, var(--theme-colors-primary-600), var(--theme-colors-primary-800));
-  color: var(--theme-colors-text-inverse);
-  padding: var(--spacing-8);
-  text-align: center;
-}
 
-.app-header h1 {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--spacing-2);
-}
-
-.app-header p {
-  font-size: var(--font-size-lg);
-  opacity: 0.9;
-}
 
 .app-main {
   margin-top: calc(var(--spacing-8) + 60px); /* Espace pour les widgets flottants */
