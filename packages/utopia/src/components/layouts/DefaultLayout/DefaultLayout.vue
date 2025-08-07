@@ -1,7 +1,11 @@
 <template>
   <div class="app-layout">
     <!-- Sidebar Menu (fixe à gauche) -->
-    <Menu v-model:collapsed="menuCollapsed" v-model:headerCollapsed="headerCollapsed">
+    <Menu 
+      :collapsed="menuCollapsed" 
+      @update:collapsed="handleMenuCollapsedChange"
+      v-model:headerCollapsed="headerCollapsed"
+    >
       <template #header>
         <div class="menu-header-content">
           <Logo size="xs" />
@@ -94,6 +98,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { useTheme } from '../../../composables'
 import { Button, Logo } from '../../atoms'
 import { Header, Menu, NavItem } from './components'
 
@@ -151,8 +156,14 @@ const emit = defineEmits<Emits>()
 const route = useRoute()
 
 // Menu state
-const menuCollapsed = ref(false)
+// Use theme composable for menu state persistence
+const { menuCollapsed, setMenuCollapsed } = useTheme()
 const headerCollapsed = ref(false)
+
+// Handle menu collapsed changes
+const handleMenuCollapsedChange = (collapsed: boolean) => {
+  setMenuCollapsed(collapsed)
+}
 
 
 
