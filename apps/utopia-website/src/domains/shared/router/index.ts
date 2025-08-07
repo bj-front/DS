@@ -3,15 +3,19 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 // Import pages from domains
 import {
-  ColorsPage,
-  HomePage,
-  IconsPage,
-  LogosPage,
-  SpacingPage,
-  SurfacesPage,
-  ThemeComparison,
-  TypographyPage
+    ColorsPage,
+    HomePage,
+    IconsPage,
+    LogosPage,
+    SpacingPage,
+    SurfacesPage,
+    ThemeComparison,
+    TypographyPage
 } from '../../design-system'
+
+// Import generated routes for design system components
+import { generatedRoutes } from '@/generated/routes'
+
 // Dynamic import for lazy loading  
 const NotFoundPage = (): Promise<typeof import('./NotFoundPage.vue')> => import('./NotFoundPage.vue')
 
@@ -108,6 +112,8 @@ const routes: Array<RouteRecordRaw> = [
       description: 'Exemples et démonstrations des composants'
     }
   },
+  // Generated routes for design system components
+  ...generatedRoutes,
   // Catch all route - 404
   {
     path: '/:pathMatch(.*)*',

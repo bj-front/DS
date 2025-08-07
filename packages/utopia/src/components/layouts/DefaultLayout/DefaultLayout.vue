@@ -13,16 +13,24 @@
       </template>
       
       <template #nav-items>
-        <NavItem 
-          v-for="item in menuItems"
-          :key="item.key"
-          :icon="item.icon"
-          :label="item.label"
-          :active="isMenuActive(item)"
-          :collapsed="menuCollapsed"
-          :headerCollapsed="headerCollapsed"
-          @click="navigateTo(item.to)"
-        />
+        <template v-for="item in menuItems" :key="item.key">
+          <!-- Section Label -->
+          <MenuSection 
+            v-if="'type' in item && item.type === 'section'"
+            :label="item.label"
+            :collapsed="menuCollapsed"
+          />
+          <!-- Navigation Item -->
+          <NavItem 
+            v-else
+            :icon="(item as MenuItem).icon"
+            :label="item.label"
+            :active="isMenuActive(item as MenuItem)"
+            :collapsed="menuCollapsed"
+            :headerCollapsed="headerCollapsed"
+            @click="navigateTo((item as MenuItem).to)"
+          />
+        </template>
       </template>
     </Menu>
 
@@ -57,14 +65,22 @@
         
         <!-- Mobile Menu Navigation Items -->
         <template #mobile-nav-items>
-          <NavItem 
-            v-for="item in menuItems"
-            :key="item.key"
-            :icon="item.icon"
-            :label="item.label"
-            :active="isMenuActive(item)"
-            @click="navigateTo(item.to)"
-          />
+          <template v-for="item in menuItems" :key="item.key">
+            <!-- Section Label for Mobile -->
+            <MenuSection 
+              v-if="'type' in item && item.type === 'section'"
+              :label="item.label"
+              :collapsed="false"
+            />
+            <!-- Navigation Item for Mobile -->
+            <NavItem 
+              v-else
+              :icon="(item as MenuItem).icon"
+              :label="item.label"
+              :active="isMenuActive(item as MenuItem)"
+              @click="navigateTo((item as MenuItem).to)"
+            />
+          </template>
         </template>
       </Header>
 
@@ -100,7 +116,7 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTheme } from '../../../composables'
 import { Button, Logo } from '../../atoms'
-import { Header, Menu, NavItem } from './components'
+import { Header, Menu, MenuSection, NavItem } from './components'
 
 interface MenuItem {
   key: string
@@ -109,8 +125,16 @@ interface MenuItem {
   to: string
 }
 
+interface MenuSection {
+  key: string
+  type: 'section'
+  label: string
+}
+
+type MenuItemOrSection = MenuItem | MenuSection
+
 interface Props {
-  menuItems?: MenuItem[]
+  menuItems?: MenuItemOrSection[]
   currentMode?: 'light' | 'dark'
 }
 
@@ -124,9 +148,14 @@ withDefaults(defineProps<Props>(), {
   menuItems: () => [
     {
       key: 'home',
-      label: 'Design System',
-      icon: 'Settings',
+      label: 'Accueil',
+      icon: 'Home',
       to: '/'
+    },
+    {
+      key: 'atoms-section',
+      type: 'section',
+      label: 'Atoms'
     },
     {
       key: 'colors',
@@ -141,12 +170,17 @@ withDefaults(defineProps<Props>(), {
       to: '/design-system/icons'
     },
     {
+      key: 'showcase-section',
+      type: 'section',
+      label: 'Exemples'
+    },
+    {
       key: 'showcase',
       label: 'Showcase',
       icon: 'Frame',
       to: '/showcase'
     }
-  ],
+  ] as MenuItemOrSection[],
   currentMode: 'light'
 })
 

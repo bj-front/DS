@@ -9,10 +9,10 @@
     "apps/*"
   ],
   "scripts": {
-    "dev": "turbo dev",
+    "dev": "npm run dev:with-links",
     "dev:website": "turbo dev --filter=utopia-website",
     "dev:storybook": "turbo dev --filter=storybook",
-    "build": "turbo build",
+    "build": "turbo build && npm run show:links",
     "build:tokens": "turbo build:tokens",
     "test": "turbo test",
     "lint": "turbo lint",
@@ -21,14 +21,18 @@
     "validate": "turbo validate:design-system",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo build && NPM_CONFIG_YES=true changeset publish",
-    "ci:build": "turbo build",
+    "release": "turbo build && NPM_CONFIG_YES=true changeset publish && npm run show:links",
+    "ci:build": "turbo build && npm run show:links",
     "ci:test": "turbo lint type-check",
     "ci:validate": "turbo validate:design-system",
     "prepare": "husky",
     "precommit": "lint-staged",
     "setup:hooks": "husky install && husky add .husky/pre-commit \"npm run precommit\"",
-    "clean": "turbo clean && rm -rf node_modules/.cache"
+    "clean": "turbo clean && rm -rf node_modules/.cache",
+    "create:component": "cd apps/utopia-website && npm run create:component",
+    "show:links": "node scripts/show-project-links.mjs",
+    "dev:with-links": "node scripts/dev-with-links.mjs",
+    "preview": "npm run show:links"
   },
   "keywords": [
     "design-system",
@@ -43,6 +47,7 @@
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.11",
     "@types/json-schema": "^7.0.15",
+    "chalk": "^5.5.0",
     "husky": "^9.0.0",
     "lint-staged": "^15.0.0",
     "turbo": "^2.3.0"

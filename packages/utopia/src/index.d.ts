@@ -27,6 +27,49 @@ export interface LogoProps {
   class?: string
 }
 
+export interface CardProps {
+  variant?: 'default' | 'elevated' | 'outlined'
+  padding?: 'none' | 'small' | 'medium' | 'large'
+}
+
+export interface SearchBoxProps {
+  modelValue?: string
+  placeholder?: string
+  size?: 'small' | 'medium' | 'large'
+  clearable?: boolean
+  disabled?: boolean
+}
+
+export interface InputProps {
+  variant?: 'default' | 'primary' | 'secondary'
+  size?: 'small' | 'medium' | 'large'
+  disabled?: boolean
+}
+
+export interface InputSelectProps {
+  variant?: 'default' | 'primary' | 'secondary'
+  size?: 'small' | 'medium' | 'large'
+  disabled?: boolean
+}
+
+export interface DataTableProps {
+  columns: Array<{
+    key: string
+    label: string
+    sortable?: boolean
+    width?: string
+    align?: 'left' | 'center' | 'right'
+    formatter?: (value: any) => string
+  }>
+  data: any[]
+  title?: string
+  loading?: boolean
+  selectable?: boolean
+  striped?: boolean
+  hoverable?: boolean
+  rowKey?: string | ((row: any) => string)
+}
+
 export interface ThemeConfig {
   name: string
   mode: 'light' | 'dark'
@@ -40,11 +83,16 @@ export interface ThemeProviderProps {
 // Component exports
 export declare const Badge: DefineComponent<BadgeProps>
 export declare const Button: DefineComponent<ButtonProps>
+export declare const Card: DefineComponent<CardProps>
 export declare const Header: DefineComponent<{}>
 export declare const Icon: DefineComponent<IconProps>
+export declare const Input: DefineComponent<InputProps>
+export declare const InputSelect: DefineComponent<InputSelectProps>
 export declare const Logo: DefineComponent<LogoProps>
 export declare const Menu: DefineComponent<{}>
 export declare const NavItem: DefineComponent<{}>
+export declare const SearchBox: DefineComponent<SearchBoxProps>
+export declare const DataTable: DefineComponent<DataTableProps>
 export declare const ThemeProvider: DefineComponent<ThemeProviderProps>
 export declare const DefaultLayout: DefineComponent<{}>
 

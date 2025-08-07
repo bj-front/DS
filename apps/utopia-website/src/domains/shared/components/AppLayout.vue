@@ -29,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+import { useGeneratedMenu } from '@/composables/useGeneratedMenu';
 import { DefaultLayout, Logo, useFavicon, useTheme } from '@club-employes/utopia';
 import { useRouter } from 'vue-router';
 
@@ -47,33 +48,8 @@ useFavicon()
 // Use router for navigation
 const router = useRouter()
 
-// Menu items configuration
-const menuItems = [
-  {
-    key: 'home',
-    label: 'Design System',
-    icon: 'Settings',
-    to: '/'
-  },
-  {
-    key: 'colors',
-    label: 'Couleurs',
-    icon: 'Palette',
-    to: '/design-system/colors'
-  },
-  {
-    key: 'icons',
-    label: 'Icônes',
-    icon: 'Search',
-    to: '/design-system/icons'
-  },
-  {
-    key: 'showcase',
-    label: 'Showcase',
-    icon: 'Frame',
-    to: '/showcase'
-  }
-]
+// Use generated menu from design system structure
+const { menuItems } = useGeneratedMenu()
 
 // Function to navigate to a route
 const navigateTo = (to: string): void => {
