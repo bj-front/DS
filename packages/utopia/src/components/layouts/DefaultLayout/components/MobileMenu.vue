@@ -61,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from '../atoms';
+import { Icon } from '../../../atoms';
 
 interface Props {
   isOpen: boolean

@@ -46,7 +46,7 @@ export declare const Logo: DefineComponent<LogoProps>
 export declare const Menu: DefineComponent<{}>
 export declare const NavItem: DefineComponent<{}>
 export declare const ThemeProvider: DefineComponent<ThemeProviderProps>
-export declare const WebsiteAppLayout: DefineComponent<{}>
+export declare const DefaultLayout: DefineComponent<{}>
 
 // Theme exports
 export declare const clubEmployesLight: ThemeConfig

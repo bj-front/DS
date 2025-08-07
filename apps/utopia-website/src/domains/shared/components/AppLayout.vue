@@ -1,5 +1,5 @@
 <template>
-  <WebsiteAppLayout
+  <DefaultLayout
     :menu-items="menuItems"
     :current-mode="currentMode"
     @nav-click="handleNavClick"
@@ -25,11 +25,11 @@
     </template>
     
     <router-view />
-  </WebsiteAppLayout>
+  </DefaultLayout>
 </template>
 
 <script setup lang="ts">
-import { Logo, WebsiteAppLayout, useFavicon, useTheme } from '@club-employes/utopia';
+import { DefaultLayout, Logo, useFavicon, useTheme } from '@club-employes/utopia';
 import { useRouter } from 'vue-router';
 
 // Use theme composable

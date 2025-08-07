@@ -64,7 +64,7 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
-import { Icon } from '../atoms';
+import { Icon } from '../../../atoms';
 
 interface Props {
   collapsed?: boolean

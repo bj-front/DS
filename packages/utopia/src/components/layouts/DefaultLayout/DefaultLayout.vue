@@ -28,7 +28,7 @@
       <Header @nav-click="handleNavClick">
         <!-- Left Slot: Brand/Logo -->
         <template #left>
-          <!-- Le MobileMenuButton est déjà dans le Header -->
+
         </template>
         
         <!-- Right Slot: Actions -->
@@ -88,15 +88,14 @@
       </footer>
     </div>
     
-    <!-- Le MobileMenu est déjà dans le Header -->
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { Button, Logo } from '../atoms'
-import { Header, Menu, NavItem } from './index'
+import { Button, Logo } from '../../atoms'
+import { Header, Menu, NavItem } from './components'
 
 interface MenuItem {
   key: string
@@ -173,10 +172,6 @@ const navigateTo = (to: string): void => {
 const handleNavClick = (page: string): void => {
   emit('nav-click', page)
 }
-
-
-
-// Function to set brand - removed as it's now handled by the slot
 
 // Function to toggle mode
 const toggleMode = (): void => {
@@ -521,4 +516,4 @@ const toggleMode = (): void => {
     max-height: 20px !important;
   }
 }
-</style> 
+</style>

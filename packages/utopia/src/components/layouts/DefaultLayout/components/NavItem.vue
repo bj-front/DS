@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Icon } from '../atoms'
+import { Icon } from '../../../atoms'
 
 interface Props {
   /** Libellé du nav item */

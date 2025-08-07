@@ -58,7 +58,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Icon, Logo } from '../atoms'
+import { Icon, Logo } from '../../../atoms'
 import MobileMenu from './MobileMenu.vue'
 import MobileMenuButton from './MobileMenuButton.vue'
 
