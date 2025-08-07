@@ -1,5 +1,5 @@
 <template>
-  <AppLayout>
+  <DefaultLayout>
     <template #header-title>
       <h1>📱 Menu Mobile</h1>
     </template>
@@ -62,12 +62,12 @@
           <p>Page sélectionnée : <strong>{{ currentPage }}</strong></p>
         </div>
       </div>
-    </AppLayout>
+    </DefaultLayout>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import AppLayout from '../layouts/AppLayout.vue'
+import { DefaultLayout } from '../layouts'
 import { Icon } from '../atoms'
 
 const showInfo = ref(false)
