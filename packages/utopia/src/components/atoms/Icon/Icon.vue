@@ -65,7 +65,7 @@ const iconStyles = computed(() => {
     'success': 'var(--color-semantic-success-primary)',
     'warning': 'var(--color-warning-500)',
     'danger': 'var(--color-semantic-attention-primary)',
-    'neutral': 'var(--color-neutral-600)',
+    'neutral': 'var(--color-neutral-400)',
     'current': 'currentColor'
   }
 
