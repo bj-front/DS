@@ -1,5 +1,13 @@
 <template>
-  <aside class="utopia-menu" :class="{ 'collapsed': collapsed, 'initialized': isInitialized, 'resizing': isResizing, 'mobile-overlay': isMobileOverlay }">
+  <aside class="utopia-menu" :class="[
+    { 
+      'collapsed': collapsed, 
+      'initialized': isInitialized, 
+      'resizing': isResizing, 
+      'mobile-overlay': isMobileOverlay 
+    },
+    ...containerClasses
+  ]">
     <!-- Backdrop pour mobile -->
     <div v-if="isMobileOverlay" class="mobile-backdrop" @click="closeMobileMenu"></div>
     
@@ -49,7 +57,7 @@
     </div>
 
     <!-- Navigation items -->
-    <nav class="menu-nav">
+    <nav class="menu-nav" ref="menuNavRef" :class="scrollClasses" @scroll="checkScrollPosition">
       <slot name="nav-items" :collapsed="collapsed" :animating="isAnimating">
         <!-- Les nav-items seront injectés via le slot -->
       </slot>
@@ -64,6 +72,7 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
+import { useScrollShadows } from '../../../../composables/useScrollShadows';
 import { Icon } from '../../../atoms';
 
 interface Props {
@@ -88,6 +97,27 @@ const isResizing = ref(false)
 const isMobileOverlay = ref(false)
 const userPreference = ref<boolean | null>(null)
 
+// Utilisation du composable pour les ombres de scroll
+const {
+  scrollElementRef: menuNavRef,
+  showTopShadow,
+  showBottomShadow,
+  handleScroll: checkScrollPosition,
+  initialize: initializeScrollShadows,
+  containerClasses,
+  scrollClasses
+} = useScrollShadows({ 
+  initialDelay: 100,
+  shadowConfig: {
+    topOffset: 61,
+    bottomOffset: 30,
+    height: 16,
+    opacity: 0.1,
+    zIndex: 1000
+  },
+  injectStyles: true
+})
+
 const toggleMenu = () => {
   collapsed.value = !collapsed.value
   userPreference.value = collapsed.value
@@ -105,6 +135,10 @@ const openMobileMenu = () => {
   isMobileOverlay.value = true
   emit('update:collapsed', collapsed.value)
 }
+
+// La logique de scroll est maintenant gérée par le composable useScrollShadows
+
+
 
 // Exposer les méthodes pour l'usage externe
 defineExpose({
@@ -164,6 +198,7 @@ onMounted(() => {
   // Activer les transitions après l'initialisation pour éviter les glitches
   setTimeout(() => {
     isInitialized.value = true
+    initializeScrollShadows()
   }, 50)
   
   window.addEventListener('resize', handleResize)
@@ -180,6 +215,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* Styles importés depuis le composable useScrollShadows */
 .utopia-menu {
   position: fixed;
   top: 0;
@@ -248,7 +284,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 60px;
+  height: 60px;
   overflow: hidden;
   min-width: 0;
   max-width: 100%;
@@ -404,12 +440,10 @@ onUnmounted(() => {
   overflow-x: hidden;
   min-width: 0;
   max-width: 100%;
+  position: relative;
 }
 
-/* Navigation avec overflow contrôlé */
-.utopia-menu.collapsed .menu-nav {
-  overflow: visible;
-}
+/* Styles injectés automatiquement par le composable useScrollShadows */
 
 /* Forcer une largeur fixe en mode collapsed */
 .utopia-menu.collapsed .menu-footer,

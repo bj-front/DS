@@ -1,4 +1,4 @@
-// Ce fichier est généré automatiquement par generate-complete-structure.js
+// Ce fichier est généré automatiquement par generate-menu.js
 // Ne pas modifier manuellement
 
 export interface MenuItem {
@@ -19,82 +19,116 @@ export type MenuItemOrSection = MenuItem | MenuSection
 // Structure complète scannée du design system
 export const designSystemStructure = [
   {
-    "name": "atoms",
     "type": "section",
+    "name": "atoms",
+    "label": "Atoms",
     "path": "atoms",
     "children": [
       {
-        "name": "Badge",
         "type": "component",
+        "name": "Badge",
+        "label": "Badge",
         "path": "atoms/Badge"
       },
       {
-        "name": "Button",
         "type": "component",
+        "name": "Button",
+        "label": "Button",
         "path": "atoms/Button"
       },
       {
-        "name": "Card",
         "type": "component",
+        "name": "Card",
+        "label": "Card",
         "path": "atoms/Card"
       },
       {
-        "name": "Icon",
         "type": "component",
+        "name": "Icon",
+        "label": "Icon",
         "path": "atoms/Icon"
       },
       {
-        "name": "Input",
         "type": "component",
+        "name": "Input",
+        "label": "Input",
         "path": "atoms/Input"
       },
       {
-        "name": "InputSelect",
         "type": "component",
+        "name": "InputSelect",
+        "label": "Input Select",
         "path": "atoms/InputSelect"
       },
       {
-        "name": "Logo",
         "type": "component",
+        "name": "Logo",
+        "label": "Logo",
         "path": "atoms/Logo"
       }
     ]
   },
   {
-    "name": "layouts",
+    "type": "component",
+    "name": "demo",
+    "label": "Demo",
+    "path": "demo"
+  },
+  {
     "type": "section",
+    "name": "layouts",
+    "label": "Layouts",
     "path": "layouts",
     "children": [
       {
+        "type": "section",
         "name": "DefaultLayout",
-        "type": "component",
-        "path": "layouts/DefaultLayout"
+        "label": "Default Layout",
+        "path": "layouts/DefaultLayout",
+        "children": [
+          {
+            "type": "component",
+            "name": "components",
+            "label": "Components",
+            "path": "layouts/DefaultLayout/components"
+          }
+        ]
       }
     ]
   },
   {
-    "name": "molecules",
     "type": "section",
+    "name": "molecules",
+    "label": "Molecules",
     "path": "molecules",
     "children": [
       {
-        "name": "SearchBox",
         "type": "component",
+        "name": "SearchBox",
+        "label": "Search Box",
         "path": "molecules/SearchBox"
       }
     ]
   },
   {
-    "name": "organisms",
     "type": "section",
+    "name": "organisms",
+    "label": "Organisms",
     "path": "organisms",
     "children": [
       {
-        "name": "DataTable",
         "type": "component",
+        "name": "DataTable",
+        "label": "Data Table",
         "path": "organisms/DataTable"
       }
     ]
+  },
+  {
+    "type": "component",
+    "name": "pages",
+    "label": "Pages",
+    "path": "pages"
   }
 ] as const
 
@@ -126,7 +160,7 @@ export const generatedMenuItems: MenuItemOrSection[] = [
   {
     "key": "atoms-Card",
     "label": "Card",
-    "icon": "RectangleHorizontal",
+    "icon": "Component",
     "to": "/design-system/atoms/card"
   },
   {
@@ -138,13 +172,13 @@ export const generatedMenuItems: MenuItemOrSection[] = [
   {
     "key": "atoms-Input",
     "label": "Input",
-    "icon": "Edit",
+    "icon": "Component",
     "to": "/design-system/atoms/input"
   },
   {
     "key": "atoms-InputSelect",
     "label": "Input Select",
-    "icon": "Atom",
+    "icon": "Component",
     "to": "/design-system/atoms/inputselect"
   },
   {
@@ -154,15 +188,15 @@ export const generatedMenuItems: MenuItemOrSection[] = [
     "to": "/design-system/atoms/logo"
   },
   {
+    "key": "demo",
+    "label": "Demo",
+    "icon": "Component",
+    "to": "/design-system/root/demo"
+  },
+  {
     "key": "layouts-section",
     "type": "section",
     "label": "Layouts"
-  },
-  {
-    "key": "layouts-DefaultLayout",
-    "label": "Default Layout",
-    "icon": "Layout",
-    "to": "/design-system/layouts/defaultlayout"
   },
   {
     "key": "molecules-section",
@@ -172,7 +206,7 @@ export const generatedMenuItems: MenuItemOrSection[] = [
   {
     "key": "molecules-SearchBox",
     "label": "Search Box",
-    "icon": "Search",
+    "icon": "Component",
     "to": "/design-system/molecules/searchbox"
   },
   {
@@ -183,8 +217,14 @@ export const generatedMenuItems: MenuItemOrSection[] = [
   {
     "key": "organisms-DataTable",
     "label": "Data Table",
-    "icon": "Table",
+    "icon": "Component",
     "to": "/design-system/organisms/datatable"
+  },
+  {
+    "key": "pages",
+    "label": "Pages",
+    "icon": "Component",
+    "to": "/design-system/root/pages"
   }
 ]
 
@@ -195,4 +235,4 @@ export function getItemsForSection(sectionName: string): MenuItem[] {
   ) as MenuItem[]
 }
 
-// Dernière mise à jour: 2025-08-07T12:41:21.374Z
+// Dernière mise à jour: 2025-08-08T13:40:09.336Z

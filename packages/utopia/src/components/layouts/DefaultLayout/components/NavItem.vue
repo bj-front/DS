@@ -7,18 +7,31 @@
     :class="{ 'active': isActive, 'collapsed': props.collapsed }"
     v-bind="$attrs"
     @click="handleClick"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+    ref="navItemRef"
   >
     <span class="nav-item-icon" v-if="icon">
       <Icon :name="icon" size="medium" color="current" :stroke-width="2"/>
     </span>
-    <span class="nav-item-label">
+    <span v-if="!collapsed" class="nav-item-label">
       <slot>{{ label }}</slot>
     </span>
   </component>
+
+  <!-- Tooltip téléporté en mode collapsed -->
+  <Teleport to="body" v-if="collapsed && showTooltip">
+    <div 
+      class="nav-item-tooltip-teleported"
+      :style="tooltipStyle"
+    >
+      {{ label }}
+    </div>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import { Icon } from '../../../atoms'
 
 interface Props {
@@ -46,6 +59,35 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<Emits>()
+
+// Refs pour le tooltip téléporté
+const navItemRef = ref<HTMLElement>()
+const showTooltip = ref(false)
+const tooltipStyle = ref({})
+
+// Gestion du tooltip en mode collapsed
+const handleMouseEnter = async () => {
+  if (!props.collapsed) return
+  
+  showTooltip.value = true
+  await nextTick()
+  
+  if (navItemRef.value) {
+    const rect = navItemRef.value.getBoundingClientRect()
+    tooltipStyle.value = {
+      position: 'fixed',
+      left: `${rect.right + 8}px`,
+      top: `${rect.top + rect.height / 2}px`,
+      transform: 'translateY(-50%)',
+      zIndex: '9999'
+    }
+  }
+}
+
+const handleMouseLeave = () => {
+  if (!props.collapsed) return
+  showTooltip.value = false
+}
 
 // Déterminer le composant à utiliser
 const component = computed(() => {
@@ -156,11 +198,8 @@ const handleClick = (event: MouseEvent) => {
   margin: 0;
 }
 
-.nav-item.collapsed .nav-item-label {
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
+/* Tooltip téléporté pour mode collapsed */
+.nav-item-tooltip-teleported {
   background-color: var(--theme-colors-surface-card);
   color: var(--theme-colors-text-secondary);
   padding: var(--spacing-1) var(--spacing-2);
@@ -169,24 +208,15 @@ const handleClick = (event: MouseEvent) => {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-normal);
   white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: none;
-  z-index: 9999;
-  margin-left: var(--spacing-1);
   border: 1px solid var(--theme-colors-border-subtle);
-  width: fit-content;
-  min-width: max-content;
-  overflow: visible;
   pointer-events: none;
+  opacity: 1;
+  animation: tooltipFadeIn 0.2s ease;
 }
 
-
-
-.nav-item.collapsed:hover .nav-item-label {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+@keyframes tooltipFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* Masquer les tooltips pendant l'animation de collapse */

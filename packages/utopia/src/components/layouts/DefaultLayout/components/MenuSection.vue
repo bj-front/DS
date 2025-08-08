@@ -1,27 +1,77 @@
 <template>
   <div class="menu-section" :class="{ 'collapsed': collapsed }">
     <div class="section-label" v-if="!collapsed">
-      <span class="section-text">{{ label }}</span>
+      <span class="section-text">{{ label.toUpperCase() }}</span>
     </div>
-    <div class="section-divider" v-else></div>
+    <div 
+      v-else 
+      class="section-collapsed"
+      @mouseenter="handleMouseEnter"
+      @mouseleave="handleMouseLeave"
+      ref="sectionRef"
+    >
+      <span class="section-collapsed-label">{{ label.toUpperCase() }}</span>
+    </div>
+
+    <!-- Tooltip téléporté pour sections en mode collapsed -->
+    <Teleport to="body" v-if="collapsed && showTooltip">
+      <div 
+        class="section-tooltip-teleported"
+        :style="tooltipStyle"
+      >
+        {{ label }}
+      </div>
+    </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
+import { nextTick, ref } from 'vue';
+
 interface Props {
   label: string
   collapsed?: boolean
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   collapsed: false
 })
+
+// Refs pour le tooltip téléporté
+const sectionRef = ref<HTMLElement>()
+const showTooltip = ref(false)
+const tooltipStyle = ref({})
+
+// Gestion du tooltip en mode collapsed
+const handleMouseEnter = async () => {
+  if (!props.collapsed) return
+  
+  showTooltip.value = true
+  await nextTick()
+  
+  if (sectionRef.value) {
+    const rect = sectionRef.value.getBoundingClientRect()
+    tooltipStyle.value = {
+      position: 'fixed',
+      left: `${rect.right + 8}px`,
+      top: `${rect.top + rect.height / 2}px`,
+      transform: 'translateY(-50%)',
+      zIndex: '9999'
+    }
+  }
+}
+
+const handleMouseLeave = () => {
+  if (!props.collapsed) return
+  showTooltip.value = false
+}
 </script>
 
 <style scoped>
 .menu-section {
   margin: 16px 0 8px 0;
   transition: all 0.2s ease;
+  color: var(--theme-colors-primary-500);
 }
 
 .menu-section:first-child {
@@ -55,13 +105,50 @@ withDefaults(defineProps<Props>(), {
   margin: 8px 0 6px 0;
 }
 
-.menu-section.collapsed .section-label {
-  display: none;
+.section-collapsed {
+  display: flex;
+  flex-direction: column; /* label sous le séparateur/icone */
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  min-height: 40px;
 }
 
 .menu-section.collapsed .section-divider {
   margin: 6px 20px;
   height: 1px;
+}
+
+.section-collapsed-label {
+  font-size: 10px;
+  line-height: 1.1;
+  color: var(--theme-colors-text-subtle);
+  text-align: center; /* centrage horizontal */
+  max-width: 56px; /* force le retour à la ligne en 2 lignes max */
+  white-space: normal; /* autorise le retour à la ligne sur espaces */
+  word-break: break-word;
+  font-weight: 600;
+}
+
+/* Tooltip téléporté pour sections en mode collapsed */
+.section-tooltip-teleported {
+  background-color: var(--theme-colors-surface-card);
+  color: var(--theme-colors-text-secondary);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-normal);
+  white-space: nowrap;
+  border: 1px solid var(--theme-colors-border-subtle);
+  pointer-events: none;
+  opacity: 1;
+  animation: tooltipFadeIn 0.2s ease;
+}
+
+@keyframes tooltipFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* Animation d'apparition */

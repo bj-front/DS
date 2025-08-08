@@ -13,7 +13,8 @@ export { clubEmployesDark, clubEmployesLight } from './themes/club-employes'
 export { gifteoDark, gifteoLight } from './themes/gifteo'
 
 // Composables
-export { useFavicon, useTheme } from './composables'
+export { useFavicon, useScrollShadows, useTheme } from './composables'
+export type { UseScrollShadowsOptions, UseScrollShadowsReturn } from './composables/useScrollShadows'
 export type { BrandTheme, ThemeMode } from './composables/useTheme'
 
 // Design Tokens (JavaScript exports)

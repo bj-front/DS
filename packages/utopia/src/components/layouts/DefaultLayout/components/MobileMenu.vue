@@ -6,7 +6,7 @@
         <div class="mobile-backdrop" @click="closeMenu"></div>
         
         <!-- Menu content - utilise les mêmes styles que le menu desktop -->
-        <aside class="utopia-menu mobile-menu-content">
+        <aside class="utopia-menu mobile-menu-content" :class="containerClasses">
           <!-- Header du menu mobile -->
           <div class="menu-header">
             <div class="header-logo-container">
@@ -24,7 +24,7 @@
           </div>
           
           <!-- Navigation -->
-          <nav class="menu-nav">
+          <nav class="menu-nav" ref="menuNavRef" :class="scrollClasses" @scroll="checkScrollPosition">
             <slot name="nav-items">
               <!-- Navigation par défaut -->
               <div class="nav-item" @click="handleNavClick('accueil')">
@@ -61,6 +61,8 @@
 </template>
 
 <script setup lang="ts">
+import { nextTick, watch } from 'vue';
+import { useScrollShadows } from '../../../../composables/useScrollShadows';
 import { Icon } from '../../../atoms';
 
 interface Props {
@@ -72,10 +74,38 @@ interface Emits {
   (e: 'nav-click', page: string): void
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
+// Utilisation du composable pour les ombres de scroll
+const {
+  scrollElementRef: menuNavRef,
+  showTopShadow,
+  showBottomShadow,
+  handleScroll: checkScrollPosition,
+  checkScrollPosition: checkScrollPositionManual,
+  containerClasses,
+  scrollClasses
+} = useScrollShadows({ 
+  initialDelay: 100,
+  shadowConfig: {
+    topOffset: 61,
+    bottomOffset: 61,
+    height: 16,
+    opacity: 0.15,
+    zIndex: 1000
+  },
+  injectStyles: false // On utilise les mêmes styles que Menu.vue
+})
 
+// Vérifier les ombres quand le menu s'ouvre
+watch(() => props.isOpen, (isOpen) => {
+  if (isOpen) {
+    nextTick(() => {
+      setTimeout(checkScrollPositionManual, 100)
+    })
+  }
+})
 
 const closeMenu = () => {
   emit('close')
@@ -88,6 +118,7 @@ const handleNavClick = (page: string) => {
 </script>
 
 <style scoped>
+/* Styles importés depuis le composable useScrollShadows */
 /* Le menu mobile utilise exactement les mêmes styles que le menu desktop */
 .mobile-menu-overlay {
   position: fixed;
@@ -144,6 +175,8 @@ const handleNavClick = (page: string) => {
   transform: translateZ(0);
   will-change: width;
 }
+
+/* Styles injectés automatiquement par le composable useScrollShadows depuis Menu.vue */
 
 /* Header identique au menu desktop */
 .mobile-menu-content .menu-header {
@@ -214,6 +247,7 @@ const handleNavClick = (page: string) => {
   overflow-x: hidden;
   min-width: 0;
   max-width: 100%;
+  position: relative;
 }
 
 /* Nav items identiques au menu desktop */
