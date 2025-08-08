@@ -77,6 +77,12 @@ const pages: Page[] = [
     label: 'Light/Dark',
     icon: '🌓',
     title: 'Correspondances Light/Dark'
+  },
+  {
+    key: 'mobile-menu',
+    label: 'Menu Mobile',
+    icon: '📱',
+    title: 'Démonstration du menu mobile'
   }
 ]
 </script>
