@@ -67,4 +67,4 @@ export const generatedRoutes: RouteRecordRaw[] = [
   }
 ]
 
-// Dernière mise à jour: 2025-08-08T13:34:40.827Z
+// Dernière mise à jour: 2025-08-08T13:47:00.793Z

@@ -124,9 +124,10 @@ const handleMouseLeave = () => {
   line-height: 1.1;
   color: var(--theme-colors-text-subtle);
   text-align: center; /* centrage horizontal */
-  max-width: 56px; /* force le retour à la ligne en 2 lignes max */
-  white-space: normal; /* autorise le retour à la ligne sur espaces */
-  word-break: break-word;
+  max-width: 56px; /* largeur max */
+  white-space: nowrap; /* force sur une seule ligne */
+  overflow: hidden; /* cache le débordement */
+  text-overflow: ellipsis; /* ajoute les 3 points */
   font-weight: 600;
 }
 

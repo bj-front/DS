@@ -235,4 +235,4 @@ export function getItemsForSection(sectionName: string): MenuItem[] {
   ) as MenuItem[]
 }
 
-// Dernière mise à jour: 2025-08-08T13:40:09.336Z
+// Dernière mise à jour: 2025-08-08T13:55:04.014Z
