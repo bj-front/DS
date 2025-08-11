@@ -3,12 +3,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 // Import pages from domains
 import {
-    ColorsPage,
-    HomePage,
-    IconsPage,
-    LogosPage,
-    SpacingPage,
-    TypographyPage
+  ColorsPage,
+  HomePage,
+  IconsPage,
+  LogosPage,
+  SpacingPage,
+  TypographyPage
 } from '../../design-system'
 
 // Import generated routes for design system components
