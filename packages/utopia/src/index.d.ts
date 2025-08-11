@@ -52,6 +52,12 @@ export interface InputSelectProps {
   disabled?: boolean
 }
 
+export interface CheckboxProps {
+  modelValue?: boolean
+  disabled?: boolean
+  size?: 'small' | 'medium' | 'large'
+}
+
 export interface DataTableProps {
   columns: Array<{
     key: string
@@ -84,6 +90,7 @@ export interface ThemeProviderProps {
 export declare const Badge: DefineComponent<BadgeProps>
 export declare const Button: DefineComponent<ButtonProps>
 export declare const Card: DefineComponent<CardProps>
+export declare const Checkbox: DefineComponent<CheckboxProps>
 export declare const Header: DefineComponent<{}>
 export declare const Icon: DefineComponent<IconProps>
 export declare const Input: DefineComponent<InputProps>

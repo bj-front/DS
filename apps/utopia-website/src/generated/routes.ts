@@ -38,6 +38,13 @@ export const generatedRoutes: RouteRecordRaw[] = [
     component: () => import('@/generated/pages/layouts/DefaultLayoutPage.vue'),
     meta: {"title":"Default Layout","section":"Layouts"}
   },
+
+  {
+    path: '/design-system/atoms/checkbox',
+    name: 'atoms-Checkbox',
+    component: () => import('@/generated/pages/atoms/CheckboxPage.vue'),
+    meta: {"title":"Checkbox","section":"Atoms"}
+  }
 ]
 
 // Dernière mise à jour: 2025-08-08T13:47:00.793Z

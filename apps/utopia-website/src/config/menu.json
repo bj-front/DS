@@ -18,11 +18,16 @@
       "to": "/design-system/atoms/button"
     },
     {
+      "key": "checkbox",
+      "label": "Checkbox",
+      "icon": "Badge-check",
+      "to": "/design-system/atoms/checkbox"
+    },
+    {
       "key": "molecules-section",
       "type": "section",
       "label": "Molecules"
     },
-   
     {
       "key": "organisms-section",
       "type": "section",

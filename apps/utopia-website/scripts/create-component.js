@@ -345,6 +345,17 @@ async function generateComponentPage(type, componentName, icon) {
       <p>Cette page de documentation a été générée automatiquement pour le composant <strong>${componentName}</strong>.</p>
       <p>📁 <strong>Fichier :</strong> <code>src/generated/pages/${type}/${componentName}Page.vue</code></p>
       <p>🎨 <strong>Composant :</strong> <code>packages/utopia/src/components/${type}/${componentName}/</code></p>
+      
+      <div class="important-note">
+        <h3>⚠️ Action requise</h3>
+        <p><strong>N'oubliez pas de mettre à jour le fichier <code>packages/utopia/src/index.d.ts</code> :</strong></p>
+        <ol>
+          <li>Ajouter l'interface <code>${componentName}Props</code> avec les props du composant</li>
+          <li>Ajouter <code>export declare const ${componentName}: DefineComponent&lt;${componentName}Props&gt;</code></li>
+          <li>Rebuilder le DS avec <code>npm run build</code> dans <code>packages/utopia</code></li>
+        </ol>
+      </div>
+      
       <p>📝 <strong>Personnalisation :</strong></p>
       <ul>
         <li>Modifiez les exemples dans les slots <code>#examples</code></li>
@@ -425,6 +436,46 @@ import { ${componentName}, Icon } from '@club-employes/utopia'
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+}
+
+/* Styles pour la note importante */
+.important-note {
+  background: var(--theme-colors-warning-background, #fef3c7);
+  border: 1px solid var(--theme-colors-warning-border, #f59e0b);
+  border-radius: 8px;
+  padding: var(--spacing-4, 16px);
+  margin: var(--spacing-6, 24px) 0;
+}
+
+.important-note h3 {
+  margin: 0 0 var(--spacing-3, 12px) 0;
+  color: var(--theme-colors-warning-text, #d97706);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.important-note p {
+  margin: 0 0 var(--spacing-3, 12px) 0;
+  color: var(--theme-colors-text-primary, #111827);
+}
+
+.important-note ol {
+  margin: 0;
+  padding-left: var(--spacing-5, 20px);
+  color: var(--theme-colors-text-primary, #111827);
+}
+
+.important-note li {
+  margin-bottom: var(--spacing-2, 8px);
+}
+
+.important-note code {
+  background: var(--theme-colors-warning-code-background, #fbbf24);
+  color: var(--theme-colors-warning-code-text, #92400e);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 0.875rem;
 }
 </style>`
 
