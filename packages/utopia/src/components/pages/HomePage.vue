@@ -46,7 +46,7 @@
         <div class="feature-actions">
           <Button 
             :variant="feature.buttonVariant"
-            size="md"
+            size="medium"
             @click="navigateToPage(feature.page)"
           >
             <template #icon>
@@ -64,8 +64,8 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from '../atoms/Button'
-import type { ThemeConfig } from '../../theme-provider'
+import type { ThemeConfig } from '../../theme-provider';
+import { Button } from '../atoms/Button';
 
 interface Props {
   currentTheme: ThemeConfig

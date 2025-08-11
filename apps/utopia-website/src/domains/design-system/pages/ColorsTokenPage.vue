@@ -411,7 +411,7 @@ import { Button, Icon } from '@club-employes/utopia'
 import { computed } from 'vue'
 
 // Fonction pour copier dans le presse-papiers
-const copyToClipboard = async (text: string) => {
+const copyToClipboard = async (text: string): Promise<void> => {
   try {
     await navigator.clipboard.writeText(text)
     // Vous pourriez ajouter une notification ici

@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from '@club-employes/utopia'
+import { Icon } from '@club-employes/utopia';
 
 interface Props {
   title: string
@@ -50,8 +50,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  icon: 'Package',
-  type: undefined
+  icon: 'Package'
 })
 </script>
 

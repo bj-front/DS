@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // Configuration pour les icônes
-const ICONS_LIST_PATH = path.resolve(__dirname, '../public/icons-list.json')
+// const ICONS_LIST_PATH = path.resolve(__dirname, '../public/icons-list.json')
 
 // Configuration
 const DESIGN_SYSTEM_PATH = path.resolve(__dirname, '../../../packages/utopia/src/components')

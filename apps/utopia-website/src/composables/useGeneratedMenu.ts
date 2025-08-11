@@ -1,5 +1,5 @@
-import { computed, type ComputedRef } from 'vue'
 import menuConfig from '@/config/menu.json'
+import { computed, type ComputedRef } from 'vue'
 
 export interface MenuItem {
   key: string

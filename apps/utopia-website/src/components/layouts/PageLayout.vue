@@ -28,9 +28,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  icon: 'FileText',
-  description: undefined,
-  section: undefined
+  icon: 'FileText'
 })
 </script>
 
