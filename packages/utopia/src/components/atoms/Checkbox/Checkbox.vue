@@ -11,7 +11,7 @@
       <Icon 
         name="Check" 
         class="utopia-checkbox__check"
-        stroke-width="3"
+        stroke-width="4"
       />
     </div>
     <span v-if="$slots.default" class="utopia-checkbox__label">
