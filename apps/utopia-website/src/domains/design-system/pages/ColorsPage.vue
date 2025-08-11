@@ -1,27 +1,113 @@
 <template>
-  <div class="colors-page">
-    <div class="page-header">
-      <h1 class="page-title">🎨 Couleurs du Design System</h1>
-      <p class="page-description">
-        Découvrez toutes les couleurs disponibles : couleurs spécifiques aux marques et couleurs communes partagées.
-      </p>
-    </div>
+  <ComponentLayout 
+    title="Couleurs"
+    icon="Palette"
+    type="Design System"
+  >
+    <template #examples>
+     
 
-    <!-- Couleurs Primary -->
+    <!-- Couleurs Brand -->
     <section class="section">
-      <h2 class="section-title">🎯 Couleurs Primaires</h2>
+      <h2 class="section-title">{{ currentBrand.name }} - Couleurs Brand</h2>
       <p class="section-description">
-        Couleurs principales utilisées pour les éléments interactifs et les accents.
+        Couleurs spécifiques à cette marque, adaptées au mode {{ currentTheme?.mode === 'dark' ? 'sombre' : 'clair' }} actuel.
+        <br>
+        <small>💡 Utilisez le widget en haut à droite pour voir les couleurs des autres marques.</small>
       </p>
       
       <div class="colors-grid">
         <div class="color-group">
-          <h4 class="color-group-title">Primary</h4>
+          <h4 class="color-group-title">{{ currentBrand.primary.name }}</h4>
           <div class="color-row">
-            <div class="color-card" v-for="shade in primaryColors" :key="shade.name">
+            <div class="color-card" v-for="shade in currentBrand.primary.shades" :key="shade.name">
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
+                <div class="color-hex-group">
+                  <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(getHexValue(shade.variable))"
+                    class="copy-hex-btn"
+                    :aria-label="`Copier ${getHexValue(shade.variable)}`"
+                  >
+                    📋
+                  </Button>
+                </div>
+                <div class="color-code-group">
+                  <code class="color-code">{{ shade.variable }}</code>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(shade.variable)"
+                    class="copy-btn"
+                    :aria-label="`Copier ${shade.variable}`"
+                  >
+                    📋
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="color-group">
+          <h4 class="color-group-title">{{ currentBrand.secondary.name }}</h4>
+          <div class="color-row">
+            <div class="color-card" v-for="shade in currentBrand.secondary.shades" :key="shade.name">
+              <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
+              <div class="color-info">
+                <span class="color-name">{{ shade.name }}</span>
+                <div class="color-hex-group">
+                  <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(getHexValue(shade.variable))"
+                    class="copy-hex-btn"
+                    :aria-label="`Copier ${getHexValue(shade.variable)}`"
+                  >
+                    📋
+                  </Button>
+                </div>
+                <div class="color-code-group">
+                  <code class="color-code">{{ shade.variable }}</code>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(shade.variable)"
+                    class="copy-btn"
+                    :aria-label="`Copier ${shade.variable}`"
+                  >
+                    📋
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="color-group">
+          <h4 class="color-group-title">{{ currentBrand.accent.name }}</h4>
+          <div class="color-row">
+            <div class="color-card" v-for="shade in currentBrand.accent.shades" :key="shade.name">
+              <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
+              <div class="color-info">
+                <span class="color-name">{{ shade.name }}</span>
+                <div class="color-hex-group">
+                  <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(getHexValue(shade.variable))"
+                    class="copy-hex-btn"
+                    :aria-label="`Copier ${getHexValue(shade.variable)}`"
+                  >
+                    📋
+                  </Button>
+                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
@@ -45,7 +131,8 @@
     <section class="section">
       <h2 class="section-title">🌐 Couleurs Communes</h2>
       <p class="section-description">
-        Couleurs partagées entre toutes les marques pour la cohérence du système.
+        Couleurs partagées entre toutes les marques pour la cohérence du système. 
+        <strong>Ces couleurs s'adaptent automatiquement selon le mode {{ currentTheme?.mode === 'dark' ? 'sombre' : 'clair' }}.</strong>
       </p>
       
       <div class="common-colors-grid">
@@ -56,6 +143,18 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
+                <div class="color-hex-group">
+                  <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(getHexValue(shade.variable))"
+                    class="copy-hex-btn"
+                    :aria-label="`Copier ${getHexValue(shade.variable)}`"
+                  >
+                    📋
+                  </Button>
+                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
@@ -76,10 +175,22 @@
         <div class="common-color-group">
           <h4 class="color-group-title">✅ Success</h4>
           <div class="color-row">
-            <div class="color-card" v-for="shade in successColors" :key="shade.name">
+            <div class="color-card" v-for="shade in succeedColors" :key="shade.name">
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
+                <div class="color-hex-group">
+                  <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(getHexValue(shade.variable))"
+                    class="copy-hex-btn"
+                    :aria-label="`Copier ${getHexValue(shade.variable)}`"
+                  >
+                    📋
+                  </Button>
+                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
@@ -104,6 +215,18 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
+                <div class="color-hex-group">
+                  <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(getHexValue(shade.variable))"
+                    class="copy-hex-btn"
+                    :aria-label="`Copier ${getHexValue(shade.variable)}`"
+                  >
+                    📋
+                  </Button>
+                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
@@ -128,6 +251,18 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
+                <div class="color-hex-group">
+                  <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(getHexValue(shade.variable))"
+                    class="copy-hex-btn"
+                    :aria-label="`Copier ${getHexValue(shade.variable)}`"
+                  >
+                    📋
+                  </Button>
+                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
@@ -143,48 +278,291 @@
               </div>
             </div>
           </div>
-        </div>
+                </div>
       </div>
     </section>
 
-    <!-- Couleurs de Surface -->
+    <!-- Couleurs Sémantiques -->
     <section class="section">
-      <h2 class="section-title">🖼️ Couleurs de Surface</h2>
+      <h2 class="section-title">🎯 Couleurs Sémantiques</h2>
       <p class="section-description">
-        Couleurs utilisées pour les arrière-plans et les surfaces.
+        Couleurs avec une signification sémantique spécifique (surfaces, texte, bordures, états).
       </p>
       
       <div class="common-colors-grid">
+        <!-- Surfaces -->
         <div class="common-color-group">
-          <h4 class="color-group-title">Surfaces</h4>
+          <h4 class="color-group-title">🏠 Surfaces</h4>
           <div class="color-row">
-            <div class="color-card" v-for="surface in surfaceColors" :key="surface.name">
-              <div class="color-swatch" :style="{ backgroundColor: `var(${surface.variable})` }"></div>
+            <div class="color-card" v-for="color in surfaceColors" :key="color.name">
+              <div class="color-swatch" :style="{ backgroundColor: `var(${color.variable})` }"></div>
               <div class="color-info">
-                <span class="color-name">{{ surface.name }}</span>
-                <div class="color-code-group">
-                  <code class="color-code">{{ surface.variable }}</code>
+                <span class="color-name">{{ color.name }}</span>
+                <div class="color-hex-group">
+                  <span class="color-hex">{{ getHexValue(color.variable) }}</span>
                   <Button 
                     variant="ghost" 
                     size="small" 
-                    @click="copyToClipboard(surface.variable)"
-                    class="copy-btn"
-                    :aria-label="`Copier ${surface.variable}`"
+                    @click="copyToClipboard(getHexValue(color.variable))"
+                    class="copy-hex-btn"
+                    :aria-label="`Copier ${getHexValue(color.variable)}`"
                   >
                     📋
                   </Button>
                 </div>
+                <div class="color-code-group">
+                  <code class="color-code">{{ color.variable }}</code>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(color.variable)"
+                    class="copy-btn"
+                    :aria-label="`Copier ${color.variable}`"
+                  >
+                    📋
+                  </Button>
+                </div>
+                <div class="color-description">{{ color.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Texte -->
+        <div class="common-color-group">
+          <h4 class="color-group-title">📝 Texte</h4>
+          <div class="color-row">
+            <div class="color-card" v-for="color in textColors" :key="color.name">
+              <div class="color-swatch" :style="{ backgroundColor: `var(${color.variable})` }"></div>
+              <div class="color-info">
+                <span class="color-name">{{ color.name }}</span>
+                <div class="color-hex-group">
+                  <span class="color-hex">{{ getHexValue(color.variable) }}</span>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(getHexValue(color.variable))"
+                    class="copy-hex-btn"
+                    :aria-label="`Copier ${getHexValue(color.variable)}`"
+                  >
+                    📋
+                  </Button>
+                </div>
+                <div class="color-code-group">
+                  <code class="color-code">{{ color.variable }}</code>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(color.variable)"
+                    class="copy-btn"
+                    :aria-label="`Copier ${color.variable}`"
+                  >
+                    📋
+                  </Button>
+                </div>
+                <div class="color-description">{{ color.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bordures -->
+        <div class="common-color-group">
+          <h4 class="color-group-title">🔲 Bordures</h4>
+          <div class="color-row">
+            <div class="color-card" v-for="color in borderColors" :key="color.name">
+              <div class="color-swatch" :style="{ backgroundColor: `var(${color.variable})` }"></div>
+              <div class="color-info">
+                <span class="color-name">{{ color.name }}</span>
+                <div class="color-hex-group">
+                  <span class="color-hex">{{ getHexValue(color.variable) }}</span>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(getHexValue(color.variable))"
+                    class="copy-hex-btn"
+                    :aria-label="`Copier ${getHexValue(color.variable)}`"
+                  >
+                    📋
+                  </Button>
+                </div>
+                <div class="color-code-group">
+                  <code class="color-code">{{ color.variable }}</code>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(color.variable)"
+                    class="copy-btn"
+                    :aria-label="`Copier ${color.variable}`"
+                  >
+                    📋
+                  </Button>
+                </div>
+                <div class="color-description">{{ color.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- États -->
+        <div class="common-color-group">
+          <h4 class="color-group-title">⚠️ États</h4>
+          <div class="color-row">
+            <div class="color-card" v-for="color in stateColors" :key="color.name">
+              <div class="color-swatch" :style="{ backgroundColor: `var(${color.variable})` }"></div>
+              <div class="color-info">
+                <span class="color-name">{{ color.name }}</span>
+                <div class="color-hex-group">
+                  <span class="color-hex">{{ getHexValue(color.variable) }}</span>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(getHexValue(color.variable))"
+                    class="copy-hex-btn"
+                    :aria-label="`Copier ${getHexValue(color.variable)}`"
+                  >
+                    📋
+                  </Button>
+                </div>
+                <div class="color-code-group">
+                  <code class="color-code">{{ color.variable }}</code>
+                  <Button 
+                    variant="ghost" 
+                    size="small" 
+                    @click="copyToClipboard(color.variable)"
+                    class="copy-btn"
+                    :aria-label="`Copier ${color.variable}`"
+                  >
+                    📋
+                  </Button>
+                </div>
+                <div class="color-description">{{ color.description }}</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  </div>
+  </template>
+
+  <template #documentation>
+      <div class="colors-documentation">
+        <p>Cette page présente l'ensemble de la palette de couleurs du design system Utopia.</p>
+        
+        <h3>🎨 Structure des couleurs</h3>
+        <ul>
+          <li><strong>Couleurs Brand</strong> : Spécifiques à chaque marque (Club Employés, Gifteo)</li>
+          <li><strong>Couleurs Communes</strong> : Partagées entre toutes les marques</li>
+        </ul>
+        
+        <h3>🔧 Utilisation</h3>
+        <p>Toutes les couleurs sont disponibles sous forme de variables CSS. Cliquez sur 📋 pour copier la variable.</p>
+        
+        <h3>🌙 Mode sombre</h3>
+        <p>Les couleurs s'adaptent automatiquement selon le thème sélectionné (clair/sombre).</p>
+      </div>
+    </template>
+  </ComponentLayout>
 </template>
 
 <script setup lang="ts">
-import { Button } from '@club-employes/utopia'
+import { ComponentLayout } from '@/components';
+import { Button, useTheme } from '@club-employes/utopia';
+import { computed } from 'vue';
+
+// Accès au thème via le composable
+const { currentTheme } = useTheme()
+
+// All brand colors data
+const brandColors = {
+  'club-employes': {
+    name: '🏢 Club Employés',
+    primary: {
+      name: 'Primary',
+      shades: [
+        { name: '25', variable: '--theme-colors-brand-primary-25' },
+        { name: '50', variable: '--theme-colors-brand-primary-50' },
+        { name: '100', variable: '--theme-colors-brand-primary-100' },
+        { name: '200', variable: '--theme-colors-brand-primary-200' },
+        { name: '300', variable: '--theme-colors-brand-primary-300' },
+        { name: '400', variable: '--theme-colors-brand-primary-400' },
+        { name: '500', variable: '--theme-colors-brand-primary-500' }
+      ]
+    },
+    secondary: {
+      name: 'Secondary',
+      shades: [
+        { name: '25', variable: '--theme-colors-brand-secondary-25' },
+        { name: '50', variable: '--theme-colors-brand-secondary-50' },
+        { name: '100', variable: '--theme-colors-brand-secondary-100' },
+        { name: '200', variable: '--theme-colors-brand-secondary-200' },
+        { name: '300', variable: '--theme-colors-brand-secondary-300' },
+        { name: '400', variable: '--theme-colors-brand-secondary-400' },
+        { name: '500', variable: '--theme-colors-brand-secondary-500' }
+      ]
+    },
+    accent: {
+      name: 'Accent',
+      shades: [
+        { name: '25', variable: '--theme-colors-brand-accent-25' },
+        { name: '50', variable: '--theme-colors-brand-accent-50' },
+        { name: '100', variable: '--theme-colors-brand-accent-100' },
+        { name: '200', variable: '--theme-colors-brand-accent-200' },
+        { name: '300', variable: '--theme-colors-brand-accent-300' },
+        { name: '400', variable: '--theme-colors-brand-accent-400' },
+        { name: '500', variable: '--theme-colors-brand-accent-500' }
+      ]
+    }
+  },
+  'gifteo': {
+    name: '❤️ Gifteo',
+    primary: {
+      name: 'Primary',
+      shades: [
+        { name: '25', variable: '--theme-colors-brand-primary-25' },
+        { name: '50', variable: '--theme-colors-brand-primary-50' },
+        { name: '100', variable: '--theme-colors-brand-primary-100' },
+        { name: '200', variable: '--theme-colors-brand-primary-200' },
+        { name: '300', variable: '--theme-colors-brand-primary-300' },
+        { name: '400', variable: '--theme-colors-brand-primary-400' },
+        { name: '500', variable: '--theme-colors-brand-primary-500' }
+      ]
+    },
+    secondary: {
+      name: 'Secondary',
+      shades: [
+        { name: '25', variable: '--theme-colors-brand-secondary-25' },
+        { name: '50', variable: '--theme-colors-brand-secondary-50' },
+        { name: '100', variable: '--theme-colors-brand-secondary-100' },
+        { name: '200', variable: '--theme-colors-brand-secondary-200' },
+        { name: '300', variable: '--theme-colors-brand-secondary-300' },
+        { name: '400', variable: '--theme-colors-brand-secondary-400' },
+        { name: '500', variable: '--theme-colors-brand-secondary-500' }
+      ]
+    },
+    accent: {
+      name: 'Accent',
+      shades: [
+        { name: '25', variable: '--theme-colors-brand-accent-25' },
+        { name: '50', variable: '--theme-colors-brand-accent-50' },
+        { name: '100', variable: '--theme-colors-brand-accent-100' },
+        { name: '200', variable: '--theme-colors-brand-accent-200' },
+        { name: '300', variable: '--theme-colors-brand-accent-300' },
+        { name: '400', variable: '--theme-colors-brand-accent-400' },
+        { name: '500', variable: '--theme-colors-brand-accent-500' }
+      ]
+    }
+  }
+}
+
+// Get current brand data
+const currentBrand = computed(() => {
+  if (!currentTheme.value?.name) {
+    return brandColors['club-employes'] // Valeur par défaut
+  }
+  const brandKey = currentTheme.value.name.includes('club-employes') ? 'club-employes' : 'gifteo'
+  return brandColors[brandKey]
+})
 
 // Copy to clipboard function
 const copyToClipboard = async (text: string): Promise<void> => {
@@ -196,22 +574,40 @@ const copyToClipboard = async (text: string): Promise<void> => {
   }
 }
 
-// Primary colors
-const primaryColors = [
-  { name: '25', variable: '--theme-colors-primary-25' },
-  { name: '50', variable: '--theme-colors-primary-50' },
-  { name: '100', variable: '--theme-colors-primary-100' },
-  { name: '200', variable: '--theme-colors-primary-200' },
-  { name: '300', variable: '--theme-colors-primary-300' },
-  { name: '400', variable: '--theme-colors-primary-400' },
-  { name: '500', variable: '--theme-colors-primary-500' },
-  { name: '600', variable: '--theme-colors-primary-600' },
-  { name: '700', variable: '--theme-colors-primary-700' },
-  { name: '800', variable: '--theme-colors-primary-800' },
-  { name: '900', variable: '--theme-colors-primary-900' }
-]
+// Get hex value from CSS variable
+const getHexValue = (cssVariable: string): string => {
+  try {
+    if (typeof window !== 'undefined' && document.documentElement) {
+      const computedValue = getComputedStyle(document.documentElement)
+        .getPropertyValue(cssVariable)
+        .trim()
+      
+      // If it's already a hex value, return it
+      if (computedValue.startsWith('#')) {
+        return computedValue.toUpperCase()
+      }
+      
+      // If it's an RGB value, convert to hex
+      if (computedValue.startsWith('rgb')) {
+        const rgbMatch = computedValue.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/)
+        if (rgbMatch?.[1] && rgbMatch[2] && rgbMatch[3]) {
+          const r = parseInt(rgbMatch[1])
+          const g = parseInt(rgbMatch[2])
+          const b = parseInt(rgbMatch[3])
+          return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`.toUpperCase()
+        }
+      }
+      
+      return computedValue || '--'
+    }
+    return '--'
+  } catch (error) {
+    console.warn('Error getting hex value for', cssVariable, error)
+    return '--'
+  }
+}
 
-// Common Colors - using actual generated variable names
+// Common Colors (adapted for light/dark modes)
 const slateColors = [
   { name: '50', variable: '--theme-colors-common-slate-50' },
   { name: '200', variable: '--theme-colors-common-slate-200' },
@@ -221,7 +617,7 @@ const slateColors = [
   { name: '950', variable: '--theme-colors-common-slate-950' }
 ]
 
-const successColors = [
+const succeedColors = [
   { name: '50', variable: '--theme-colors-common-succeed-50' },
   { name: '200', variable: '--theme-colors-common-succeed-200' },
   { name: '400', variable: '--theme-colors-common-succeed-400' },
@@ -248,37 +644,68 @@ const dangerColors = [
   { name: '950', variable: '--theme-colors-common-danger-950' }
 ]
 
+// Surface colors (semantic tokens)
 const surfaceColors = [
-  { name: 'Background', variable: '--theme-colors-surface-background' },
-  { name: 'Card', variable: '--theme-colors-surface-card' },
-  { name: 'Overlay', variable: '--theme-colors-surface-overlay' }
+  { name: 'Background', variable: '--theme-colors-surface-background', description: 'Couleur de fond principale' },
+  { name: 'Card', variable: '--theme-colors-surface-card', description: 'Couleur de fond des cartes' },
+  { name: 'Overlay', variable: '--theme-colors-surface-overlay', description: 'Couleur de superposition (modales, etc.)' }
 ]
+
+// Text colors (semantic tokens)
+const textColors = [
+  { name: 'Primary', variable: '--theme-colors-text-primary', description: 'Couleur de texte principale' },
+  { name: 'Secondary', variable: '--theme-colors-text-secondary', description: 'Couleur de texte secondaire' },
+  { name: 'Muted', variable: '--theme-colors-text-muted', description: 'Couleur de texte atténuée' },
+  { name: 'Inverse', variable: '--theme-colors-text-inverse', description: 'Couleur de texte inversée' }
+]
+
+// Border colors (semantic tokens)
+const borderColors = [
+  { name: 'Default', variable: '--theme-colors-border-default', description: 'Couleur de bordure par défaut' },
+  { name: 'Muted', variable: '--theme-colors-border-muted', description: 'Couleur de bordure atténuée' },
+  { name: 'Strong', variable: '--theme-colors-border-strong', description: 'Couleur de bordure forte' }
+]
+
+// State colors (semantic tokens)
+const stateColors = [
+  { name: 'Error', variable: '--theme-colors-state-error', description: 'Couleur d\'erreur' },
+  { name: 'Error Background', variable: '--theme-colors-state-error-background', description: 'Fond d\'erreur' },
+  { name: 'Success', variable: '--theme-colors-state-success', description: 'Couleur de succès' },
+  { name: 'Success Background', variable: '--theme-colors-state-success-background', description: 'Fond de succès' },
+  { name: 'Warning', variable: '--theme-colors-state-warning', description: 'Couleur d\'avertissement' },
+  { name: 'Warning Background', variable: '--theme-colors-state-warning-background', description: 'Fond d\'avertissement' }
+]
+
+
 </script>
 
 <style scoped>
-.colors-page {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: var(--spacing-8);
+.colors-intro {
+  margin-bottom: var(--spacing-8);
 }
 
-.page-header {
+.intro-description {
+  font-size: var(--font-size-lg);
+  color: var(--theme-colors-text-secondary);
   text-align: center;
-  margin-bottom: var(--spacing-12);
+  margin-bottom: var(--spacing-6);
 }
 
-.page-title {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
+.colors-documentation h3 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
   color: var(--theme-colors-text-primary);
+  margin-top: var(--spacing-6);
+  margin-bottom: var(--spacing-3);
+}
+
+.colors-documentation ul {
+  margin-left: var(--spacing-4);
   margin-bottom: var(--spacing-4);
 }
 
-.page-description {
-  font-size: var(--font-size-lg);
-  color: var(--theme-colors-text-secondary);
-  max-width: 600px;
-  margin: 0 auto;
+.colors-documentation li {
+  margin-bottom: var(--spacing-2);
 }
 
 .section {
@@ -329,7 +756,7 @@ const surfaceColors = [
 
 .color-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--spacing-3);
 }
 
@@ -366,6 +793,31 @@ const surfaceColors = [
   margin-bottom: var(--spacing-1);
 }
 
+.color-hex-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-1);
+  margin-bottom: var(--spacing-2);
+}
+
+.color-hex {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--theme-colors-text-secondary);
+  opacity: 0.8;
+  font-weight: var(--font-weight-medium);
+}
+
+.copy-hex-btn {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  padding: var(--spacing-1) !important;
+  font-size: var(--font-size-xs) !important;
+}
+
 .color-code-group {
   display: flex;
   align-items: center;
@@ -391,8 +843,17 @@ const surfaceColors = [
   padding: var(--spacing-1) !important;
 }
 
-.color-card:hover .copy-btn {
+.color-card:hover .copy-btn,
+.color-card:hover .copy-hex-btn {
   opacity: 1;
+}
+
+/* Style pour les descriptions des couleurs sémantiques */
+.color-description {
+  font-size: var(--font-size-xs);
+  color: var(--theme-colors-text-muted);
+  margin-top: var(--spacing-2);
+  font-style: italic;
 }
 
 @media (max-width: 768px) {

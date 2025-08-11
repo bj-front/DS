@@ -5,7 +5,6 @@
         <Icon :name="icon" class="component-icon" />
         <h1>{{ title }}</h1>
       </div>
-      <p v-if="type" class="component-description">Composant {{ type }}</p>
       <div v-if="type" class="page-meta">
         <span class="section-badge">{{ type }}</span>
       </div>
@@ -118,8 +117,8 @@ withDefaults(defineProps<Props>(), {
 .section-badge {
   display: inline-block;
   padding: var(--spacing-1, 4px) var(--spacing-3, 12px);
-  background: var(--theme-colors-brand-primary-100, #dbeafe);
-  color: var(--theme-colors-brand-primary-600, #2563eb);
+  background: var(--theme-colors-brand-primary-100);
+  color: var(--theme-colors-brand-primary-500);
   border-radius: var(--border-radius-full, 9999px);
   font-size: var(--font-size-sm, 14px);
   font-weight: var(--font-weight-medium, 500);

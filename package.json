@@ -9,7 +9,7 @@
     "apps/*"
   ],
   "scripts": {
-    "dev": "npm run dev:with-links",
+    "dev": "turbo dev",
     "dev:website": "turbo dev --filter=utopia-website",
     "dev:storybook": "turbo dev --filter=storybook",
     "build": "turbo build && npm run show:links",
@@ -32,7 +32,6 @@
     "create:component": "cd apps/utopia-website && npm run create:component",
     "create:page": "cd apps/utopia-website && npm run create:page",
     "show:links": "node scripts/show-project-links.mjs",
-    "dev:with-links": "node scripts/dev-with-links.mjs",
     "preview": "npm run show:links"
   },
   "keywords": [

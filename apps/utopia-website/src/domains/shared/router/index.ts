@@ -9,8 +9,6 @@ import {
   IconsPage,
   LogosPage,
   SpacingPage,
-  SurfacesPage,
-  ThemeComparison,
   TypographyPage
 } from '../../design-system'
 
@@ -70,15 +68,6 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    path: '/design-system/surfaces',
-    name: 'design-system-surfaces',
-    component: SurfacesPage,
-    meta: {
-      title: 'Surfaces - Design System Utopia',
-      description: 'Surfaces et arrière-plans du design system'
-    }
-  },
-  {
     path: '/design-system/typography',
     name: 'design-system-typography',
     component: TypographyPage,
@@ -112,15 +101,6 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: 'Icônes - Design System Utopia',
       description: 'Bibliothèque complète des icônes disponibles'
-    }
-  },
-  {
-    path: '/design-system/themes',
-    name: 'design-system-themes',
-    component: ThemeComparison,
-    meta: {
-      title: 'Thèmes - Design System Utopia',
-      description: 'Comparaison des thèmes clair et sombre'
     }
   },
   // Future routes

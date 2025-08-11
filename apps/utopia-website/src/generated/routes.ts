@@ -65,7 +65,6 @@ export const generatedRoutes: RouteRecordRaw[] = [
     component: () => import('@/generated/pages/organisms/DataTablePage.vue'),
     meta: {"title":"Data Table","section":"Organisms"}
   }
-
 ]
 
 // Dernière mise à jour: 2025-08-08T13:47:00.793Z

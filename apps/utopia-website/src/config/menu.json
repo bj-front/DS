@@ -29,6 +29,12 @@
       "to": "/design-system/molecules/searchbox"
     },
     {
+      "key": "zefzfzef",
+      "label": "Zefzfzef",
+      "icon": "Package",
+      "to": "/design-system/molecules/zefzfzef"
+    },
+    {
       "key": "organisms-section",
       "type": "section",
       "label": "Organisms"

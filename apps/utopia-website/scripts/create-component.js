@@ -12,8 +12,9 @@ const __dirname = path.dirname(__filename)
 // Configuration pour les icônes
 // const ICONS_LIST_PATH = path.resolve(__dirname, '../public/icons-list.json')
 
-// Configuration
-const DESIGN_SYSTEM_PATH = path.resolve(__dirname, '../../../packages/utopia/src/components')
+// Configuration - Séparation DS et Website
+const DESIGN_SYSTEM_PATH = path.resolve(__dirname, '../../../packages/utopia/src/components') // Composants dans le DS
+const WEBSITE_GENERATED_PATH = path.resolve(__dirname, '../src/generated') // Pages de présentation dans le website
 const MENU_JSON_PATH = path.resolve(__dirname, '../src/config/menu.json')
 
 // Types de composants disponibles
@@ -288,7 +289,7 @@ async function updateMenuJson(type, componentName, icon) {
 
 // Fonction pour générer la page de documentation du composant
 async function generateComponentPage(type, componentName, icon) {
-  const GENERATED_PAGES_PATH = path.resolve(__dirname, '../src/generated/pages')
+  const GENERATED_PAGES_PATH = path.join(WEBSITE_GENERATED_PATH, 'pages')
   const pageDir = path.join(GENERATED_PAGES_PATH, type)
   const pageFile = path.join(pageDir, `${componentName}Page.vue`)
   
@@ -359,7 +360,7 @@ import { ComponentLayout } from '@/components'
 
 // Fonction pour mettre à jour le fichier des routes générées
 async function updateRoutesFile(type, componentName) {
-  const ROUTES_FILE_PATH = path.resolve(__dirname, '../src/generated/routes.ts')
+  const ROUTES_FILE_PATH = path.join(WEBSITE_GENERATED_PATH, 'routes.ts')
   
   try {
     // Lire le fichier des routes existant
@@ -481,12 +482,14 @@ async function createComponent() {
 
     console.log(chalk.green('\n⏳ Création du composant...'))
 
-    // 6. Créer les fichiers
+    // 6. Créer les fichiers du composant dans le Design System (packages/utopia)
     const componentDir = path.join(DESIGN_SYSTEM_PATH, type, componentName)
     const createdFiles = createComponentFiles(componentName, type, componentDir, selectedIcon)
+    console.log(chalk.gray(`🎨 Composant créé dans le DS: ${path.relative(process.cwd(), componentDir)}`))
 
-    // 7. Sauvegarder l'icône sélectionnée pour la génération de page
-    const iconMetaPath = path.join(__dirname, '../src/generated/component-icons.json')
+    // 7. Générer les pages de présentation dans le Website (apps/utopia-website)
+    // Sauvegarder l'icône sélectionnée pour la génération de page
+    const iconMetaPath = path.join(WEBSITE_GENERATED_PATH, 'component-icons.json')
     const iconMetaDir = path.dirname(iconMetaPath)
     if (!fs.existsSync(iconMetaDir)) {
       fs.mkdirSync(iconMetaDir, { recursive: true })
@@ -504,14 +507,16 @@ async function createComponent() {
     iconMeta[`${type}-${componentName}`] = selectedIcon
     fs.writeFileSync(iconMetaPath, JSON.stringify(iconMeta, null, 2), 'utf8')
 
-    // 8. Mettre à jour les exports
+    // 8. Mettre à jour les exports dans le Design System
     updateTypeExports(type, componentName)
+    console.log(chalk.gray(`📦 Exports mis à jour dans le DS`))
 
-    // 9. Mettre à jour le menu JSON
-    console.log(chalk.blue('\n🔄 Mise à jour du menu...'))
+    // 9. Mettre à jour le menu et les pages dans le Website
+    console.log(chalk.blue('\n🔄 Mise à jour du menu et génération des pages...'))
     
-    // Mettre à jour le fichier menu.json
+    // Mettre à jour le fichier menu.json et générer la page de documentation
     await updateMenuJson(type, componentName, selectedIcon)
+    console.log(chalk.gray(`📄 Page de présentation générée dans le Website`))
 
     // 7. Succès !
     console.log(chalk.green.bold('\n✅ Composant créé avec succès !'))
@@ -521,13 +526,14 @@ async function createComponent() {
     })
 
     console.log(chalk.blue('\n🎯 Prochaines étapes :'))
-    console.log(chalk.gray('   • Personnaliser le composant dans le fichier .vue'))
-    console.log(chalk.gray('   • Ajouter des props spécifiques si nécessaire'))
-    console.log(chalk.gray('   • La page de documentation a été générée automatiquement'))
+    console.log(chalk.gray('   • Personnaliser le composant dans le Design System (packages/utopia)'))
+    console.log(chalk.gray('   • Personnaliser la page de documentation dans le Website (apps/utopia-website)'))
+    console.log(chalk.gray('   • Ajouter des exemples et variantes dans la page générée'))
 
-    console.log(chalk.green('\n🔗 Liens utiles :'))
-    console.log(chalk.gray(`   • Composant: packages/utopia/src/components/${type}/${componentName}/`))
-    console.log(chalk.gray(`   • Page web: /design-system/${type}/${componentName.toLowerCase()}`))
+    console.log(chalk.green('\n🔗 Structure des fichiers :'))
+    console.log(chalk.gray(`   • 🎨 Composant DS: packages/utopia/src/components/${type}/${componentName}/`))
+    console.log(chalk.gray(`   • 📄 Page Website: apps/utopia-website/src/generated/pages/${type}/${componentName}Page.vue`))
+    console.log(chalk.gray(`   • 🌐 URL: /design-system/${type}/${componentName.toLowerCase()}`))
 
   } catch (error) {
     console.error(chalk.red('\n❌ Erreur:', error.message))

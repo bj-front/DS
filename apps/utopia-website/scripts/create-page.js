@@ -129,7 +129,7 @@ import { PageLayout } from '@/components'
   border-radius: var(--border-radius-sm);
   font-family: var(--font-family-mono);
   font-size: var(--font-size-sm);
-  color: var(--theme-colors-brand-primary-600);
+  color: var(--theme-colors-brand-primary-500);
 }
 </style>`
 }
