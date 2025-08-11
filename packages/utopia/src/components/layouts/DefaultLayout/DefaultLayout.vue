@@ -203,7 +203,10 @@ const handleMenuCollapsedChange = (collapsed: boolean) => {
 
 // Function to check if a menu item is active
 const isMenuActive = (item: MenuItem): boolean => {
-  // Utiliser la route réactive de Vue Router
+  // Utiliser la route réactive de Vue Router avec vérification de sécurité
+  if (!route || !route.path) {
+    return false
+  }
   const currentPath = route.path
   return currentPath === item.to || currentPath.startsWith(item.to + '/')
 }

@@ -3,12 +3,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 // Import pages from domains
 import {
-  ColorsPage,
-  HomePage,
-  IconsPage,
-  LogosPage,
-  SpacingPage,
-  TypographyPage
+    ColorsPage,
+    HomePage,
+    IconsPage,
+    LogosPage,
+    SpacingPage,
+    TypographyPage
 } from '../../design-system'
 
 // Import generated routes for design system components
@@ -39,15 +39,6 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   // Design System pages
-  {
-    path: '/design-system',
-    name: 'design-system',
-    component: HomePage,
-    meta: {
-      title: 'Design System - Utopia',
-      description: 'Découvrez les composants et tokens du design system Utopia'
-    }
-  },
   {
     path: '/design-system/colors',
     name: 'design-system-colors',
