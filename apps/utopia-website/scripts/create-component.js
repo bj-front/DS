@@ -26,53 +26,9 @@ const COMPONENT_TYPES = [
   { name: '📐 Layouts (mises en page)', value: 'layouts' }
 ]
 
-// Icônes par catégorie de composants (basées sur les tokens disponibles)
-const COMPONENT_ICONS = {
-  atoms: [
-    'Package', 'Square', 'Circle', 'Triangle', 'Star', 'Heart',
-    'Type', 'Image', 'Award', 'MousePointer', 'Hash', 'Toggle'
-  ],
-  molecules: [
-    'Search', 'Filter', 'Menu', 'Navigation', 'Layers', 'Grid',
-    'List', 'Card', 'Box', 'Container'
-  ],
-  organisms: [
-    'Table', 'Layout', 'Database', 'FileText', 'Form', 'Calendar',
-    'Chart', 'Map', 'Gallery', 'Dashboard'
-  ],
-  layouts: [
-    'Layout', 'Columns', 'Rows', 'Grid', 'Sidebar', 'Header',
-    'Footer', 'Container', 'Frame', 'Window'
-  ],
-  templates: [
-    'FileText', 'Document', 'Page', 'Template', 'Copy', 'File',
-    'Folder', 'Archive', 'Blueprint', 'Clipboard'
-  ],
-  themes: [
-    'Palette', 'Brush', 'Paintbrush', 'Dropper', 'Sun', 'Moon',
-    'Contrast', 'Eye', 'Monitor', 'Smartphone'
-  ]
-}
 
-// Icônes génériques par défaut
-const DEFAULT_ICONS = [
-  'Package', 'Square', 'Circle', 'Star', 'Heart', 'Search',
-  'Settings', 'Plus', 'Minus', 'X', 'Check', 'Arrow-right'
-]
 
-// Fonction pour obtenir les icônes suggérées selon le type de composant
-function getIconsForType(type) {
-  return COMPONENT_ICONS[type] || DEFAULT_ICONS
-}
 
-// Fonction pour filtrer et rechercher des icônes (non utilisée actuellement)
-// function createIconSearch(icons) {
-//   return async (answers, input = '') => {
-//     return icons.filter(icon => 
-//       icon.toLowerCase().includes(input.toLowerCase())
-//     ).slice(0, 20) // Limiter à 20 résultats pour éviter la surcharge
-//   }
-// }
 
 // Templates de fichiers
 const COMPONENT_TEMPLATES = {
@@ -175,76 +131,7 @@ const ${componentName.toLowerCase()}Classes = computed(() => ({
   disabled?: boolean
 }`,
 
-  stories: (componentName, type) => `import type { Meta, StoryObj } from '@storybook/vue3'
-import { ${componentName} } from '@club-employes/utopia'
 
-const meta: Meta<typeof ${componentName}> = {
-  title: '${type}/${componentName}',
-  component: ${componentName},
-  parameters: {
-    layout: 'centered',
-  },
-  tags: ['autodocs'],
-  argTypes: {
-    variant: {
-      control: { type: 'select' },
-      options: ['default', 'primary', 'secondary']
-    },
-    size: {
-      control: { type: 'select' },
-      options: ['small', 'medium', 'large']
-    },
-    disabled: {
-      control: 'boolean'
-    }
-  },
-}
-
-export default meta
-type Story = StoryObj<typeof meta>
-
-export const Default: Story = {
-  args: {
-    variant: 'default',
-    size: 'medium',
-    disabled: false
-  },
-}
-
-export const Primary: Story = {
-  args: {
-    variant: 'primary',
-    size: 'medium',
-  },
-}
-
-export const Secondary: Story = {
-  args: {
-    variant: 'secondary',
-    size: 'medium',
-  },
-}
-
-export const Small: Story = {
-  args: {
-    variant: 'default',
-    size: 'small',
-  },
-}
-
-export const Large: Story = {
-  args: {
-    variant: 'default',
-    size: 'large',
-  },
-}
-
-export const Disabled: Story = {
-  args: {
-    variant: 'default',
-    disabled: true,
-  },
-}`
 }
 
 // Fonctions utilitaires
@@ -277,10 +164,7 @@ function createComponentFiles(componentName, type, targetDir) {
   fs.writeFileSync(typesFile, COMPONENT_TEMPLATES.types(componentName), 'utf8')
   files.push(typesFile)
 
-  // 4. Fichier Storybook (optionnel)
-  const storiesFile = path.join(targetDir, `${componentName}.stories.ts`)
-  fs.writeFileSync(storiesFile, COMPONENT_TEMPLATES.stories(componentName, type), 'utf8')
-  files.push(storiesFile)
+
 
   return files
 }
@@ -454,7 +338,7 @@ async function generateComponentPage(type, componentName, icon) {
       <ul>
         <li>Modifiez les exemples dans les slots <code>#examples</code></li>
         <li>Ajoutez de la documentation dans le slot <code>#documentation</code></li>
-        <li>Consultez le fichier Storybook pour plus d'exemples</li>
+        <li>Référez-vous à la documentation du design system</li>
       </ul>
     </template>
   </ComponentLayout>
@@ -466,7 +350,6 @@ import { ComponentLayout } from '@/components'
 </script>
 
 <style scoped>
-/* Les styles sont maintenant dans ComponentLayout */
 </style>`
 
   // Écrire le fichier de page
@@ -564,21 +447,20 @@ async function createComponent() {
       }
     ])
 
-    // 3. Sélection d'icône adaptée au type de composant
-    const suggestedIcons = getIconsForType(type)
-    console.log(chalk.gray(`🎨 Icônes suggérées pour les ${type}: ${suggestedIcons.length} disponibles`))
-    
+    // 3. Saisie simple de l'icône
     const { selectedIcon } = await inquirer.prompt([
       {
-        type: 'list',
+        type: 'input',
         name: 'selectedIcon',
-        message: `Choisissez une icône pour votre ${type} :`,
-        choices: [
-          ...suggestedIcons.map(icon => ({ name: `${icon} (suggéré)`, value: icon })),
-          new inquirer.Separator('── Icônes génériques ──'),
-          ...DEFAULT_ICONS.filter(icon => !suggestedIcons.includes(icon)).map(icon => ({ name: icon, value: icon }))
-        ],
-        pageSize: 15
+        message: 'Nom de l\'icône (ex: Package, Star, Search) :',
+        default: 'Package',
+        validate: (input) => {
+          if (!input || input.trim().length === 0) {
+            return 'Le nom de l\'icône est requis'
+          }
+          return true
+        },
+        filter: (input) => input.trim()
       }
     ])
 
@@ -641,7 +523,6 @@ async function createComponent() {
     console.log(chalk.blue('\n🎯 Prochaines étapes :'))
     console.log(chalk.gray('   • Personnaliser le composant dans le fichier .vue'))
     console.log(chalk.gray('   • Ajouter des props spécifiques si nécessaire'))
-    console.log(chalk.gray('   • Tester avec Storybook'))
     console.log(chalk.gray('   • La page de documentation a été générée automatiquement'))
 
     console.log(chalk.green('\n🔗 Liens utiles :'))

@@ -118,7 +118,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .page-content :deep(.content-example) {
-  padding: var(--spacing-6);
+  padding: var(--spacing-6, 24px);
   background: var(--theme-colors-surface-card);
   border: 1px solid var(--theme-colors-border-default);
   border-radius: var(--border-radius-lg);

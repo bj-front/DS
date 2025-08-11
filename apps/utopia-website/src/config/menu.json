@@ -14,38 +14,8 @@
     {
       "key": "button",
       "label": "Button",
-      "icon": "MousePointer",
-      "to": "/design-system/atoms/button"
-    },
-    {
-      "key": "card",
-      "label": "Card",
-      "icon": "Square",
-      "to": "/design-system/atoms/card"
-    },
-    {
-      "key": "icon",
-      "label": "Icon",
-      "icon": "Star",
-      "to": "/design-system/atoms/icon"
-    },
-    {
-      "key": "input",
-      "label": "Input",
-      "icon": "Type",
-      "to": "/design-system/atoms/input"
-    },
-    {
-      "key": "logo",
-      "label": "Logo",
-      "icon": "Image",
-      "to": "/design-system/atoms/logo"
-    },
-    {
-      "key": "test",
-      "label": "Test",
       "icon": "Package",
-      "to": "/design-system/atoms/test"
+      "to": "/design-system/atoms/button"
     },
     {
       "key": "molecules-section",
