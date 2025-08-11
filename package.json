@@ -30,6 +30,7 @@
     "setup:hooks": "husky install && husky add .husky/pre-commit \"npm run precommit\"",
     "clean": "turbo clean && rm -rf node_modules/.cache",
     "create:component": "cd apps/utopia-website && npm run create:component",
+    "create:page": "cd apps/utopia-website && npm run create:page",
     "show:links": "node scripts/show-project-links.mjs",
     "dev:with-links": "node scripts/dev-with-links.mjs",
     "preview": "npm run show:links"

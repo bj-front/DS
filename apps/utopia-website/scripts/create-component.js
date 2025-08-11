@@ -14,6 +14,7 @@ const ICONS_LIST_PATH = path.resolve(__dirname, '../public/icons-list.json')
 
 // Configuration
 const DESIGN_SYSTEM_PATH = path.resolve(__dirname, '../../../packages/utopia/src/components')
+const MENU_JSON_PATH = path.resolve(__dirname, '../src/config/menu.json')
 
 // Types de composants disponibles
 const COMPONENT_TYPES = [
@@ -25,20 +26,43 @@ const COMPONENT_TYPES = [
   { name: '📐 Layouts (mises en page)', value: 'layouts' }
 ]
 
-// Fonction pour charger la liste des icônes
-function loadIconsList() {
-  try {
-    if (!fs.existsSync(ICONS_LIST_PATH)) {
-      console.log(chalk.yellow('⚠️  Fichier icons-list.json non trouvé, utilisation d\'icônes par défaut'))
-      return ['Search', 'Settings', 'Heart', 'Star', 'Plus', 'Minus', 'X', 'Check']
-    }
-    
-    const iconsData = JSON.parse(fs.readFileSync(ICONS_LIST_PATH, 'utf8'))
-    return iconsData.icons || []
-  } catch {
-    console.log(chalk.yellow('⚠️  Erreur lors du chargement des icônes, utilisation d\'icônes par défaut'))
-    return ['Search', 'Settings', 'Heart', 'Star', 'Plus', 'Minus', 'X', 'Check']
-  }
+// Icônes par catégorie de composants (basées sur les tokens disponibles)
+const COMPONENT_ICONS = {
+  atoms: [
+    'Package', 'Square', 'Circle', 'Triangle', 'Star', 'Heart',
+    'Type', 'Image', 'Award', 'MousePointer', 'Hash', 'Toggle'
+  ],
+  molecules: [
+    'Search', 'Filter', 'Menu', 'Navigation', 'Layers', 'Grid',
+    'List', 'Card', 'Box', 'Container'
+  ],
+  organisms: [
+    'Table', 'Layout', 'Database', 'FileText', 'Form', 'Calendar',
+    'Chart', 'Map', 'Gallery', 'Dashboard'
+  ],
+  layouts: [
+    'Layout', 'Columns', 'Rows', 'Grid', 'Sidebar', 'Header',
+    'Footer', 'Container', 'Frame', 'Window'
+  ],
+  templates: [
+    'FileText', 'Document', 'Page', 'Template', 'Copy', 'File',
+    'Folder', 'Archive', 'Blueprint', 'Clipboard'
+  ],
+  themes: [
+    'Palette', 'Brush', 'Paintbrush', 'Dropper', 'Sun', 'Moon',
+    'Contrast', 'Eye', 'Monitor', 'Smartphone'
+  ]
+}
+
+// Icônes génériques par défaut
+const DEFAULT_ICONS = [
+  'Package', 'Square', 'Circle', 'Star', 'Heart', 'Search',
+  'Settings', 'Plus', 'Minus', 'X', 'Check', 'Arrow-right'
+]
+
+// Fonction pour obtenir les icônes suggérées selon le type de composant
+function getIconsForType(type) {
+  return COMPONENT_ICONS[type] || DEFAULT_ICONS
 }
 
 // Fonction pour filtrer et rechercher des icônes (non utilisée actuellement)
@@ -299,15 +323,218 @@ function updateTypeExports(type, componentName) {
   }
 }
 
+// Fonction pour mettre à jour le fichier menu.json
+async function updateMenuJson(type, componentName, icon) {
+  try {
+    // Lire le fichier menu.json actuel
+    let menuConfig = {}
+    if (fs.existsSync(MENU_JSON_PATH)) {
+      const menuContent = fs.readFileSync(MENU_JSON_PATH, 'utf8')
+      menuConfig = JSON.parse(menuContent)
+    } else {
+      menuConfig = { menuItems: [] }
+    }
+
+    // Créer le nouvel item de menu
+    const newMenuItem = {
+      key: componentName.toLowerCase(),
+      label: componentName,
+      icon: icon || 'Package',
+      to: `/design-system/${type}/${componentName.toLowerCase()}`
+    }
+
+    // Trouver la section appropriée et ajouter l'item
+    const sectionKey = `${type}-section`
+    const sectionIndex = menuConfig.menuItems.findIndex(item => item.key === sectionKey)
+    
+    if (sectionIndex !== -1) {
+      // Trouver l'index où insérer le nouvel item (après la section et ses items existants)
+      let insertIndex = sectionIndex + 1
+      while (insertIndex < menuConfig.menuItems.length) {
+        const currentItem = menuConfig.menuItems[insertIndex]
+        if (currentItem.type === 'section') {
+          break
+        }
+        insertIndex++
+      }
+      
+      // Vérifier si l'item n'existe pas déjà
+      const existingItemIndex = menuConfig.menuItems.findIndex(item => 
+        item.key === newMenuItem.key
+      )
+      
+      if (existingItemIndex === -1) {
+        // Ajouter le nouvel item
+        menuConfig.menuItems.splice(insertIndex, 0, newMenuItem)
+        console.log(chalk.green(`✅ Ajouté au menu: ${componentName}`))
+      } else {
+        // Mettre à jour l'item existant
+        menuConfig.menuItems[existingItemIndex] = newMenuItem
+        console.log(chalk.yellow(`⚠️  Mis à jour dans le menu: ${componentName}`))
+      }
+    } else {
+      // Si la section n'existe pas, l'ajouter avec l'item
+      const sectionLabel = type.charAt(0).toUpperCase() + type.slice(1)
+      menuConfig.menuItems.push(
+        {
+          key: sectionKey,
+          type: 'section',
+          label: sectionLabel
+        },
+        newMenuItem
+      )
+      console.log(chalk.green(`✅ Créé nouvelle section et ajouté: ${componentName}`))
+    }
+
+    // Sauvegarder le fichier menu.json mis à jour
+    fs.writeFileSync(MENU_JSON_PATH, JSON.stringify(menuConfig, null, 2), 'utf8')
+    console.log(chalk.gray(`📝 Menu mis à jour: ${path.relative(process.cwd(), MENU_JSON_PATH)}`))
+    
+    // Générer la page de documentation
+    await generateComponentPage(type, componentName, icon)
+    
+    // Mettre à jour le fichier des routes
+    await updateRoutesFile(type, componentName)
+    
+  } catch (error) {
+    console.error(chalk.red(`❌ Erreur lors de la mise à jour du menu: ${error.message}`))
+    throw error
+  }
+}
+
+// Fonction pour générer la page de documentation du composant
+async function generateComponentPage(type, componentName, icon) {
+  const GENERATED_PAGES_PATH = path.resolve(__dirname, '../src/generated/pages')
+  const pageDir = path.join(GENERATED_PAGES_PATH, type)
+  const pageFile = path.join(pageDir, `${componentName}Page.vue`)
+  
+  // Créer le dossier si nécessaire
+  if (!fs.existsSync(pageDir)) {
+    fs.mkdirSync(pageDir, { recursive: true })
+  }
+  
+  // Template de page utilisant ComponentLayout
+  const pageTemplate = `<template>
+  <ComponentLayout 
+    :title="'${componentName}'"
+    :icon="'${icon || 'Package'}'"
+    :type="'${type.charAt(0).toUpperCase() + type.slice(1)}'"
+  >
+    <template #examples>
+      <div class="showcase-item">
+        <h3>Défaut</h3>
+        <div class="example">
+          <${componentName} />
+        </div>
+        <details class="code-snippet">
+          <summary>Voir le code</summary>
+          <pre><code>&lt;${componentName} /&gt;</code></pre>
+        </details>
+      </div>
+      
+      <!-- Ajoutez d'autres exemples ici -->
+      <div class="showcase-item">
+        <h3>Variante personnalisée</h3>
+        <div class="example">
+          <!-- Exemple personnalisé à développer -->
+          <${componentName} />
+        </div>
+        <details class="code-snippet">
+          <summary>Voir le code</summary>
+          <pre><code>&lt;${componentName} /&gt;</code></pre>
+        </details>
+      </div>
+    </template>
+    
+    <template #documentation>
+      <p>Cette page de documentation a été générée automatiquement pour le composant <strong>${componentName}</strong>.</p>
+      <p>📁 <strong>Fichier :</strong> <code>src/generated/pages/${type}/${componentName}Page.vue</code></p>
+      <p>🎨 <strong>Composant :</strong> <code>packages/utopia/src/components/${type}/${componentName}/</code></p>
+      <p>📝 <strong>Personnalisation :</strong></p>
+      <ul>
+        <li>Modifiez les exemples dans les slots <code>#examples</code></li>
+        <li>Ajoutez de la documentation dans le slot <code>#documentation</code></li>
+        <li>Consultez le fichier Storybook pour plus d'exemples</li>
+      </ul>
+    </template>
+  </ComponentLayout>
+</template>
+
+<script setup lang="ts">
+import { ${componentName} } from '@club-employes/utopia'
+import { ComponentLayout } from '@/components'
+</script>
+
+<style scoped>
+/* Les styles sont maintenant dans ComponentLayout */
+</style>`
+
+  // Écrire le fichier de page
+  fs.writeFileSync(pageFile, pageTemplate, 'utf8')
+  console.log(chalk.gray(`📄 Page générée: ${path.relative(process.cwd(), pageFile)}`))
+}
+
+// Fonction pour mettre à jour le fichier des routes générées
+async function updateRoutesFile(type, componentName) {
+  const ROUTES_FILE_PATH = path.resolve(__dirname, '../src/generated/routes.ts')
+  
+  try {
+    // Lire le fichier des routes existant
+    let routesContent = ''
+    if (fs.existsSync(ROUTES_FILE_PATH)) {
+      routesContent = fs.readFileSync(ROUTES_FILE_PATH, 'utf8')
+    } else {
+      // Créer le fichier de base s'il n'existe pas
+      routesContent = `// Ce fichier est généré automatiquement par create-component.js
+// Ne pas modifier manuellement
+
+import type { RouteRecordRaw } from 'vue-router'
+
+// Routes générées automatiquement pour les composants du design system
+export const generatedRoutes: RouteRecordRaw[] = [
+]`
+    }
+
+    // Générer la nouvelle route
+    const newRoute = `  {
+    path: '/design-system/${type}/${componentName.toLowerCase()}',
+    name: '${type}-${componentName}',
+    component: () => import('@/generated/pages/${type}/${componentName}Page.vue'),
+    meta: {"title":"${componentName}","section":"${type.charAt(0).toUpperCase() + type.slice(1)}"}
+  }`
+
+    // Vérifier si la route existe déjà
+    const routeExists = routesContent.includes(`path: '/design-system/${type}/${componentName.toLowerCase()}'`)
+    
+    if (!routeExists) {
+      // Trouver l'endroit où insérer la nouvelle route (avant le dernier bracket)
+      const lastBracketIndex = routesContent.lastIndexOf(']')
+      if (lastBracketIndex !== -1) {
+        // Vérifier s'il y a déjà des routes
+        const beforeClosing = routesContent.substring(0, lastBracketIndex).trim()
+        const needsComma = beforeClosing.endsWith('}')
+        
+        const insertContent = needsComma ? `,\n${newRoute}` : `\n${newRoute}`
+        routesContent = routesContent.substring(0, lastBracketIndex) + insertContent + '\n' + routesContent.substring(lastBracketIndex)
+      }
+      
+      // Écrire le fichier mis à jour
+      fs.writeFileSync(ROUTES_FILE_PATH, routesContent, 'utf8')
+      console.log(chalk.gray(`🛣️  Route ajoutée: ${path.relative(process.cwd(), ROUTES_FILE_PATH)}`))
+    } else {
+      console.log(chalk.yellow(`⚠️  Route déjà existante pour ${componentName}`))
+    }
+    
+  } catch (error) {
+    console.error(chalk.red(`❌ Erreur lors de la mise à jour des routes: ${error.message}`))
+    throw error
+  }
+}
+
 async function createComponent() {
   console.log(chalk.blue.bold('\n🚀 Générateur de composants Utopia Design System\n'))
 
   try {
-    // Charger la liste des icônes
-    console.log(chalk.gray('📦 Chargement des icônes...'))
-    const availableIcons = loadIconsList()
-    console.log(chalk.gray(`✅ ${availableIcons.length} icônes chargées\n`))
-
     // 1. Sélection du type de composant
     const { type } = await inquirer.prompt([
       {
@@ -337,40 +564,21 @@ async function createComponent() {
       }
     ])
 
-    // 3. Recherche d'icône (optionnel)
-    const { iconSearch } = await inquirer.prompt([
-      {
-        type: 'input',
-        name: 'iconSearch',
-        message: 'Rechercher une icône (laissez vide pour voir les populaires) :',
-        default: ''
-      }
-    ])
-
-    // Filtrer les icônes
-    const popularIcons = ['Search', 'Settings', 'Heart', 'Star', 'Plus', 'Check', 'X', 'Home', 'User', 'Edit']
-    let filteredIcons = iconSearch.trim() 
-      ? availableIcons.filter(icon => 
-          icon.toLowerCase().includes(iconSearch.toLowerCase())
-        ).slice(0, 15)
-      : popularIcons.filter(icon => availableIcons.includes(icon))
-
-    if (filteredIcons.length === 0) {
-      filteredIcons = popularIcons.filter(icon => availableIcons.includes(icon))
-      console.log(chalk.yellow(`Aucune icône trouvée pour "${iconSearch}", affichage des icônes populaires`))
-    }
-
-    // 4. Sélection de l'icône
+    // 3. Sélection d'icône adaptée au type de composant
+    const suggestedIcons = getIconsForType(type)
+    console.log(chalk.gray(`🎨 Icônes suggérées pour les ${type}: ${suggestedIcons.length} disponibles`))
+    
     const { selectedIcon } = await inquirer.prompt([
       {
         type: 'list',
         name: 'selectedIcon',
-        message: `Choisissez une icône (${filteredIcons.length} disponibles) :`,
-        choices: filteredIcons.map(icon => ({
-          name: `${icon}`,
-          value: icon
-        })),
-        pageSize: 12
+        message: `Choisissez une icône pour votre ${type} :`,
+        choices: [
+          ...suggestedIcons.map(icon => ({ name: `${icon} (suggéré)`, value: icon })),
+          new inquirer.Separator('── Icônes génériques ──'),
+          ...DEFAULT_ICONS.filter(icon => !suggestedIcons.includes(icon)).map(icon => ({ name: icon, value: icon }))
+        ],
+        pageSize: 15
       }
     ])
 
@@ -417,12 +625,11 @@ async function createComponent() {
     // 8. Mettre à jour les exports
     updateTypeExports(type, componentName)
 
-    // 9. Régénérer le menu et les pages
-    console.log(chalk.blue('\n🔄 Régénération du menu et des pages...'))
+    // 9. Mettre à jour le menu JSON
+    console.log(chalk.blue('\n🔄 Mise à jour du menu...'))
     
-    // Importer et exécuter le script de génération
-    const { generateCompleteStructure } = await import('./generate-complete-structure.js')
-    await generateCompleteStructure()
+    // Mettre à jour le fichier menu.json
+    await updateMenuJson(type, componentName, selectedIcon)
 
     // 7. Succès !
     console.log(chalk.green.bold('\n✅ Composant créé avec succès !'))

@@ -3,14 +3,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 // Import pages from domains
 import {
-    ColorsPage,
-    HomePage,
-    IconsPage,
-    LogosPage,
-    SpacingPage,
-    SurfacesPage,
-    ThemeComparison,
-    TypographyPage
+  ColorsPage,
+  ColorsTokenPage,
+  HomePage,
+  IconsPage,
+  LogosPage,
+  SpacingPage,
+  SurfacesPage,
+  ThemeComparison,
+  TypographyPage
 } from '../../design-system'
 
 // Import generated routes for design system components
@@ -18,6 +19,8 @@ import { generatedRoutes } from '@/generated/routes'
 
 // Dynamic import for lazy loading  
 const NotFoundPage = (): Promise<typeof import('./NotFoundPage.vue')> => import('./NotFoundPage.vue')
+const HomePageCustom = (): Promise<typeof import('@/pages/HomePage.vue')> => import('@/pages/HomePage.vue')
+
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -27,6 +30,15 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: 'Utopia Design System',
       description: 'Système de design modulaire et cohérent'
+    }
+  },
+  {
+    path: '/home',
+    name: 'home-page',
+    component: HomePageCustom,
+    meta: {
+      title: 'Home',
+      description: 'Page Home générée automatiquement'
     }
   },
   // Design System pages
@@ -46,6 +58,15 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: 'Couleurs - Design System Utopia',
       description: 'Palette de couleurs et tokens du design system'
+    }
+  },
+  {
+    path: '/design-system/colors-tokens',
+    name: 'design-system-colors-tokens',
+    component: ColorsTokenPage,
+    meta: {
+      title: 'Tokens de Couleurs - Design System Utopia',
+      description: 'Référence complète des tokens de couleurs avec valeurs hexa et correspondances light/dark'
     }
   },
   {

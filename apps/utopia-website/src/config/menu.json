@@ -1,0 +1,142 @@
+{
+  "menuItems": [
+    {
+      "key": "home",
+      "label": "Home",
+      "icon": "Home",
+      "to": "/home"
+    },
+    {
+      "key": "atoms-section",
+      "type": "section",
+      "label": "Atoms"
+    },
+    {
+      "key": "button",
+      "label": "Button",
+      "icon": "MousePointer",
+      "to": "/design-system/atoms/button"
+    },
+    {
+      "key": "card",
+      "label": "Card",
+      "icon": "Square",
+      "to": "/design-system/atoms/card"
+    },
+    {
+      "key": "icon",
+      "label": "Icon",
+      "icon": "Star",
+      "to": "/design-system/atoms/icon"
+    },
+    {
+      "key": "input",
+      "label": "Input",
+      "icon": "Type",
+      "to": "/design-system/atoms/input"
+    },
+    {
+      "key": "logo",
+      "label": "Logo",
+      "icon": "Image",
+      "to": "/design-system/atoms/logo"
+    },
+    {
+      "key": "test",
+      "label": "Test",
+      "icon": "Package",
+      "to": "/design-system/atoms/test"
+    },
+    {
+      "key": "molecules-section",
+      "type": "section",
+      "label": "Molecules"
+    },
+    {
+      "key": "searchbox",
+      "label": "Search Box",
+      "icon": "Search",
+      "to": "/design-system/molecules/searchbox"
+    },
+    {
+      "key": "organisms-section",
+      "type": "section",
+      "label": "Organisms"
+    },
+    {
+      "key": "layouts-section",
+      "type": "section",
+      "label": "Layouts"
+    },
+    {
+      "key": "defaultlayout",
+      "label": "Default Layout",
+      "icon": "Layout",
+      "to": "/design-system/layouts/defaultlayout"
+    },
+    {
+      "key": "design-section",
+      "type": "section",
+      "label": "Design Tokens"
+    },
+    {
+      "key": "colors",
+      "label": "Couleurs",
+      "icon": "Palette",
+      "to": "/design-system/colors"
+    },
+    {
+      "key": "colors-tokens",
+      "label": "Tokens de Couleurs",
+      "icon": "Hash",
+      "to": "/design-system/colors-tokens"
+    },
+    {
+      "key": "surfaces",
+      "label": "Surfaces",
+      "icon": "Square",
+      "to": "/design-system/surfaces"
+    },
+    {
+      "key": "typography",
+      "label": "Typographie",
+      "icon": "Type",
+      "to": "/design-system/typography"
+    },
+    {
+      "key": "spacing",
+      "label": "Espacement",
+      "icon": "Move",
+      "to": "/design-system/spacing"
+    },
+    {
+      "key": "logos",
+      "label": "Logos",
+      "icon": "Image",
+      "to": "/design-system/logos"
+    },
+    {
+      "key": "icons",
+      "label": "Icônes",
+      "icon": "Search",
+      "to": "/design-system/icons"
+    },
+    {
+      "key": "themes",
+      "label": "Thèmes",
+      "icon": "Palette",
+      "to": "/design-system/themes"
+    },
+    {
+      "key": "showcase-section",
+      "type": "section",
+      "label": "Exemples"
+    },
+    {
+      "key": "showcase",
+      "label": "Showcase",
+      "icon": "Frame",
+      "to": "/showcase"
+    }
+  ]
+}

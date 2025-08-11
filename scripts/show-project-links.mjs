@@ -221,6 +221,10 @@ function displayUsefulCommands() {
     {
       command: 'npm run create:component',
       description: 'Créer un nouveau composant'
+    },
+    {
+      command: 'npm run create:page',
+      description: 'Créer une nouvelle page'
     }
   ]
 

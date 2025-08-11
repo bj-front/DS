@@ -301,7 +301,7 @@ const toggleMode = (): void => {
   bottom: 0;
   padding: var(--spacing-4) var(--spacing-6);
   background-color: var(--theme-colors-background-primary);
-  z-index: 40; /* En dessous du contenu */
+  z-index: 20; /* En dessous du contenu */
   backdrop-filter: blur(13px);
   background-color: rgba(255, 255, 255, 0.9);
   margin-top: auto; /* Pousse le footer en bas */
