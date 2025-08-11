@@ -12,11 +12,7 @@
         <div class="showcase-item">
           <h3>Utilisation de base</h3>
           <div class="example">
-            <div class="layout-preview">
-              <div class="layout-header">Header</div>
-              <div class="layout-nav">Navigation</div>
-              <div class="layout-content">Contenu principal</div>
-            </div>
+            <DefaultLayout>Layout content</DefaultLayout>
           </div>
           <div class="code-snippet">
             <div class="code-with-copy">
@@ -38,10 +34,17 @@
         <div class="showcase-item">
           <h3>Avec menu personnalisé</h3>
           <div class="example">
-            <div class="layout-preview">
-              <div class="layout-header">Header avec menu</div>
-              <div class="layout-nav">Menu personnalisé</div>
-              <div class="layout-content">Contenu avec navigation</div>
+            <div class="layout-demo">
+              <DefaultLayout 
+                :menu-items="customMenu" 
+                current-mode="light"
+                :show-theme-switcher="false"
+              >
+                <div class="demo-content">
+                  <h4>Contenu de démonstration</h4>
+                  <p>Ceci est un exemple du DefaultLayout avec un menu personnalisé.</p>
+                </div>
+              </DefaultLayout>
             </div>
           </div>
           <div class="code-snippet">
@@ -157,7 +160,15 @@ const handleThemeChange = (newTheme) =&gt; {
 
 <script setup lang="ts">
 import ComponentLayout from '@/components/layouts/ComponentLayout.vue'
-import { Button } from '@club-employes/utopia'
+import { Button, DefaultLayout } from '@club-employes/utopia'
+import { ref } from 'vue'
+
+// Menu personnalisé pour l'exemple
+const customMenu = ref([
+  { key: 'home', label: 'Accueil', to: '/', icon: 'Home' },
+  { key: 'components', label: 'Composants', to: '/components', icon: 'Package' },
+  { key: 'docs', label: 'Documentation', to: '/docs', icon: 'Book' }
+])
 
 // Copy to clipboard function
 const copyToClipboard = async (text: string): Promise<void> => {
@@ -226,6 +237,32 @@ const copyToClipboard = async (text: string): Promise<void> => {
   overflow: hidden;
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
+}
+
+/* Layout Demo */
+.layout-demo {
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  border: 1px solid var(--theme-colors-border-default);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  background: var(--theme-colors-surface-background);
+}
+
+.demo-content {
+  padding: var(--spacing-6);
+}
+
+.demo-content h4 {
+  margin: 0 0 var(--spacing-4) 0;
+  color: var(--theme-colors-text-primary);
+}
+
+.demo-content p {
+  margin: 0;
+  color: var(--theme-colors-text-secondary);
+  line-height: 1.5;
 }
 
 .layout-header {
