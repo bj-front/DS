@@ -4,7 +4,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 // Import pages from domains
 import {
   ColorsPage,
-  ColorsTokenPage,
   HomePage,
   IconsPage,
   LogosPage,
@@ -56,15 +55,6 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: 'Couleurs - Design System Utopia',
       description: 'Palette de couleurs et tokens du design system'
-    }
-  },
-  {
-    path: '/design-system/colors-tokens',
-    name: 'design-system-colors-tokens',
-    component: ColorsTokenPage,
-    meta: {
-      title: 'Tokens de Couleurs - Design System Utopia',
-      description: 'Référence complète des tokens de couleurs avec valeurs hexa et correspondances light/dark'
     }
   },
   {

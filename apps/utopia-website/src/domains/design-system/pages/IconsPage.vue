@@ -1,12 +1,12 @@
 <template>
-  <div class="icons-page">
-    <div class="page-header">
-      <h1 class="page-title">🎯 Icônes</h1>
-      <p class="page-description">
-        Explorez la bibliothèque complète de {{ totalIcons }} icônes disponibles dans le design system.
-        Chaque icône est optimisée et prête à être utilisée dans vos projets.
-      </p>
-    </div>
+  <ComponentLayout title="Icônes" icon="Star" type="Components">
+    <template #examples>
+      <div class="intro">
+        <p>
+          Explorez la bibliothèque complète de {{ totalIcons }} icônes disponibles dans le design system.
+          Chaque icône est optimisée et prête à être utilisée dans vos projets.
+        </p>
+      </div>
 
     <!-- Contrôles de recherche et filtres -->
     <section class="controls-section">
@@ -296,10 +296,80 @@
         </div>
       </div>
     </section>
-  </div>
+    </template>
+
+    <template #documentation>
+      <div class="documentation">
+        <h3>🎯 Composant Icon</h3>
+        <p>
+          Le composant Icon d'Utopia offre un accès unifié à une bibliothèque de plus de {{ totalIcons }} icônes optimisées. 
+          Chaque icône est vectorielle, responsive et personnalisable.
+        </p>
+        
+        <h4>🔌 Props disponibles</h4>
+        <ul>
+          <li><strong>name</strong> : string (nom de l'icône, ex: "User", "Search")</li>
+          <li><strong>size</strong> : 'small' | 'medium' | 'large' (taille de l'icône)</li>
+          <li><strong>color</strong> : 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral' | 'current'</li>
+          <li><strong>stroke-width</strong> : number (1, 2, 3 - épaisseur du trait)</li>
+          <li><strong>alt</strong> : string (description pour l'accessibilité)</li>
+        </ul>
+        
+        <h4>✨ Fonctionnalités</h4>
+        <ul>
+          <li><strong>Bibliothèque complète</strong> : {{ totalIcons }}+ icônes disponibles</li>
+          <li><strong>Personnalisables</strong> : Taille, couleur et épaisseur de trait ajustables</li>
+          <li><strong>Optimisées</strong> : Format SVG pour une qualité parfaite à toutes les tailles</li>
+          <li><strong>Accessibles</strong> : Support complet des technologies d'assistance</li>
+          <li><strong>Cohérentes</strong> : Style unifié avec le design system</li>
+        </ul>
+        
+        <h4>📋 Exemples d'utilisation</h4>
+        <pre class="code-example">
+&lt;template&gt;
+  &lt;!-- Utilisation de base --&gt;
+  &lt;Icon name="User" /&gt;
+  
+  &lt;!-- Avec taille personnalisée --&gt;
+  &lt;Icon name="Search" size="large" /&gt;
+  
+  &lt;!-- Avec couleur --&gt;
+  &lt;Icon name="Alert" color="warning" /&gt;
+  
+  &lt;!-- Exemple complet --&gt;
+  &lt;Icon 
+    name="Settings" 
+    size="medium" 
+    color="primary" 
+    :stroke-width="2"
+    alt="Paramètres de l'application" 
+  /&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { Icon } from '@club-employes/utopia'
+&lt;/script&gt;</pre>
+        
+        <h4>♿ Accessibilité</h4>
+        <ul>
+          <li>Utilisez toujours l'attribut <code>alt</code> pour décrire l'icône</li>
+          <li>Préférez <code>color="current"</code> pour hériter de la couleur du texte parent</li>
+          <li>Vérifiez le contraste suffisant avec l'arrière-plan</li>
+        </ul>
+        
+        <h4>🎨 Personnalisation</h4>
+        <ul>
+          <li><strong>Tailles</strong> : small (16px), medium (20px), large (24px)</li>
+          <li><strong>Couleurs</strong> : Utilise la palette du design system</li>
+          <li><strong>Épaisseur</strong> : 1px (fine), 2px (normale), 3px (épaisse)</li>
+        </ul>
+      </div>
+    </template>
+  </ComponentLayout>
 </template>
 
 <script setup lang="ts">
+import ComponentLayout from '@/components/layouts/ComponentLayout.vue'
 import { Button, Icon } from '@club-employes/utopia'
 import { computed, onMounted, ref } from 'vue'
 
@@ -413,30 +483,18 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.icons-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-8);
-}
-
-/* Header */
-.page-header {
+/* Introduction */
+.intro {
+  margin-bottom: var(--spacing-8);
   text-align: center;
-  margin-bottom: var(--spacing-12);
 }
 
-.page-title {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--theme-colors-text-primary);
-  margin: 0 0 var(--spacing-4) 0;
-}
-
-.page-description {
+.intro p {
   font-size: var(--font-size-lg);
   color: var(--theme-colors-text-secondary);
+  max-width: 800px;
+  margin: 0 auto;
   line-height: 1.6;
-  margin: 0;
 }
 
 /* Controls */
@@ -712,10 +770,7 @@ onMounted(() => {
 }
 
 .code-snippet {
-  background: var(--theme-colors-slate-50);
-  border: 1px solid var(--theme-colors-border-default);
-  border-radius: var(--border-radius-md);
-  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-4);
 }
 
 .code-with-copy {
@@ -727,8 +782,11 @@ onMounted(() => {
 
 .code-with-copy code {
   font-family: var(--font-family-mono);
-  font-size: var(--font-size-sm);
-  color: var(--theme-colors-text-primary);
+  font-size: var(--font-size-xs);
+  color: var(--theme-colors-text-secondary);
+  background: var(--theme-colors-surface-background);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--border-radius-sm);
   flex: 1;
   word-break: break-all;
 }
@@ -905,12 +963,54 @@ onMounted(() => {
   font-size: 0.9em;
 }
 
+/* Documentation */
+.documentation {
+  color: var(--theme-colors-text-secondary);
+}
+
+.documentation h3 {
+  color: var(--theme-colors-text-primary);
+  margin-bottom: var(--spacing-4);
+}
+
+.documentation h4 {
+  color: var(--theme-colors-text-primary);
+  margin-top: var(--spacing-6);
+  margin-bottom: var(--spacing-3);
+}
+
+.documentation ul {
+  margin: var(--spacing-4) 0;
+  padding-left: var(--spacing-6);
+}
+
+.documentation li {
+  margin-bottom: var(--spacing-2);
+}
+
+.documentation code {
+  background: var(--theme-colors-surface-overlay);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  color: var(--theme-colors-text-primary);
+}
+
+.documentation .code-example {
+  background: var(--theme-colors-surface-background);
+  border: 1px solid var(--theme-colors-border-default);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-4);
+  margin: var(--spacing-4) 0;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
-  .icons-page {
-    padding: var(--spacing-4);
-  }
-  
   .icons-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: var(--spacing-3);

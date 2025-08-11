@@ -22,18 +22,7 @@
       "type": "section",
       "label": "Molecules"
     },
-    {
-      "key": "searchbox",
-      "label": "Search Box",
-      "icon": "Search",
-      "to": "/design-system/molecules/searchbox"
-    },
-    {
-      "key": "zefzfzef",
-      "label": "Zefzfzef",
-      "icon": "Package",
-      "to": "/design-system/molecules/zefzfzef"
-    },
+   
     {
       "key": "organisms-section",
       "type": "section",
@@ -62,18 +51,6 @@
       "to": "/design-system/colors"
     },
     {
-      "key": "colors-tokens",
-      "label": "Tokens de Couleurs",
-      "icon": "Hash",
-      "to": "/design-system/colors-tokens"
-    },
-    {
-      "key": "surfaces",
-      "label": "Surfaces",
-      "icon": "Square",
-      "to": "/design-system/surfaces"
-    },
-    {
       "key": "typography",
       "label": "Typographie",
       "icon": "Type",
@@ -96,12 +73,6 @@
       "label": "Icônes",
       "icon": "Search",
       "to": "/design-system/icons"
-    },
-    {
-      "key": "themes",
-      "label": "Thèmes",
-      "icon": "Palette",
-      "to": "/design-system/themes"
     },
     {
       "key": "showcase-section",

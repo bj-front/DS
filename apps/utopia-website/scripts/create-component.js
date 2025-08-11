@@ -309,24 +309,34 @@ async function generateComponentPage(type, componentName, icon) {
       <div class="showcase-item">
         <h3>Défaut</h3>
         <div class="example">
-          <${componentName} />
+          <${componentName}>Click me</${componentName}>
         </div>
         <details class="code-snippet">
-          <summary>Voir le code</summary>
-          <pre><code>&lt;${componentName} /&gt;</code></pre>
+          <summary>
+            <Icon name="Code" class="code-icon" />
+            Voir le code
+          </summary>
+          <pre><code>&lt;${componentName}&gt;Click me&lt;/${componentName}&gt;</code></pre>
         </details>
       </div>
       
       <!-- Ajoutez d'autres exemples ici -->
       <div class="showcase-item">
-        <h3>Variante personnalisée</h3>
+        <h3>Variantes</h3>
         <div class="example">
           <!-- Exemple personnalisé à développer -->
-          <${componentName} />
+          <div class="component-variants">
+            <${componentName} variant="primary">Primary</${componentName}>
+            <${componentName} variant="secondary">Secondary</${componentName}>
+          </div>
         </div>
         <details class="code-snippet">
-          <summary>Voir le code</summary>
-          <pre><code>&lt;${componentName} /&gt;</code></pre>
+          <summary>
+            <Icon name="Code" class="code-icon" />
+            Voir le code
+          </summary>
+          <pre><code>&lt;${componentName} variant="primary"&gt;Primary&lt;/${componentName}&gt;
+&lt;${componentName} variant="secondary"&gt;Secondary&lt;/${componentName}&gt;</code></pre>
         </details>
       </div>
     </template>
@@ -346,11 +356,76 @@ async function generateComponentPage(type, componentName, icon) {
 </template>
 
 <script setup lang="ts">
-import { ${componentName} } from '@club-employes/utopia'
 import { ComponentLayout } from '@/components'
+import { ${componentName}, Icon } from '@club-employes/utopia'
 </script>
 
 <style scoped>
+/* Styles standard pour les pages de composants */
+.showcase-item {
+  border: 1px solid var(--theme-colors-border-default, #e5e7eb);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: var(--spacing-6, 24px);
+}
+
+.showcase-item h3 {
+  margin: 0;
+  padding: 1rem;
+  background: var(--theme-colors-surface-background, #f9fafb);
+  border-bottom: 1px solid var(--theme-colors-border-default, #e5e7eb);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.example {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+  background: var(--theme-colors-surface-card, #ffffff);
+}
+
+.code-snippet {
+  border-top: 1px solid var(--theme-colors-border-default, #e5e7eb);
+}
+
+.code-snippet summary {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  background: var(--theme-colors-surface-background, #f9fafb);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.code-snippet pre {
+  margin: 0;
+  padding: 1rem;
+  background: var(--theme-colors-surface-background, #f9fafb);
+  overflow-x: auto;
+}
+
+.code-snippet code {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 0.875rem;
+}
+
+.code-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Styles pour les variantes de composants */
+.component-variants {
+  display: flex;
+  gap: var(--spacing-4, 16px);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
 </style>`
 
   // Écrire le fichier de page

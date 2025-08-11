@@ -1,11 +1,11 @@
 <template>
-  <div class="logos-page">
-    <div class="page-header">
-      <h1 class="page-title">🏢 Logos & Identités</h1>
-      <p class="page-description">
-        Découvrez les logos et identités visuelles pour chaque marque du système.
-      </p>
-    </div>
+  <ComponentLayout title="Logos & Identités" icon="Star" type="Components">
+    <template #examples>
+      <div class="intro">
+        <p>
+          Découvrez les logos et identités visuelles pour chaque marque du système.
+        </p>
+      </div>
 
     <!-- Club Employés -->
     <section class="section">
@@ -320,10 +320,53 @@ import { Logo } from '@club-employes/utopia'
         </p>
       </div>
     </section>
-  </div>
+    </template>
+
+    <template #documentation>
+      <div class="documentation">
+        <h3>🎯 Guide d'utilisation</h3>
+        <p>
+          Le composant Logo d'Utopia offre une solution intelligente pour afficher les logos de marque avec adaptation automatique au thème et au contexte.
+        </p>
+        
+        <h4>🔌 Props disponibles</h4>
+        <ul>
+          <li><strong>brand</strong> : 'club-employes' | 'gifteo' (détecté automatiquement depuis le thème)</li>
+          <li><strong>variant</strong> : 'auto' | 'default' | 'white' | 'small' | 'small-white' (s'adapte au thème dark/light)</li>
+          <li><strong>size</strong> : 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'</li>
+          <li><strong>alt</strong> : Texte alternatif pour l'accessibilité</li>
+        </ul>
+        
+        <h4>✨ Fonctionnalités intelligentes</h4>
+        <ul>
+          <li><strong>Détection automatique</strong> : Le logo s'adapte automatiquement à la marque du thème actuel</li>
+          <li><strong>Mode sombre/clair</strong> : Basculement automatique entre les variantes selon le thème</li>
+          <li><strong>Tailles responsives</strong> : Échelle cohérente avec le système de design</li>
+          <li><strong>Accessibilité</strong> : Support complet des lecteurs d'écran</li>
+        </ul>
+        
+        <h4>📋 Bonnes pratiques</h4>
+        <ul>
+          <li>Utilisez <code>&lt;Logo /&gt;</code> sans props pour un comportement intelligent</li>
+          <li>Respectez l'espace minimum autour du logo (équivalent à la hauteur de la lettre "x")</li>
+          <li>Choisissez la variante appropriée selon le contraste du fond</li>
+          <li>Maintenez toujours les proportions originales</li>
+        </ul>
+        
+        <h4>🚫 À éviter</h4>
+        <ul>
+          <li>Ne jamais déformer ou étirer le logo</li>
+          <li>Ne pas modifier les couleurs officielles</li>
+          <li>Ne pas ajouter d'effets ou de filtres</li>
+          <li>Ne pas placer sur un fond avec un contraste insuffisant</li>
+        </ul>
+      </div>
+    </template>
+  </ComponentLayout>
 </template>
 
 <script setup lang="ts">
+import ComponentLayout from '@/components/layouts/ComponentLayout.vue';
 import { Button, Logo } from '@club-employes/utopia';
 
 // Copy to clipboard function
@@ -339,25 +382,13 @@ const copyToClipboard = async (text: string): Promise<void> => {
 </script>
 
 <style scoped>
-.logos-page {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: var(--spacing-8);
-}
-
-.page-header {
+/* Introduction */
+.intro {
+  margin-bottom: var(--spacing-8);
   text-align: center;
-  margin-bottom: var(--spacing-12);
 }
 
-.page-title {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--theme-colors-text-primary);
-  margin-bottom: var(--spacing-4);
-}
-
-.page-description {
+.intro p {
   font-size: var(--font-size-lg);
   color: var(--theme-colors-text-secondary);
   max-width: 600px;
@@ -458,16 +489,15 @@ const copyToClipboard = async (text: string): Promise<void> => {
 
 .code-snippet {
   margin-bottom: var(--spacing-4);
-  padding: var(--spacing-2);
-  background: var(--theme-colors-surface-card);
-  border: 1px solid var(--theme-colors-border-default);
-  border-radius: var(--border-radius-sm);
 }
 
 .code-snippet code {
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-size: var(--font-size-sm);
-  color: var(--theme-colors-primary-600);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--theme-colors-text-secondary);
+  background: var(--theme-colors-surface-background);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--border-radius-sm);
   word-break: break-all;
 }
 
@@ -624,16 +654,44 @@ const copyToClipboard = async (text: string): Promise<void> => {
   font-style: italic;
 }
 
+/* Documentation */
+.documentation {
+  color: var(--theme-colors-text-secondary);
+}
+
+.documentation h3 {
+  color: var(--theme-colors-text-primary);
+  margin-bottom: var(--spacing-4);
+}
+
+.documentation h4 {
+  color: var(--theme-colors-text-primary);
+  margin-top: var(--spacing-6);
+  margin-bottom: var(--spacing-3);
+}
+
+.documentation ul {
+  margin: var(--spacing-4) 0;
+  padding-left: var(--spacing-6);
+}
+
+.documentation li {
+  margin-bottom: var(--spacing-2);
+}
+
+.documentation code {
+  background: var(--theme-colors-surface-overlay);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  color: var(--theme-colors-text-primary);
+}
+
 @media (max-width: 768px) {
-  .logos-page {
-    padding: var(--spacing-4);
-  }
-  
   .logos-grid,
   .guidelines-grid {
     grid-template-columns: 1fr;
   }
-  
-
 }
 </style>

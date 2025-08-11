@@ -1,6 +1,3 @@
-// Ce fichier est généré automatiquement par generate-complete-structure.js
-// Ne pas modifier manuellement
-
 import type { RouteRecordRaw } from 'vue-router'
 
 // Routes générées automatiquement pour les composants du design system
@@ -30,18 +27,6 @@ export const generatedRoutes: RouteRecordRaw[] = [
     meta: {"title":"Icon","section":"Atoms"}
   },
   {
-    path: '/design-system/atoms/input',
-    name: 'atoms-Input',
-    component: () => import('@/generated/pages/atoms/InputPage.vue'),
-    meta: {"title":"Input","section":"Atoms"}
-  },
-  {
-    path: '/design-system/atoms/inputselect',
-    name: 'atoms-InputSelect',
-    component: () => import('@/generated/pages/atoms/InputSelectPage.vue'),
-    meta: {"title":"Input Select","section":"Atoms"}
-  },
-  {
     path: '/design-system/atoms/logo',
     name: 'atoms-Logo',
     component: () => import('@/generated/pages/atoms/LogoPage.vue'),
@@ -53,18 +38,6 @@ export const generatedRoutes: RouteRecordRaw[] = [
     component: () => import('@/generated/pages/layouts/DefaultLayoutPage.vue'),
     meta: {"title":"Default Layout","section":"Layouts"}
   },
-  {
-    path: '/design-system/molecules/searchbox',
-    name: 'molecules-SearchBox',
-    component: () => import('@/generated/pages/molecules/SearchBoxPage.vue'),
-    meta: {"title":"Search Box","section":"Molecules"}
-  },
-  {
-    path: '/design-system/organisms/datatable',
-    name: 'organisms-DataTable',
-    component: () => import('@/generated/pages/organisms/DataTablePage.vue'),
-    meta: {"title":"Data Table","section":"Organisms"}
-  }
 ]
 
 // Dernière mise à jour: 2025-08-08T13:47:00.793Z
