@@ -1,3 +1,7 @@
-export { default as Header } from './Header.vue'
-export { default as Menu } from './Menu.vue'
-export { default as NavItem } from './NavItem.vue'
+export { DefaultLayout } from './DefaultLayout'
+export { default as Header } from './DefaultLayout/components/Header.vue'
+export { default as Menu } from './DefaultLayout/components/Menu.vue'
+export { default as MobileMenu } from './DefaultLayout/components/MobileMenu.vue'
+export { default as MobileMenuButton } from './DefaultLayout/components/MobileMenuButton.vue'
+export { default as NavItem } from './DefaultLayout/components/NavItem.vue'
+

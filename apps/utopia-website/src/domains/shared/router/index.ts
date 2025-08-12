@@ -8,12 +8,16 @@ import {
   IconsPage,
   LogosPage,
   SpacingPage,
-  SurfacesPage,
-  ThemeComparison,
   TypographyPage
 } from '../../design-system'
+
+// Import generated routes for design system components
+import { generatedRoutes } from '@/generated/routes'
+
 // Dynamic import for lazy loading  
 const NotFoundPage = (): Promise<typeof import('./NotFoundPage.vue')> => import('./NotFoundPage.vue')
+const HomePageCustom = (): Promise<typeof import('@/pages/HomePage.vue')> => import('@/pages/HomePage.vue')
+
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -25,16 +29,16 @@ const routes: Array<RouteRecordRaw> = [
       description: 'Système de design modulaire et cohérent'
     }
   },
-  // Design System pages
   {
-    path: '/design-system',
-    name: 'design-system',
-    component: HomePage,
+    path: '/home',
+    name: 'home-page',
+    component: HomePageCustom,
     meta: {
-      title: 'Design System - Utopia',
-      description: 'Découvrez les composants et tokens du design system Utopia'
+      title: 'Home',
+      description: 'Page Home générée automatiquement'
     }
   },
+  // Design System pages
   {
     path: '/design-system/colors',
     name: 'design-system-colors',
@@ -42,15 +46,6 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: 'Couleurs - Design System Utopia',
       description: 'Palette de couleurs et tokens du design system'
-    }
-  },
-  {
-    path: '/design-system/surfaces',
-    name: 'design-system-surfaces',
-    component: SurfacesPage,
-    meta: {
-      title: 'Surfaces - Design System Utopia',
-      description: 'Surfaces et arrière-plans du design system'
     }
   },
   {
@@ -89,15 +84,6 @@ const routes: Array<RouteRecordRaw> = [
       description: 'Bibliothèque complète des icônes disponibles'
     }
   },
-  {
-    path: '/design-system/themes',
-    name: 'design-system-themes',
-    component: ThemeComparison,
-    meta: {
-      title: 'Thèmes - Design System Utopia',
-      description: 'Comparaison des thèmes clair et sombre'
-    }
-  },
   // Future routes
   {
     path: '/showcase',
@@ -108,6 +94,8 @@ const routes: Array<RouteRecordRaw> = [
       description: 'Exemples et démonstrations des composants'
     }
   },
+  // Generated routes for design system components
+  ...generatedRoutes,
   // Catch all route - 404
   {
     path: '/:pathMatch(.*)*',

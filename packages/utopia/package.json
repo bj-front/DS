@@ -22,13 +22,11 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
     "build": "npm run build:tokens && npm run generate:icons && vite build && cp src/index.d.ts dist/index.d.ts && npm run copy:tokens && npm run copy:icons",
     "build:tokens": "node scripts/build-tokens.js",
     "generate:icons": "node scripts/generate-icons-list.js",
     "copy:tokens": "mkdir -p dist/tokens && cp -r src/tokens/generated/* dist/tokens/",
     "copy:icons": "cp src/assets/icons-list.json dist/",
-    "preview": "vite preview",
     "lint": "echo 'Linting passed'",
     "type-check": "echo 'Type checking passed'"
   },

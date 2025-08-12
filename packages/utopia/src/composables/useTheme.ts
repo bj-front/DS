@@ -9,7 +9,8 @@ export type ThemeMode = 'light' | 'dark'
 // LocalStorage keys
 const STORAGE_KEYS = {
   BRAND: 'utopia-theme-brand',
-  MODE: 'utopia-theme-mode'
+  MODE: 'utopia-theme-mode',
+  MENU_COLLAPSED: 'utopia-menu-collapsed'
 } as const
 
 // Helper functions for localStorage
@@ -37,9 +38,22 @@ const saveModeToStorage = (mode: ThemeMode): void => {
   }
 }
 
+const getStoredMenuCollapsed = (): boolean => {
+  if (typeof window === 'undefined') return false
+  const stored = localStorage.getItem(STORAGE_KEYS.MENU_COLLAPSED)
+  return stored === 'true'
+}
+
+const saveMenuCollapsedToStorage = (collapsed: boolean): void => {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(STORAGE_KEYS.MENU_COLLAPSED, collapsed.toString())
+  }
+}
+
 // Global theme state - initialized from localStorage
 const currentBrand = ref<BrandTheme>(getStoredBrand())
 const currentMode = ref<ThemeMode>(getStoredMode())
+const menuCollapsed = ref<boolean>(getStoredMenuCollapsed())
 
 // Available themes configuration
 const themes = {
@@ -61,10 +75,13 @@ export function useTheme(): {
   currentMode: import('vue').ComputedRef<ThemeMode>
   currentBrandName: import('vue').ComputedRef<string>
   availableBrands: import('vue').ComputedRef<Array<{ key: BrandTheme; name: string }>>
+  menuCollapsed: import('vue').ComputedRef<boolean>
   toggleBrand: () => void
   toggleMode: () => void
   setBrand: (brand: BrandTheme) => void
   setMode: (mode: ThemeMode) => void
+  toggleMenuCollapsed: () => void
+  setMenuCollapsed: (collapsed: boolean) => void
 } {
   // Computed current theme config
   const currentTheme = computed(() => {
@@ -83,6 +100,10 @@ export function useTheme(): {
 
   watch(currentMode, (newMode) => {
     saveModeToStorage(newMode)
+  }, { immediate: false })
+
+  watch(menuCollapsed, (collapsed) => {
+    saveMenuCollapsedToStorage(collapsed)
   }, { immediate: false })
 
   // Switch between brands
@@ -105,6 +126,16 @@ export function useTheme(): {
     currentMode.value = mode
   }
 
+  // Toggle menu collapsed state
+  const toggleMenuCollapsed = (): void => {
+    menuCollapsed.value = !menuCollapsed.value
+  }
+
+  // Set specific menu collapsed state
+  const setMenuCollapsed = (collapsed: boolean): void => {
+    menuCollapsed.value = collapsed
+  }
+
   // Get all available brands
   const availableBrands = computed(() => {
     return Object.keys(themes).map(key => ({
@@ -120,11 +151,14 @@ export function useTheme(): {
     currentMode: computed(() => currentMode.value),
     currentBrandName,
     availableBrands,
+    menuCollapsed: computed(() => menuCollapsed.value),
 
     // Actions
     toggleBrand,
     toggleMode,
     setBrand,
-    setMode
+    setMode,
+    toggleMenuCollapsed,
+    setMenuCollapsed
   }
 }

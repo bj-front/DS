@@ -1,0 +1,94 @@
+{
+  "menuItems": [
+    {
+      "key": "home",
+      "label": "Home",
+      "icon": "Home",
+      "to": "/home"
+    },
+    {
+      "key": "atoms-section",
+      "type": "section",
+      "label": "Atoms"
+    },
+    {
+      "key": "button",
+      "label": "Button",
+      "icon": "Package",
+      "to": "/design-system/atoms/button"
+    },
+    {
+      "key": "checkbox",
+      "label": "Checkbox",
+      "icon": "Badge-check",
+      "to": "/design-system/atoms/checkbox"
+    },
+    {
+      "key": "molecules-section",
+      "type": "section",
+      "label": "Molecules"
+    },
+    {
+      "key": "organisms-section",
+      "type": "section",
+      "label": "Organisms"
+    },
+    {
+      "key": "layouts-section",
+      "type": "section",
+      "label": "Layouts"
+    },
+    {
+      "key": "defaultlayout",
+      "label": "Default Layout",
+      "icon": "Layout",
+      "to": "/design-system/layouts/defaultlayout"
+    },
+    {
+      "key": "design-section",
+      "type": "section",
+      "label": "Design Tokens"
+    },
+    {
+      "key": "colors",
+      "label": "Couleurs",
+      "icon": "Palette",
+      "to": "/design-system/colors"
+    },
+    {
+      "key": "typography",
+      "label": "Typographie",
+      "icon": "Type",
+      "to": "/design-system/typography"
+    },
+    {
+      "key": "spacing",
+      "label": "Espacement",
+      "icon": "Move",
+      "to": "/design-system/spacing"
+    },
+    {
+      "key": "logos",
+      "label": "Logos",
+      "icon": "Image",
+      "to": "/design-system/logos"
+    },
+    {
+      "key": "icons",
+      "label": "Icônes",
+      "icon": "Search",
+      "to": "/design-system/icons"
+    },
+    {
+      "key": "showcase-section",
+      "type": "section",
+      "label": "Exemples"
+    },
+    {
+      "key": "showcase",
+      "label": "Showcase",
+      "icon": "Frame",
+      "to": "/showcase"
+    }
+  ]
+}

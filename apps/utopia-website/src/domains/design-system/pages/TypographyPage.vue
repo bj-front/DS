@@ -1,11 +1,6 @@
 <template>
-  <div class="typography-page">
-    <div class="page-header">
-      <h1 class="page-title">📝 Typographie</h1>
-      <p class="page-description">
-        Découvrez le système typographique complet avec toutes les tailles, poids et styles disponibles.
-      </p>
-    </div>
+  <ComponentLayout title="Typographie" icon="Type" type="Design Tokens">
+    <template #examples>
 
     <!-- Font Families -->
     <section class="section">
@@ -157,10 +152,44 @@
         </div>
       </div>
     </section>
-  </div>
+    </template>
+
+    <template #documentation>
+      <div class="documentation">
+        <h3>🎯 Utilisation</h3>
+        <p>
+          Le système typographique d'Utopia offre une échelle cohérente pour toutes vos interfaces.
+        </p>
+        
+        <h4>📝 Familles de polices</h4>
+        <ul>
+          <li><strong>Sans-serif</strong> : Pour les interfaces et le contenu principal</li>
+          <li><strong>Monospace</strong> : Pour le code et les données techniques</li>
+        </ul>
+        
+        <h4>📏 Tailles de police</h4>
+        <p>
+          Utilisez l'échelle typographique pour créer une hiérarchie visuelle claire. 
+          Les tailles vont de <code>xs</code> (12px) à <code>6xl</code> (60px).
+        </p>
+        
+        <h4>💪 Poids de police</h4>
+        <p>
+          Neuf poids disponibles de <code>thin</code> (100) à <code>black</code> (900) 
+          pour créer des emphases et des hiérarchies subtiles.
+        </p>
+        
+        <h4>🎨 Couleurs de texte</h4>
+        <p>
+          Couleurs sémantiques qui s'adaptent automatiquement aux thèmes clair et sombre.
+        </p>
+      </div>
+    </template>
+  </ComponentLayout>
 </template>
 
 <script setup lang="ts">
+import ComponentLayout from '@/components/layouts/ComponentLayout.vue'
 import { Button } from '@club-employes/utopia'
 
 // Copy to clipboard function
@@ -207,29 +236,10 @@ const textColors = [
 </script>
 
 <style scoped>
-.typography-page {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: var(--spacing-8);
-}
-
-.page-header {
-  text-align: center;
-  margin-bottom: var(--spacing-12);
-}
-
-.page-title {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--theme-colors-text-primary);
-  margin-bottom: var(--spacing-4);
-}
-
-.page-description {
-  font-size: var(--font-size-lg);
+/* Intro */
+.intro {
   color: var(--theme-colors-text-secondary);
-  max-width: 600px;
-  margin: 0 auto;
+  margin-bottom: var(--spacing-8);
 }
 
 .section {
@@ -237,8 +247,8 @@ const textColors = [
 }
 
 .section-title {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
   color: var(--theme-colors-text-primary);
   margin-bottom: var(--spacing-4);
   border-bottom: 2px solid var(--theme-colors-border-default);
@@ -426,11 +436,41 @@ const textColors = [
   opacity: 1;
 }
 
+/* Documentation */
+.documentation {
+  color: var(--theme-colors-text-secondary);
+}
+
+.documentation h3 {
+  color: var(--theme-colors-text-primary);
+  margin-bottom: var(--spacing-4);
+}
+
+.documentation h4 {
+  color: var(--theme-colors-text-primary);
+  margin-top: var(--spacing-6);
+  margin-bottom: var(--spacing-3);
+}
+
+.documentation ul {
+  margin: var(--spacing-4) 0;
+  padding-left: var(--spacing-6);
+}
+
+.documentation li {
+  margin-bottom: var(--spacing-2);
+}
+
+.documentation code {
+  background: var(--theme-colors-surface-background);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  color: var(--theme-colors-text-primary);
+}
+
 @media (max-width: 768px) {
-  .typography-page {
-    padding: var(--spacing-4);
-  }
-  
   .font-families-grid,
   .font-sizes-grid,
   .font-weights-grid,
