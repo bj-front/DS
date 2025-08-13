@@ -73,7 +73,7 @@ withDefaults(defineProps<Props>(), {
 <style scoped>
 /* Layout principal - Style PageLayout */
 .component-layout {
-  padding: var(--spacing-8, 32px);
+  padding: var(--spacing-4, 16px);
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -134,7 +134,7 @@ withDefaults(defineProps<Props>(), {
   background: var(--theme-colors-surface-card, #ffffff);
   border: 1px solid var(--theme-colors-border-default, #e5e7eb);
   border-radius: var(--border-radius-lg, 8px);
-  padding: var(--spacing-8, 32px);
+  padding: var(--spacing-6, 24px);
   margin-bottom: var(--spacing-6, 24px);
 }
 
@@ -267,5 +267,47 @@ code {
   font-family: var(--font-family-mono, 'JetBrains Mono', 'Fira Code', Consolas, monospace);
   font-size: var(--font-size-sm, 14px);
   color: var(--theme-colors-text-primary, #111827);
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .component-layout {
+    padding: var(--spacing-2, 8px);
+  }
+  
+  .content-section {
+    padding: var(--spacing-4, 16px);
+  }
+  
+  .page-header {
+    margin-bottom: var(--spacing-6, 24px);
+    padding-bottom: var(--spacing-4, 16px);
+  }
+  
+  .header-title h1 {
+    font-size: var(--font-size-2xl, 24px);
+  }
+}
+
+@media (max-width: 480px) {
+  .component-layout {
+    padding: var(--spacing-1, 4px);
+  }
+  
+  .content-section {
+    padding: var(--spacing-3, 12px);
+  }
+  
+  .content-example {
+    padding: var(--spacing-4, 16px);
+  }
+  
+  .page-content :deep(.code-snippet summary) {
+    padding: var(--spacing-3, 12px) var(--spacing-4, 16px);
+  }
+  
+  .page-content :deep(.code-snippet pre) {
+    padding: var(--spacing-4, 16px);
+  }
 }
 </style>

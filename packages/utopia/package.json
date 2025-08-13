@@ -28,7 +28,8 @@
     "copy:tokens": "mkdir -p dist/tokens && cp -r src/tokens/generated/* dist/tokens/",
     "copy:icons": "cp src/assets/icons-list.json dist/",
     "lint": "echo 'Linting passed'",
-    "type-check": "echo 'Type checking passed'"
+    "type-check": "echo 'Type checking passed'",
+    "release": "cd ../.. && npm run release"
   },
   "dependencies": {
     "vue": "^3.5.17"

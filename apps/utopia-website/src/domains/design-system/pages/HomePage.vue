@@ -128,6 +128,19 @@ const features = [
   padding: var(--spacing-8);
 }
 
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .home-page {
+    padding: var(--spacing-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .home-page {
+    padding: var(--spacing-2);
+  }
+}
+
 .welcome-section {
   text-align: center;
   margin-bottom: var(--spacing-16);
@@ -170,6 +183,20 @@ const features = [
   max-width: 400px;
   margin: 0 auto var(--spacing-12) auto;
   box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 768px) {
+  .theme-info-card {
+    padding: var(--spacing-6);
+    margin: 0 auto var(--spacing-8) auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-info-card {
+    padding: var(--spacing-4);
+    margin: 0 auto var(--spacing-6) auto;
+  }
 }
 
 .theme-info-title {

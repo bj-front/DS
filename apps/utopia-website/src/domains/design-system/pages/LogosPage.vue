@@ -693,5 +693,25 @@ const copyToClipboard = async (text: string): Promise<void> => {
   .guidelines-grid {
     grid-template-columns: 1fr;
   }
+  
+  .logo-preview {
+    padding: var(--spacing-6);
+    min-height: 100px;
+  }
+  
+  .logo-info {
+    padding: var(--spacing-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-preview {
+    padding: var(--spacing-4);
+    min-height: 80px;
+  }
+  
+  .logo-info {
+    padding: var(--spacing-3);
+  }
 }
 </style>

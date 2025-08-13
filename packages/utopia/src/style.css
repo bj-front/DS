@@ -7,5 +7,84 @@
  * Ne pas ajouter de styles globaux ici - utiliser les tokens CSS dans les composants.
  */
 
+/* ======================
+   MOBILE TOUCH FIXES
+   ====================== */
+
+/* Supprime les effets de focus tactile sur mobile */
+* {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Rétablit la sélection de texte pour les éléments qui en ont besoin */
+input,
+textarea,
+select,
+[contenteditable],
+.text-selectable {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+/* Supprime les styles de focus par défaut sur mobile pour les inputs et boutons */
+input,
+button,
+textarea,
+select,
+a {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Supprime les bordures et fonds bizarres sur focus/active */
+input:focus,
+input:active,
+button:focus,
+button:active,
+textarea:focus,
+textarea:active,
+select:focus,
+select:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-appearance: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Supprime les effets de zoom automatique sur iOS */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+textarea,
+select {
+  font-size: 16px; /* Empêche le zoom automatique sur iOS */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Rétablit les focus rings personnalisés pour l'accessibilité */
+.button:focus-visible,
+.input:focus-visible,
+.checkbox:focus-visible {
+  outline: 2px solid var(--theme-colors-primary-500, #3b82f6) !important;
+  outline-offset: 2px !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
 /* Import des styles des composants */
 /* Les composants individuels gèrent leurs propres styles via leurs props et les tokens CSS */

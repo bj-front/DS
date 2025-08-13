@@ -259,6 +259,12 @@ const toggleMode = (): void => {
     margin-left: 0; /* Pas de marge même quand le menu est rétracté */
   }
   
+  .app-main {
+    padding: var(--spacing-2);
+    padding-bottom: calc(var(--spacing-2) + 200px);
+    padding-top: calc(var(--spacing-2) + 60px);
+  }
+  
   /* Menu passe au-dessus du contenu sur mobile */
   .app-layout :deep(.utopia-menu) {
     z-index: 1000; /* Plus haut que le contenu */
@@ -286,12 +292,12 @@ const toggleMode = (): void => {
 
 .app-main {
   flex: 1;
-  padding: var(--spacing-6);
-  padding-bottom: calc(var(--spacing-6) + 200px); /* Marge en bas pour déclencher le footer */
+  padding: var(--spacing-3);
+  padding-bottom: calc(var(--spacing-3) + 200px); /* Marge en bas pour déclencher le footer */
   overflow-y: auto; /* Permet le scroll dans le contenu principal */
   overflow-x: hidden;
   margin-top: -60px; /* Permet au contenu de passer derrière le header */
-  padding-top: calc(var(--spacing-6) + 60px); /* Compense la marge négative */
+  padding-top: calc(var(--spacing-3) + 60px); /* Compense la marge négative */
   min-height: calc(100vh - 60px - 80px); /* Hauteur minimale : viewport - header - footer */
   z-index: 60; /* Passe au-dessus du footer */
   position: relative; /* Pour que le z-index fonctionne */
@@ -364,6 +370,13 @@ const toggleMode = (): void => {
   padding: var(--spacing-2) var(--spacing-4);
   border-radius: var(--border-radius-sm);
   transition: all 0.2s ease;
+  
+  /* Mobile touch fixes */
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .nav-link:hover {
@@ -395,6 +408,13 @@ const toggleMode = (): void => {
   justify-content: center;
   padding: 4px;
   opacity: 0.95;
+  
+  /* Mobile touch fixes */
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .brand-btn:hover {
@@ -441,6 +461,13 @@ const toggleMode = (): void => {
   justify-content: center !important;
   border-radius: var(--border-radius-full) !important;
   transition: all 0.2s ease !important;
+  
+  /* Mobile touch fixes */
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
 }
 
 .mode-toggle.dark {
@@ -508,10 +535,23 @@ const toggleMode = (): void => {
   font-size: var(--font-size-sm);
   font-family: var(--font-family-sans);
   transition: color 0.2s ease;
+  
+  /* Mobile touch fixes */
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .footer-links a:hover {
   color: var(--theme-colors-primary-600);
+}
+
+.footer-links a:focus,
+.footer-links a:active {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
 }
 
 /* Responsive */

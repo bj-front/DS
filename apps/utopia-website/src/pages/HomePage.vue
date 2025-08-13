@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from '@club-employes/utopia'
+import { Icon } from '@club-employes/utopia';
 </script>
 
 <style scoped>
@@ -154,5 +154,28 @@ import { Icon } from '@club-employes/utopia'
   font-family: var(--font-family-mono);
   font-size: var(--font-size-sm);
   color: var(--theme-colors-text-primary);
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .component-page {
+    padding: var(--spacing-4);
+  }
+  
+  .page-header {
+    margin-bottom: var(--spacing-6);
+    padding-bottom: var(--spacing-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .component-page {
+    padding: var(--spacing-2);
+  }
+  
+  .page-header {
+    margin-bottom: var(--spacing-4);
+    padding-bottom: var(--spacing-3);
+  }
 }
 </style>

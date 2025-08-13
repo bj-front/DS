@@ -861,6 +861,11 @@ const stateColors = [
     padding: var(--spacing-4);
   }
   
+  .color-group,
+  .common-color-group {
+    padding: var(--spacing-4);
+  }
+  
   .color-row {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: var(--spacing-2);
@@ -869,6 +874,27 @@ const stateColors = [
   .color-swatch {
     width: 50px;
     height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .colors-page {
+    padding: var(--spacing-2);
+  }
+  
+  .color-group,
+  .common-color-group {
+    padding: var(--spacing-3);
+  }
+  
+  .color-row {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: var(--spacing-1);
+  }
+  
+  .color-swatch {
+    width: 40px;
+    height: 40px;
   }
 }
 </style>
