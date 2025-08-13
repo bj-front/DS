@@ -460,9 +460,29 @@ section {
     grid-template-columns: 1fr;
   }
   
+  .component-card,
+  .token-category {
+    padding: var(--spacing-6);
+  }
+  
   .step {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: var(--spacing-16) var(--spacing-2);
+  }
+  
+  section {
+    padding: var(--spacing-16) var(--spacing-2);
+  }
+  
+  .component-card,
+  .token-category {
+    padding: var(--spacing-4);
   }
 }
 </style>

@@ -1031,6 +1031,10 @@ onMounted(() => {
   .stroke-examples {
     justify-content: center;
   }
+  
+  .controls-section {
+    padding: var(--spacing-4);
+  }
 }
 
 @media (max-width: 480px) {
@@ -1040,6 +1044,10 @@ onMounted(() => {
   
   .search-controls {
     gap: var(--spacing-3);
+  }
+  
+  .controls-section {
+    padding: var(--spacing-3);
   }
 }
 </style>

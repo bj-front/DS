@@ -35,6 +35,36 @@ const inputClasses = computed(() => ({
   border-radius: var(--utopia-radius-md);
   font-family: var(--utopia-font-family);
   transition: all 0.2s ease;
+  
+  /* Mobile touch fixes */
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Supprime les effets tactiles sur tous les inputs enfants */
+.utopia-input input,
+.utopia-input textarea,
+.utopia-input select {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 16px; /* Empêche le zoom automatique sur iOS */
+}
+
+.utopia-input input:focus,
+.utopia-input input:active,
+.utopia-input textarea:focus,
+.utopia-input textarea:active,
+.utopia-input select:focus,
+.utopia-input select:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-appearance: none !important;
 }
 
 /* Variants */

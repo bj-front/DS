@@ -451,5 +451,21 @@ const spacingValues = [
   .guidelines-grid {
     grid-template-columns: 1fr;
   }
+  
+  .example-card,
+  .guideline-card {
+    padding: var(--spacing-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .example-card,
+  .guideline-card {
+    padding: var(--spacing-3);
+  }
+  
+  .spacing-card {
+    padding: var(--spacing-3);
+  }
 }
 </style>

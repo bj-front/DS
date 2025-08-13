@@ -109,6 +109,13 @@ const handleClick = (event: MouseEvent) => {
   text-decoration: none;
   cursor: pointer;
   
+  /* Mobile touch fixes */
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
   /* Layout */
   position: relative;
   display: inline-flex;
@@ -139,6 +146,15 @@ const handleClick = (event: MouseEvent) => {
 .button:focus-visible {
   outline: var(--border-width-2) solid var(--theme-colors-primary-500);
   outline-offset: var(--spacing-1);
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Supprime tous les effets tactiles indésirables */
+.button:focus,
+.button:active,
+.button:hover {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
 }
 
 /* ======================

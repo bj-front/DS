@@ -68,6 +68,10 @@ const handleChange = (event: Event) => {
   font-size: var(--font-size-base, 16px);
   line-height: 1.5;
   transition: all 0.15s ease;
+  
+  /* Mobile touch fixes */
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
 }
 
 /* Cache l'input natif */
@@ -77,6 +81,19 @@ const handleChange = (event: Event) => {
   width: 0;
   height: 0;
   pointer-events: none;
+  
+  /* Mobile touch fixes pour l'input caché */
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.utopia-checkbox__input:focus,
+.utopia-checkbox__input:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 /* Box de la checkbox */
