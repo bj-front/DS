@@ -68,7 +68,8 @@
     },
     "validate:design-system": {
       "dependsOn": [
-        "^build"
+        "^build",
+        "^build:tokens"
       ],
       "inputs": [
         "$TURBO_DEFAULT$",
