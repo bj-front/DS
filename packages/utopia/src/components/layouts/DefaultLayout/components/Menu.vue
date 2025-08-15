@@ -225,7 +225,7 @@ onUnmounted(() => {
   width: 200px;
   height: 100vh;
   background-color: var(--theme-colors-surface-card);
-  border-right: 1px solid var(--theme-colors-primary-100);
+  border-right: 1px solid var(--theme-colors-brand-primary-300);
   overflow: hidden;
   overflow-x: hidden;
   z-index: 998;

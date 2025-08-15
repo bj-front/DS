@@ -24,7 +24,7 @@
           </div>
           
           <!-- Navigation -->
-          <nav class="menu-nav" ref="menuNavRef" :class="scrollClasses" @scroll="checkScrollPosition">
+          <nav class="menu-nav" ref="menuNavRef" :class="scrollClasses" @scroll="checkScrollPosition" @click="handleNavItemClick">
             <slot name="nav-items">
               <!-- Navigation par défaut -->
               <div class="nav-item" @click="handleNavClick('accueil')">
@@ -115,6 +115,19 @@ const handleNavClick = (page: string) => {
   emit('nav-click', page)
   closeMenu()
 }
+
+const handleNavItemClick = (event: Event) => {
+  // Vérifier si le clic provient d'un nav-item ou d'un élément à l'intérieur
+  const target = event.target as HTMLElement
+  const navItem = target.closest('.nav-item')
+  
+  if (navItem) {
+    // Fermer le menu après un petit délai pour permettre à la navigation de se faire
+    setTimeout(() => {
+      closeMenu()
+    }, 100)
+  }
+}
 </script>
 
 <style scoped>
@@ -164,7 +177,7 @@ const handleNavClick = (page: string) => {
   width: 280px;
   height: 100vh;
   background-color: var(--theme-colors-surface-card);
-  border-right: 1px solid var(--theme-colors-primary-100);
+  border-right: 1px solid var(--theme-colors-brand-primary-100);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -212,6 +225,21 @@ const handleNavClick = (page: string) => {
   padding-left: var(--spacing-4); /* Aligné avec les nav-items */
   width: 100%;
   height: 100%;
+}
+
+/* Amélioration du rendu du logo dans le menu mobile */
+.mobile-menu-content .header-logo :deep(.logo) {
+  /* Force le rendu vectoriel net */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  
+  /* Assure une taille minimale pour éviter le flou */
+  min-width: 120px;
+  min-height: 30px;
 }
 
 .mobile-menu-close {
@@ -272,20 +300,20 @@ const handleNavClick = (page: string) => {
 }
 
 .mobile-menu-content .nav-item:hover {
-  background-color: var(--theme-colors-primary-100);
-  color: var(--theme-colors-primary-800);
+  background-color: var(--theme-colors-brand-primary-100);
+  color: var(--theme-colors-brand-primary-500);
   transform: translateX(4px);
   box-shadow: var(--shadow-sm);
 }
 
 .mobile-menu-content .nav-item.active {
-  background-color: var(--theme-colors-primary-50);
-  color: var(--theme-colors-primary-700);
+  background-color: var(--theme-colors-brand-primary-50);
+  color: var(--theme-colors-brand-primary-500);
 }
 
 .mobile-menu-content .nav-item.active:hover {
-  background-color: var(--theme-colors-primary-100);
-  color: var(--theme-colors-primary-900);
+  background-color: var(--theme-colors-brand-primary-100);
+  color: var(--theme-colors-brand-primary-500);
   transform: translateX(4px);
   box-shadow: var(--shadow-sm);
 }

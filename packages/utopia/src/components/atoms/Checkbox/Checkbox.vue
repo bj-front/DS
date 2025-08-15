@@ -158,7 +158,7 @@ const handleChange = (event: Event) => {
 
 /* États - Checked */
 .utopia-checkbox--checked .utopia-checkbox__box {
-  background: linear-gradient(135deg, var(--theme-colors-brand-primary-500, #3b82f6) 0%, var(--theme-colors-brand-primary-600, #2563eb) 100%);
+  background: linear-gradient(135deg, var(--theme-colors-brand-primary-500, #3b82f6) 0%, var(--theme-colors-brand-primary-500, #2563eb) 100%);
   border-color: var(--theme-colors-brand-primary-500, #3b82f6);
   box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
 }
@@ -169,8 +169,8 @@ const handleChange = (event: Event) => {
 }
 
 .utopia-checkbox--checked:hover:not(.utopia-checkbox--disabled) .utopia-checkbox__box {
-  background: linear-gradient(135deg, var(--theme-colors-brand-primary-600, #2563eb) 0%, var(--theme-colors-brand-primary-700, #1d4ed8) 100%);
-  border-color: var(--theme-colors-brand-primary-600, #2563eb);
+  background: linear-gradient(135deg, var(--theme-colors-brand-primary-500, #2563eb) 0%, var(--theme-colors-brand-primary-500, #1d4ed8) 100%);
+  border-color: var(--theme-colors-brand-primary-500, #2563eb);
   transform: scale(1.05);
 }
 
@@ -253,7 +253,7 @@ const handleChange = (event: Event) => {
 
 /* Animation de focus pour l'accessibilité */
 .utopia-checkbox__input:focus-visible + .utopia-checkbox__box {
-  outline: 2px solid var(--theme-colors-primary-500, #3b82f6);
+  outline: 2px solid var(--theme-colors-brand-primary-500, #3b82f6);
   outline-offset: 2px;
 }
 
@@ -282,13 +282,13 @@ const handleChange = (event: Event) => {
 }
 
 .utopia-checkbox--dark.utopia-checkbox--checked .utopia-checkbox__box {
-  background: linear-gradient(135deg, var(--theme-colors-brand-primary-500, #3b82f6) 0%, var(--theme-colors-brand-primary-600, #2563eb) 100%);
+  background: linear-gradient(135deg, var(--theme-colors-brand-primary-500, #3b82f6) 0%, var(--theme-colors-brand-primary-500, #2563eb) 100%);
   border-color: var(--theme-colors-brand-primary-500, #3b82f6);
 }
 
 .utopia-checkbox--dark.utopia-checkbox--checked:hover:not(.utopia-checkbox--disabled) .utopia-checkbox__box {
-  background: linear-gradient(135deg, var(--theme-colors-brand-primary-600, #2563eb) 0%, var(--theme-colors-brand-primary-700, #1d4ed8) 100%);
-  border-color: var(--theme-colors-brand-primary-600, #2563eb);
+  background: linear-gradient(135deg, var(--theme-colors-brand-primary-500, #2563eb) 0%, var(--theme-colors-brand-primary-500, #1d4ed8) 100%);
+  border-color: var(--theme-colors-brand-primary-500, #2563eb);
 }
 
 .utopia-checkbox--dark.utopia-checkbox--disabled .utopia-checkbox__box {

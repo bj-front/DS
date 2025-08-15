@@ -166,3 +166,68 @@ Le composant s'adapte automatiquement sur mobile :
 - Les grandes tailles sont réduites sur petits écrans
 - Les proportions sont maintenues
 - La lisibilité est préservée
+
+## 🆕 Ajouter une nouvelle marque
+
+Pour ajouter une nouvelle marque au système de logos :
+
+### 1. Ajouter les fichiers SVG
+```bash
+# Créer le dossier
+mkdir packages/utopia/src/assets/logos/nouvelle-marque/
+
+# Ajouter 4 variantes obligatoires :
+# - logo.svg (principal)
+# - logo-small.svg (compact)  
+# - logo-white.svg (blanc pour fond sombre)
+# - logo-small-white.svg (compact + blanc)
+```
+
+### 2. Mettre à jour les tokens
+```json
+// packages/utopia/src/tokens/core/assets.json
+{
+  "assets": {
+    "logos": {
+      "nouvelle-marque": {
+        "default": { "value": "/assets/logos/nouvelle-marque/logo.svg" },
+        "small": { "value": "/assets/logos/nouvelle-marque/logo-small.svg" },
+        "white": { "value": "/assets/logos/nouvelle-marque/logo-white.svg" },
+        "small-white": { "value": "/assets/logos/nouvelle-marque/logo-small-white.svg" }
+      }
+    }
+  }
+}
+```
+
+### 3. Créer les thèmes
+```json
+// packages/utopia/src/tokens/themes/nouvelle-marque-light.json
+{
+  "theme": {
+    "name": "nouvelle-marque-light",
+    "assets": {
+      "logo": {
+        "default": { "value": "/assets/logos/nouvelle-marque/logo.svg" }
+        // ... autres variantes
+      }
+    }
+  }
+}
+```
+
+### 4. Mettre à jour le composant
+- Ajouter les règles CSS dans `Logo.vue`
+- Mettre à jour les types TypeScript dans `types.ts`
+- Rebuild avec `npm run build`
+
+### 5. Utilisation
+```vue
+<Logo brand="nouvelle-marque" variant="auto" size="md" />
+```
+
+Les tokens CSS générés seront :
+- `--assets-logos-nouvelle-marque-default`
+- `--assets-logos-nouvelle-marque-small`
+- `--assets-logos-nouvelle-marque-white`
+- `--assets-logos-nouvelle-marque-small-white`

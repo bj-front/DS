@@ -71,7 +71,7 @@ const handleMouseLeave = () => {
 .menu-section {
   margin: 16px 0 8px 0;
   transition: all 0.2s ease;
-  color: var(--theme-colors-primary-500);
+  color: var(--theme-colors-brand-primary-500);
 }
 
 .menu-section:first-child {

@@ -144,7 +144,7 @@ const handleClick = (event: MouseEvent) => {
 }
 
 .button:focus-visible {
-  outline: var(--border-width-2) solid var(--theme-colors-primary-500);
+  outline: var(--border-width-2) solid var(--theme-colors-brand-primary-500);
   outline-offset: var(--spacing-1);
   -webkit-tap-highlight-color: transparent !important;
 }
@@ -184,21 +184,21 @@ const handleClick = (event: MouseEvent) => {
 
 /* PRIMARY - utilise les couleurs primaires du thème */
 .button--primary {
-  background-color: var(--theme-colors-primary-500);
+  background-color: var(--theme-colors-brand-primary-500);
   color: var(--theme-colors-text-inverse);
-  border-color: var(--theme-colors-primary-500);
+  border-color: var(--theme-colors-brand-primary-500);
 }
 
 .button--primary:hover:not(:disabled) {
-  background-color: var(--theme-colors-primary-600);
-  border-color: var(--theme-colors-primary-600);
+  background-color: var(--theme-colors-brand-primary-500);
+  border-color: var(--theme-colors-brand-primary-500);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
 
 .button--primary:active:not(:disabled) {
-  background-color: var(--theme-colors-primary-700);
-  border-color: var(--theme-colors-primary-700);
+  background-color: var(--theme-colors-brand-primary-500);
+  border-color: var(--theme-colors-brand-primary-500);
   transform: translateY(0);
 }
 
@@ -223,17 +223,17 @@ const handleClick = (event: MouseEvent) => {
 /* OUTLINE - bordure avec couleur primaire */
 .button--outline {
   background-color: transparent;
-  color: var(--theme-colors-primary-500);
-  border-color: var(--theme-colors-primary-500);
+  color: var(--theme-colors-brand-primary-500);
+  border-color: var(--theme-colors-brand-primary-500);
 }
 
 .button--outline:hover:not(:disabled) {
-  background-color: var(--theme-colors-primary-50);
+  background-color: var(--theme-colors-brand-primary-50);
   transform: translateY(-1px);
 }
 
 .button--outline:active:not(:disabled) {
-  background-color: var(--theme-colors-primary-100);
+  background-color: var(--theme-colors-brand-primary-100);
 }
 
 /* GHOST - pas de bordure ni fond */

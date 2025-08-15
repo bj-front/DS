@@ -76,9 +76,9 @@ Tous les composants utilisent les mêmes variables CSS qui s'adaptent automatiqu
 
 ```css
 /* Couleurs primaires */
---theme-colors-primary-50
---theme-colors-primary-500
---theme-colors-primary-900
+--theme-colors-brand-primary-50
+--theme-colors-brand-primary-500
+--theme-colors-brand-primary-500
 
 /* Couleurs de texte */
 --theme-colors-text-primary

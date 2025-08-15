@@ -88,8 +88,8 @@ const handleNavClick = (page: string): void => {
 }
 
 .brand-btn.active {
-  background-color: var(--theme-colors-primary-50);
-  color: var(--theme-colors-primary-700);
+  background-color: var(--theme-colors-brand-primary-50);
+  color: var(--theme-colors-brand-primary-500);
 }
 
 .brand-logo {

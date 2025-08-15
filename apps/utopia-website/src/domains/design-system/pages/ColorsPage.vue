@@ -468,7 +468,7 @@
 <script setup lang="ts">
 import { ComponentLayout } from '@/components';
 import { Button, useTheme } from '@club-employes/utopia';
-import { computed } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
 
 // Accès au thème via le composable
 const { currentTheme } = useTheme()
@@ -574,31 +574,63 @@ const copyToClipboard = async (text: string): Promise<void> => {
   }
 }
 
-// Get hex value from CSS variable
+// Reactive cache for hex values
+const hexValueCache = ref<Record<string, string>>({})
+
+// Force update of hex values when theme changes
+watchEffect(() => {
+  if (currentTheme.value) {
+    hexValueCache.value = {}
+  }
+})
+
+// Get hex value from CSS variable (reactive)
 const getHexValue = (cssVariable: string): string => {
+  // Use cached value if available
+  if (hexValueCache.value[cssVariable]) {
+    return hexValueCache.value[cssVariable]
+  }
+  
   try {
     if (typeof window !== 'undefined' && document.documentElement) {
       const computedValue = getComputedStyle(document.documentElement)
         .getPropertyValue(cssVariable)
         .trim()
       
+      let result = '--'
+      
       // If it's already a hex value, return it
       if (computedValue.startsWith('#')) {
-        return computedValue.toUpperCase()
+        result = computedValue.toUpperCase()
       }
-      
       // If it's an RGB value, convert to hex
-      if (computedValue.startsWith('rgb')) {
+      else if (computedValue.startsWith('rgb')) {
         const rgbMatch = computedValue.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/)
         if (rgbMatch?.[1] && rgbMatch[2] && rgbMatch[3]) {
           const r = parseInt(rgbMatch[1])
           const g = parseInt(rgbMatch[2])
           const b = parseInt(rgbMatch[3])
-          return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`.toUpperCase()
+          result = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`.toUpperCase()
         }
       }
+      // Handle rgba values (with opacity)
+      else if (computedValue.startsWith('rgba')) {
+        const rgbaMatch = computedValue.match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/)
+        if (rgbaMatch?.[1] && rgbaMatch[2] && rgbaMatch[3] && rgbaMatch[4]) {
+          const r = parseInt(rgbaMatch[1])
+          const g = parseInt(rgbaMatch[2])
+          const b = parseInt(rgbaMatch[3])
+          const a = parseFloat(rgbaMatch[4])
+          result = `rgba(${r}, ${g}, ${b}, ${a})`
+        }
+      }
+      else {
+        result = computedValue || '--'
+      }
       
-      return computedValue || '--'
+      // Cache the result
+      hexValueCache.value[cssVariable] = result
+      return result
     }
     return '--'
   } catch (error) {

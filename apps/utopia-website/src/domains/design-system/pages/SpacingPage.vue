@@ -240,7 +240,7 @@ const spacingValues = [
 }
 
 .spacing-visual {
-  background: var(--theme-colors-primary-500);
+  background: var(--theme-colors-brand-primary-500);
   border-radius: var(--border-radius-sm);
   margin: 0 auto var(--spacing-3) auto;
   max-width: 100px;
@@ -312,7 +312,7 @@ const spacingValues = [
 }
 
 .example-component {
-  background: var(--theme-colors-primary-100);
+  background: var(--theme-colors-brand-primary-100);
   border-radius: var(--border-radius-sm);
   margin-bottom: var(--spacing-2);
   display: inline-block;
@@ -352,7 +352,7 @@ const spacingValues = [
 }
 
 .list-item {
-  background: var(--theme-colors-primary-100);
+  background: var(--theme-colors-brand-primary-100);
   padding: var(--spacing-2) var(--spacing-3);
   border-radius: var(--border-radius-sm);
   color: var(--theme-colors-text-primary);

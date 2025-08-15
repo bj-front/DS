@@ -81,7 +81,7 @@ select {
 .button:focus-visible,
 .input:focus-visible,
 .checkbox:focus-visible {
-  outline: 2px solid var(--theme-colors-primary-500, #3b82f6) !important;
+  outline: 2px solid var(--theme-colors-brand-primary-500, #3b82f6) !important;
   outline-offset: 2px !important;
   -webkit-tap-highlight-color: transparent !important;
 }

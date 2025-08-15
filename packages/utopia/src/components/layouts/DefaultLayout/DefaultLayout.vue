@@ -380,13 +380,13 @@ const toggleMode = (): void => {
 }
 
 .nav-link:hover {
-  color: var(--theme-colors-primary-600);
-  background: var(--theme-colors-primary-50);
+  color: var(--theme-colors-brand-primary-500);
+  background: var(--theme-colors-brand-primary-50);
 }
 
 .nav-link.active {
-  color: var(--theme-colors-primary-600);
-  background: var(--theme-colors-primary-50);
+  color: var(--theme-colors-brand-primary-500);
+  background: var(--theme-colors-brand-primary-50);
 }
 
 /* Brand Buttons */
@@ -418,16 +418,16 @@ const toggleMode = (): void => {
 }
 
 .brand-btn:hover {
-  background: var(--theme-colors-primary-50);
+  background: var(--theme-colors-brand-primary-50);
   opacity: 1;
   transform: scale(1.05);
 }
 
 .brand-btn.active {
-  border-color: var(--theme-colors-primary-500);
-  background: var(--theme-colors-primary-500);
+  border-color: var(--theme-colors-brand-primary-500);
+  background: var(--theme-colors-brand-primary-500);
   opacity: 1;
-  box-shadow: 0 0 0 2px var(--theme-colors-primary-200);
+  box-shadow: 0 0 0 2px var(--theme-colors-brand-primary-200);
 }
 
 /* Force logo blanc quand le bouton est actif (fond bleu) */
@@ -471,10 +471,10 @@ const toggleMode = (): void => {
 }
 
 .mode-toggle.dark {
-  background: var(--theme-colors-primary-500) !important;
-  border-color: var(--theme-colors-primary-500) !important;
+  background: var(--theme-colors-brand-primary-500) !important;
+  border-color: var(--theme-colors-brand-primary-500) !important;
   color: white !important;
-  box-shadow: 0 0 0 2px var(--theme-colors-primary-200) !important;
+  box-shadow: 0 0 0 2px var(--theme-colors-brand-primary-200) !important;
 }
 
 .mode-toggle:hover {
@@ -545,7 +545,7 @@ const toggleMode = (): void => {
 }
 
 .footer-links a:hover {
-  color: var(--theme-colors-primary-600);
+  color: var(--theme-colors-brand-primary-500);
 }
 
 .footer-links a:focus,

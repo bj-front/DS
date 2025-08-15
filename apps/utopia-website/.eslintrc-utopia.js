@@ -12,10 +12,10 @@ const UTOPIA_CSS_TOKENS = {
   
   // Color tokens  
   colors: [
-    '--theme-colors-primary-50', '--theme-colors-primary-100', '--theme-colors-primary-200',
-    '--theme-colors-primary-300', '--theme-colors-primary-400', '--theme-colors-primary-500',
-    '--theme-colors-primary-600', '--theme-colors-primary-700', '--theme-colors-primary-800',
-    '--theme-colors-primary-900',
+    '--theme-colors-brand-primary-50', '--theme-colors-brand-primary-100', '--theme-colors-brand-primary-200',
+    '--theme-colors-brand-primary-300', '--theme-colors-brand-primary-400', '--theme-colors-brand-primary-500',
+    '--theme-colors-brand-primary-500', '--theme-colors-brand-primary-500', '--theme-colors-brand-primary-500',
+    '--theme-colors-brand-primary-500',
     '--theme-colors-brand-primary-25', '--theme-colors-brand-primary-50',
     '--theme-colors-brand-secondary-25', '--theme-colors-brand-secondary-50',
     '--theme-colors-brand-accent-25', '--theme-colors-brand-accent-50',

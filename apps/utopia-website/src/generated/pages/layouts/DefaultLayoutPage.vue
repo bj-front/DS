@@ -266,8 +266,8 @@ const copyToClipboard = async (text: string): Promise<void> => {
 }
 
 .layout-header {
-  background: var(--theme-colors-primary-100);
-  color: var(--theme-colors-primary-700);
+  background: var(--theme-colors-brand-primary-100);
+  color: var(--theme-colors-brand-primary-500);
   padding: var(--spacing-2);
   text-align: center;
   height: 30px;
