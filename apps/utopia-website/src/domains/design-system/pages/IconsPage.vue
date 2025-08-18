@@ -89,6 +89,15 @@
           <div class="icon-info">
             <h4 class="icon-name">{{ formatIconName(iconName) }}</h4>
             <p class="icon-filename">{{ iconName }}.svg</p>
+            <Button 
+              variant="ghost" 
+              size="small" 
+              @click.stop="copyIconName(iconName)"
+              class="copy-icon-btn"
+              :aria-label="`Copier ${iconName}`"
+            >
+              📋
+            </Button>
           </div>
         </div>
       </div>
@@ -440,6 +449,16 @@ const resetFilters = (): void => {
   selectedStrokeWidth.value = 1
 }
 
+const copyIconName = async (iconName: string): Promise<void> => {
+  try {
+    await navigator.clipboard.writeText(iconName)
+    // Optionnel: ajouter un feedback visuel
+  } catch (err) {
+     
+    console.error('Failed to copy icon name: ', err)
+  }
+}
+
 const copyToClipboard = async (text: string): Promise<void> => {
   try {
     await navigator.clipboard.writeText(text)
@@ -671,7 +690,22 @@ onMounted(() => {
   font-size: var(--font-size-xs);
   color: var(--theme-colors-text-secondary);
   font-family: var(--font-family-mono);
-  margin: 0;
+  margin: 0 0 var(--spacing-2) 0;
+}
+
+.copy-icon-btn {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s ease;
+  min-width: 24px !important;
+  min-height: 24px !important;
+  padding: var(--spacing-1) !important;
+  font-size: var(--font-size-xs) !important;
+}
+
+.icon-card:hover .copy-icon-btn {
+  visibility: visible;
+  opacity: 1;
 }
 
 /* No Results */

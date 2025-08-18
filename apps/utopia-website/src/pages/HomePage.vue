@@ -159,15 +159,16 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter()
 
-const navigateTo = (path: string) => {
+const navigateTo = (path: string): void => {
   router.push(path)
 }
 
-const copyToClipboard = async (text: string) => {
+const copyToClipboard = async (text: string): Promise<void> => {
   try {
     await navigator.clipboard.writeText(text)
     // Optionnel: ajouter un feedback visuel
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error('Failed to copy: ', err)
   }
 }
