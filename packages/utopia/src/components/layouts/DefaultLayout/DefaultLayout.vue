@@ -186,7 +186,7 @@ withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>()
 
-// Get current route with reactivity
+// Get current route
 const route = useRoute()
 
 // Menu state
@@ -201,20 +201,17 @@ const handleMenuCollapsedChange = (collapsed: boolean) => {
 
 
 
-// Reactive computed for current path
-const currentPath = computed(() => route?.path || '')
-
-// Function to check if a menu item is active (reactive)
-const isMenuActive = (item: MenuItem): boolean => {
-  const path = currentPath.value
-  
-  if (!path || !item.to) {
-    return false
+// Reactive function to check if a menu item is active
+const isMenuActive = computed(() => {
+  return (item: MenuItem): boolean => {
+    if (!route?.path || !item.to) {
+      return false
+    }
+    
+    const currentPath = route.path
+    return currentPath === item.to || currentPath.startsWith(item.to + '/')
   }
-  
-  // Exact match or starts with the path + slash
-  return path === item.to || path.startsWith(item.to + '/')
-}
+})
 
 // Function to navigate to a route
 const navigateTo = (to: string): void => {
