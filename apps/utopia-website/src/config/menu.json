@@ -4,7 +4,7 @@
       "key": "home",
       "label": "Home",
       "icon": "Home",
-      "to": "/home"
+      "to": "/"
     },
     {
       "key": "atoms-section",
@@ -14,7 +14,7 @@
     {
       "key": "button",
       "label": "Button",
-      "icon": "Package",
+      "icon": "Package-first",
       "to": "/design-system/atoms/button"
     },
     {

@@ -224,7 +224,7 @@ async function updateMenuJson(type, componentName, icon) {
     const newMenuItem = {
       key: componentName.toLowerCase(),
       label: componentName,
-      icon: icon || 'Package',
+      icon: icon || 'Package-first',
       to: `/design-system/${type}/${componentName.toLowerCase()}`
     }
 
@@ -302,7 +302,7 @@ async function generateComponentPage(type, componentName, icon) {
   const pageTemplate = `<template>
   <ComponentLayout 
     :title="'${componentName}'"
-    :icon="'${icon || 'Package'}'"
+    :icon="'${icon || 'Package-first'}'"
     :type="'${type.charAt(0).toUpperCase() + type.slice(1)}'"
   >
     <template #examples>
@@ -580,7 +580,7 @@ async function createComponent() {
         type: 'input',
         name: 'selectedIcon',
         message: 'Nom de l\'icône (ex: Package, Star, Search) :',
-        default: 'Package',
+        default: 'Package-first',
         validate: (input) => {
           if (!input || input.trim().length === 0) {
             return 'Le nom de l\'icône est requis'

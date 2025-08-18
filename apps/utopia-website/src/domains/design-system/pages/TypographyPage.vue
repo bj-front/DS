@@ -28,7 +28,7 @@
                   📋
                 </Button>
               </div>
-              <p class="font-family-stack">Inter, system-ui, sans-serif</p>
+              <p class="font-family-stack">Figtree, system-ui, sans-serif</p>
             </div>
           </div>
         </div>
@@ -163,9 +163,28 @@
         
         <h4>📝 Familles de polices</h4>
         <ul>
-          <li><strong>Sans-serif</strong> : Pour les interfaces et le contenu principal</li>
-          <li><strong>Monospace</strong> : Pour le code et les données techniques</li>
+          <li><strong>Figtree (Sans-serif)</strong> : Police principale moderne et lisible pour les interfaces</li>
+          <li><strong>JetBrains Mono</strong> : Police monospace optimisée pour le code</li>
         </ul>
+        
+        <h4>🎨 À propos de Figtree</h4>
+        <p>
+          <strong>Figtree</strong> est une police sans-serif moderne, conçue pour une excellente lisibilité 
+          sur tous les écrans. Elle offre une apparence chaleureuse et professionnelle, parfaite pour 
+          les interfaces utilisateur contemporaines.
+        </p>
+        
+        <div class="figtree-features">
+          <div class="feature-item">
+            <strong>✨ Lisibilité optimale</strong> - Conçue pour les écrans numériques
+          </div>
+          <div class="feature-item">
+            <strong>🎯 Polyvalente</strong> - Fonctionne pour les titres et le texte courant
+          </div>
+          <div class="feature-item">
+            <strong>🌍 Support étendu</strong> - Caractères latins et symboles
+          </div>
+        </div>
         
         <h4>📏 Tailles de police</h4>
         <p>
@@ -459,6 +478,30 @@ const textColors = [
 
 .documentation li {
   margin-bottom: var(--spacing-2);
+}
+
+.figtree-features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  margin: var(--spacing-4) 0;
+  padding: var(--spacing-4);
+  background: var(--theme-colors-surface-card);
+  border: 1px solid var(--theme-colors-border-default);
+  border-radius: var(--border-radius-lg);
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  font-size: var(--font-size-sm);
+  color: var(--theme-colors-text-secondary);
+}
+
+.feature-item strong {
+  color: var(--theme-colors-text-primary);
+  min-width: 140px;
 }
 
 .documentation code {

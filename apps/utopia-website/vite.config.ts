@@ -7,7 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
   plugins: [
     vue(),
     vueDevTools(),
@@ -19,16 +19,14 @@ export default defineConfig(({ mode }) => ({
       // Alias pour les tokens (fonctionne en dev et prod)
       '@club-employes/utopia/tokens/club-employes/light': fileURLToPath(new URL('../../packages/utopia/src/tokens/generated/club-employes/light.css', import.meta.url)),
       '@club-employes/utopia/tokens/club-employes/dark': fileURLToPath(new URL('../../packages/utopia/src/tokens/generated/club-employes/dark.css', import.meta.url)),
-      // En mode développement, utiliser les sources du design system pour le hot reload
-      ...(mode === 'development' && {
-        '@club-employes/utopia/styles': fileURLToPath(new URL('../../packages/utopia/src/style.css', import.meta.url)),
-        '@club-employes/utopia': fileURLToPath(new URL('../../packages/utopia/src', import.meta.url))
-      })
+      // Toujours utiliser les sources du design system pour éviter les problèmes de versions
+      '@club-employes/utopia/styles': fileURLToPath(new URL('../../packages/utopia/src/style.css', import.meta.url)),
+      '@club-employes/utopia': fileURLToPath(new URL('../../packages/utopia/src', import.meta.url))
     },
   },
-  // Optimiser la découverte des dépendances en mode dev
+  // Optimiser la découverte des dépendances
   optimizeDeps: {
-    include: mode === 'development' ? ['vue'] : undefined,
-    exclude: mode === 'development' ? ['@club-employes/utopia'] : undefined
+    include: ['vue'],
+    exclude: ['@club-employes/utopia'] // Toujours exclure pour utiliser les sources
   }
 }))

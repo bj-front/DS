@@ -4,7 +4,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 // Import pages from domains
 import {
   ColorsPage,
-  HomePage,
   IconsPage,
   LogosPage,
   SpacingPage,
@@ -23,19 +22,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: HomePage,
-    meta: {
-      title: 'Utopia Design System',
-      description: 'Système de design modulaire et cohérent'
-    }
-  },
-  {
-    path: '/home',
-    name: 'home-page',
     component: HomePageCustom,
     meta: {
-      title: 'Home',
-      description: 'Page Home générée automatiquement'
+      title: 'Utopia Design System',
+      description: 'Système de design moderne et multi-marques'
     }
   },
   // Design System pages
