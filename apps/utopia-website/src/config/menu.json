@@ -24,6 +24,12 @@
       "to": "/design-system/atoms/checkbox"
     },
     {
+      "key": "switch",
+      "label": "Switch",
+      "icon": "Check-circle-2",
+      "to": "/design-system/atoms/switch"
+    },
+    {
       "key": "molecules-section",
       "type": "section",
       "label": "Molecules"
