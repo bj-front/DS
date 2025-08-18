@@ -1,96 +1,67 @@
 <template>
-  <button
+  <button 
+    class="utopia-button" 
     :class="buttonClasses"
     :disabled="disabled || loading"
-    :aria-disabled="disabled || loading"
-    :aria-label="ariaLabel"
-    v-bind="$attrs"
     @click="handleClick"
+    :style="{ flexDirection: iconPosition === 'right' && icon && $slots['default'] && !loading ? 'row-reverse' : 'row' }"
   >
-    <!-- Loading spinner -->
-    <span v-if="loading" class="button-spinner" aria-hidden="true">
-      <svg class="spinner-icon" viewBox="0 0 24 24">
-        <circle class="spinner-path" cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="31.416" stroke-dashoffset="31.416">
-          <animate attributeName="stroke-dasharray" dur="2s" values="0 31.416;15.708 15.708;0 31.416" repeatCount="indefinite"/>
-          <animate attributeName="stroke-dashoffset" dur="2s" values="0;-15.708;-31.416" repeatCount="indefinite"/>
-        </circle>
-      </svg>
-    </span>
-
-    <!-- Button content -->
-    <span class="button-content" :class="{ 'button-content--hidden': loading }">
-      <!-- Icon avant le texte -->
-      <span v-if="$slots.icon" class="button-icon button-icon--before">
-        <slot name="icon" />
-      </span>
-      
-      <!-- Contenu principal -->
-      <span class="button-text">
-        <slot />
-      </span>
-      
-      <!-- Icon après le texte -->
-      <span v-if="$slots.iconAfter" class="button-icon button-icon--after">
-        <slot name="iconAfter" />
-      </span>
+    <Icon 
+      v-if="loading" 
+      name="Loader-2" 
+      class="utopia-button__icon utopia-button__icon--loading"
+      stroke-width="2"
+    />
+    <Icon 
+      v-else-if="icon" 
+      :name="icon" 
+      class="utopia-button__icon"
+      stroke-width="2"
+    />
+    <span v-if="$slots['default']" class="utopia-button__text">
+      <slot />
     </span>
   </button>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useSlots } from 'vue'
+import { useTheme } from '../../../composables/useTheme'
+import Icon from '../Icon/Icon.vue'
 
-// Types
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'
-export type ButtonSize = 'small' | 'medium' | 'large'
-
-// Props
 interface Props {
-  variant?: ButtonVariant
-  size?: ButtonSize
+  variant?: 'primary' | 'secondary' | 'tertiary'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   disabled?: boolean
   loading?: boolean
-  block?: boolean
-  ariaLabel?: string
-}
-
-// Emits
-interface Emits {
-  (e: 'click', event: MouseEvent): void
+  icon?: string
+  iconPosition?: 'left' | 'right'
 }
 
 const props = withDefaults(defineProps<Props>(), {
   variant: 'primary',
-  size: 'medium',
+  size: 'md',
   disabled: false,
   loading: false,
-  block: false
+  iconPosition: 'left'
 })
 
-const emit = defineEmits<Emits>()
+const emit = defineEmits<{
+  click: [event: MouseEvent]
+}>()
 
-// Computed
-const buttonClasses = computed(() => {
-  // Map size names to CSS classes
-  const sizeMap: Record<ButtonSize, string> = {
-    'small': 'sm',
-    'medium': 'md', 
-    'large': 'lg'
-  }
-  
-  return [
-    'button',
-    `button--${props.variant}`,
-    `button--${sizeMap[props.size]}`,
-    {
-      'button--disabled': props.disabled,
-      'button--loading': props.loading,
-      'button--block': props.block
-    }
-  ]
-})
+const { currentTheme } = useTheme()
+const slots = useSlots()
 
-// Methods
+const buttonClasses = computed(() => ({
+  [`utopia-button--${props.variant}`]: true,
+  [`utopia-button--${props.size}`]: true,
+  'utopia-button--disabled': props.disabled,
+  'utopia-button--loading': props.loading,
+  'utopia-button--icon-only': (props.icon && !slots.default) || props.loading,
+  [`utopia-button--${currentTheme.value?.mode || 'light'}`]: true
+}))
+
 const handleClick = (event: MouseEvent) => {
   if (!props.disabled && !props.loading) {
     emit('click', event)
@@ -99,254 +70,396 @@ const handleClick = (event: MouseEvent) => {
 </script>
 
 <style scoped>
-/* ======================
-   BASE BUTTON STYLES
-   ====================== */
-.button {
-  /* Reset */
-  border: none;
-  outline: none;
+.utopia-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2, 8px);
+  border: 2px solid transparent !important;
+  border-radius: 50px;
+  font-family: var(--font-family-sans, system-ui);
+  font-weight: var(--font-weight-medium, 500);
+  line-height: 1.5;
   text-decoration: none;
   cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
   
   /* Mobile touch fixes */
   -webkit-tap-highlight-color: transparent !important;
   -webkit-touch-callout: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  
-  /* Layout */
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-2);
-  
-  /* Typography - utilise les tokens */
-  font-family: var(--font-family-sans);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--font-line-height-normal);
-  text-align: center;
-  white-space: nowrap;
-  
-  /* Interaction */
-  transition: all 0.2s ease;
   user-select: none;
-  
-  /* Border radius depuis les tokens */
-  border-radius: var(--border-radius-base);
-  
-  /* Border width depuis les tokens */
-  border: var(--border-width-1) solid transparent;
-  
-  /* Focus ring avec les couleurs de tokens */
 }
 
-.button:focus-visible {
-  outline: var(--border-width-2) solid var(--theme-colors-brand-primary-500);
-  outline-offset: var(--spacing-1);
+.utopia-button:focus,
+.utopia-button:active {
+  outline: none !important;
   -webkit-tap-highlight-color: transparent !important;
 }
 
-/* Supprime tous les effets tactiles indésirables */
-.button:focus,
-.button:active,
-.button:hover {
-  -webkit-tap-highlight-color: transparent !important;
-  -webkit-touch-callout: none;
+/* Icône */
+.utopia-button__icon {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
 
-/* ======================
-   SIZE VARIANTS
-   ====================== */
-.button--sm {
-  padding: var(--spacing-2) var(--spacing-3);
-  font-size: var(--font-size-sm);
-  min-height: 32px;
+/* Icône loading avec animation */
+.utopia-button__icon--loading {
+  animation: spin 1s linear infinite;
 }
 
-.button--md {
-  padding: var(--spacing-3) var(--spacing-4);
-  font-size: var(--font-size-base);
-  min-height: 40px;
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.button--lg {
-  padding: var(--spacing-4) var(--spacing-6);
-  font-size: var(--font-size-lg);
-  min-height: 48px;
+
+
+.utopia-button__text {
+  white-space: nowrap;
 }
 
-/* ======================
-   VARIANT STYLES
-   ====================== */
-
-/* PRIMARY - utilise les couleurs primaires du thème */
-.button--primary {
-  background-color: var(--theme-colors-brand-primary-500);
-  color: var(--theme-colors-text-inverse);
-  border-color: var(--theme-colors-brand-primary-500);
-}
-
-.button--primary:hover:not(:disabled) {
-  background-color: var(--theme-colors-brand-primary-500);
-  border-color: var(--theme-colors-brand-primary-500);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.button--primary:active:not(:disabled) {
-  background-color: var(--theme-colors-brand-primary-500);
-  border-color: var(--theme-colors-brand-primary-500);
-  transform: translateY(0);
-}
-
-/* SECONDARY - utilise les couleurs de surface */
-.button--secondary {
-  background-color: var(--theme-colors-surface-card);
-  color: var(--theme-colors-text-primary);
-  border-color: var(--theme-colors-border-default);
-}
-
-.button--secondary:hover:not(:disabled) {
-  background-color: var(--theme-colors-border-muted);
-  border-color: var(--theme-colors-border-strong);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
-}
-
-.button--secondary:active:not(:disabled) {
-  background-color: var(--theme-colors-border-default);
-}
-
-/* OUTLINE - bordure avec couleur primaire */
-.button--outline {
-  background-color: transparent;
-  color: var(--theme-colors-brand-primary-500);
-  border-color: var(--theme-colors-brand-primary-500);
-}
-
-.button--outline:hover:not(:disabled) {
-  background-color: var(--theme-colors-brand-primary-50);
-  transform: translateY(-1px);
-}
-
-.button--outline:active:not(:disabled) {
-  background-color: var(--theme-colors-brand-primary-100);
-}
-
-/* GHOST - pas de bordure ni fond */
-.button--ghost {
-  background-color: transparent;
-  color: var(--theme-colors-text-primary);
+/* VARIANT PRIMARY */
+.utopia-button--primary {
+  background: var(--theme-colors-brand-primary-500, #3b82f6);
   border-color: transparent;
+  color: white;
+  box-shadow: 0 1px 3px var(--theme-colors-brand-primary-200, #3b82f6);
 }
 
-.button--ghost:hover:not(:disabled) {
-  background-color: var(--theme-colors-border-muted);
-}
-
-.button--ghost:active:not(:disabled) {
-  background-color: var(--theme-colors-border-default);
-}
-
-/* DANGER - utilise les couleurs d'erreur */
-.button--danger {
-  background-color: var(--theme-colors-state-error);
-  color: var(--theme-colors-text-inverse);
-  border-color: var(--theme-colors-state-error);
-}
-
-.button--danger:hover:not(:disabled) {
-  background-color: #dc2626; /* Fallback pour hover danger */
-  filter: brightness(0.9);
+.utopia-button--primary:hover:not(.utopia-button--disabled):not(:focus-visible) {
+  background: var(--theme-colors-brand-primary-400, #60a5fa);
+  border-color: transparent;
+  box-shadow: 0 4px 12px var(--theme-colors-brand-primary-200, rgba(59, 130, 246, 0.4));
   transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
 }
 
-.button--danger:active:not(:disabled) {
-  filter: brightness(0.8);
+.utopia-button--primary:active:not(.utopia-button--disabled):not(:focus-visible) {
+  transform: translateY(0);
+  border-color: transparent;
+  box-shadow: 0 1px 3px var(--theme-colors-brand-primary-200, rgba(59, 130, 246, 0.3));
+  transition: all 0.1s ease;
+}
+
+.utopia-button--primary:active:focus-visible:not(.utopia-button--disabled) {
+  background: var(--theme-colors-brand-primary-200, #c7d2fe);
+  border-color: var(--theme-colors-brand-primary-500, #3b82f6);
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
+  box-shadow: 0 1px 3px var(--theme-colors-brand-primary-200, rgba(59, 130, 246, 0.3));
   transform: translateY(0);
 }
 
-/* ======================
-   STATE MODIFIERS
-   ====================== */
-
-/* Block (full width) */
-.button--block {
-  width: 100%;
+.utopia-button--primary:focus-visible {
+  background: var(--theme-colors-brand-primary-200, #c7d2fe);
+  border-color: transparent;
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
+  outline: 2px solid var(--theme-colors-brand-primary-500, #3b82f6);
+  outline-offset: -2px;
+  box-shadow: none;
 }
 
-/* Disabled state */
-.button--disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
+.utopia-button--primary:focus-visible:hover:not(.utopia-button--disabled) {
+  background: var(--theme-colors-brand-primary-200, #c7d2fe);
+  border-color: transparent;
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
+  outline: 2px solid var(--theme-colors-brand-primary-500, #3b82f6);
+  outline-offset: -2px;
+  box-shadow: 0 4px 12px var(--theme-colors-brand-primary-200, rgba(59, 130, 246, 0.4));
 }
 
-/* Loading state */
-.button--loading {
-  cursor: not-allowed;
+.utopia-button--primary:focus-visible:active:not(.utopia-button--disabled) {
+  background: var(--theme-colors-brand-primary-200, #c7d2fe);
+  border-color: transparent;
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
+  outline: 2px solid var(--theme-colors-brand-primary-500, #3b82f6);
+  outline-offset: -2px;
+  box-shadow: 0 1px 3px var(--theme-colors-brand-primary-200, rgba(59, 130, 246, 0.3));
+  transform: translateY(0);
 }
 
-/* ======================
-   BUTTON CONTENT
-   ====================== */
-.button-content {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-2);
-  transition: opacity 0.2s ease;
+/* VARIANT SECONDARY */
+.utopia-button--secondary {
+  background: var(--theme-colors-surface-card, #ffffff);
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
+  border-color: transparent;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.button-content--hidden {
-  opacity: 0;
+.utopia-button--secondary:hover:not(.utopia-button--disabled):not(:focus-visible) {
+  background: var(--theme-colors-brand-primary-25, #eff6ff);
+  border-color: transparent;
+  box-shadow: 0 2px 8px var(--theme-colors-brand-primary-100, rgba(59, 130, 246, 0.2));
+  transform: translateY(-1px);
 }
 
-.button-text {
-  flex: 1;
+.utopia-button--secondary:active:not(.utopia-button--disabled):not(:focus-visible) {
+  transform: translateY(0);
+  background: var(--theme-colors-brand-primary-50, #dbeafe);
+  border-color: transparent;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.1s ease;
 }
 
-.button-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
+.utopia-button--secondary:active:focus-visible:not(.utopia-button--disabled) {
+  background: var(--theme-colors-surface-card, #ffffff);
+  border-color: transparent;
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
+  outline: 2px solid var(--theme-colors-brand-primary-500, #3b82f6);
+  outline-offset: -2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transform: translateY(0);
 }
 
-.button-icon--before {
-  margin-right: calc(-1 * var(--spacing-1));
+.utopia-button--secondary:focus-visible {
+  border-color: transparent;
+  outline: 2px solid var(--theme-colors-brand-primary-500, #3b82f6);
+  outline-offset: -2px;
+  box-shadow: none;
 }
 
-.button-icon--after {
-  margin-left: calc(-1 * var(--spacing-1));
+.utopia-button--secondary:focus-visible:hover:not(.utopia-button--disabled) {
+  background: var(--theme-colors-surface-card, #ffffff);
+  border-color: transparent;
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
+  outline: 2px solid var(--theme-colors-brand-primary-500, #3b82f6);
+  outline-offset: -2px;
+  box-shadow: 0 2px 8px var(--theme-colors-brand-primary-100, rgba(59, 130, 246, 0.2));
 }
 
-/* ======================
-   LOADING SPINNER
-   ====================== */
-.button-spinner {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* VARIANT TERTIARY */
+.utopia-button--tertiary {
+  background: transparent;
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
+  border-color: transparent;
+  box-shadow: none;
 }
 
-.spinner-icon {
-  width: 16px;
-  height: 16px;
-  color: currentColor;
+.utopia-button--tertiary:hover:not(.utopia-button--disabled):not(:focus-visible) {
+  background: var(--theme-colors-brand-primary-25, #eff6ff);
+  border-color: transparent;
+  color: var(--theme-colors-brand-primary-500, #2563eb);
 }
 
-.button--sm .spinner-icon {
+.utopia-button--tertiary:active:not(.utopia-button--disabled):not(:focus-visible) {
+  background: var(--theme-colors-brand-primary-50, #dbeafe);
+  border-color: transparent;
+  transition: all 0.1s ease;
+}
+
+.utopia-button--tertiary:active:focus-visible:not(.utopia-button--disabled) {
+  background: transparent;
+  border-color: var(--theme-colors-brand-primary-500, #3b82f6);
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.utopia-button--tertiary:focus-visible {
+  border-color: transparent;
+  outline: 2px solid var(--theme-colors-brand-primary-500, #3b82f6);
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+.utopia-button--tertiary:focus-visible:hover:not(.utopia-button--disabled) {
+  background: transparent;
+  border-color: transparent;
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
+  outline: 2px solid var(--theme-colors-brand-primary-500, #3b82f6);
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+.utopia-button--tertiary:focus-visible:active:not(.utopia-button--disabled) {
+  background: transparent;
+  border-color: transparent;
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
+  outline: 2px solid var(--theme-colors-brand-primary-500, #3b82f6);
+  outline-offset: -2px;
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+/* TAILLES */
+.utopia-button--xs {
+  padding: var(--spacing-1, 4px) var(--spacing-2, 8px);
+  font-size: var(--font-size-xs, 12px);
+  border-radius: 50px;
+}
+
+.utopia-button--xs .utopia-button__icon {
+  width: 12px;
+  height: 12px;
+}
+
+.utopia-button--sm {
+  padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
+  font-size: var(--font-size-sm, 14px);
+  border-radius: 50px;
+}
+
+.utopia-button--sm .utopia-button__icon {
   width: 14px;
   height: 14px;
 }
 
-.button--lg .spinner-icon {
+.utopia-button--md {
+  padding: var(--spacing-2-5, 10px) var(--spacing-4, 16px);
+  font-size: var(--font-size-base, 16px);
+  border-radius: 50px;
+}
+
+.utopia-button--md .utopia-button__icon {
+  width: 16px;
+  height: 16px;
+}
+
+.utopia-button--lg {
+  padding: var(--spacing-3, 12px) var(--spacing-5, 20px);
+  font-size: var(--font-size-lg, 18px);
+  border-radius: 50px;
+}
+
+.utopia-button--lg .utopia-button__icon {
   width: 18px;
   height: 18px;
 }
-</style> 
+
+.utopia-button--xl {
+  padding: var(--spacing-4, 16px) var(--spacing-6, 24px);
+  font-size: var(--font-size-xl, 20px);
+  border-radius: 50px;
+}
+
+.utopia-button--xl .utopia-button__icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Boutons icon-only (carrés) */
+.utopia-button--icon-only.utopia-button--xs {
+  padding: var(--spacing-1, 4px);
+  width: 24px;
+  height: 24px;
+}
+
+.utopia-button--icon-only.utopia-button--sm {
+  padding: var(--spacing-2, 8px);
+  width: 32px;
+  height: 32px;
+}
+
+.utopia-button--icon-only.utopia-button--md {
+  padding: var(--spacing-2-5, 10px);
+  width: 40px;
+  height: 40px;
+}
+
+.utopia-button--icon-only.utopia-button--lg {
+  padding: var(--spacing-3, 12px);
+  width: 48px;
+  height: 48px;
+}
+
+.utopia-button--icon-only.utopia-button--xl {
+  padding: var(--spacing-4, 16px);
+  width: 56px;
+  height: 56px;
+}
+
+/* ÉTAT LOADING */
+.utopia-button--loading {
+  cursor: wait;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.utopia-button--loading:hover,
+.utopia-button--loading:focus,
+.utopia-button--loading:active {
+  transform: none !important;
+  box-shadow: inherit !important;
+  border-color: inherit !important;
+  background: inherit !important;
+}
+
+/* Loading spécifique par variant pour maintenir les bordures */
+.utopia-button--primary.utopia-button--loading {
+  border-color: transparent;
+}
+
+.utopia-button--secondary.utopia-button--loading {
+  border-color: var(--theme-colors-border-default, #d1d5db);
+}
+
+.utopia-button--tertiary.utopia-button--loading {
+  border-color: transparent;
+}
+
+/* ÉTAT DISABLED */
+.utopia-button--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+  transform: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+}
+
+.utopia-button--primary.utopia-button--disabled {
+  background: var(--theme-colors-border-muted, #e5e7eb);
+  color: var(--theme-colors-text-muted, #9ca3af);
+  border-color: transparent;
+}
+
+.utopia-button--secondary.utopia-button--disabled {
+  background: var(--theme-colors-surface-background, #f9fafb);
+  color: var(--theme-colors-text-muted, #9ca3af);
+  border-color: transparent;
+}
+
+.utopia-button--tertiary.utopia-button--disabled {
+  background: transparent;
+  color: var(--theme-colors-text-muted, #9ca3af);
+  border-color: transparent;
+}
+
+/* Animation au clic */
+.utopia-button:active:not(.utopia-button--disabled) .utopia-button__icon {
+  transform: scale(0.95);
+}
+
+/* Dark mode */
+.utopia-button--dark.utopia-button--secondary {
+  background: var(--theme-colors-surface-card, #1f2937);
+  color: var(--theme-colors-brand-primary-400, #60a5fa);
+  border-color: var(--theme-colors-border-default, #374151);
+}
+
+.utopia-button--dark.utopia-button--secondary:hover:not(.utopia-button--disabled) {
+  background: var(--theme-colors-brand-primary-25, rgba(59, 130, 246, 0.1));
+  border-color: var(--theme-colors-brand-primary-400, #60a5fa);
+}
+
+.utopia-button--dark.utopia-button--tertiary {
+  color: var(--theme-colors-brand-primary-400, #60a5fa);
+}
+
+.utopia-button--dark.utopia-button--tertiary:hover:not(.utopia-button--disabled) {
+  background: var(--theme-colors-brand-primary-25, rgba(59, 130, 246, 0.1));
+}
+
+.utopia-button--dark.utopia-button--primary.utopia-button--disabled,
+.utopia-button--dark.utopia-button--secondary.utopia-button--disabled,
+.utopia-button--dark.utopia-button--tertiary.utopia-button--disabled {
+  background: var(--theme-colors-surface-background, #111827);
+  color: var(--theme-colors-text-muted, #6b7280);
+  border-color: var(--theme-colors-border-muted, #374151);
+}
+</style>

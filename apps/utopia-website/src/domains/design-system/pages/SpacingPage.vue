@@ -18,8 +18,8 @@
               <div class="code-group">
                 <code class="spacing-var">--spacing-{{ space.name }}</code>
                 <Button 
-                  variant="ghost" 
-                  size="small" 
+                  variant="tertiary" 
+                  size="sm" 
                   @click="copyToClipboard(`--spacing-${space.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --spacing-${space.name}`"

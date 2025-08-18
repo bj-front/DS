@@ -8,19 +8,19 @@
         <div class="variant-group">
           <h3>Variants</h3>
           <div class="button-row">
-            <Button variant="primary" size="medium">Primary</Button>
-            <Button variant="secondary" size="medium">Secondary</Button>
-            <Button variant="outline" size="medium">Outline</Button>
-            <Button variant="ghost" size="medium">Ghost</Button>
+            <Button variant="primary" size="md">Primary</Button>
+            <Button variant="secondary" size="md">Secondary</Button>
+            <Button variant="secondary" size="md">Outline</Button>
+            <Button variant="tertiary" size="md">Ghost</Button>
           </div>
         </div>
         
         <div class="variant-group">
           <h3>Tailles</h3>
           <div class="button-row">
-            <Button variant="primary" size="small">Small</Button>
-            <Button variant="primary" size="medium">Medium</Button>
-            <Button variant="primary" size="large">Large</Button>
+            <Button variant="primary" size="sm">Small</Button>
+            <Button variant="primary" size="md">Medium</Button>
+            <Button variant="primary" size="lg">Large</Button>
           </div>
         </div>
       </div>

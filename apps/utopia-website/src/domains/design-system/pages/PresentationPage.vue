@@ -4,17 +4,17 @@
     <section class="hero">
       <div class="hero-content">
         <div class="logo-section">
-          <Logo variant="primary" size="large" />
+          <Logo variant="primary" size="lg" />
           <h1 class="title">Utopia Design System</h1>
         </div>
         <p class="subtitle">
           Un système de design cohérent et modulaire pour créer des expériences utilisateur exceptionnelles
         </p>
         <div class="cta-buttons">
-          <Button variant="primary" size="large" @click="scrollToComponents">
+          <Button variant="primary" size="lg" @click="scrollToComponents">
             Découvrir les composants
           </Button>
-          <Button variant="outline" size="large" @click="scrollToTokens">
+          <Button variant="secondary" size="lg" @click="scrollToTokens">
             Explorer les tokens
           </Button>
         </div>
@@ -35,7 +35,7 @@
           <div class="component-showcase">
             <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
-            <Button variant="outline">Outline</Button>
+            <Button variant="secondary">Outline</Button>
           </div>
         </div>
 

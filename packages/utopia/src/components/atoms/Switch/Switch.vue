@@ -204,7 +204,7 @@ const handleChange = (event: Event) => {
 .utopia-switch--checked:hover:not(.utopia-switch--disabled) .utopia-switch__track {
   background: linear-gradient(135deg, var(--theme-colors-brand-primary-500, #2563eb) 0%, var(--theme-colors-brand-primary-500, #1d4ed8) 100%);
   border-color: var(--theme-colors-brand-primary-500, #2563eb);
-  box-shadow: 0 0 0 4px var(--theme-colors-brand-primary-100, rgba(59, 130, 246, 0.2));
+  box-shadow: 0 0 0 4px var(--theme-colors-brand-primary-300, rgba(59, 130, 246, 0.2));
 }
 
 /* États - Disabled */

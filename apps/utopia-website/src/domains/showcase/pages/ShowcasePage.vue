@@ -3,7 +3,7 @@
     <div class="showcase-content">
       <h1>Showcase</h1>
       <p>Page de démonstrations et exemples (à venir)</p>
-      <Button variant="outline" @click="goHome">
+      <Button variant="secondary" @click="goHome">
         Retour à l'accueil
       </Button>
     </div>
