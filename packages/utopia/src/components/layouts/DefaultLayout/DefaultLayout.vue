@@ -112,7 +112,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTheme } from '../../../composables'
 import { Button, Logo } from '../../atoms'
@@ -186,7 +186,7 @@ withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>()
 
-// Get current route
+// Get current route with reactivity
 const route = useRoute()
 
 // Menu state
@@ -201,14 +201,19 @@ const handleMenuCollapsedChange = (collapsed: boolean) => {
 
 
 
-// Function to check if a menu item is active
+// Reactive computed for current path
+const currentPath = computed(() => route?.path || '')
+
+// Function to check if a menu item is active (reactive)
 const isMenuActive = (item: MenuItem): boolean => {
-  // Utiliser la route réactive de Vue Router avec vérification de sécurité
-  if (!route || !route.path) {
+  const path = currentPath.value
+  
+  if (!path || !item.to) {
     return false
   }
-  const currentPath = route.path
-  return currentPath === item.to || currentPath.startsWith(item.to + '/')
+  
+  // Exact match or starts with the path + slash
+  return path === item.to || path.startsWith(item.to + '/')
 }
 
 // Function to navigate to a route
