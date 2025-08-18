@@ -16,7 +16,7 @@
         <div class="showcase-item">
           <h3>Section Principale</h3>
           <div class="example">
-            <p>Bienvenue sur la page <strong>Home</strong>.</p>
+            <p>Bienvenue sur la page Homepage<strong>Home</strong>.</p>
             <p>Cette page a été générée automatiquement. Vous pouvez la personnaliser selon vos besoins.</p>
           </div>
         </div>
