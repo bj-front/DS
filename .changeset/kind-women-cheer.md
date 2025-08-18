@@ -15,6 +15,11 @@ Improve mobile experience and touch interactions
   - Improved touch experience for Button, Input, Checkbox, and navigation elements
   - Added comprehensive mobile-specific CSS resets in global styles
 
+- **Typography Updates**:
+  - Updated font family from Inter to Figtree for better readability
+  - Enhanced TypographyPage documentation with Figtree information
+  - Added copy-to-clipboard functionality on IconsPage icon cards
+
 - **Technical Improvements**: 
   - Added missing release script in utopia package.json for proper CI/CD
   - Enhanced responsive design across all major design system pages
