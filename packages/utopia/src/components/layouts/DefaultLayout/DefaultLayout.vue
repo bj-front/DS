@@ -209,6 +209,8 @@ const isMenuActive = computed(() => {
     }
     
     const currentPath = route.path
+    console.log('currentPath', currentPath);
+    console.log('item.to', item.to);
     return currentPath === item.to || currentPath.startsWith(item.to + '/')
   }
 })
