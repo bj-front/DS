@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, Icon } from '@club-employes/utopia'
+import { Button, Icon } from '@club-employes/utopia';
 </script>
 
 <template>
