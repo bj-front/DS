@@ -135,20 +135,20 @@ const handleClick = (event: MouseEvent) => {
 }
 
 .nav-item:hover {
-  background-color: var(--theme-colors-primary-100);
-  color: var(--theme-colors-primary-800);
+  background-color: var(--theme-colors-brand-primary-100);
+  color: var(--theme-colors-brand-primary-500);
   transform: translateX(4px);
   box-shadow: var(--shadow-sm);
 }
 
 .nav-item.active {
-  background-color: var(--theme-colors-primary-50);
-  color: var(--theme-colors-primary-700);
+  background-color: var(--theme-colors-brand-primary-50);
+  color: var(--theme-colors-brand-primary-500);
 }
 
 .nav-item.active:hover {
-  background-color: var(--theme-colors-primary-100);
-  color: var(--theme-colors-primary-900);
+  background-color: var(--theme-colors-brand-primary-100);
+  color: var(--theme-colors-brand-primary-500);
   transform: translateX(4px);
   box-shadow: var(--shadow-sm);
 }
@@ -185,7 +185,7 @@ const handleClick = (event: MouseEvent) => {
 }
 
 .nav-item.collapsed:hover {
-  background-color: var(--theme-colors-primary-100);
+  background-color: var(--theme-colors-brand-primary-100);
   transform: scale(1.1);
   box-shadow: var(--shadow-md);
 }

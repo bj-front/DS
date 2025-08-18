@@ -38,9 +38,9 @@ export const ThemeSwitchTest: Story = {
           </div>
           
           <!-- Primary Color -->
-          <div style="padding: 16px; background-color: var(--theme-colors-primary-500); color: var(--theme-colors-text-inverse); border-radius: 12px;">
+          <div style="padding: 16px; background-color: var(--theme-colors-brand-primary-500); color: var(--theme-colors-text-inverse); border-radius: 12px;">
             <h3 style="margin-bottom: 8px;">Primary 500</h3>
-            <code style="font-family: var(--font-family-mono); font-size: 12px; opacity: 0.8;">--theme-colors-primary-500</code>
+            <code style="font-family: var(--font-family-mono); font-size: 12px; opacity: 0.8;">--theme-colors-brand-primary-500</code>
           </div>
         </div>
 
@@ -64,11 +64,11 @@ export const ThemeSwitchTest: Story = {
         </section>
 
         <!-- Instructions -->
-        <section style="padding: 20px; background-color: var(--theme-colors-primary-50); border: 1px solid var(--theme-colors-primary-200); border-radius: 12px;">
-          <h3 style="color: var(--theme-colors-primary-700); margin-bottom: 12px;">
+        <section style="padding: 20px; background-color: var(--theme-colors-brand-primary-50); border: 1px solid var(--theme-colors-brand-primary-200); border-radius: 12px;">
+          <h3 style="color: var(--theme-colors-brand-primary-500); margin-bottom: 12px;">
             🔄 Instructions de Test
           </h3>
-          <ol style="color: var(--theme-colors-primary-700); line-height: 1.6;">
+          <ol style="color: var(--theme-colors-brand-primary-500); line-height: 1.6;">
             <li><strong>Brand :</strong> Cliquez sur "Club Employés" vs "Gifteo" dans la toolbar</li>
             <li><strong>Mode :</strong> Cliquez sur "Light" vs "Dark" dans la toolbar</li>
             <li><strong>Vérifiez :</strong> Les fonds et textes doivent s'inverser en mode dark</li>
@@ -125,7 +125,7 @@ export const SimpleColorTest: Story = {
             <!-- Bouton simulé -->
             <div style="
               display: inline-block;
-              background-color: var(--theme-colors-primary-500);
+              background-color: var(--theme-colors-brand-primary-500);
               color: var(--theme-colors-text-inverse);
               padding: 12px 24px;
               border-radius: 8px;

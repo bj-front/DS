@@ -580,7 +580,7 @@ const copyToClipboard = async (text: string): Promise<void> => {
   content: "•";
   position: absolute;
   left: 0;
-  color: var(--theme-colors-primary-500);
+  color: var(--theme-colors-brand-primary-500);
   font-weight: var(--font-weight-bold);
 }
 
@@ -609,7 +609,7 @@ const copyToClipboard = async (text: string): Promise<void> => {
 
 .spacing-line {
   position: absolute;
-  border: 1px dashed var(--theme-colors-primary-400);
+  border: 1px dashed var(--theme-colors-brand-primary-400);
 }
 
 .horizontal {
@@ -639,13 +639,13 @@ const copyToClipboard = async (text: string): Promise<void> => {
 }
 
 .demo-logo {
-  background: var(--theme-colors-primary-100);
-  color: var(--theme-colors-primary-600);
+  background: var(--theme-colors-brand-primary-100);
+  color: var(--theme-colors-brand-primary-500);
   padding: var(--spacing-4) var(--spacing-6);
   border-radius: var(--border-radius-md);
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-xl);
-  border: 2px solid var(--theme-colors-primary-300);
+  border: 2px solid var(--theme-colors-brand-primary-300);
 }
 
 .spacing-note {

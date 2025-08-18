@@ -64,6 +64,20 @@ const brandName = computed(() => {
   
   /* Transition pour les changements de taille */
   transition: all 0.2s ease;
+  
+  /* Amélioration du rendu SVG */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: auto;
+  
+  /* Force le rendu vectoriel sur les écrans haute résolution */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  
+  /* Améliore la netteté sur les écrans Retina */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* === AUTO DETECTION VIA CSS === */

@@ -54,7 +54,7 @@ html {
 
 /* Focus styles for accessibility using design system tokens */
 *:focus {
-  outline: var(--border-width-2) solid var(--theme-colors-primary-500);
+  outline: var(--border-width-2) solid var(--theme-colors-brand-primary-500);
   outline-offset: var(--border-width-2);
 }
 

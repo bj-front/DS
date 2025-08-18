@@ -39,7 +39,7 @@ const goBack = (): void => {
   align-items: center;
   justify-content: center;
   padding: var(--spacing-8);
-  background: linear-gradient(135deg, var(--theme-colors-primary-50) 0%, var(--theme-colors-surface-background) 100%);
+  background: linear-gradient(135deg, var(--theme-colors-brand-primary-50) 0%, var(--theme-colors-surface-background) 100%);
   flex: 1;
 }
 
@@ -51,7 +51,7 @@ const goBack = (): void => {
 .error-code {
   font-size: var(--font-size-5xl);
   font-weight: var(--font-weight-bold);
-  color: var(--theme-colors-primary-500);
+  color: var(--theme-colors-brand-primary-500);
   line-height: var(--font-line-height-tight);
   margin-bottom: var(--spacing-4);
   font-family: var(--font-family-sans);

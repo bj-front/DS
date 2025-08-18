@@ -151,7 +151,7 @@ const features = [
   font-weight: var(--font-weight-bold);
   color: var(--theme-colors-text-primary);
   margin-bottom: var(--spacing-6);
-  background: linear-gradient(135deg, var(--theme-colors-primary-500), var(--theme-colors-primary-300));
+  background: linear-gradient(135deg, var(--theme-colors-brand-primary-500), var(--theme-colors-brand-primary-300));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -248,7 +248,7 @@ const features = [
 }
 
 .color-swatch.primary {
-  background-color: var(--theme-colors-primary-500);
+  background-color: var(--theme-colors-brand-primary-500);
 }
 
 .color-swatch.surface {
@@ -278,7 +278,7 @@ const features = [
 .feature-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--theme-colors-primary-300);
+  border-color: var(--theme-colors-brand-primary-300);
 }
 
 .feature-icon {

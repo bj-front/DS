@@ -76,7 +76,7 @@ import { Icon } from '@club-employes/utopia';
   display: inline-block;
   padding: var(--spacing-1) var(--spacing-3);
   background: var(--theme-colors-brand-primary-100);
-  color: var(--theme-colors-brand-primary-600);
+  color: var(--theme-colors-brand-primary-500);
   border-radius: var(--border-radius-full);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);

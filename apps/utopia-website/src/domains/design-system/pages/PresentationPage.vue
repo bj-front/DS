@@ -188,7 +188,7 @@ const scrollToTokens = (): void => {
 .hero {
   padding: var(--spacing-32) 0;
   text-align: center;
-  background: linear-gradient(135deg, var(--theme-colors-primary-50) 0%, var(--theme-colors-surface-background) 100%);
+  background: linear-gradient(135deg, var(--theme-colors-brand-primary-50) 0%, var(--theme-colors-surface-background) 100%);
   min-height: 80vh;
   width: 100%;
   display: flex;
@@ -344,7 +344,7 @@ section {
   border: var(--border-width-1) solid var(--theme-colors-border-default);
 }
 
-.primary-color { background-color: var(--theme-colors-primary-500); }
+.primary-color { background-color: var(--theme-colors-brand-primary-500); }
 .secondary-color { background-color: var(--theme-colors-brand-secondary-500); }
 .success-color { background-color: var(--theme-colors-state-success); }
 .warning-color { background-color: var(--theme-colors-state-warning); }
@@ -401,7 +401,7 @@ section {
 .step-number {
   width: var(--spacing-10);
   height: var(--spacing-10);
-  background: var(--theme-colors-primary-500);
+  background: var(--theme-colors-brand-primary-500);
   color: var(--theme-colors-text-inverse);
   border-radius: var(--border-radius-full);
   display: flex;
@@ -426,7 +426,7 @@ section {
   border-radius: var(--border-radius-sm);
   font-family: var(--font-family-mono);
   font-size: var(--font-size-sm);
-  color: var(--theme-colors-primary-600);
+  color: var(--theme-colors-brand-primary-500);
   border: var(--border-width-1) solid var(--theme-colors-border-default);
   display: block;
   overflow-x: auto;

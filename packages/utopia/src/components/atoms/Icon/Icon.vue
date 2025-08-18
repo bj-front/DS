@@ -91,7 +91,9 @@ const loadIcon = async (iconName: string) => {
     iconSvg.value = cleanedSvg
   } catch (error) {
     console.error(`Failed to load icon: ${iconName}`, error)
-    // Icône de fallback
+    
+   
+    // Icône de fallback générale
     iconSvg.value = `
       <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>

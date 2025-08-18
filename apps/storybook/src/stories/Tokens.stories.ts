@@ -31,43 +31,43 @@ export const Colors: Story = {
           </h2>
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 16px;">
             <div style="text-align: center;">
-              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-primary-50); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
+              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-brand-primary-50); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
               <code style="font-family: var(--font-family-mono); font-size: 12px; color: var(--theme-colors-text-muted);">primary-50</code>
             </div>
             <div style="text-align: center;">
-              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-primary-100); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
+              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-brand-primary-100); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
               <code style="font-family: var(--font-family-mono); font-size: 12px; color: var(--theme-colors-text-muted);">primary-100</code>
             </div>
             <div style="text-align: center;">
-              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-primary-200); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
+              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-brand-primary-200); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
               <code style="font-family: var(--font-family-mono); font-size: 12px; color: var(--theme-colors-text-muted);">primary-200</code>
             </div>
             <div style="text-align: center;">
-              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-primary-300); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
+              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-brand-primary-300); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
               <code style="font-family: var(--font-family-mono); font-size: 12px; color: var(--theme-colors-text-muted);">primary-300</code>
             </div>
             <div style="text-align: center;">
-              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-primary-400); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
+              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-brand-primary-400); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
               <code style="font-family: var(--font-family-mono); font-size: 12px; color: var(--theme-colors-text-muted);">primary-400</code>
             </div>
             <div style="text-align: center;">
-              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-primary-500); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
+              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-brand-primary-500); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
               <code style="font-family: var(--font-family-mono); font-size: 12px; color: var(--theme-colors-text-muted);">primary-500</code>
             </div>
             <div style="text-align: center;">
-              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-primary-600); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
+              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-brand-primary-500); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
               <code style="font-family: var(--font-family-mono); font-size: 12px; color: var(--theme-colors-text-muted);">primary-600</code>
             </div>
             <div style="text-align: center;">
-              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-primary-700); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
+              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-brand-primary-500); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
               <code style="font-family: var(--font-family-mono); font-size: 12px; color: var(--theme-colors-text-muted);">primary-700</code>
             </div>
             <div style="text-align: center;">
-              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-primary-800); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
+              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-brand-primary-500); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
               <code style="font-family: var(--font-family-mono); font-size: 12px; color: var(--theme-colors-text-muted);">primary-800</code>
             </div>
             <div style="text-align: center;">
-              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-primary-900); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
+              <div style="width: 100%; height: 80px; background-color: var(--theme-colors-brand-primary-500); border: 1px solid var(--theme-colors-border-default); border-radius: 8px; margin-bottom: 8px;"></div>
               <code style="font-family: var(--font-family-mono); font-size: 12px; color: var(--theme-colors-text-muted);">primary-900</code>
             </div>
           </div>
@@ -91,7 +91,7 @@ export const Colors: Story = {
               <p style="color: var(--theme-colors-text-muted); font-family: var(--font-family-sans); margin-bottom: 4px;">Texte Atténué</p>
               <code style="font-family: var(--font-family-mono); font-size: 12px; color: var(--theme-colors-text-muted);">--theme-colors-text-muted</code>
             </div>
-            <div style="padding: 16px; background-color: var(--theme-colors-primary-500); border: 1px solid var(--theme-colors-border-default); border-radius: 8px;">
+            <div style="padding: 16px; background-color: var(--theme-colors-brand-primary-500); border: 1px solid var(--theme-colors-border-default); border-radius: 8px;">
               <p style="color: var(--theme-colors-text-inverse); font-family: var(--font-family-sans); margin-bottom: 4px;">Texte Inverse</p>
               <code style="font-family: var(--font-family-mono); font-size: 12px; color: var(--theme-colors-text-inverse); opacity: 0.7;">--theme-colors-text-inverse</code>
             </div>
@@ -99,11 +99,11 @@ export const Colors: Story = {
         </section>
 
         <!-- Instructions -->
-        <section style="padding: 24px; background-color: var(--theme-colors-primary-50); border: 1px solid var(--theme-colors-primary-200); border-radius: 12px;">
-          <h3 style="color: var(--theme-colors-primary-700); font-family: var(--font-family-sans); margin-bottom: 12px;">
+        <section style="padding: 24px; background-color: var(--theme-colors-brand-primary-50); border: 1px solid var(--theme-colors-brand-primary-200); border-radius: 12px;">
+          <h3 style="color: var(--theme-colors-brand-primary-500); font-family: var(--font-family-sans); margin-bottom: 12px;">
             🔄 Comment tester l'adaptation des thèmes
           </h3>
-          <ol style="color: var(--theme-colors-primary-700); font-family: var(--font-family-sans); line-height: 1.6;">
+          <ol style="color: var(--theme-colors-brand-primary-500); font-family: var(--font-family-sans); line-height: 1.6;">
             <li>Utilisez le contrôle <strong>Brand</strong> dans la toolbar pour basculer entre Club Employés (bleu) et Gifteo (rouge)</li>
             <li>Utilisez le contrôle <strong>Mode</strong> pour basculer entre Light et Dark</li>
             <li>Observez comment les couleurs s'adaptent automatiquement</li>

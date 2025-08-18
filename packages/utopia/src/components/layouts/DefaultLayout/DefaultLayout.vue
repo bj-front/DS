@@ -112,7 +112,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTheme } from '../../../composables'
 import { Button, Logo } from '../../atoms'
@@ -186,7 +186,7 @@ withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>()
 
-// Get current route
+// Get current route with reactivity
 const route = useRoute()
 
 // Menu state
@@ -201,14 +201,19 @@ const handleMenuCollapsedChange = (collapsed: boolean) => {
 
 
 
-// Function to check if a menu item is active
+// Reactive computed for current path
+const currentPath = computed(() => route?.path || '')
+
+// Function to check if a menu item is active (reactive)
 const isMenuActive = (item: MenuItem): boolean => {
-  // Utiliser la route réactive de Vue Router avec vérification de sécurité
-  if (!route || !route.path) {
+  const path = currentPath.value
+  
+  if (!path || !item.to) {
     return false
   }
-  const currentPath = route.path
-  return currentPath === item.to || currentPath.startsWith(item.to + '/')
+  
+  // Exact match or starts with the path + slash
+  return path === item.to || path.startsWith(item.to + '/')
 }
 
 // Function to navigate to a route
@@ -380,13 +385,13 @@ const toggleMode = (): void => {
 }
 
 .nav-link:hover {
-  color: var(--theme-colors-primary-600);
-  background: var(--theme-colors-primary-50);
+  color: var(--theme-colors-brand-primary-500);
+  background: var(--theme-colors-brand-primary-50);
 }
 
 .nav-link.active {
-  color: var(--theme-colors-primary-600);
-  background: var(--theme-colors-primary-50);
+  color: var(--theme-colors-brand-primary-500);
+  background: var(--theme-colors-brand-primary-50);
 }
 
 /* Brand Buttons */
@@ -418,16 +423,16 @@ const toggleMode = (): void => {
 }
 
 .brand-btn:hover {
-  background: var(--theme-colors-primary-50);
+  background: var(--theme-colors-brand-primary-50);
   opacity: 1;
   transform: scale(1.05);
 }
 
 .brand-btn.active {
-  border-color: var(--theme-colors-primary-500);
-  background: var(--theme-colors-primary-500);
+  border-color: var(--theme-colors-brand-primary-500);
+  background: var(--theme-colors-brand-primary-500);
   opacity: 1;
-  box-shadow: 0 0 0 2px var(--theme-colors-primary-200);
+  box-shadow: 0 0 0 2px var(--theme-colors-brand-primary-200);
 }
 
 /* Force logo blanc quand le bouton est actif (fond bleu) */
@@ -471,10 +476,10 @@ const toggleMode = (): void => {
 }
 
 .mode-toggle.dark {
-  background: var(--theme-colors-primary-500) !important;
-  border-color: var(--theme-colors-primary-500) !important;
+  background: var(--theme-colors-brand-primary-500) !important;
+  border-color: var(--theme-colors-brand-primary-500) !important;
   color: white !important;
-  box-shadow: 0 0 0 2px var(--theme-colors-primary-200) !important;
+  box-shadow: 0 0 0 2px var(--theme-colors-brand-primary-200) !important;
 }
 
 .mode-toggle:hover {
@@ -545,7 +550,7 @@ const toggleMode = (): void => {
 }
 
 .footer-links a:hover {
-  color: var(--theme-colors-primary-600);
+  color: var(--theme-colors-brand-primary-500);
 }
 
 .footer-links a:focus,

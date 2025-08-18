@@ -150,9 +150,9 @@ textarea {
 [id^="panel-tab-content"] input:focus,
 [id^="panel-tab-content"] select:focus,
 [id^="panel-tab-content"] textarea:focus {
-  outline: 2px solid var(--theme-colors-primary-500, #3b82f6) !important;
+  outline: 2px solid var(--theme-colors-brand-primary-500, #3b82f6) !important;
   outline-offset: 2px !important;
-  border-color: var(--theme-colors-primary-500, #3b82f6) !important;
+  border-color: var(--theme-colors-brand-primary-500, #3b82f6) !important;
 }
 
 /* Styles pour les contrôles dans la toolbar */

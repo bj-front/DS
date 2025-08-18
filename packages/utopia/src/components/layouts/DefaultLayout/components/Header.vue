@@ -92,8 +92,8 @@ const emit = defineEmits<{
 <style scoped>
 .utopia-header {
   height: 60px;
-  background-color: var(--theme-colors-primary-25);
-  border-bottom: 1px solid var(--theme-colors-primary-100);
+  background: rgba(255, 255, 255, 0);
+  border-bottom: 1px solid var(--theme-colors-brand-primary-300);
   position: sticky;
   top: 0;
   z-index: 100;

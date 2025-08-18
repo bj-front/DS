@@ -66,7 +66,7 @@ onUnmounted(() => {
 }
 
 .mobile-menu-btn:focus {
-  outline: 2px solid var(--theme-colors-primary-500);
+  outline: 2px solid var(--theme-colors-brand-primary-500);
   outline-offset: 2px;
 }
 
