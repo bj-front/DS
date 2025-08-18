@@ -66,7 +66,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  icon: 'Package'
+  icon: 'Package-first'
 })
 </script>
 

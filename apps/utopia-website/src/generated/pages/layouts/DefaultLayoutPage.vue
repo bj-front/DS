@@ -166,7 +166,7 @@ import { ref } from 'vue'
 // Menu personnalisé pour l'exemple
 const customMenu = ref([
   { key: 'home', label: 'Accueil', to: '/', icon: 'Home' },
-  { key: 'components', label: 'Composants', to: '/components', icon: 'Package' },
+  { key: 'components', label: 'Composants', to: '/components', icon: 'Package-first' },
   { key: 'docs', label: 'Documentation', to: '/docs', icon: 'Book' }
 ])
 

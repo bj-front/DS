@@ -3076,8 +3076,8 @@
         "type": "asset",
         "description": "Icône package-x (catégorie: general)"
       },
-      "package": {
-        "value": "./assets/icons-processed/Package.svg",
+      "package-first": {
+        "value": "./assets/icons-processed/Package-first.svg",
         "type": "asset",
         "description": "Icône package (catégorie: general)"
       },
