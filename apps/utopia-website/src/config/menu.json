@@ -4,7 +4,7 @@
       "key": "home",
       "label": "Home",
       "icon": "Home",
-      "to": "/home"
+      "to": "/"
     },
     {
       "key": "atoms-section",
