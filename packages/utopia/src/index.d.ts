@@ -58,6 +58,13 @@ export interface CheckboxProps {
   size?: 'small' | 'medium' | 'large'
 }
 
+export interface SwitchProps {
+  modelValue?: boolean
+  disabled?: boolean
+  size?: 'small' | 'medium' | 'large'
+  label?: string
+}
+
 export interface DataTableProps {
   columns: Array<{
     key: string
@@ -99,6 +106,7 @@ export declare const Logo: DefineComponent<LogoProps>
 export declare const Menu: DefineComponent<{}>
 export declare const NavItem: DefineComponent<{}>
 export declare const SearchBox: DefineComponent<SearchBoxProps>
+export declare const Switch: DefineComponent<SwitchProps>
 export declare const DataTable: DefineComponent<DataTableProps>
 export declare const ThemeProvider: DefineComponent<ThemeProviderProps>
 export declare const DefaultLayout: DefineComponent<{}>

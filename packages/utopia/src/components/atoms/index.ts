@@ -16,3 +16,4 @@ export type IconColor = 'primary' | 'secondary' | 'success' | 'warning' | 'dange
 export { Input } from './Input'
 export { InputSelect } from './InputSelect'
 export { Checkbox } from './Checkbox'
+export { Switch } from './Switch'
