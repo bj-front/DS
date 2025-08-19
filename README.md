@@ -128,9 +128,21 @@ DS/
 
 ## 📚 Documentation
 
-- [🤖 Automatisation](.github/AUTOMATION.md)
-- [📝 Changesets](.changeset/README.md)
-- [🌐 Demo en ligne](https://ds-utopia.vercel.app/)
+### 📖 Documentation Complète
+- [📚 **Documentation Technique Complète**](docs/README.md) - Guide complet pour les développeurs
+
+### 📦 Documentation par Projet
+- [🎨 **Design System Package**](packages/utopia/README.md) - Package NPM principal
+- [🌐 **Website Application**](apps/utopia-website/README.md) - Documentation interactive
+- [📖 **Storybook Application**](apps/storybook/README.md) - Tests visuels et stories
+
+### 🤖 Automatisation et Processus
+- [🤖 Automatisation](.github/AUTOMATION.md) - GitHub Actions et CI/CD
+- [📝 Changesets](.changeset/README.md) - Gestion des versions
+
+### 🌐 Applications en Ligne
+- [🌐 Demo en ligne](https://ds-utopia.vercel.app/) - Documentation interactive
+- [📖 Storybook](https://main--673cf2b1e9d0b7c5f2b7b7e7.chromatic.com/) - Stories et tests visuels
 
 ## 🔗 Liens utiles
 
