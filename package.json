@@ -50,15 +50,19 @@
     "chalk": "^5.5.0",
     "husky": "^9.0.0",
     "lint-staged": "^15.0.0",
+    "sass-embedded": "^1.90.0",
     "turbo": "^2.3.0"
   },
   "lint-staged": {
-    "**/*.{js,ts,vue}": [
-      "turbo lint --filter=...{apps/utopia-website,packages/utopia}[HEAD^1]",
-      "turbo format --filter=...{apps/utopia-website}[HEAD^1]"
+    "packages/utopia/src/**/*.{js,ts,vue}": [
+      "node scripts/auto-changeset.js"
     ],
-    "**/*.{ts,vue}": [
-      "turbo type-check --filter=...{apps/utopia-website}[HEAD^1]"
+    "apps/utopia-website/**/*.{js,ts,vue}": [
+      "turbo lint --filter=utopia-website",
+      "turbo format --filter=utopia-website"
+    ],
+    "apps/utopia-website/**/*.{ts,vue}": [
+      "turbo type-check --filter=utopia-website"
     ]
   }
 }

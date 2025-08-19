@@ -1,6 +1,6 @@
 echo "🔍 Exécution des vérifications pre-commit..."
 
-# Utilise Turborepo pour optimiser les vérifications
+# Récupère les fichiers staged
 CHANGED_FILES=$(git diff --cached --name-only)
 
 # Détecte les changements pour le website
@@ -13,6 +13,10 @@ fi
 if echo "$CHANGED_FILES" | grep -q "^packages/utopia/.*\.(js|ts|vue)$"; then
     echo "🎨 Vérifications design system..."
     npx turbo lint type-check build:tokens --filter=@club-employes/utopia
+    
+    # Crée automatiquement un changeset si nécessaire
+    echo "📝 Vérification changeset..."
+    node scripts/auto-changeset.js
 fi
 
 # Validation globale si changements tokens
