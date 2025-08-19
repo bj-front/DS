@@ -18,8 +18,8 @@
             <div class="code-with-copy">
               <code>&lt;DefaultLayout&gt;Votre contenu ici&lt;/DefaultLayout&gt;</code>
               <Button
-                variant="ghost"
-                size="small"
+                variant="tertiary"
+                size="sm"
                 @click="copyToClipboard('&lt;DefaultLayout&gt;Votre contenu ici&lt;/DefaultLayout&gt;')"
                 class="copy-btn"
                 aria-label="Copier le code de base"
@@ -51,8 +51,8 @@
             <div class="code-with-copy">
               <code>&lt;DefaultLayout :menu-items="customMenu"&gt;...&lt;/DefaultLayout&gt;</code>
               <Button
-                variant="ghost"
-                size="small"
+                variant="tertiary"
+                size="sm"
                 @click="copyToClipboard('&lt;DefaultLayout :menu-items=&quot;customMenu&quot;&gt;...&lt;/DefaultLayout&gt;')"
                 class="copy-btn"
                 aria-label="Copier le code avec menu"

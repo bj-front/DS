@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, Icon } from '@club-employes/utopia'
+import { Button, Icon } from '@club-employes/utopia';
 </script>
 
 <template>
@@ -12,13 +12,13 @@ import { Button, Icon } from '@club-employes/utopia'
       
       <div class="hero-actions">
         <router-link to="/demo">
-          <Button variant="primary" size="large">
+                     <Button variant="primary" size="lg">
             <Icon name="star" size="small" />
             Voir la démo
           </Button>
         </router-link>
         <router-link to="/about">
-          <Button variant="outline" size="large">
+                     <Button variant="secondary" size="lg">
             En savoir plus
           </Button>
         </router-link>
@@ -52,9 +52,9 @@ import { Button, Icon } from '@club-employes/utopia'
         <div class="demo-item">
           <h4>Boutons</h4>
           <div class="button-showcase">
-            <Button variant="primary" size="medium">Primary</Button>
-            <Button variant="secondary" size="medium">Secondary</Button>
-            <Button variant="outline" size="medium">Outline</Button>
+            <Button variant="primary" size="md">Primary</Button>
+            <Button variant="secondary" size="md">Secondary</Button>
+            <Button variant="secondary" size="md">Outline</Button>
           </div>
         </div>
         

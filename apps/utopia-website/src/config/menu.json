@@ -14,7 +14,7 @@
     {
       "key": "button",
       "label": "Button",
-      "icon": "Package-first",
+      "icon": "Package-2",
       "to": "/design-system/atoms/button"
     },
     {

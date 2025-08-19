@@ -59,8 +59,8 @@
         <span class="results-count">{{ filteredIcons.length }} icône(s) trouvée(s)</span>
         <Button
           v-if="searchQuery || selectedColor !== 'current'"
-          variant="ghost"
-          size="small"
+          variant="tertiary"
+          size="sm"
           @click="resetFilters"
         >
           Réinitialiser les filtres
@@ -90,8 +90,8 @@
             <h4 class="icon-name">{{ formatIconName(iconName) }}</h4>
             <p class="icon-filename">{{ iconName }}.svg</p>
             <Button 
-              variant="ghost" 
-              size="small" 
+              variant="tertiary" 
+              size="sm" 
               @click.stop="copyIconName(iconName)"
               class="copy-icon-btn"
               :aria-label="`Copier ${iconName}`"
@@ -115,8 +115,8 @@
       <div class="details-header">
         <h2 class="details-title">🔍 Détails de l'icône</h2>
         <Button
-          variant="ghost"
-          size="small"
+          variant="tertiary"
+          size="sm"
           @click="selectedIcon = null"
           aria-label="Fermer les détails"
         >
@@ -165,8 +165,8 @@
               <div class="code-with-copy">
                 <code>&lt;Icon name="{{ selectedIcon }}" /&gt;</code>
                 <Button
-                  variant="ghost"
-                  size="small"
+                  variant="tertiary"
+                  size="sm"
                   @click="copyToClipboard(`&lt;Icon name=&quot;${selectedIcon}&quot; /&gt;`)"
                   class="copy-btn"
                   aria-label="Copier le code de base"
@@ -184,8 +184,8 @@
               <div class="code-with-copy">
                 <code>&lt;Icon name="{{ selectedIcon }}" size="{{ selectedSize }}" /&gt;</code>
                 <Button
-                  variant="ghost"
-                  size="small"
+                  variant="tertiary"
+                  size="sm"
                   @click="copyToClipboard(`&lt;Icon name=&quot;${selectedIcon}&quot; size=&quot;${selectedSize}&quot; /&gt;`)"
                   class="copy-btn"
                   aria-label="Copier le code avec taille"
@@ -203,8 +203,8 @@
               <div class="code-with-copy">
                 <code>&lt;Icon name="{{ selectedIcon }}" color="{{ selectedColor }}" /&gt;</code>
                 <Button
-                  variant="ghost"
-                  size="small"
+                  variant="tertiary"
+                  size="sm"
                   @click="copyToClipboard(`&lt;Icon name=&quot;${selectedIcon}&quot; color=&quot;${selectedColor}&quot; /&gt;`)"
                   class="copy-btn"
                   aria-label="Copier le code avec couleur"
@@ -222,8 +222,8 @@
               <div class="code-with-copy">
                 <code>&lt;Icon name="{{ selectedIcon }}" :stroke-width="{{ selectedStrokeWidth }}" /&gt;</code>
                 <Button
-                  variant="ghost"
-                  size="small"
+                  variant="tertiary"
+                  size="sm"
                   @click="copyToClipboard(`&lt;Icon name=&quot;${selectedIcon}&quot; :stroke-width=&quot;${selectedStrokeWidth}&quot; /&gt;`)"
                   class="copy-btn"
                   aria-label="Copier le code avec stroke-width"
@@ -241,8 +241,8 @@
               <div class="code-with-copy">
                 <code>&lt;Icon name="{{ selectedIcon }}" size="{{ selectedSize }}" color="{{ selectedColor }}" :stroke-width="{{ selectedStrokeWidth }}" alt="Description de l'icône" /&gt;</code>
                 <Button
-                  variant="ghost"
-                  size="small"
+                  variant="tertiary"
+                  size="sm"
                   @click="copyToClipboard(`&lt;Icon name=&quot;${selectedIcon}&quot; size=&quot;${selectedSize}&quot; color=&quot;${selectedColor}&quot; :stroke-width=&quot;${selectedStrokeWidth}&quot; alt=&quot;Description de l'icône&quot; /&gt;`)"
                   class="copy-btn"
                   aria-label="Copier le code complet"

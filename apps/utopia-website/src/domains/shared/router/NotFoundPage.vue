@@ -10,7 +10,7 @@
         <Button variant="primary" @click="goHome">
           Retour à l'accueil
         </Button>
-        <Button variant="outline" @click="goBack">
+        <Button variant="secondary" @click="goBack">
           Page précédente
         </Button>
       </div>

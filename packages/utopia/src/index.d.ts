@@ -8,9 +8,12 @@ export interface BadgeProps {
 }
 
 export interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'
-  size?: 'small' | 'medium' | 'large'
+  variant?: 'primary' | 'secondary' | 'tertiary'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   disabled?: boolean
+  loading?: boolean
+  icon?: string
+  iconPosition?: 'left' | 'right'
 }
 
 export interface IconProps {
@@ -146,8 +149,8 @@ export declare function useFavicon(): UseFaviconReturn
 // Type exports
 export type BadgeVariant = 'default' | 'success' | 'warning' | 'danger'
 export type BadgeSize = 'small' | 'medium'
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'
-export type ButtonSize = 'small' | 'medium' | 'large'
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary'
+export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type IconName = string
 export type IconSize = 'small' | 'medium' | 'large'
 export type IconColor = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral' | 'current'

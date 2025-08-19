@@ -26,8 +26,8 @@
               <div class="code-with-copy">
                 <code>&lt;Logo brand="club-employes" variant="default" size="lg" /&gt;</code>
                 <Button 
-                  variant="ghost" 
-                  size="small" 
+                  variant="tertiary" 
+                  size="sm" 
                   @click="copyToClipboard('&lt;Logo brand=&quot;club-employes&quot; variant=&quot;default&quot; size=&quot;lg&quot; /&gt;')"
                   class="copy-btn"
                   aria-label="Copier le code du composant"
@@ -50,8 +50,8 @@
               <div class="code-with-copy">
                 <code>&lt;Logo brand="club-employes" variant="small" size="md" /&gt;</code>
                 <Button 
-                  variant="ghost" 
-                  size="small" 
+                  variant="tertiary" 
+                  size="sm" 
                   @click="copyToClipboard('&lt;Logo brand=&quot;club-employes&quot; variant=&quot;small&quot; size=&quot;md&quot; /&gt;')"
                   class="copy-btn"
                   aria-label="Copier le code du composant"
@@ -74,8 +74,8 @@
               <div class="code-with-copy">
                 <code>&lt;Logo brand="club-employes" variant="white" size="lg" /&gt;</code>
                 <Button 
-                  variant="ghost" 
-                  size="small" 
+                  variant="tertiary" 
+                  size="sm" 
                   @click="copyToClipboard('&lt;Logo brand=&quot;club-employes&quot; variant=&quot;white&quot; size=&quot;lg&quot; /&gt;')"
                   class="copy-btn"
                   aria-label="Copier le code du composant"
@@ -98,8 +98,8 @@
               <div class="code-with-copy">
                 <code>&lt;Logo size="lg" /&gt;</code>
                 <Button 
-                  variant="ghost" 
-                  size="small" 
+                  variant="tertiary" 
+                  size="sm" 
                   @click="copyToClipboard('&lt;Logo size=&quot;lg&quot; /&gt;')"
                   class="copy-btn"
                   aria-label="Copier le code du composant"
@@ -132,8 +132,8 @@
               <div class="code-with-copy">
                 <code>&lt;Logo brand="gifteo" variant="default" size="lg" /&gt;</code>
                 <Button 
-                  variant="ghost" 
-                  size="small" 
+                  variant="tertiary" 
+                  size="sm" 
                   @click="copyToClipboard('&lt;Logo brand=&quot;gifteo&quot; variant=&quot;default&quot; size=&quot;lg&quot; /&gt;')"
                   class="copy-btn"
                   aria-label="Copier le code du composant"
@@ -156,8 +156,8 @@
               <div class="code-with-copy">
                 <code>&lt;Logo brand="gifteo" variant="small" size="md" /&gt;</code>
                 <Button 
-                  variant="ghost" 
-                  size="small" 
+                  variant="tertiary" 
+                  size="sm" 
                   @click="copyToClipboard('&lt;Logo brand=&quot;gifteo&quot; variant=&quot;small&quot; size=&quot;md&quot; /&gt;')"
                   class="copy-btn"
                   aria-label="Copier le code du composant"
@@ -180,8 +180,8 @@
               <div class="code-with-copy">
                 <code>&lt;Logo brand="gifteo" variant="white" size="lg" /&gt;</code>
                 <Button 
-                  variant="ghost" 
-                  size="small" 
+                  variant="tertiary" 
+                  size="sm" 
                   @click="copyToClipboard('&lt;Logo brand=&quot;gifteo&quot; variant=&quot;white&quot; size=&quot;lg&quot; /&gt;')"
                   class="copy-btn"
                   aria-label="Copier le code du composant"
@@ -204,8 +204,8 @@
               <div class="code-with-copy">
                 <code>&lt;Logo size="lg" /&gt;</code>
                 <Button 
-                  variant="ghost" 
-                  size="small" 
+                  variant="tertiary" 
+                  size="sm" 
                   @click="copyToClipboard('&lt;Logo size=&quot;lg&quot; /&gt;')"
                   class="copy-btn"
                   aria-label="Copier le code du composant"

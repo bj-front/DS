@@ -19,8 +19,8 @@
               <div class="code-group">
                 <code class="font-family-var">--font-family-sans</code>
                 <Button 
-                  variant="ghost" 
-                  size="small" 
+                  variant="tertiary" 
+                  size="sm" 
                   @click="copyToClipboard('--font-family-sans')"
                   class="copy-btn"
                   aria-label="Copier --font-family-sans"
@@ -42,8 +42,8 @@
               <div class="code-group">
                 <code class="font-family-var">--font-family-mono</code>
                 <Button 
-                  variant="ghost" 
-                  size="small" 
+                  variant="tertiary" 
+                  size="sm" 
                   @click="copyToClipboard('--font-family-mono')"
                   class="copy-btn"
                   aria-label="Copier --font-family-mono"
@@ -74,8 +74,8 @@
               <div class="code-group">
                 <code class="font-size-var">--font-size-{{ size.name }}</code>
                 <Button 
-                  variant="ghost" 
-                  size="small" 
+                  variant="tertiary" 
+                  size="sm" 
                   @click="copyToClipboard(`--font-size-${size.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --font-size-${size.name}`"
@@ -106,8 +106,8 @@
               <div class="code-group">
                 <code class="font-weight-var">--font-weight-{{ weight.name }}</code>
                 <Button 
-                  variant="ghost" 
-                  size="small" 
+                  variant="tertiary" 
+                  size="sm" 
                   @click="copyToClipboard(`--font-weight-${weight.name}`)"
                   class="copy-btn"
                   :aria-label="`Copier --font-weight-${weight.name}`"
@@ -138,8 +138,8 @@
               <div class="code-group">
                 <code class="text-color-var">{{ color.variable }}</code>
                 <Button 
-                  variant="ghost" 
-                  size="small" 
+                  variant="tertiary" 
+                  size="sm" 
                   @click="copyToClipboard(color.variable)"
                   class="copy-btn"
                   :aria-label="`Copier ${color.variable}`"

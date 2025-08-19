@@ -27,8 +27,8 @@
                 <div class="color-hex-group">
                   <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(getHexValue(shade.variable))"
                     class="copy-hex-btn"
                     :aria-label="`Copier ${getHexValue(shade.variable)}`"
@@ -39,8 +39,8 @@
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -63,8 +63,8 @@
                 <div class="color-hex-group">
                   <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(getHexValue(shade.variable))"
                     class="copy-hex-btn"
                     :aria-label="`Copier ${getHexValue(shade.variable)}`"
@@ -75,8 +75,8 @@
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -99,8 +99,8 @@
                 <div class="color-hex-group">
                   <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(getHexValue(shade.variable))"
                     class="copy-hex-btn"
                     :aria-label="`Copier ${getHexValue(shade.variable)}`"
@@ -111,8 +111,8 @@
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -146,8 +146,8 @@
                 <div class="color-hex-group">
                   <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(getHexValue(shade.variable))"
                     class="copy-hex-btn"
                     :aria-label="`Copier ${getHexValue(shade.variable)}`"
@@ -158,8 +158,8 @@
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -182,8 +182,8 @@
                 <div class="color-hex-group">
                   <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(getHexValue(shade.variable))"
                     class="copy-hex-btn"
                     :aria-label="`Copier ${getHexValue(shade.variable)}`"
@@ -194,8 +194,8 @@
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -218,8 +218,8 @@
                 <div class="color-hex-group">
                   <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(getHexValue(shade.variable))"
                     class="copy-hex-btn"
                     :aria-label="`Copier ${getHexValue(shade.variable)}`"
@@ -230,8 +230,8 @@
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -254,8 +254,8 @@
                 <div class="color-hex-group">
                   <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(getHexValue(shade.variable))"
                     class="copy-hex-btn"
                     :aria-label="`Copier ${getHexValue(shade.variable)}`"
@@ -266,8 +266,8 @@
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(shade.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${shade.variable}`"
@@ -301,8 +301,8 @@
                 <div class="color-hex-group">
                   <span class="color-hex">{{ getHexValue(color.variable) }}</span>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(getHexValue(color.variable))"
                     class="copy-hex-btn"
                     :aria-label="`Copier ${getHexValue(color.variable)}`"
@@ -313,8 +313,8 @@
                 <div class="color-code-group">
                   <code class="color-code">{{ color.variable }}</code>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(color.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${color.variable}`"
@@ -339,8 +339,8 @@
                 <div class="color-hex-group">
                   <span class="color-hex">{{ getHexValue(color.variable) }}</span>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(getHexValue(color.variable))"
                     class="copy-hex-btn"
                     :aria-label="`Copier ${getHexValue(color.variable)}`"
@@ -351,8 +351,8 @@
                 <div class="color-code-group">
                   <code class="color-code">{{ color.variable }}</code>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(color.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${color.variable}`"
@@ -377,8 +377,8 @@
                 <div class="color-hex-group">
                   <span class="color-hex">{{ getHexValue(color.variable) }}</span>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(getHexValue(color.variable))"
                     class="copy-hex-btn"
                     :aria-label="`Copier ${getHexValue(color.variable)}`"
@@ -389,8 +389,8 @@
                 <div class="color-code-group">
                   <code class="color-code">{{ color.variable }}</code>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(color.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${color.variable}`"
@@ -415,8 +415,8 @@
                 <div class="color-hex-group">
                   <span class="color-hex">{{ getHexValue(color.variable) }}</span>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(getHexValue(color.variable))"
                     class="copy-hex-btn"
                     :aria-label="`Copier ${getHexValue(color.variable)}`"
@@ -427,8 +427,8 @@
                 <div class="color-code-group">
                   <code class="color-code">{{ color.variable }}</code>
                   <Button 
-                    variant="ghost" 
-                    size="small" 
+                    variant="tertiary" 
+                    size="sm" 
                     @click="copyToClipboard(color.variable)"
                     class="copy-btn"
                     :aria-label="`Copier ${color.variable}`"

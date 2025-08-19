@@ -57,10 +57,10 @@
       </div>
       
       <div class="quick-actions">
-        <Button variant="primary" size="large" @click="navigateTo('/design-system/colors')">
+        <Button variant="primary" size="lg" @click="navigateTo('/design-system/colors')">
           🎨 Explorer les couleurs
         </Button>
-        <Button variant="outline" size="large" @click="navigateTo('/design-system/atoms/button')">
+        <Button variant="secondary" size="lg" @click="navigateTo('/design-system/atoms/button')">
           🧩 Voir les composants
         </Button>
       </div>
@@ -74,7 +74,7 @@
           <h3>npm</h3>
           <div class="code-block">
             <code>npm install @club-employes/utopia</code>
-            <Button variant="ghost" size="small" @click="copyToClipboard('npm install @club-employes/utopia')" class="copy-btn">
+            <Button variant="tertiary" size="sm" @click="copyToClipboard('npm install @club-employes/utopia')" class="copy-btn">
               📋
             </Button>
           </div>
@@ -84,7 +84,7 @@
           <h3>Utilisation</h3>
           <div class="code-block">
             <code>import { Button } from '@club-employes/utopia'</code>
-            <Button variant="ghost" size="small" @click="copyToClipboard('import { Button } from \'@club-employes/utopia\'')" class="copy-btn">
+            <Button variant="tertiary" size="sm" @click="copyToClipboard('import { Button } from \'@club-employes/utopia\'')" class="copy-btn">
               📋
             </Button>
           </div>
