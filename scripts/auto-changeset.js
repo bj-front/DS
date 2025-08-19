@@ -11,8 +11,17 @@ const path = require('path');
 
 function getChangedFiles() {
   try {
-    const output = execSync('git diff --cached --name-only', { encoding: 'utf8' });
-    return output.trim().split('\n').filter(Boolean);
+    // Vérifier d'abord les fichiers staged (pour pre-commit)
+    let output = execSync('git diff --cached --name-only', { encoding: 'utf8' });
+    let files = output.trim().split('\n').filter(Boolean);
+    
+    // Si pas de fichiers staged, regarder le dernier commit
+    if (files.length === 0) {
+      output = execSync('git diff --name-only HEAD~1 HEAD', { encoding: 'utf8' });
+      files = output.trim().split('\n').filter(Boolean);
+    }
+    
+    return files;
   } catch (error) {
     return [];
   }
@@ -80,9 +89,21 @@ function main() {
   }
   
   // Vérifier si un changeset existe déjà
-  const existingChangesets = execSync('git diff --cached --name-only', { encoding: 'utf8' })
-    .split('\n')
-    .filter(file => file.startsWith('.changeset/') && file.endsWith('.md') && !file.includes('README'));
+  let existingChangesets = [];
+  try {
+    existingChangesets = execSync('git diff --cached --name-only', { encoding: 'utf8' })
+      .split('\n')
+      .filter(file => file.startsWith('.changeset/') && file.endsWith('.md') && !file.includes('README'));
+  } catch (error) {
+    // Si pas de fichiers staged, vérifier dans le dernier commit
+    try {
+      existingChangesets = execSync('git diff --name-only HEAD~1 HEAD', { encoding: 'utf8' })
+        .split('\n')
+        .filter(file => file.startsWith('.changeset/') && file.endsWith('.md') && !file.includes('README'));
+    } catch (error2) {
+      existingChangesets = [];
+    }
+  }
   
   if (existingChangesets.length > 0) {
     console.log('✅ Changeset déjà présent, pas besoin d\'en créer un nouveau');

@@ -57,12 +57,12 @@
     "packages/utopia/src/**/*.{js,ts,vue}": [
       "node scripts/auto-changeset.js"
     ],
-    "**/*.{js,ts,vue}": [
-      "turbo lint --filter=...{apps/utopia-website,packages/utopia}[HEAD^1]",
-      "turbo format --filter=...{apps/utopia-website}[HEAD^1]"
+    "apps/utopia-website/**/*.{js,ts,vue}": [
+      "turbo lint --filter=utopia-website",
+      "turbo format --filter=utopia-website"
     ],
-    "**/*.{ts,vue}": [
-      "turbo type-check --filter=...{apps/utopia-website}[HEAD^1]"
+    "apps/utopia-website/**/*.{ts,vue}": [
+      "turbo type-check --filter=utopia-website"
     ]
   }
 }
