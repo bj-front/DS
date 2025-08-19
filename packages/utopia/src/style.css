@@ -48,8 +48,6 @@ a {
 /* Supprime les bordures et fonds bizarres sur focus/active */
 input:focus,
 input:active,
-button:focus,
-button:active,
 textarea:focus,
 textarea:active,
 select:focus,
@@ -59,6 +57,14 @@ select:active {
   -webkit-appearance: none !important;
   border: none !important;
   box-shadow: none !important;
+}
+
+/* Pour les boutons, on supprime seulement l'outline par défaut */
+button:focus,
+button:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-appearance: none !important;
 }
 
 /* Supprime les effets de zoom automatique sur iOS */

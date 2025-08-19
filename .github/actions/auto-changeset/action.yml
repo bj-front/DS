@@ -34,10 +34,27 @@ runs:
       shell: bash
       run: |
         # Get list of changed files in packages/utopia
+        # First, fetch latest main to ensure we have up-to-date comparison
+        git fetch origin main
+        
+        # Get changed files using multiple methods for robustness
         CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep "^packages/utopia/" | grep -v "dist/" | grep -v "node_modules/" || true)
         
+        # Fallback: if no changes detected, try comparing with merge-base
         if [ -z "$CHANGED_FILES" ]; then
-          echo "No relevant changes detected in packages/utopia"
+          MERGE_BASE=$(git merge-base HEAD origin/main)
+          CHANGED_FILES=$(git diff --name-only $MERGE_BASE...HEAD | grep "^packages/utopia/" | grep -v "dist/" | grep -v "node_modules/" || true)
+          echo "🔄 Using merge-base comparison: $MERGE_BASE"
+        fi
+        
+        if [ -z "$CHANGED_FILES" ]; then
+          echo "❌ No relevant changes detected in packages/utopia"
+          echo "🔍 Debug info:"
+          echo "  - Current branch: $(git branch --show-current)"
+          echo "  - HEAD commit: $(git rev-parse HEAD)"
+          echo "  - origin/main commit: $(git rev-parse origin/main)"
+          echo "  - All changed files:"
+          git diff --name-only origin/main...HEAD | head -10
           echo "has_changes=false" >> $GITHUB_OUTPUT
           exit 0
         fi
