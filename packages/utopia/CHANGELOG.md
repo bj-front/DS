@@ -1,5 +1,11 @@
 # @club-employes/utopia
 
+## 2.15.0
+
+### Minor Changes
+
+- 66c6dbe: Update design system components from branch bj/feat/button_update
+
 ## 2.14.0
 
 ### Minor Changes

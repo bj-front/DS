@@ -1,7 +1,8 @@
 {
   "name": "@club-employes/utopia",
-  "version": "2.14.0",
   "description": "🎨 Modern Vue 3 design system with multi-brand theming, design tokens, and 30+ components. Supports Club Employés & Gifteo brands with light/dark modes.",
+  "version": "2.15.0",
+
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
