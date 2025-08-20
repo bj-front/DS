@@ -1,4 +1,6 @@
 export { Button } from './Button'
+export { Card } from './Card'
+export type { CardProps } from './Card'
 export { Checkbox } from './Checkbox'
 export { Icon } from './Icon'
 export { InputText } from './InputText'
@@ -14,4 +16,3 @@ export type ButtonSize = 'small' | 'medium' | 'large'
 export type IconName = string
 export type IconSize = 'small' | 'medium' | 'large'
 export type IconColor = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral' | 'current'
-

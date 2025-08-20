@@ -225,7 +225,7 @@ const handleClick = (event: MouseEvent) => {
   /* TERTIARY VARIANT */
   &--tertiary {
     background: transparent;
-    color: var(--theme-colors-brand-primary-500, #3b82f6);
+    color: var(--theme-colors-brand-secondary-500, #3b82f6);
 
     @include button-states(
       var(--theme-colors-brand-primary-25, #eff6ff),
@@ -236,7 +236,7 @@ const handleClick = (event: MouseEvent) => {
     );
 
     &:hover:not(.utopia-button--disabled) {
-      color: var(--theme-colors-brand-primary-600, #2563eb);
+      color: var(--theme-colors-brand-secondary-500, #2563eb);
     }
   }
 }

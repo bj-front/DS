@@ -281,40 +281,59 @@ const largeChecked = ref(true)
 }
 
 /* Styles pour le tableau des propriétés */
-.props-table {
-  overflow-x: auto;
+.props-table,
+.events-table {
   margin: var(--spacing-4, 16px) 0;
+  overflow-x: auto;
 }
 
-.props-table table {
+.props-table table,
+.events-table table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.875rem;
+  background: var(--theme-colors-surface-card, #ffffff);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .props-table th,
-.props-table td {
+.props-table td,
+.events-table th,
+.events-table td {
   padding: var(--spacing-3, 12px);
   text-align: left;
   border-bottom: 1px solid var(--theme-colors-border-default, #e5e7eb);
+  vertical-align: top;
 }
 
-.props-table th {
+.props-table th,
+.events-table th {
   background: var(--theme-colors-surface-background, #f9fafb);
   font-weight: 600;
   color: var(--theme-colors-text-primary, #111827);
+  font-size: 0.875rem;
 }
 
-.props-table td {
-  color: var(--theme-colors-text-secondary, #6b7280);
-}
-
-.props-table code {
-  background: var(--theme-colors-surface-background, #f9fafb);
+.props-table td code,
+.events-table td code {
+  background: var(--theme-colors-brand-primary-25, #eff6ff);
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
   padding: 2px 6px;
   border-radius: 4px;
-  font-size: 0.8rem;
-  color: var(--theme-colors-text-primary, #111827);
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 0.8125rem;
+}
+
+.props-table tbody tr:last-child td,
+.events-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Override showcase-item overflow pour permettre le scroll horizontal des tables */
+.showcase-item:has(.props-table),
+.showcase-item:has(.events-table) {
+  overflow: auto;
 }
 
 /* Styles pour la documentation */

@@ -40,15 +40,20 @@ select{
 }
 
 /* Supprime les styles de focus par défaut sur mobile pour les inputs et boutons */
-input,
-button,
-textarea,
-select,
+input,input>span,
+button,button>span,
+textarea,textarea>span,
+select,select>span,
+label,label>span,
 a {
   -webkit-tap-highlight-color: transparent !important;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 /* Supprime les bordures et fonds bizarres sur focus/active */
@@ -97,6 +102,8 @@ select {
   outline-offset: 2px !important;
   -webkit-tap-highlight-color: transparent !important;
 }
+
+
 
 /* Import des styles des composants */
 /* Les composants individuels gèrent leurs propres styles via leurs props et les tokens CSS */

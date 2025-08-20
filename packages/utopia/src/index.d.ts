@@ -32,7 +32,10 @@ export interface LogoProps {
 
 export interface CardProps {
   variant?: 'default' | 'elevated' | 'outlined'
-  padding?: 'none' | 'small' | 'medium' | 'large'
+  size?: 'small' | 'medium' | 'large'
+  disabled?: boolean
+  interactive?: boolean
+  active?: boolean
 }
 
 export interface SearchBoxProps {

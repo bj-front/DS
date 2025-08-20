@@ -36,6 +36,12 @@
       "to": "/design-system/atoms/inputtext"
     },
     {
+      "key": "card",
+      "label": "Card",
+      "icon": "Wallet-cards",
+      "to": "/design-system/atoms/card"
+    },
+    {
       "key": "molecules-section",
       "type": "section",
       "label": "Molecules"
