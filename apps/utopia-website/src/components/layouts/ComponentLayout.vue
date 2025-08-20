@@ -248,6 +248,11 @@ withDefaults(defineProps<Props>(), {
   color: inherit;
 }
 
+/* Permettre la sélection de texte dans le contenu */
+.page-content {
+  user-select: text;
+}
+
 /* Styles pour la documentation */
 ul {
   margin: var(--spacing-4, 16px) 0;

@@ -167,8 +167,9 @@ const handleChange = (event: Event) => {
 
 /* États - Hover (inactif) */
 .utopia-switch:hover:not(.utopia-switch--disabled):not(.utopia-switch--checked) .utopia-switch__track {
-  background: var(--theme-colors-brand-primary-25, #eff6ff);
-  border-color: var(--theme-colors-brand-primary-400, #60a5fa);
+  background: var(--theme-colors-border-default, #9ca3af);
+  border-color: transparent;
+  box-shadow: 0 0 0 4px var(--theme-colors-brand-secondary-50, rgba(59, 130, 246, 0.2));
 }
 
 .utopia-switch:hover:not(.utopia-switch--disabled) .utopia-switch__label {
@@ -374,8 +375,9 @@ const handleChange = (event: Event) => {
 }
 
 .utopia-switch--dark:hover:not(.utopia-switch--disabled):not(.utopia-switch--checked) .utopia-switch__track {
-  background: var(--theme-colors-brand-primary-25, rgba(59, 130, 246, 0.1));
+  background: var(--theme-colors-border-default, #6b7280);
   border-color: var(--theme-colors-brand-primary-400, #60a5fa);
+  box-shadow: 0 0 0 4px var(--theme-colors-brand-primary-300, rgba(59, 130, 246, 0.2));
 }
 
 .utopia-switch--dark.utopia-switch--checked .utopia-switch__track {

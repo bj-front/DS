@@ -158,33 +158,101 @@
         </details>
       </div>
 
-      <!-- États Loading -->
+      <!-- États Loading - Comparaison ON/OFF -->
       <div class="showcase-item">
-        <h3>États Loading</h3>
+        <h3>États Loading - Comparaison ON/OFF</h3>
+       
         <div class="example">
-          <div class="loading-demo">
-            <div class="loading-group">
-              <h4>Avec texte</h4>
-              <div class="loading-buttons">
-                <Button variant="primary" loading>Chargement...</Button>
-                <Button variant="secondary" loading>Traitement...</Button>
-                <Button variant="tertiary" loading>Envoi...</Button>
+          <div class="loading-comparison-demo">
+            <div class="comparison-group">
+              <h4>Boutons avec texte seulement</h4>
+              <p class="comparison-description">Le texte est remplacé par l'icône loading</p>
+              <div class="comparison-row">
+                <div class="comparison-item">
+                  <span class="comparison-label">Normal</span>
+                  <Button variant="primary">Envoyer</Button>
+                </div>
+                <div class="comparison-arrow">→</div>
+                <div class="comparison-item">
+                  <span class="comparison-label">Loading</span>
+                  <Button variant="primary" loading>Envoyer</Button>
+                </div>
+              </div>
+              <div class="comparison-row">
+                <div class="comparison-item">
+                  <span class="comparison-label">Normal</span>
+                  <Button variant="secondary">Sauvegarder</Button>
+                </div>
+                <div class="comparison-arrow">→</div>
+                <div class="comparison-item">
+                  <span class="comparison-label">Loading</span>
+                  <Button variant="secondary" loading>Sauvegarder</Button>
+                </div>
               </div>
             </div>
-            <div class="loading-group">
-              <h4>Icône seule</h4>
-              <div class="loading-buttons">
-                <Button variant="primary" loading />
-                <Button variant="secondary" loading />
-                <Button variant="tertiary" loading />
+            
+            <div class="comparison-group">
+              <h4>Boutons avec icône + texte</h4>
+              <p class="comparison-description">L'icône loading respecte automatiquement la position de l'icône originale</p>
+              <div class="comparison-row">
+                <div class="comparison-item">
+                  <span class="comparison-label">Normal</span>
+                  <Button variant="primary" icon="Send" icon-position="left">Envoyer</Button>
+                </div>
+                <div class="comparison-arrow">→</div>
+                <div class="comparison-item">
+                  <span class="comparison-label">Loading</span>
+                  <Button variant="primary" icon="Send" icon-position="left" loading>Envoyer</Button>
+                </div>
+              </div>
+              <div class="comparison-row">
+                <div class="comparison-item">
+                  <span class="comparison-label">Normal</span>
+                  <Button variant="secondary" icon="Download" icon-position="right">Télécharger</Button>
+                </div>
+                <div class="comparison-arrow">→</div>
+                <div class="comparison-item">
+                  <span class="comparison-label">Loading</span>
+                  <Button variant="secondary" icon="Download" icon-position="right" loading>Télécharger</Button>
+                </div>
+              </div>
+              <div class="comparison-row">
+                <div class="comparison-item">
+                  <span class="comparison-label">Normal</span>
+                  <Button variant="tertiary" icon="Arrow-right" icon-position="right">Suivant</Button>
+                </div>
+                <div class="comparison-arrow">→</div>
+                <div class="comparison-item">
+                  <span class="comparison-label">Loading</span>
+                  <Button variant="tertiary" icon="Arrow-right" icon-position="right" loading>Suivant</Button>
+                </div>
               </div>
             </div>
-            <div class="loading-group">
-              <h4>Différentes tailles</h4>
-              <div class="loading-buttons">
-                <Button variant="primary" loading size="sm">Small</Button>
-                <Button variant="primary" loading size="md">Medium</Button>
-                <Button variant="primary" loading size="lg">Large</Button>
+            
+            <div class="comparison-group">
+              <h4>Boutons avec icône seule</h4>
+              <p class="comparison-description">L'icône est remplacée par l'icône loading</p>
+              <div class="comparison-row">
+                <div class="comparison-item">
+                  <span class="comparison-label">Normal</span>
+                  <Button variant="primary" icon="Plus" />
+                </div>
+                <div class="comparison-arrow">→</div>
+                <div class="comparison-item">
+                  <span class="comparison-label">Loading</span>
+                  <Button variant="primary" icon="Plus" loading />
+                </div>
+              </div>
+              <div class="comparison-row">
+                <div class="comparison-item">
+                  <span class="comparison-label">Normal</span>
+                  <Button variant="secondary" icon="Settings" />
+                </div>
+                <div class="comparison-arrow">→</div>
+                <div class="comparison-item">
+                  <span class="comparison-label">Loading</span>
+                  <Button variant="secondary" icon="Settings" loading />
+                </div>
               </div>
             </div>
           </div>
@@ -194,8 +262,117 @@
             <Icon name="Code" class="code-icon" />
             Voir le code
           </summary>
-          <pre><code>&lt;Button variant="primary" loading&gt;Chargement...&lt;/Button&gt;
-&lt;Button variant="primary" loading /&gt;</code></pre>
+          <pre><code>&lt;!-- Texte remplacé par loading (icône à gauche par défaut) --&gt;
+&lt;Button variant="primary" loading&gt;Envoyer&lt;/Button&gt;
+
+&lt;!-- Icône remplacée, texte conservé, position respectée --&gt;
+&lt;Button variant="primary" icon="Send" icon-position="left" loading&gt;Envoyer&lt;/Button&gt;
+&lt;Button variant="primary" icon="Send" icon-position="right" loading&gt;Envoyer&lt;/Button&gt;
+
+&lt;!-- Icône remplacée, position respectée --&gt;
+&lt;Button variant="primary" icon="Plus" loading /&gt;</code></pre>
+        </details>
+      </div>
+
+      <!-- États Loading - Exemples interactifs -->
+      <div class="showcase-item">
+        <h3>États Loading - Test interactif</h3>
+        <div class="example">
+          <div class="interactive-loading-demo">
+            <div class="interactive-group">
+              <h4>Testez l'état loading</h4>
+              <p class="interactive-description">Cliquez sur les boutons pour basculer l'état loading</p>
+              <div class="interactive-buttons">
+                <div class="interactive-button-group">
+                  <span class="button-type">Texte seul:</span>
+                  <Button 
+                    variant="primary" 
+                    :loading="loadingStates.textOnly" 
+                    @click="toggleLoading('textOnly')"
+                  >
+                    {{ loadingStates.textOnly ? 'Chargement...' : 'Cliquer moi' }}
+                  </Button>
+                </div>
+                <div class="interactive-button-group">
+                  <span class="button-type">Icône + texte (gauche):</span>
+                  <Button 
+                    variant="secondary" 
+                    icon="Send" 
+                    :loading="loadingStates.iconText" 
+                    @click="toggleLoading('iconText')"
+                  >
+                    {{ loadingStates.iconText ? 'Envoi...' : 'Envoyer' }}
+                  </Button>
+                </div>
+                <div class="interactive-button-group">
+                  <span class="button-type">Icône + texte (droite):</span>
+                  <Button 
+                    variant="tertiary" 
+                    icon="Arrow-right" 
+                    icon-position="right"
+                    :loading="loadingStates.iconTextRight" 
+                    @click="toggleLoading('iconTextRight')"
+                  >
+                    {{ loadingStates.iconTextRight ? 'Chargement...' : 'Suivant' }}
+                  </Button>
+                </div>
+                <div class="interactive-button-group">
+                  <span class="button-type">Icône seule:</span>
+                  <Button 
+                    variant="tertiary" 
+                    icon="Heart" 
+                    :loading="loadingStates.iconOnly" 
+                    @click="toggleLoading('iconOnly')"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <details class="code-snippet">
+          <summary>
+            <Icon name="Code" class="code-icon" />
+            Voir le code
+          </summary>
+          <pre><code>&lt;script setup&gt;
+import { ref } from 'vue'
+
+const loadingStates = ref({
+  textOnly: false,
+  iconText: false,
+  iconTextRight: false,
+  iconOnly: false
+})
+
+const toggleLoading = (type) => {
+  loadingStates.value[type] = !loadingStates.value[type]
+  // Auto-reset après 2 secondes
+  setTimeout(() => {
+    loadingStates.value[type] = false
+  }, 2000)
+}
+&lt;/script&gt;
+
+&lt;!-- Bouton avec icône à gauche --&gt;
+&lt;Button 
+  variant="primary" 
+  icon="Send"
+  :loading="loadingStates.iconText" 
+  @click="toggleLoading('iconText')"
+&gt;
+  Envoyer
+&lt;/Button&gt;
+
+&lt;!-- Bouton avec icône à droite --&gt;
+&lt;Button 
+  variant="primary" 
+  icon="Send"
+  icon-position="right"
+  :loading="loadingStates.iconTextRight" 
+  @click="toggleLoading('iconTextRight')"
+&gt;
+  Envoyer
+&lt;/Button&gt;</code></pre>
         </details>
       </div>
 
@@ -521,6 +698,26 @@
 <script setup lang="ts">
 import { ComponentLayout } from '@/components';
 import { Button, Icon } from '@club-employes/utopia';
+import { ref } from 'vue';
+
+// États pour les boutons interactifs
+const loadingStates = ref({
+  textOnly: false,
+  iconText: false,
+  iconTextRight: false,
+  iconOnly: false
+});
+
+const toggleLoading = (type: keyof typeof loadingStates.value): void => {
+  loadingStates.value[type] = !loadingStates.value[type];
+  
+  // Auto-reset après 2 secondes si loading est activé
+  if (loadingStates.value[type]) {
+    setTimeout(() => {
+      loadingStates.value[type] = false;
+    }, 2000);
+  }
+};
 </script>
 
 <style scoped>
@@ -588,46 +785,6 @@ import { Button, Icon } from '@club-employes/utopia';
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-}
-
-/* Styles pour la note importante */
-.important-note {
-  background: var(--theme-colors-warning-background, #fef3c7);
-  border: 1px solid var(--theme-colors-warning-border, #f59e0b);
-  border-radius: 8px;
-  padding: var(--spacing-4, 16px);
-  margin: var(--spacing-6, 24px) 0;
-}
-
-.important-note h3 {
-  margin: 0 0 var(--spacing-3, 12px) 0;
-  color: var(--theme-colors-warning-text, #d97706);
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.important-note p {
-  margin: 0 0 var(--spacing-3, 12px) 0;
-  color: var(--theme-colors-text-primary, #111827);
-}
-
-.important-note ol {
-  margin: 0;
-  padding-left: var(--spacing-5, 20px);
-  color: var(--theme-colors-text-primary, #111827);
-}
-
-.important-note li {
-  margin-bottom: var(--spacing-2, 8px);
-}
-
-.important-note code {
-  background: var(--theme-colors-warning-code-background, #fbbf24);
-  color: var(--theme-colors-warning-code-text, #92400e);
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-  font-size: 0.875rem;
 }
 
 /* Styles spécifiques pour les démos de Button */
@@ -861,6 +1018,123 @@ import { Button, Icon } from '@club-employes/utopia';
   background: var(--theme-colors-brand-primary-25, #eff6ff);
 }
 
+/* Styles pour la comparaison loading */
+.loading-comparison-demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8, 32px);
+  width: 100%;
+  max-width: 1000px;
+}
+
+.comparison-group {
+  padding: var(--spacing-6, 24px);
+  border: 1px solid var(--theme-colors-border-default, #e5e7eb);
+  border-radius: 12px;
+  background: var(--theme-colors-surface-background, #f9fafb);
+}
+
+.comparison-group h4 {
+  margin: 0 0 var(--spacing-2, 8px) 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--theme-colors-text-primary, #111827);
+}
+
+.comparison-description {
+  margin: 0 0 var(--spacing-4, 16px) 0;
+  font-size: 0.875rem;
+  color: var(--theme-colors-text-secondary, #6b7280);
+  font-style: italic;
+}
+
+.comparison-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-6, 24px);
+  margin-bottom: var(--spacing-4, 16px);
+  padding: var(--spacing-4, 16px);
+  background: var(--theme-colors-surface-card, #ffffff);
+  border-radius: 8px;
+  border: 1px solid var(--theme-colors-border-default, #e5e7eb);
+}
+
+.comparison-row:last-child {
+  margin-bottom: 0;
+}
+
+.comparison-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+}
+
+.comparison-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--theme-colors-text-secondary, #6b7280);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.comparison-arrow {
+  font-size: 1.5rem;
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
+  font-weight: bold;
+}
+
+/* Styles pour les boutons interactifs */
+.interactive-loading-demo {
+  width: 100%;
+  max-width: 700px;
+}
+
+.interactive-group {
+  padding: var(--spacing-6, 24px);
+  border: 1px solid var(--theme-colors-brand-primary-200, #bfdbfe);
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--theme-colors-brand-primary-25, #eff6ff) 0%, var(--theme-colors-surface-card, #ffffff) 100%);
+}
+
+.interactive-group h4 {
+  margin: 0 0 var(--spacing-2, 8px) 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--theme-colors-text-primary, #111827);
+}
+
+.interactive-description {
+  margin: 0 0 var(--spacing-6, 24px) 0;
+  font-size: 0.875rem;
+  color: var(--theme-colors-text-secondary, #6b7280);
+  font-style: italic;
+}
+
+.interactive-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4, 16px);
+}
+
+.interactive-button-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4, 16px);
+  padding: var(--spacing-3, 12px);
+  background: var(--theme-colors-surface-card, #ffffff);
+  border-radius: 8px;
+  border: 1px solid var(--theme-colors-border-default, #e5e7eb);
+}
+
+.button-type {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--theme-colors-text-secondary, #6b7280);
+  min-width: 100px;
+}
+
 /* Styles pour les exemples d'usage */
 .usage-demo {
   display: grid;
@@ -1044,6 +1318,27 @@ import { Button, Icon } from '@club-employes/utopia';
   
   .icon-demo {
     grid-template-columns: 1fr;
+  }
+  
+  /* Responsive pour les nouvelles sections */
+  .comparison-row {
+    flex-direction: column;
+    gap: var(--spacing-3, 12px);
+  }
+  
+  .comparison-arrow {
+    transform: rotate(90deg);
+    font-size: 1.25rem;
+  }
+  
+  .interactive-button-group {
+    flex-direction: column;
+    gap: var(--spacing-2, 8px);
+    text-align: center;
+  }
+  
+  .button-type {
+    min-width: auto;
   }
 }
 </style>
