@@ -50,8 +50,8 @@
           
           <!-- Theme Toggle -->
           <Button 
-            variant="ghost" 
-            size="small"
+            variant="primary" 
+            size="sm"
             @click="toggleMode"
             :aria-label="`Basculer vers le mode ${currentMode === 'light' ? 'sombre' : 'clair'}`"
             class="mode-toggle"
