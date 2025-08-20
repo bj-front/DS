@@ -68,6 +68,20 @@ export interface SwitchProps {
   label?: string
 }
 
+export interface InputTextProps {
+  modelValue?: string
+  label?: string
+  placeholder?: string
+  type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url'
+  state?: 'default' | 'error' | 'valid' | 'incomplete' | 'completed'
+  size?: 'small' | 'medium' | 'large'
+  disabled?: boolean
+  readonly?: boolean
+  icon?: string
+  message?: string
+  required?: boolean
+}
+
 export interface DataTableProps {
   columns: Array<{
     key: string
@@ -110,6 +124,7 @@ export declare const Menu: DefineComponent<{}>
 export declare const NavItem: DefineComponent<{}>
 export declare const SearchBox: DefineComponent<SearchBoxProps>
 export declare const Switch: DefineComponent<SwitchProps>
+export declare const InputText: DefineComponent<InputTextProps>
 export declare const DataTable: DefineComponent<DataTableProps>
 export declare const ThemeProvider: DefineComponent<ThemeProviderProps>
 export declare const DefaultLayout: DefineComponent<{}>

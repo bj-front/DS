@@ -201,7 +201,6 @@ withDefaults(defineProps<Props>(), {
   font-weight: var(--font-weight-medium, 500);
   color: var(--theme-colors-text-secondary, #6b7280);
   transition: all 0.2s ease;
-  user-select: none;
   border: none;
 }
 

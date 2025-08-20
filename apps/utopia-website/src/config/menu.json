@@ -30,6 +30,12 @@
       "to": "/design-system/atoms/switch"
     },
     {
+      "key": "inputtext",
+      "label": "InputText",
+      "icon": "Text-cursor-input",
+      "to": "/design-system/atoms/inputtext"
+    },
+    {
       "key": "molecules-section",
       "type": "section",
       "label": "Molecules"

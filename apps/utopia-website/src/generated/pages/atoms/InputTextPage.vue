@@ -1,0 +1,509 @@
+<template>
+  <ComponentLayout 
+    title="InputText"
+    icon="Type"
+    type="Atoms"
+  >
+    <template #examples>
+      <!-- États de base -->
+      <div class="showcase-item">
+        <h3>États de base</h3>
+        <p>Différents états d'un champ de saisie de texte.</p>
+        
+        <div class="input-demo">
+          <div class="input-group">
+            <h4>Case active</h4>
+            <InputText 
+              label="Information demandée"
+              placeholder="Information"
+              state="default"
+            />
+          </div>
+          
+          <div class="input-group">
+            <h4>Case disabled</h4>
+            <InputText 
+              label="Information demandée"
+              placeholder="Information"
+              disabled
+            />
+          </div>
+          
+ 
+        </div>
+      </div>
+
+      <!-- États de validation -->
+      <div class="showcase-item">
+        <h3>États de validation</h3>
+        <p>Champs avec validation et messages d'erreur/succès. Les icônes utilisent automatiquement les couleurs <code>danger</code> et <code>success</code>.</p>
+        
+        <div class="input-demo">
+          <div class="input-group">
+            <h4>Erreur de saisie</h4>
+            <InputText 
+              label="Information demandée"
+              placeholder="Information"
+              state="error"
+              model-value="Information"
+              message="Saisie incorrecte"
+            />
+          </div>
+          
+          <div class="input-group">
+            <h4>Validation réussie</h4>
+            <InputText 
+              label="Information demandée"
+              placeholder="Information"
+              state="valid"
+              model-value="Information"
+              message="Mot de passe valide"
+            />
+          </div>
+          
+          <div class="input-group">
+            <h4>Erreur avec icône personnalisée</h4>
+            <InputText 
+              label="Email"
+              placeholder="exemple@email.com"
+              type="email"
+              state="error"
+              model-value="email-invalide"
+              message="Format d'email invalide"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- États de complétion -->
+      <div class="showcase-item">
+        <h3>États de complétion</h3>
+        <p>Champs montrant l'état de complétion d'un formulaire.</p>
+        
+        <div class="input-demo">
+          <div class="input-group">
+            <h4>Non-complété</h4>
+            <InputText 
+              label="Prénom"
+              placeholder="Prénom"
+              state="incomplete"
+            />
+          </div>
+          
+          <div class="input-group">
+            <h4>Complété</h4>
+            <InputText 
+              label="Prénom"
+              placeholder="Prénom"
+              state="completed"
+              model-value="Prénom"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Tailles -->
+      <div class="showcase-item">
+        <h3>Tailles</h3>
+        <p>Différentes tailles disponibles pour le composant.</p>
+        
+        <div class="input-demo">
+          <div class="input-group">
+            <h4>Petite taille</h4>
+            <InputText 
+              label="Petit champ"
+              placeholder="Petit"
+              size="small"
+            />
+          </div>
+          
+          <div class="input-group">
+            <h4>Taille moyenne (défaut)</h4>
+            <InputText 
+              label="Champ moyen"
+              placeholder="Moyen"
+              size="medium"
+            />
+          </div>
+          
+          <div class="input-group">
+            <h4>Grande taille</h4>
+            <InputText 
+              label="Grand champ"
+              placeholder="Grand"
+              size="large"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Types d'input -->
+      <div class="showcase-item">
+        <h3>Types d'input</h3>
+        <p>Différents types de champs de saisie.</p>
+        
+        <div class="input-demo">
+          <div class="input-group">
+            <h4>Email</h4>
+            <InputText 
+              label="Adresse email"
+              placeholder="exemple@email.com"
+              type="email"
+            />
+          </div>
+          
+          <div class="input-group">
+            <h4>Mot de passe</h4>
+            <InputText 
+              label="Mot de passe"
+              placeholder="Votre mot de passe"
+              type="password"
+            />
+          </div>
+          
+          <div class="input-group">
+            <h4>Numéro</h4>
+            <InputText 
+              label="Âge"
+              placeholder="25"
+              type="number"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Avec icônes -->
+      <div class="showcase-item">
+        <h3>Avec icônes</h3>
+        <p>Champs avec icônes personnalisées. Les icônes utilisent automatiquement la couleur <code>current</code> pour s'adapter au thème.</p>
+        
+        <div class="input-demo">
+          <div class="input-group">
+            <h4>Avec icône de recherche</h4>
+            <InputText 
+              label="Rechercher"
+              placeholder="Rechercher..."
+              icon="Search"
+            />
+          </div>
+          
+          <div class="input-group">
+            <h4>Avec icône d'utilisateur</h4>
+            <InputText 
+              label="Nom d'utilisateur"
+              placeholder="Votre nom"
+              icon="User"
+            />
+          </div>
+          
+          <div class="input-group">
+            <h4>Avec icône de localisation</h4>
+            <InputText 
+              label="Adresse"
+              placeholder="Votre adresse"
+              icon="Map-pin"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Email interactif -->
+      <div class="showcase-item">
+        <h3>Validation email (interactif)</h3>
+        <p>Le champ passe automatiquement à l'état <code>valid</code> ou <code>error</code> selon la saisie.</p>
+        <div class="input-demo">
+          <div class="input-group">
+            <h4>Tester</h4>
+            <InputText 
+              label="Email"
+              placeholder="exemple@email.com"
+              type="email"
+              v-model="email"
+              :state="emailState"
+              :message="emailMessage"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Code d'exemple -->
+      <div class="showcase-item">
+        <h3>Code d'exemple</h3>
+        <details class="code-snippet">
+          <summary>
+            <Icon name="Code" class="code-icon" />
+            Voir le code
+          </summary>
+          <pre><code>&lt;!-- État inactif --&gt;
+&lt;InputText 
+  label="Information demandée"
+  placeholder="Information"
+  state="default"
+/&gt;
+
+
+
+&lt;!-- État disabled --&gt;
+&lt;InputText 
+  label="Information demandée"
+  placeholder="Information"
+  disabled
+/&gt;
+
+&lt;!-- État d'erreur --&gt;
+&lt;InputText 
+  label="Information demandée"
+  placeholder="Information"
+  state="error"
+  model-value="Information"
+  message="Saisie incorrecte"
+/&gt;
+
+&lt;!-- État valide --&gt;
+&lt;InputText 
+  label="Information demandée"
+  placeholder="Information"
+  state="valid"
+  model-value="Information"
+  message="Mot de passe valide"
+/&gt;
+
+&lt;!-- Non-complété --&gt;
+&lt;InputText 
+  label="Prénom"
+  placeholder="Prénom"
+  state="incomplete"
+/&gt;
+
+&lt;!-- Complété --&gt;
+&lt;InputText 
+  label="Prénom"
+  placeholder="Prénom"
+  state="completed"
+  model-value="Prénom"
+/&gt;</code></pre>
+        </details>
+      </div>
+
+      <!-- Propriétés -->
+      <div class="showcase-item">
+        <h3>Propriétés</h3>
+        <div class="props-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Propriété</th>
+                <th>Type</th>
+                <th>Défaut</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>modelValue</code></td>
+                <td><code>string</code></td>
+                <td><code>''</code></td>
+                <td>Valeur du champ (v-model)</td>
+              </tr>
+              <tr>
+                <td><code>label</code></td>
+                <td><code>string</code></td>
+                <td><code>''</code></td>
+                <td>Label du champ</td>
+              </tr>
+              <tr>
+                <td><code>placeholder</code></td>
+                <td><code>string</code></td>
+                <td><code>''</code></td>
+                <td>Texte d'aide</td>
+              </tr>
+              <tr>
+                <td><code>type</code></td>
+                <td><code>'text' | 'email' | 'password' | 'number' | 'tel' | 'url'</code></td>
+                <td><code>'text'</code></td>
+                <td>Type d'input HTML</td>
+              </tr>
+              <tr>
+                <td><code>state</code></td>
+                <td><code>'default' | 'error' | 'valid' | 'incomplete' | 'completed'</code></td>
+                <td><code>'default'</code></td>
+                <td>État visuel du champ</td>
+              </tr>
+              <tr>
+                <td><code>size</code></td>
+                <td><code>'small' | 'medium' | 'large'</code></td>
+                <td><code>'medium'</code></td>
+                <td>Taille du champ</td>
+              </tr>
+              <tr>
+                <td><code>disabled</code></td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Désactive le champ</td>
+              </tr>
+              <tr>
+                <td><code>readonly</code></td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Champ en lecture seule</td>
+              </tr>
+              <tr>
+                <td><code>icon</code></td>
+                <td><code>string</code></td>
+                <td><code>''</code></td>
+                <td>Nom de l'icône à afficher</td>
+              </tr>
+              <tr>
+                <td><code>message</code></td>
+                <td><code>string</code></td>
+                <td><code>''</code></td>
+                <td>Message d'erreur ou de validation</td>
+              </tr>
+              <tr>
+                <td><code>required</code></td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Champ requis</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Événements -->
+      <div class="showcase-item">
+        <h3>Événements</h3>
+        <div class="props-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Événement</th>
+                <th>Payload</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>update:modelValue</code></td>
+                <td><code>string</code></td>
+                <td>Émis quand la valeur change</td>
+              </tr>
+              <tr>
+                <td><code>focus</code></td>
+                <td><code>FocusEvent</code></td>
+                <td>Émis quand le champ reçoit le focus</td>
+              </tr>
+              <tr>
+                <td><code>blur</code></td>
+                <td><code>FocusEvent</code></td>
+                <td>Émis quand le champ perd le focus</td>
+              </tr>
+              <tr>
+                <td><code>input</code></td>
+                <td><code>Event</code></td>
+                <td>Émis à chaque frappe</td>
+              </tr>
+              <tr>
+                <td><code>change</code></td>
+                <td><code>Event</code></td>
+                <td>Émis quand la valeur change et le champ perd le focus</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </template>
+  </ComponentLayout>
+</template>
+
+<script setup lang="ts">
+import { ComponentLayout } from '@/components/layouts';
+import { Icon, InputText } from '@club-employes/utopia';
+import { computed, ref } from 'vue';
+
+const email = ref('')
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+const emailState = computed(() => {
+  if (email.value.length === 0) return 'default' as const
+  return emailRegex.test(email.value) ? 'valid' as const : 'error' as const
+})
+
+const emailMessage = computed(() => {
+  if (email.value.length === 0) return ''
+  return emailState.value === 'valid' ? 'Adresse email valide' : 'Format d\'email invalide'
+})
+</script>
+
+<style scoped>
+.input-demo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-6, 24px);
+  margin: var(--spacing-4, 16px) 0;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3, 12px);
+}
+
+.input-group h4 {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--theme-colors-text-primary, #111827);
+}
+
+.props-table {
+  margin: var(--spacing-4, 16px) 0;
+}
+
+.props-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm, 14px);
+}
+
+.props-table th,
+.props-table td {
+  padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
+  text-align: left;
+  border-bottom: 1px solid var(--theme-colors-border-default, #d1d5db);
+}
+
+.props-table th {
+  background-color: var(--theme-colors-surface-secondary, #f9fafb);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--theme-colors-text-primary, #111827);
+}
+
+.props-table td {
+  color: var(--theme-colors-text-secondary, #6b7280);
+}
+
+.props-table code {
+  background-color: var(--theme-colors-surface-secondary, #f9fafb);
+  padding: var(--spacing-1, 4px) var(--spacing-2, 8px);
+  border-radius: var(--radius-sm, 4px);
+  font-family: var(--font-family-mono, 'Monaco', 'Menlo', 'Ubuntu Mono', monospace);
+  font-size: var(--font-size-xs, 12px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .input-demo {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4, 16px);
+  }
+  
+  .props-table {
+    overflow-x: auto;
+  }
+  
+  .props-table table {
+    min-width: 600px;
+  }
+}
+</style>

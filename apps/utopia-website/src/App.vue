@@ -1,6 +1,7 @@
 <template>
   <ThemeProvider :theme="currentTheme">
     <AppLayout />
+    <SpeedInsights />
   </ThemeProvider>
 </template>
 
