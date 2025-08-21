@@ -42,6 +42,12 @@
       "to": "/design-system/atoms/card"
     },
     {
+      "key": "chip",
+      "label": "Chip",
+      "icon": "Tag",
+      "to": "/design-system/atoms/chip"
+    },
+    {
       "key": "molecules-section",
       "type": "section",
       "label": "Molecules"

@@ -71,6 +71,15 @@ export interface SwitchProps {
   label?: string
 }
 
+export interface ChipProps {
+  variant?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
+  size?: 'small' | 'medium' | 'large'
+  disabled?: boolean
+  removable?: boolean
+  leftIcon?: string
+  actionable?: boolean
+}
+
 export interface InputTextProps {
   modelValue?: string
   label?: string
@@ -118,6 +127,7 @@ export declare const Badge: DefineComponent<BadgeProps>
 export declare const Button: DefineComponent<ButtonProps>
 export declare const Card: DefineComponent<CardProps>
 export declare const Checkbox: DefineComponent<CheckboxProps>
+export declare const Chip: DefineComponent<ChipProps>
 export declare const Header: DefineComponent<{}>
 export declare const Icon: DefineComponent<IconProps>
 export declare const Input: DefineComponent<InputProps>
