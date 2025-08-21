@@ -27,6 +27,20 @@ export const generatedRoutes: RouteRecordRaw[] = [
     component: () => import('@/generated/pages/atoms/SwitchPage.vue'),
     meta: {"title":"Switch","section":"Atoms"}
   }
+,
+  {
+    path: '/design-system/atoms/inputtext',
+    name: 'atoms-InputText',
+    component: () => import('@/generated/pages/atoms/InputTextPage.vue'),
+    meta: {"title":"InputText","section":"Atoms"}
+  }
+,
+  {
+    path: '/design-system/atoms/card',
+    name: 'atoms-Card',
+    component: () => import('@/generated/pages/atoms/CardPage.vue'),
+    meta: {"title":"Card","section":"Atoms"}
+  }
 ]
 
 // Dernière mise à jour: 2025-08-08T13:47:00.793Z

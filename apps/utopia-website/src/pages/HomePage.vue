@@ -11,48 +11,60 @@
       <!-- UTOPIA Acronym -->
       <div class="utopia-meaning">
         <div class="utopia-grid">
-          <div class="utopia-item">
-            <span class="utopia-letter">U</span>
-            <div class="utopia-definition">
-              <strong>Universal</strong>
-              <span>across brands and platforms</span>
+          <Card variant="elevated" class="utopia-item" interactive>
+            <div class="utopia-content">
+              <span class="utopia-letter">U</span>
+              <div class="utopia-definition">
+                <strong>Universal</strong>
+                <span>across brands and platforms</span>
+              </div>
             </div>
-          </div>
-          <div class="utopia-item">
-            <span class="utopia-letter">T</span>
-            <div class="utopia-definition">
-              <strong>Transparent</strong>
-              <span>clear rules, shared vision</span>
+          </Card>
+          <Card variant="elevated" class="utopia-item" interactive>
+            <div class="utopia-content">
+              <span class="utopia-letter">T</span>
+              <div class="utopia-definition">
+                <strong>Transparent</strong>
+                <span>clear rules, shared vision</span>
+              </div>
             </div>
-          </div>
-          <div class="utopia-item">
-            <span class="utopia-letter">O</span>
-            <div class="utopia-definition">
-              <strong>Open</strong>
-              <span>collaborative and evolving</span>
+          </Card>
+          <Card variant="elevated" class="utopia-item" interactive>
+            <div class="utopia-content">
+              <span class="utopia-letter">O</span>
+              <div class="utopia-definition">
+                <strong>Open</strong>
+                <span>collaborative and evolving</span>
+              </div>
             </div>
-          </div>
-          <div class="utopia-item">
-            <span class="utopia-letter">P</span>
-            <div class="utopia-definition">
-              <strong>Persistent</strong>
-              <span>durable, maintainable</span>
+          </Card>
+          <Card variant="elevated" class="utopia-item" interactive>
+            <div class="utopia-content">
+              <span class="utopia-letter">P</span>
+              <div class="utopia-definition">
+                <strong>Persistent</strong>
+                <span>durable, maintainable</span>
+              </div>
             </div>
-          </div>
-          <div class="utopia-item">
-            <span class="utopia-letter">I</span>
-            <div class="utopia-definition">
-              <strong>Inspiring</strong>
-              <span>sparks creativity</span>
+          </Card>
+          <Card variant="elevated" class="utopia-item" interactive>
+            <div class="utopia-content">
+              <span class="utopia-letter">I</span>
+              <div class="utopia-definition">
+                <strong>Inspiring</strong>
+                <span>sparks creativity</span>
+              </div>
             </div>
-          </div>
-          <div class="utopia-item">
-            <span class="utopia-letter">A</span>
-            <div class="utopia-definition">
-              <strong>Accessible</strong>
-              <span>barrier-free for all users</span>
+          </Card>
+          <Card variant="elevated" class="utopia-item" interactive>
+            <div class="utopia-content">
+              <span class="utopia-letter">A</span>
+              <div class="utopia-definition">
+                <strong>Accessible</strong>
+                <span>barrier-free for all users</span>
+              </div>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
       
@@ -70,7 +82,7 @@
     <div class="installation-section">
       <h2>🚀 Installation</h2>
       <div class="install-grid">
-        <div class="install-card">
+        <Card variant="outlined" class="install-card">
           <h3>npm</h3>
           <div class="code-block">
             <code>npm install @club-employes/utopia</code>
@@ -78,9 +90,9 @@
               📋
             </Button>
           </div>
-        </div>
+        </Card>
         
-        <div class="install-card">
+        <Card variant="outlined" class="install-card">
           <h3>Utilisation</h3>
           <div class="code-block">
             <code>import { Button } from '@club-employes/utopia'</code>
@@ -88,7 +100,7 @@
               📋
             </Button>
           </div>
-        </div>
+        </Card>
       </div>
     </div>
 
@@ -96,12 +108,19 @@
     <div class="features-section">
       <h2>✨ Fonctionnalités</h2>
       <div class="features-grid">
-        <div v-for="feature in features" :key="feature.path" class="feature-card" @click="navigateTo(feature.path)">
+        <Card 
+          v-for="feature in features" 
+          :key="feature.path" 
+          variant="elevated" 
+          class="feature-card" 
+          interactive
+          @click="navigateTo(feature.path)"
+        >
           <div class="feature-icon">{{ feature.icon }}</div>
           <h3>{{ feature.title }}</h3>
           <p>{{ feature.description }}</p>
           <div class="feature-badge">{{ feature.count }}</div>
-        </div>
+        </Card>
       </div>
     </div>
 
@@ -109,52 +128,58 @@
     <div class="links-section">
       <h2>🔗 Liens utiles</h2>
       <div class="links-grid">
-        <a href="https://npmjs.com/package/@club-employes/utopia" target="_blank" class="link-card">
-          <div class="link-icon">📦</div>
-          <h3>Package NPM</h3>
-          <p>Version officielle publiée</p>
-        </a>
+        <Card variant="elevated" class="link-card" interactive>
+          <a href="https://npmjs.com/package/@club-employes/utopia" target="_blank" class="link-content">
+            <div class="link-icon">📦</div>
+            <h3>Package NPM</h3>
+            <p>Version officielle publiée</p>
+          </a>
+        </Card>
         
-        <a href="https://github.com/bj-front/DS" target="_blank" class="link-card">
-          <div class="link-icon">🐙</div>
-          <h3>GitHub Repository</h3>
-          <p>Code source et contributions</p>
-        </a>
+        <Card variant="elevated" class="link-card" interactive>
+          <a href="https://github.com/bj-front/DS" target="_blank" class="link-content">
+            <div class="link-icon">🐙</div>
+            <h3>GitHub Repository</h3>
+            <p>Code source et contributions</p>
+          </a>
+        </Card>
         
-        <a href="https://github.com/bj-front/DS/issues" target="_blank" class="link-card">
-          <div class="link-icon">🐛</div>
-          <h3>Issues & Support</h3>
-          <p>Bugs et demandes de fonctionnalités</p>
-        </a>
+        <Card variant="elevated" class="link-card" interactive>
+          <a href="https://github.com/bj-front/DS/issues" target="_blank" class="link-content">
+            <div class="link-icon">🐛</div>
+            <h3>Issues & Support</h3>
+            <p>Bugs et demandes de fonctionnalités</p>
+          </a>
+        </Card>
       </div>
     </div>
 
     <!-- Stats Section -->
     <div class="stats-section">
       <div class="stats-grid">
-        <div class="stat-card">
+        <Card variant="outlined" class="stat-card">
           <div class="stat-number">2</div>
           <div class="stat-label">Marques supportées</div>
-        </div>
-        <div class="stat-card">
+        </Card>
+        <Card variant="outlined" class="stat-card">
           <div class="stat-number">10+</div>
           <div class="stat-label">Composants</div>
-        </div>
-        <div class="stat-card">
+        </Card>
+        <Card variant="outlined" class="stat-card">
           <div class="stat-number">1200+</div>
           <div class="stat-label">Icônes</div>
-        </div>
-        <div class="stat-card">
+        </Card>
+        <Card variant="outlined" class="stat-card">
           <div class="stat-number">200+</div>
           <div class="stat-label">Tokens CSS</div>
-        </div>
+        </Card>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Button } from '@club-employes/utopia';
+import { Button, Card } from '@club-employes/utopia';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
@@ -266,22 +291,12 @@ const features = [
   margin-bottom: var(--spacing-8);
 }
 
-.utopia-item {
+
+.utopia-content {
   display: flex;
   align-items: center;
   gap: var(--spacing-4);
   padding: var(--spacing-4);
-  background: var(--theme-colors-surface-card);
-  border: 1px solid var(--theme-colors-border-default);
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-sm);
-  transition: all 0.2s ease;
-}
-
-.utopia-item:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--theme-colors-brand-primary-300);
 }
 
 .utopia-letter {
@@ -348,11 +363,7 @@ const features = [
 }
 
 .install-card {
-  background: var(--theme-colors-surface-card);
-  border: 1px solid var(--theme-colors-border-default);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-6);
-  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-6) !important;
 }
 
 .install-card h3 {
@@ -408,21 +419,10 @@ const features = [
 }
 
 .feature-card {
-  background: var(--theme-colors-surface-card);
-  border: 1px solid var(--theme-colors-border-default);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-6);
+  padding: var(--spacing-6) !important;
   text-align: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: var(--shadow-sm);
   position: relative;
-}
-
-.feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--theme-colors-brand-primary-300);
+  cursor: pointer;
 }
 
 .feature-icon {
@@ -476,21 +476,14 @@ const features = [
 }
 
 .link-card {
-  background: var(--theme-colors-surface-card);
-  border: 1px solid var(--theme-colors-border-default);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-6);
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.2s ease;
-  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-6) !important;
   text-align: center;
 }
 
-.link-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--theme-colors-brand-primary-300);
+.link-content {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .link-icon {
@@ -523,12 +516,8 @@ const features = [
 }
 
 .stat-card {
-  background: var(--theme-colors-surface-card);
-  border: 1px solid var(--theme-colors-border-default);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-6);
+  padding: var(--spacing-6) !important;
   text-align: center;
-  box-shadow: var(--shadow-sm);
 }
 
 .stat-number {
@@ -568,7 +557,7 @@ const features = [
     gap: var(--spacing-3);
   }
   
-  .utopia-item {
+  .utopia-content {
     padding: var(--spacing-3);
   }
   

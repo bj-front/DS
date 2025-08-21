@@ -4,23 +4,50 @@
     :class="buttonClasses"
     :disabled="disabled || loading"
     @click="handleClick"
-    :style="{ flexDirection: iconPosition === 'right' && icon && $slots['default'] && !loading ? 'row-reverse' : 'row' }"
+    :style="buttonStyle"
   >
-    <Icon 
-      v-if="loading" 
-      name="Loader-2" 
-      class="utopia-button__icon utopia-button__icon--loading"
-      stroke-width="2"
-    />
-    <Icon 
-      v-else-if="icon" 
-      :name="icon" 
-      class="utopia-button__icon"
-      stroke-width="2"
-    />
-    <span v-if="$slots['default']" class="utopia-button__text">
+    <!-- Éléments de gauche (icône ou loading) -->
+    <template v-if="iconPosition === 'left' || (!icon && loading)">
+      <Icon 
+        v-if="loading && icon" 
+        name="Loader-2" 
+        class="utopia-button__icon utopia-button__icon--loading"
+        stroke-width="2"
+      />
+      <Icon 
+        v-else-if="loading && !icon && $slots['default']" 
+        name="Loader-2" 
+        class="utopia-button__icon utopia-button__icon--loading"
+        stroke-width="2"
+      />
+      <Icon 
+        v-else-if="icon" 
+        :name="icon" 
+        class="utopia-button__icon"
+        stroke-width="2"
+      />
+    </template>
+
+    <!-- Texte (toujours au milieu) -->
+    <span v-if="$slots['default'] && (!loading || (loading && icon))" class="utopia-button__text">
       <slot />
     </span>
+
+    <!-- Éléments de droite (icône ou loading) -->
+    <template v-if="iconPosition === 'right'">
+      <Icon 
+        v-if="loading && icon" 
+        name="Loader-2" 
+        class="utopia-button__icon utopia-button__icon--loading"
+        stroke-width="2"
+      />
+      <Icon 
+        v-else-if="icon" 
+        :name="icon" 
+        class="utopia-button__icon"
+        stroke-width="2"
+      />
+    </template>
   </button>
 </template>
 
@@ -58,9 +85,15 @@ const buttonClasses = computed(() => ({
   [`utopia-button--${props.size}`]: true,
   'utopia-button--disabled': props.disabled,
   'utopia-button--loading': props.loading,
-  'utopia-button--icon-only': (props.icon && !slots.default) || props.loading,
+  'utopia-button--icon-only': (props.icon && !slots.default) || (props.loading && !props.icon && slots.default),
   [`utopia-button--${currentTheme.value?.mode || 'light'}`]: true
 }))
+
+const buttonStyle = computed(() => {
+  return {
+    flexDirection: 'row' as const
+  };
+})
 
 const handleClick = (event: MouseEvent) => {
   if (!props.disabled && !props.loading) {
@@ -192,7 +225,7 @@ const handleClick = (event: MouseEvent) => {
   /* TERTIARY VARIANT */
   &--tertiary {
     background: transparent;
-    color: var(--theme-colors-brand-primary-500, #3b82f6);
+    color: var(--theme-colors-brand-secondary-500, #3b82f6);
 
     @include button-states(
       var(--theme-colors-brand-primary-25, #eff6ff),
@@ -203,7 +236,7 @@ const handleClick = (event: MouseEvent) => {
     );
 
     &:hover:not(.utopia-button--disabled) {
-      color: var(--theme-colors-brand-primary-600, #2563eb);
+      color: var(--theme-colors-brand-secondary-500, #2563eb);
     }
   }
 }

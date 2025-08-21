@@ -32,7 +32,10 @@ export interface LogoProps {
 
 export interface CardProps {
   variant?: 'default' | 'elevated' | 'outlined'
-  padding?: 'none' | 'small' | 'medium' | 'large'
+  size?: 'small' | 'medium' | 'large'
+  disabled?: boolean
+  interactive?: boolean
+  active?: boolean
 }
 
 export interface SearchBoxProps {
@@ -66,6 +69,20 @@ export interface SwitchProps {
   disabled?: boolean
   size?: 'small' | 'medium' | 'large'
   label?: string
+}
+
+export interface InputTextProps {
+  modelValue?: string
+  label?: string
+  placeholder?: string
+  type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url'
+  state?: 'default' | 'error' | 'valid' | 'incomplete' | 'completed'
+  size?: 'small' | 'medium' | 'large'
+  disabled?: boolean
+  readonly?: boolean
+  icon?: string
+  message?: string
+  required?: boolean
 }
 
 export interface DataTableProps {
@@ -110,6 +127,7 @@ export declare const Menu: DefineComponent<{}>
 export declare const NavItem: DefineComponent<{}>
 export declare const SearchBox: DefineComponent<SearchBoxProps>
 export declare const Switch: DefineComponent<SwitchProps>
+export declare const InputText: DefineComponent<InputTextProps>
 export declare const DataTable: DefineComponent<DataTableProps>
 export declare const ThemeProvider: DefineComponent<ThemeProviderProps>
 export declare const DefaultLayout: DefineComponent<{}>

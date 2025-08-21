@@ -201,7 +201,6 @@ withDefaults(defineProps<Props>(), {
   font-weight: var(--font-weight-medium, 500);
   color: var(--theme-colors-text-secondary, #6b7280);
   transition: all 0.2s ease;
-  user-select: none;
   border: none;
 }
 
@@ -246,6 +245,11 @@ withDefaults(defineProps<Props>(), {
   background: none;
   padding: 0;
   color: inherit;
+}
+
+/* Permettre la sélection de texte dans le contenu */
+.page-content {
+  user-select: text;
 }
 
 /* Styles pour la documentation */

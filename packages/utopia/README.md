@@ -1,158 +1,311 @@
 # 🎨 Utopia Design System
 
-Système de design multi-marques basé sur des tokens avec Style Dictionary.
+[![npm version](https://badge.fury.io/js/@club-employes%2Futopia.svg)](https://www.npmjs.com/package/@club-employes/utopia)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Vue 3](https://img.shields.io/badge/Vue-3.x-4FC08D.svg)](https://vuejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6.svg)](https://www.typescriptlang.org/)
 
-## 🏗️ Architecture
+> **Modern Vue 3 design system** with multi-brand theming, design tokens, and 30+ production-ready components. Built for **Club Employés** & **Gifteo** with full TypeScript support.
 
-```
-src/
-├── tokens/                  # Sources des design tokens
-│   ├── core/               # Tokens communs (spacing, typography, etc.)
-│   ├── brands/             # Tokens spécifiques par marque
-│   │   └── club-employes/  # Couleurs Club Employés
-│   ├── themes/             # Combinaisons marque + mode
-│   └── generated/          # Fichiers CSS/JS générés
-├── theme-provider/         # Composant ThemeProvider Vue
-├── themes/                 # Packages de thèmes exportés
-└── components/             # Composants de démo
-```
+## ✨ Features
 
-## 🚀 Utilisation
+- 🧩 **30+ Vue 3 Components** - Atoms, Molecules, Organisms, Layouts
+- 🎨 **Multi-brand Theming** - Club Employés & Gifteo brands
+- 🌙 **Dark Mode Support** - Light/dark variants for all themes  
+- 🎯 **Design Tokens** - CSS variables generated with Style Dictionary
+- 📱 **Responsive** - Mobile-first approach with breakpoint utilities
+- ♿ **Accessible** - WCAG 2.1 AA compliant components
+- 🔧 **TypeScript** - Full type definitions included
+- 🚀 **Tree Shakeable** - Import only what you need
+- 📦 **Zero Config** - Works out of the box
 
-### 1. Installation
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
-npm install @clubemployes/design-system
+npm install @club-employes/utopia vue@^3.5.0
 ```
 
-### 2. Utilisation dans une app Vue
+### Basic Usage
 
 ```vue
 <template>
   <ThemeProvider :theme="clubEmployesLight">
-    <YourApp />
+    <div class="app">
+      <Button variant="primary" size="medium" @click="handleClick">
+        Get Started
+      </Button>
+      
+      <Card variant="elevated">
+        <Icon name="heart" size="large" />
+        <h2>Welcome to Utopia</h2>
+        <p>Modern design system for Vue 3</p>
+      </Card>
+    </div>
   </ThemeProvider>
 </template>
 
-<script setup>
-import { ThemeProvider } from '@clubemployes/design-system'
-import { clubEmployesLight } from '@clubemployes/theme-club-employes'
+<script setup lang="ts">
+import { 
+  Button, 
+  Card, 
+  Icon, 
+  ThemeProvider, 
+  clubEmployesLight 
+} from '@club-employes/utopia'
+import '@club-employes/utopia/styles'
+
+const handleClick = () => {
+  console.log('Button clicked!')
+}
 </script>
 ```
 
-### 3. Utilisation des CSS variables
+### Import Styles
+
+```javascript
+// Import all styles (recommended)
+import '@club-employes/utopia/styles'
+
+// Or import specific theme tokens
+import '@club-employes/utopia/tokens/club-employes/light'
+import '@club-employes/utopia/tokens/gifteo/dark'
+```
+
+## 🎨 Available Themes
+
+```javascript
+import { 
+  clubEmployesLight,   // Club Employés light theme
+  clubEmployesDark,    // Club Employés dark theme
+  gifteoLight,         // Gifteo light theme
+  gifteoDark           // Gifteo dark theme
+} from '@club-employes/utopia'
+```
+
+## 🧩 Components
+
+### Atoms (Building Blocks)
+- **Button** - Interactive buttons with variants
+- **Icon** - 1200+ Lucide icons
+- **Logo** - Multi-brand logos
+- **Badge** - Status indicators
+- **Card** - Content containers
+- **Input** - Form controls
+- **Checkbox** - Boolean inputs
+- **Switch** - Toggle controls
+
+### Molecules (Simple Combinations)
+- **SearchBox** - Search input with icon
+- **InputSelect** - Dropdown with filtering
+
+### Organisms (Complex Components)
+- **DataTable** - Advanced data tables
+- **Header** - Navigation headers
+- **Menu** - Sidebar navigation
+
+### Layouts (Page Structures)
+- **DefaultLayout** - Main application layout
+
+## 🔧 Composables
+
+```javascript
+import { useTheme, useFavicon, useScrollShadows } from '@club-employes/utopia'
+
+// Theme management
+const { theme, setTheme } = useTheme()
+setTheme('club-employes', 'dark')
+
+// Dynamic favicon
+const { setFavicon } = useFavicon()
+
+// Scroll shadows
+const { shadowTop, shadowBottom } = useScrollShadows(containerRef)
+```
+
+## 🎯 Design Tokens
+
+All components use CSS custom properties (design tokens):
 
 ```css
-.button {
-  background-color: var(--color-blue-500);
-  padding: var(--spacing-4);
-  border-radius: var(--border-radius-base);
-  font-size: var(--font-size-base);
-}
-
-.product-card {
-  background-color: var(--color-product-exclusive-sale-primary);
-  color: white;
-}
-```
-
-## 🎯 Tokens disponibles
-
-### Couleurs
-
-#### Palette principale (Bleu)
-- `--color-blue-25` à `--color-blue-950`
-
-#### Couleurs produits
-- `--color-product-exclusive-sale-primary` - Vente exclusive
-- `--color-product-promo-code-primary` - Code promo  
-- `--color-product-physical-product-primary` - Produit physique
-- `--color-product-e-ticket-primary` - E-billet
-- `--color-product-member-card-primary` - Carte membre
-- `--color-product-gift-card-primary` - Carte cadeau
-- `--color-product-e-check-primary` - E-chèque
-
-#### Signalétique
-- `--color-semantic-attention-primary` - Erreur/Attention
-- `--color-semantic-success-primary` - Succès
-
-### Espacement
-- `--spacing-0` (0px) à `--spacing-32` (128px)
-
-### Typographie
-- Tailles: `--font-size-xs` à `--font-size-5xl`
-- Poids: `--font-weight-light` à `--font-weight-bold`
-- Familles: `--font-family-sans`, `--font-family-mono`
-
-### Bordures
-- Rayons: `--border-radius-none` à `--border-radius-full`
-- Largeurs: `--border-width-0` à `--border-width-4`
-
-### Ombres
-- `--shadow-none` à `--shadow-xl`
-
-## 🔧 Développement
-
-### Build des tokens
-
-```bash
-npm run build:tokens
-```
-
-### Ajouter une nouvelle marque
-
-1. Créer `src/tokens/brands/nouvelle-marque/colors.json`
-2. Créer les thèmes light/dark dans `src/tokens/themes/`
-3. Mettre à jour `style-dictionary.config.js`
-4. Créer le package thème dans `src/themes/nouvelle-marque/`
-
-### Structure d'un token de couleur
-
-```json
-{
-  "color": {
-    "primary": {
-      "500": {
-        "value": "#3B82F6",
-        "type": "color"
-      }
-    }
-  }
+.my-component {
+  /* Colors */
+  background: var(--utopia-color-surface);
+  color: var(--utopia-color-text-primary);
+  
+  /* Spacing */
+  padding: var(--utopia-space-md);
+  margin: var(--utopia-space-lg);
+  
+  /* Typography */
+  font-family: var(--utopia-font-family);
+  font-size: var(--utopia-font-size-base);
+  
+  /* Borders */
+  border-radius: var(--utopia-radius-md);
+  border: 1px solid var(--utopia-color-border);
 }
 ```
 
-## �� Packages
+## 🌈 Theme Switching
 
-- `@clubemployes/design-system` - Composants et ThemeProvider
-- `@clubemployes/theme-club-employes` - Thème Club Employés  
-- `@clubemployes/theme-ebank` - Thème eBank (à venir)
+```vue
+<template>
+  <div>
+    <ThemeProvider :theme="currentTheme">
+      <Button @click="toggleTheme">
+        Switch to {{ isDark ? 'Light' : 'Dark' }} Mode
+      </Button>
+      <YourApp />
+    </ThemeProvider>
+  </div>
+</template>
 
-## 🎨 Variables universelles
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { 
+  ThemeProvider, 
+  clubEmployesLight, 
+  clubEmployesDark 
+} from '@club-employes/utopia'
 
-Toutes les apps utilisent les **mêmes noms de variables CSS**. Seules les valeurs changent selon le thème importé.
+const isDark = ref(false)
+const currentTheme = computed(() => 
+  isDark.value ? clubEmployesDark : clubEmployesLight
+)
 
-```css
-/* Dans toutes les apps */
-.button {
-  background: var(--color-primary-500); /* Même variable partout */
+const toggleTheme = () => {
+  isDark.value = !isDark.value
 }
+</script>
 ```
+
+## 📦 Package Exports
+
+```javascript
+// Main export
+import { Button, Icon, ThemeProvider } from '@club-employes/utopia'
+
+// Styles
+import '@club-employes/utopia/styles'
+
+// Specific theme tokens
+import '@club-employes/utopia/tokens/club-employes/light'
+import '@club-employes/utopia/tokens/club-employes/dark'
+import '@club-employes/utopia/tokens/gifteo/light'
+import '@club-employes/utopia/tokens/gifteo/dark'
+
+// Icons list (JSON)
+import iconsList from '@club-employes/utopia/icons'
+```
+
+## 🏗️ Advanced Usage
+
+### Custom Theme Configuration
+
+```vue
+<script setup lang="ts">
+import { ThemeProvider } from '@club-employes/utopia'
+
+const customTheme = {
+  colors: {
+    primary: '#your-brand-color',
+    secondary: '#your-secondary-color'
+  },
+  // ... other theme properties
+}
+</script>
+```
+
+### Tree Shaking
+
+```javascript
+// Import only what you need
+import { Button } from '@club-employes/utopia/components/Button'
+import { Icon } from '@club-employes/utopia/components/Icon'
+```
+
+## 📱 Responsive Design
+
+Components are mobile-first and responsive by default:
+
+```vue
+<template>
+  <Button 
+    size="small"           <!-- Mobile -->
+    :size-md="'medium'"    <!-- Tablet -->
+    :size-lg="'large'"     <!-- Desktop -->
+  >
+    Responsive Button
+  </Button>
+</template>
+```
+
+## ♿ Accessibility
+
+All components follow WCAG 2.1 AA guidelines:
+
+- ✅ Keyboard navigation
+- ✅ Screen reader support
+- ✅ High contrast modes
+- ✅ Focus management
+- ✅ ARIA attributes
+
+## 🔧 TypeScript Support
+
+Full TypeScript definitions included:
 
 ```typescript
-// App Club Employés
-import { clubEmployesLight } from '@clubemployes/theme-club-employes'
+import type { ButtonProps, IconProps, ThemeConfig } from '@club-employes/utopia'
 
-// App eBank  
-import { ebankLight } from '@clubemployes/theme-ebank'
+const buttonProps: ButtonProps = {
+  variant: 'primary',
+  size: 'medium',
+  disabled: false
+}
 ```
 
-## 🔄 Workflow
+## 📊 Bundle Size
 
-1. **Designer** → Met à jour les tokens JSON
-2. **Build** → `npm run build:tokens` génère les CSS
-3. **Developer** → Importe le bon thème
-4. **Deploy** → Changement de thème = changement d'import
+- **Full package**: ~150KB (minified + gzipped)
+- **Single component**: ~5-15KB (tree-shaken)
+- **Tokens only**: ~10KB (CSS variables)
+
+## 🌐 Browser Support
+
+- ✅ Chrome 90+
+- ✅ Firefox 88+
+- ✅ Safari 14+
+- ✅ Edge 90+
+
+## 📚 Documentation & Resources
+
+- 📖 **[Complete Documentation](https://ds-utopia.vercel.app/)** - Interactive examples and guides
+- 🎨 **[Storybook](https://main--673cf2b1e9d0b7c5f2b7b7e7.chromatic.com/)** - Component stories and visual tests
+- 🐙 **[GitHub Repository](https://github.com/club-employes/ds)** - Source code and issues
+- 📦 **[NPM Package](https://www.npmjs.com/package/@club-employes/utopia)** - Package details
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](https://github.com/club-employes/ds/blob/main/CONTRIBUTING.md).
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests and documentation
+5. Submit a pull request
+
+## 📄 License
+
+MIT © [Club Employés](https://github.com/club-employes)
 
 ---
 
-Made with ❤️ by Club Employés
+<div align="center">
+
+**Made with ❤️ by the Club Employés team**
+
+[Website](https://ds-utopia.vercel.app/) • [GitHub](https://github.com/club-employes/ds) • [NPM](https://www.npmjs.com/package/@club-employes/utopia)
+
+</div>

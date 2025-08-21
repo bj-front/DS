@@ -24,18 +24,6 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
-                <div class="color-hex-group">
-                  <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
-                  <Button 
-                    variant="tertiary" 
-                    size="sm" 
-                    @click="copyToClipboard(getHexValue(shade.variable))"
-                    class="copy-hex-btn"
-                    :aria-label="`Copier ${getHexValue(shade.variable)}`"
-                  >
-                    📋
-                  </Button>
-                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
@@ -60,18 +48,6 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
-                <div class="color-hex-group">
-                  <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
-                  <Button 
-                    variant="tertiary" 
-                    size="sm" 
-                    @click="copyToClipboard(getHexValue(shade.variable))"
-                    class="copy-hex-btn"
-                    :aria-label="`Copier ${getHexValue(shade.variable)}`"
-                  >
-                    📋
-                  </Button>
-                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
@@ -96,18 +72,6 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
-                <div class="color-hex-group">
-                  <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
-                  <Button 
-                    variant="tertiary" 
-                    size="sm" 
-                    @click="copyToClipboard(getHexValue(shade.variable))"
-                    class="copy-hex-btn"
-                    :aria-label="`Copier ${getHexValue(shade.variable)}`"
-                  >
-                    📋
-                  </Button>
-                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
@@ -143,18 +107,6 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
-                <div class="color-hex-group">
-                  <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
-                  <Button 
-                    variant="tertiary" 
-                    size="sm" 
-                    @click="copyToClipboard(getHexValue(shade.variable))"
-                    class="copy-hex-btn"
-                    :aria-label="`Copier ${getHexValue(shade.variable)}`"
-                  >
-                    📋
-                  </Button>
-                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
@@ -179,18 +131,6 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
-                <div class="color-hex-group">
-                  <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
-                  <Button 
-                    variant="tertiary" 
-                    size="sm" 
-                    @click="copyToClipboard(getHexValue(shade.variable))"
-                    class="copy-hex-btn"
-                    :aria-label="`Copier ${getHexValue(shade.variable)}`"
-                  >
-                    📋
-                  </Button>
-                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
@@ -215,18 +155,6 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
-                <div class="color-hex-group">
-                  <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
-                  <Button 
-                    variant="tertiary" 
-                    size="sm" 
-                    @click="copyToClipboard(getHexValue(shade.variable))"
-                    class="copy-hex-btn"
-                    :aria-label="`Copier ${getHexValue(shade.variable)}`"
-                  >
-                    📋
-                  </Button>
-                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
@@ -251,18 +179,6 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${shade.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ shade.name }}</span>
-                <div class="color-hex-group">
-                  <span class="color-hex">{{ getHexValue(shade.variable) }}</span>
-                  <Button 
-                    variant="tertiary" 
-                    size="sm" 
-                    @click="copyToClipboard(getHexValue(shade.variable))"
-                    class="copy-hex-btn"
-                    :aria-label="`Copier ${getHexValue(shade.variable)}`"
-                  >
-                    📋
-                  </Button>
-                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ shade.variable }}</code>
                   <Button 
@@ -298,18 +214,6 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${color.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ color.name }}</span>
-                <div class="color-hex-group">
-                  <span class="color-hex">{{ getHexValue(color.variable) }}</span>
-                  <Button 
-                    variant="tertiary" 
-                    size="sm" 
-                    @click="copyToClipboard(getHexValue(color.variable))"
-                    class="copy-hex-btn"
-                    :aria-label="`Copier ${getHexValue(color.variable)}`"
-                  >
-                    📋
-                  </Button>
-                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ color.variable }}</code>
                   <Button 
@@ -336,18 +240,6 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${color.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ color.name }}</span>
-                <div class="color-hex-group">
-                  <span class="color-hex">{{ getHexValue(color.variable) }}</span>
-                  <Button 
-                    variant="tertiary" 
-                    size="sm" 
-                    @click="copyToClipboard(getHexValue(color.variable))"
-                    class="copy-hex-btn"
-                    :aria-label="`Copier ${getHexValue(color.variable)}`"
-                  >
-                    📋
-                  </Button>
-                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ color.variable }}</code>
                   <Button 
@@ -374,18 +266,6 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${color.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ color.name }}</span>
-                <div class="color-hex-group">
-                  <span class="color-hex">{{ getHexValue(color.variable) }}</span>
-                  <Button 
-                    variant="tertiary" 
-                    size="sm" 
-                    @click="copyToClipboard(getHexValue(color.variable))"
-                    class="copy-hex-btn"
-                    :aria-label="`Copier ${getHexValue(color.variable)}`"
-                  >
-                    📋
-                  </Button>
-                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ color.variable }}</code>
                   <Button 
@@ -412,18 +292,6 @@
               <div class="color-swatch" :style="{ backgroundColor: `var(${color.variable})` }"></div>
               <div class="color-info">
                 <span class="color-name">{{ color.name }}</span>
-                <div class="color-hex-group">
-                  <span class="color-hex">{{ getHexValue(color.variable) }}</span>
-                  <Button 
-                    variant="tertiary" 
-                    size="sm" 
-                    @click="copyToClipboard(getHexValue(color.variable))"
-                    class="copy-hex-btn"
-                    :aria-label="`Copier ${getHexValue(color.variable)}`"
-                  >
-                    📋
-                  </Button>
-                </div>
                 <div class="color-code-group">
                   <code class="color-code">{{ color.variable }}</code>
                   <Button 
@@ -453,6 +321,7 @@
         <ul>
           <li><strong>Couleurs Brand</strong> : Spécifiques à chaque marque (Club Employés, Gifteo)</li>
           <li><strong>Couleurs Communes</strong> : Partagées entre toutes les marques</li>
+          <li><strong>Couleurs Sémantiques</strong> : Couleurs avec une signification spécifique</li>
         </ul>
         
         <h3>🔧 Utilisation</h3>
@@ -460,6 +329,13 @@
         
         <h3>🌙 Mode sombre</h3>
         <p>Les couleurs s'adaptent automatiquement selon le thème sélectionné (clair/sombre).</p>
+        
+        <h3>💡 Exemple d'utilisation</h3>
+        <pre><code>/* Utilisation directe */
+background-color: var(--theme-colors-brand-primary-500);
+
+/* Avec fallback */
+background-color: var(--theme-colors-brand-primary-500, #3b82f6);</code></pre>
       </div>
     </template>
   </ComponentLayout>
@@ -468,7 +344,7 @@
 <script setup lang="ts">
 import { ComponentLayout } from '@/components';
 import { Button, useTheme } from '@club-employes/utopia';
-import { computed, ref, watchEffect } from 'vue';
+import { computed } from 'vue';
 
 // Accès au thème via le composable
 const { currentTheme } = useTheme()
@@ -574,71 +450,6 @@ const copyToClipboard = async (text: string): Promise<void> => {
   }
 }
 
-// Reactive cache for hex values
-const hexValueCache = ref<Record<string, string>>({})
-
-// Force update of hex values when theme changes
-watchEffect(() => {
-  if (currentTheme.value) {
-    hexValueCache.value = {}
-  }
-})
-
-// Get hex value from CSS variable (reactive)
-const getHexValue = (cssVariable: string): string => {
-  // Use cached value if available
-  if (hexValueCache.value[cssVariable]) {
-    return hexValueCache.value[cssVariable]
-  }
-  
-  try {
-    if (typeof window !== 'undefined' && document.documentElement) {
-      const computedValue = getComputedStyle(document.documentElement)
-        .getPropertyValue(cssVariable)
-        .trim()
-      
-      let result = '--'
-      
-      // If it's already a hex value, return it
-      if (computedValue.startsWith('#')) {
-        result = computedValue.toUpperCase()
-      }
-      // If it's an RGB value, convert to hex
-      else if (computedValue.startsWith('rgb')) {
-        const rgbMatch = computedValue.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/)
-        if (rgbMatch?.[1] && rgbMatch[2] && rgbMatch[3]) {
-          const r = parseInt(rgbMatch[1])
-          const g = parseInt(rgbMatch[2])
-          const b = parseInt(rgbMatch[3])
-          result = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`.toUpperCase()
-        }
-      }
-      // Handle rgba values (with opacity)
-      else if (computedValue.startsWith('rgba')) {
-        const rgbaMatch = computedValue.match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/)
-        if (rgbaMatch?.[1] && rgbaMatch[2] && rgbaMatch[3] && rgbaMatch[4]) {
-          const r = parseInt(rgbaMatch[1])
-          const g = parseInt(rgbaMatch[2])
-          const b = parseInt(rgbaMatch[3])
-          const a = parseFloat(rgbaMatch[4])
-          result = `rgba(${r}, ${g}, ${b}, ${a})`
-        }
-      }
-      else {
-        result = computedValue || '--'
-      }
-      
-      // Cache the result
-      hexValueCache.value[cssVariable] = result
-      return result
-    }
-    return '--'
-  } catch (error) {
-    console.warn('Error getting hex value for', cssVariable, error)
-    return '--'
-  }
-}
-
 // Common Colors (adapted for light/dark modes)
 const slateColors = [
   { name: '50', variable: '--theme-colors-common-slate-50' },
@@ -740,6 +551,21 @@ const stateColors = [
   margin-bottom: var(--spacing-2);
 }
 
+.colors-documentation pre {
+  background: var(--theme-colors-surface-background);
+  border: 1px solid var(--theme-colors-border-default);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-4);
+  margin: var(--spacing-4) 0;
+  overflow-x: auto;
+}
+
+.colors-documentation code {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  color: var(--theme-colors-text-primary);
+}
+
 .section {
   margin-bottom: var(--spacing-16);
 }
@@ -825,31 +651,6 @@ const stateColors = [
   margin-bottom: var(--spacing-1);
 }
 
-.color-hex-group {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-1);
-  margin-bottom: var(--spacing-2);
-}
-
-.color-hex {
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-xs);
-  color: var(--theme-colors-text-secondary);
-  opacity: 0.8;
-  font-weight: var(--font-weight-medium);
-}
-
-.copy-hex-btn {
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  min-width: 20px !important;
-  min-height: 20px !important;
-  padding: var(--spacing-1) !important;
-  font-size: var(--font-size-xs) !important;
-}
-
 .color-code-group {
   display: flex;
   align-items: center;
@@ -875,8 +676,7 @@ const stateColors = [
   padding: var(--spacing-1) !important;
 }
 
-.color-card:hover .copy-btn,
-.color-card:hover .copy-hex-btn {
+.color-card:hover .copy-btn {
   opacity: 1;
 }
 
@@ -907,6 +707,23 @@ const stateColors = [
     width: 50px;
     height: 50px;
   }
+}
+
+/* Forcer la sélection de texte sur toute la page */
+:deep(*) {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+/* Garder user-select: none pour les éléments interactifs */
+:deep(button),
+:deep(.code-snippet summary) {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
 }
 
 @media (max-width: 480px) {

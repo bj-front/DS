@@ -1,5 +1,7 @@
 {
   "atoms-Checkbox": "Badge-check",
   "atoms-Switch": "Check-circle-2",
-  "atoms-Button": "Package-2"
+  "atoms-Button": "Package-2",
+  "atoms-InputText": "Text-cursor-input",
+  "atoms-Card": "Wallet-cards"
 }

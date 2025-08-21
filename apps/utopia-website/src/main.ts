@@ -1,5 +1,6 @@
 import './assets/main.css'
 
+import { SpeedInsights } from '@vercel/speed-insights/vue'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 
@@ -21,3 +22,6 @@ app.use(createPinia())
 app.use(router)
 
 app.mount('#app')
+
+// Ajouter Speed Insights
+app.component('SpeedInsights', SpeedInsights)
