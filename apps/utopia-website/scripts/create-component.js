@@ -378,6 +378,7 @@ import { ${componentName}, Icon } from '@club-employes/utopia'
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: var(--spacing-6, 24px);
+  overflow: auto;
 }
 
 .showcase-item h3 {
