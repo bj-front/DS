@@ -94,6 +94,29 @@ export interface InputTextProps {
   required?: boolean
 }
 
+export interface DropDownOption {
+  value: string | number
+  label: string
+  disabled?: boolean
+}
+
+export interface DropDownProps {
+  modelValue?: string | number | (string | number)[]
+  label?: string
+  placeholder?: string
+  options?: DropDownOption[]
+  state?: 'default' | 'error' | 'valid' | 'incomplete' | 'completed'
+  size?: 'small' | 'medium' | 'large'
+  disabled?: boolean
+  readonly?: boolean
+  multiple?: boolean
+  searchable?: boolean
+  clearable?: boolean
+  message?: string
+  required?: boolean
+  maxHeight?: string
+}
+
 export interface DataTableProps {
   columns: Array<{
     key: string
@@ -138,6 +161,7 @@ export declare const NavItem: DefineComponent<{}>
 export declare const SearchBox: DefineComponent<SearchBoxProps>
 export declare const Switch: DefineComponent<SwitchProps>
 export declare const InputText: DefineComponent<InputTextProps>
+export declare const DropDown: DefineComponent<DropDownProps>
 export declare const DataTable: DefineComponent<DataTableProps>
 export declare const ThemeProvider: DefineComponent<ThemeProviderProps>
 export declare const DefaultLayout: DefineComponent<{}>

@@ -48,6 +48,13 @@ export const generatedRoutes: RouteRecordRaw[] = [
     component: () => import('@/generated/pages/atoms/ChipPage.vue'),
     meta: {"title":"Chip","section":"Atoms"}
   }
+,
+  {
+    path: '/design-system/atoms/dropdown',
+    name: 'atoms-DropDown',
+    component: () => import('@/generated/pages/atoms/DropDownPage.vue'),
+    meta: {"title":"DropDown","section":"Atoms"}
+  }
 ]
 
 // Dernière mise à jour: 2025-08-08T13:47:00.793Z

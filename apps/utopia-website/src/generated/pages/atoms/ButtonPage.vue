@@ -539,7 +539,7 @@ const toggleLoading = (type) => {
             <div class="usage-group">
               <h4>Actions tertiaires</h4>
               <div class="usage-buttons">
-                <Button variant="tertiary" icon="Edit">Modifier</Button>
+                <Button variant="tertiary" icon="Clipboard-edit">Modifier</Button>
                 <Button variant="tertiary" icon="Chevron-right" icon-position="right">Voir plus</Button>
                 <Button variant="tertiary" icon="Arrow-up-right" icon-position="right">Détails</Button>
                 <Button variant="tertiary" icon="Settings">Options</Button>
