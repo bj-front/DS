@@ -92,6 +92,10 @@ export interface InputTextProps {
   icon?: string
   message?: string
   required?: boolean
+  min?: number
+  max?: number
+  step?: number
+  isCode?: boolean
 }
 
 export interface DropDownOption {
@@ -115,6 +119,19 @@ export interface DropDownProps {
   message?: string
   required?: boolean
   maxHeight?: string
+}
+
+export interface InputCodeProps {
+  modelValue?: string
+  label?: string
+  length?: number
+  type?: 'text' | 'number'
+  size?: 'small' | 'medium' | 'large'
+  state?: 'default' | 'error' | 'valid'
+  disabled?: boolean
+  message?: string
+  required?: boolean
+  autoFocus?: boolean
 }
 
 export interface DataTableProps {
@@ -162,6 +179,7 @@ export declare const SearchBox: DefineComponent<SearchBoxProps>
 export declare const Switch: DefineComponent<SwitchProps>
 export declare const InputText: DefineComponent<InputTextProps>
 export declare const DropDown: DefineComponent<DropDownProps>
+export declare const InputCode: DefineComponent<InputCodeProps>
 export declare const DataTable: DefineComponent<DataTableProps>
 export declare const ThemeProvider: DefineComponent<ThemeProviderProps>
 export declare const DefaultLayout: DefineComponent<{}>
