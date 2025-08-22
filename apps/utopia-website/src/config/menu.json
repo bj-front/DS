@@ -48,15 +48,15 @@
       "to": "/design-system/atoms/chip"
     },
     {
-      "key": "dropdown",
-      "label": "DropDown",
-      "icon": "Droplet",
-      "to": "/design-system/atoms/dropdown"
-    },
-    {
       "key": "molecules-section",
       "type": "section",
       "label": "Molecules"
+    },
+    {
+      "key": "dropdown",
+      "label": "DropDown",
+      "icon": "Droplet",
+      "to": "/design-system/molecules/dropdown"
     },
     {
       "key": "organisms-section",

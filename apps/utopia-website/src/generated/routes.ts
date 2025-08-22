@@ -50,10 +50,10 @@ export const generatedRoutes: RouteRecordRaw[] = [
   }
 ,
   {
-    path: '/design-system/atoms/dropdown',
-    name: 'atoms-DropDown',
-    component: () => import('@/generated/pages/atoms/DropDownPage.vue'),
-    meta: {"title":"DropDown","section":"Atoms"}
+    path: '/design-system/molecules/dropdown',
+    name: 'molecules-DropDown',
+    component: () => import('@/generated/pages/molecules/DropDownPage.vue'),
+    meta: {"title":"DropDown","section":"Molecules"}
   }
 ]
 

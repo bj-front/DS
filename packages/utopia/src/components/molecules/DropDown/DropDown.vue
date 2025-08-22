@@ -209,10 +209,10 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue';
 
-import { Checkbox } from '../Checkbox';
-import { Chip } from '../Chip';
-import { Icon } from '../Icon';
-import { InputText } from '../InputText';
+import { Checkbox } from '../../atoms/Checkbox';
+import { Chip } from '../../atoms/Chip';
+import { Icon } from '../../atoms/Icon';
+import { InputText } from '../../atoms/InputText';
 import type { DropDownOption, DropDownProps } from './types';
 
 const props = withDefaults(defineProps<DropDownProps>(), {

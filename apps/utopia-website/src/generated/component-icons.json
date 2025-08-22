@@ -5,5 +5,5 @@
   "atoms-InputText": "Text-cursor-input",
   "atoms-Card": "Wallet-cards",
   "atoms-Chip": "Tag",
-  "atoms-DropDown": "Droplet"
+  "molecules-DropDown": "Droplet"
 }
