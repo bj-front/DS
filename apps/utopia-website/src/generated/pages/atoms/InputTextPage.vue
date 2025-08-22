@@ -207,6 +207,106 @@
         </div>
       </div>
 
+      <!-- Mode code -->
+      <div class="showcase-item">
+        <h3>Mode code</h3>
+        <p>Champs optimisés pour la saisie de codes (2FA, PIN, etc.) avec validation automatique et style adapté.</p>
+        
+        <div class="input-demo">
+          <div class="input-group">
+            <h4>Code numérique (6 chiffres)</h4>
+            <InputText 
+              label="Code PIN"
+              placeholder="0"
+              type="number"
+              is-code
+              size="medium"
+              :maxlength="1"
+            />
+          </div>
+          
+          <div class="input-group">
+            <h4>Code alphanumérique (4 caractères)</h4>
+            <InputText 
+              label="Code d'accès"
+              placeholder="A"
+              type="text"
+              is-code
+              size="medium"
+              :maxlength="1"
+            />
+          </div>
+          
+          <div class="input-group">
+            <h4>Code court (petite taille)</h4>
+            <InputText 
+              label="Code court"
+              placeholder="0"
+              type="number"
+              is-code
+              size="small"
+              :maxlength="1"
+            />
+          </div>
+          
+          <div class="input-group">
+            <h4>Code long (grande taille)</h4>
+            <InputText 
+              label="Code de sécurité"
+              placeholder="A"
+              type="text"
+              is-code
+              size="large"
+              :maxlength="1"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode code interactif -->
+      <div class="showcase-item">
+        <h3>Mode code interactif</h3>
+        <p>Testez la validation automatique du mode code. Essayez de saisir des caractères invalides.</p>
+        
+        <div class="input-demo">
+          <div class="input-group">
+            <h4>Code numérique (validation stricte)</h4>
+            <InputText 
+              label="Code 2FA"
+              placeholder="0"
+              type="number"
+              is-code
+              size="medium"
+              :maxlength="1"
+              v-model="codeNumber"
+              :state="codeNumberState"
+              :message="codeNumberMessage"
+            />
+            <div class="demo-info">
+              <strong>Valeur:</strong> {{ codeNumber || 'Aucune' }}
+            </div>
+          </div>
+          
+          <div class="input-group">
+            <h4>Code alphanumérique (lettres + chiffres)</h4>
+            <InputText 
+              label="Code d'accès"
+              placeholder="A"
+              type="text"
+              is-code
+              size="medium"
+              :maxlength="1"
+              v-model="codeAlpha"
+              :state="codeAlphaState"
+              :message="codeAlphaMessage"
+            />
+            <div class="demo-info">
+              <strong>Valeur:</strong> {{ codeAlpha || 'Aucune' }}
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Email interactif -->
       <div class="showcase-item">
         <h3>Validation email (interactif)</h3>
@@ -365,6 +465,12 @@
                 <td><code>false</code></td>
                 <td>Champ requis</td>
               </tr>
+              <tr>
+                <td><code>isCode</code></td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Mode optimisé pour les codes (2FA, PIN, etc.)</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -432,6 +538,30 @@ const emailState = computed(() => {
 const emailMessage = computed(() => {
   if (email.value.length === 0) return ''
   return emailState.value === 'valid' ? 'Adresse email valide' : 'Format d\'email invalide'
+})
+
+// Variables pour le mode code
+const codeNumber = ref('')
+const codeAlpha = ref('')
+
+const codeNumberState = computed(() => {
+  if (codeNumber.value.length === 0) return 'default' as const
+  return /^\d$/.test(codeNumber.value) ? 'valid' as const : 'error' as const
+})
+
+const codeNumberMessage = computed(() => {
+  if (codeNumber.value.length === 0) return ''
+  return codeNumberState.value === 'valid' ? 'Code numérique valide' : 'Seuls les chiffres sont autorisés'
+})
+
+const codeAlphaState = computed(() => {
+  if (codeAlpha.value.length === 0) return 'default' as const
+  return /^[A-Z0-9]$/.test(codeAlpha.value) ? 'valid' as const : 'error' as const
+})
+
+const codeAlphaMessage = computed(() => {
+  if (codeAlpha.value.length === 0) return ''
+  return codeAlphaState.value === 'valid' ? 'Code alphanumérique valide' : 'Lettres et chiffres uniquement'
 })
 </script>
 
@@ -509,6 +639,15 @@ const emailMessage = computed(() => {
 .showcase-item:has(.props-table),
 .showcase-item:has(.events-table) {
   overflow: auto;
+}
+
+.demo-info {
+  margin-top: var(--spacing-2, 8px);
+  padding: var(--spacing-2, 8px);
+  background: var(--theme-colors-surface-secondary, #f3f4f6);
+  border-radius: var(--border-radius-sm, 4px);
+  font-size: var(--font-size-sm, 14px);
+  color: var(--theme-colors-text-secondary, #6b7280);
 }
 
 /* Responsive */

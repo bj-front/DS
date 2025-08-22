@@ -329,11 +329,11 @@ const selectedTags = ref(['Vue.js', 'TypeScript', 'Design System'])
 const newTag = ref('')
 
 const handleRemove = (): void => {
-  console.log('Chip removed')
+  // Chip removed
 }
 
 const handleClick = (): void => {
-  console.log('Chip clicked')
+  // Chip clicked
 }
 
 const addTag = (event: KeyboardEvent): void => {

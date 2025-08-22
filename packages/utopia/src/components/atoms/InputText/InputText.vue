@@ -25,6 +25,7 @@
         @blur="handleBlur"
         @input="handleInput"
         @change="handleChange"
+        @keypress="handleKeypress"
       />
       
       <!-- Validation / leading icon -->
@@ -52,9 +53,9 @@
         />
       </div>
 
-      <!-- Custom stepper for number type -->
+      <!-- Custom stepper for number type (hidden for code mode) -->
       <div 
-        v-if="type === 'number'" 
+        v-if="type === 'number' && !isCode" 
         class="utopia-inputtext__stepper"
         aria-hidden="true"
       >
@@ -117,6 +118,7 @@ interface Props {
   min?: number
   max?: number
   step?: number
+  isCode?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -131,7 +133,8 @@ const props = withDefaults(defineProps<Props>(), {
   icon: '',
   message: '',
   required: false,
-  step: 1
+  step: 1,
+  isCode: false
 })
 
 const emit = defineEmits<{
@@ -158,12 +161,14 @@ const inputtextClasses = computed(() => ({
   [`utopia-inputtext--${props.state}`]: true,
   'utopia-inputtext--disabled': props.disabled,
   'utopia-inputtext--with-icon': props.icon || props.state === 'valid' || props.state === 'error',
-  'utopia-inputtext--with-message': props.message
+  'utopia-inputtext--with-message': props.message,
+  'utopia-inputtext--code': props.isCode
 }))
 
 const fieldClasses = computed(() => ({
   'utopia-inputtext__field--with-icon': props.icon || props.state === 'valid' || props.state === 'error',
-  'utopia-inputtext__field--number': props.type === 'number'
+  'utopia-inputtext__field--number': props.type === 'number',
+  'utopia-inputtext__field--code': props.isCode
 }))
 
 const messageClasses = computed(() => ({
@@ -181,13 +186,59 @@ const handleBlur = (event: FocusEvent) => {
 
 const handleInput = (event: Event) => {
   const target = event.target as HTMLInputElement
-  inputValue.value = target.value
-  emit('update:modelValue', target.value)
+  let value = target.value
+  
+  // Validation spécifique pour le mode code
+  if (props.isCode) {
+    // Prendre seulement le premier caractère
+    value = value.charAt(0).toUpperCase()
+    
+    // Validation selon le type
+    if (props.type === 'number') {
+      // Pour les numériques : seulement les chiffres
+      if (!/^\d$/.test(value)) {
+        value = ''
+      }
+    } else {
+      // Pour le texte : lettres et chiffres uniquement
+      if (!/^[A-Z0-9]$/.test(value)) {
+        value = ''
+      }
+    }
+    
+    // Mettre à jour la valeur dans l'input
+    target.value = value
+  }
+  
+  inputValue.value = value
+  emit('update:modelValue', value)
   emit('input', event)
 }
 
 const handleChange = (event: Event) => {
   emit('change', event)
+}
+
+const handleKeypress = (event: KeyboardEvent) => {
+  // Validation spécifique pour le mode code
+  if (props.isCode) {
+    const char = event.key
+    
+    // Bloquer les caractères invalides
+    if (props.type === 'number') {
+      // Pour les numériques : seulement les chiffres
+      if (!/^\d$/.test(char)) {
+        event.preventDefault()
+        return
+      }
+    } else {
+      // Pour le texte : lettres et chiffres uniquement
+      if (!/^[A-Za-z0-9]$/.test(char)) {
+        event.preventDefault()
+        return
+      }
+    }
+  }
 }
 
 // Helpers number
@@ -291,6 +342,29 @@ watch(() => props.modelValue, (newValue) => {
   box-shadow: 0 0 0 4px transparent;
 }
 
+/* Mode code - optimisé pour les champs de code */
+.utopia-inputtext__field--code {
+  padding: var(--spacing-2, 8px) var(--spacing-2, 8px);
+  text-align: center;
+  font-size: var(--font-size-xl, 20px);
+  font-weight: var(--font-weight-bold, 700);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+/* Tailles pour le mode code */
+.utopia-inputtext--small .utopia-inputtext__field--code {
+  padding: var(--spacing-1, 4px) var(--spacing-1, 4px);
+  font-size: var(--font-size-lg, 18px);
+}
+
+.utopia-inputtext--large .utopia-inputtext__field--code {
+  padding: var(--spacing-3, 12px) var(--spacing-3, 12px);
+  font-size: var(--font-size-2xl, 24px);
+}
+
 /* Retirer les spinners natifs et garder le clavier/scroll */
 .utopia-inputtext__field[type="number"]::-webkit-outer-spin-button,
 .utopia-inputtext__field[type="number"]::-webkit-inner-spin-button {
@@ -301,8 +375,19 @@ watch(() => props.modelValue, (newValue) => {
   -moz-appearance: textfield;
 }
 
-/* Espace pour le stepper custom */
-.utopia-inputtext__field--number {
+/* Supprimer les flèches pour le mode code */
+.utopia-inputtext__field--code[type="number"]::-webkit-outer-spin-button,
+.utopia-inputtext__field--code[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.utopia-inputtext__field--code[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Espace pour le stepper custom (pas pour le mode code) */
+.utopia-inputtext__field--number:not(.utopia-inputtext__field--code) {
   padding-right: calc(var(--spacing-4, 16px) + 28px);
 }
 

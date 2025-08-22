@@ -59,6 +59,12 @@
       "to": "/design-system/molecules/dropdown"
     },
     {
+      "key": "inputcode",
+      "label": "InputCode",
+      "icon": "Lock",
+      "to": "/design-system/molecules/inputcode"
+    },
+    {
       "key": "organisms-section",
       "type": "section",
       "label": "Organisms"

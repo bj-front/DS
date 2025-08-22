@@ -55,6 +55,13 @@ export const generatedRoutes: RouteRecordRaw[] = [
     component: () => import('@/generated/pages/molecules/DropDownPage.vue'),
     meta: {"title":"DropDown","section":"Molecules"}
   }
+,
+  {
+    path: '/design-system/molecules/inputcode',
+    name: 'molecules-InputCode',
+    component: () => import('@/generated/pages/molecules/InputCodePage.vue'),
+    meta: {"title":"InputCode","section":"Molecules"}
+  }
 ]
 
 // Dernière mise à jour: 2025-08-08T13:47:00.793Z
