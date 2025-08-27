@@ -98,7 +98,7 @@
               <span class="footer-text">Utopia Design System</span>
             </div>
             <div class="footer-links">
-              <a href="https://github.com/club-employes/ds" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/bj-front/ds" target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
               <a href="https://npmjs.com/package/@club-employes/utopia" target="_blank" rel="noopener noreferrer">
