@@ -129,7 +129,6 @@ const initializeFields = () => {
 }
 
 const handleFieldInput = (index: number, value: string) => {
-  // Assigner la valeur (validation déjà faite par InputText)
   fieldValues.value[index] = value
   
   // Émettre la valeur complète
