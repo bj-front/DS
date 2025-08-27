@@ -6,20 +6,35 @@
     @mode-toggle="toggleMode"
     @navigate="navigateTo"
   >
-    <!-- Brand Switcher Slot -->
-    <template #brand-switcher>
-      <div class="brand-buttons">
+    <!-- Header Right Slot -->
+    <template #header-right>
+      <div class="header-actions">
+        <!-- Brand Switcher -->
+        <div class="brand-buttons">
+          <button 
+            v-for="brand in availableBrands" 
+            :key="brand.key"
+            @click="setBrand(brand.key)"
+            class="brand-btn"
+            :class="{ 'active': currentBrand === brand.key }"
+            :title="brand.name"
+          >
+            <div class="brand-logo">
+              <Logo :brand="(brand.key as 'club-employes' | 'gifteo')" variant="small" size="xs" />
+            </div>
+          </button>
+        </div>
+        
+        <!-- Theme Toggle Button -->
         <button 
-          v-for="brand in availableBrands" 
-          :key="brand.key"
-          @click="setBrand(brand.key)"
-          class="brand-btn"
-          :class="{ 'active': currentBrand === brand.key }"
-          :title="brand.name"
+          @click="toggleMode"
+          class="mode-toggle"
+          :class="{ 'dark': currentMode === 'dark' }"
+          :aria-label="`Basculer vers le mode ${currentMode === 'light' ? 'sombre' : 'clair'}`"
         >
-          <div class="brand-logo">
-            <Logo :brand="(brand.key as 'club-employes' | 'gifteo')" variant="small" size="xs" />
-          </div>
+          <span class="mode-icon">
+            {{ currentMode === 'light' ? '🌙' : '☀️' }}
+          </span>
         </button>
       </div>
     </template>
@@ -64,6 +79,12 @@ const handleNavClick = (page: string): void => {
 </script>
 
 <style scoped>
+.header-actions {
+  display: flex;
+  gap: var(--spacing-3);
+  align-items: center;
+}
+
 .brand-buttons {
   display: flex;
   gap: var(--spacing-2);
@@ -93,6 +114,41 @@ const handleNavClick = (page: string): void => {
 }
 
 .brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mode Toggle Button */
+.mode-toggle {
+  padding: var(--spacing-2);
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-full);
+  transition: all 0.2s ease;
+  border: 1px solid var(--theme-colors-border-default);
+  background: var(--theme-colors-background-primary);
+  color: var(--theme-colors-text-primary);
+  cursor: pointer;
+}
+
+.mode-toggle:hover {
+  transform: scale(1.05);
+  background: var(--theme-colors-background-secondary);
+}
+
+.mode-toggle.dark {
+  background: var(--theme-colors-brand-primary-500);
+  border-color: var(--theme-colors-brand-primary-500);
+  color: white;
+  box-shadow: 0 0 0 2px var(--theme-colors-brand-primary-200);
+}
+
+.mode-icon {
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
