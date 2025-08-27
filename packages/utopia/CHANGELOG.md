@@ -1,5 +1,17 @@
 # @club-employes/utopia
 
+## 2.16.0
+
+### Minor Changes
+
+- 31f9848: Add new components and features from branch feat/atoms/chip:
+  - ✨ Add Chip component with actionable prop
+  - ✨ Add DropDown component (moved to Molecules)
+  - ✨ Add InputCode component
+  - ✨ Enhance AppLayout and DefaultLayout components
+  - 🔗 Update GitHub repository link
+  - Updated: Components: InputCode (molecule)
+
 ## 2.15.1
 
 ### Patch Changes
