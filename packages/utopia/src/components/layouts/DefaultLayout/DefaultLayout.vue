@@ -45,22 +45,21 @@
         
         <!-- Right Slot: Actions -->
         <template #right>
-          <!-- Brand Switcher Slot -->
-          <slot name="brand-switcher" />
-          
-          <!-- Theme Toggle -->
-          <Button 
-            variant="primary" 
-            size="sm"
-            @click="toggleMode"
-            :aria-label="`Basculer vers le mode ${currentMode === 'light' ? 'sombre' : 'clair'}`"
-            class="mode-toggle"
-            :class="{ 'dark': currentMode === 'dark' }"
-          >
-            <span class="mode-icon">
-              {{ currentMode === 'light' ? '🌙' : '☀️' }}
-            </span>
-          </Button>
+          <slot name="header-right">
+            <!-- Default content: Theme Toggle -->
+            <Button 
+              variant="primary" 
+              size="sm"
+              @click="toggleMode"
+              :aria-label="`Basculer vers le mode ${currentMode === 'light' ? 'sombre' : 'clair'}`"
+              class="mode-toggle"
+              :class="{ 'dark': currentMode === 'dark' }"
+            >
+              <span class="mode-icon">
+                {{ currentMode === 'light' ? '🌙' : '☀️' }}
+              </span>
+            </Button>
+          </slot>
         </template>
         
         <!-- Mobile Menu Navigation Items -->
@@ -91,20 +90,23 @@
 
       <!-- Footer -->
       <footer class="app-footer">
-        <div class="footer-content">
-          <div class="footer-brand">
-            <Logo variant="small" size="xs" />
-            <span class="footer-text">Utopia Design System</span>
+        <slot name="footer">
+          <!-- Default footer content -->
+          <div class="footer-content">
+            <div class="footer-brand">
+              <Logo variant="small" size="xs" />
+              <span class="footer-text">Utopia Design System</span>
+            </div>
+            <div class="footer-links">
+              <a href="https://github.com/club-employes/ds" target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
+              <a href="https://npmjs.com/package/@club-employes/utopia" target="_blank" rel="noopener noreferrer">
+                npm
+              </a>
+            </div>
           </div>
-          <div class="footer-links">
-            <a href="https://github.com/club-employes/ds" target="_blank" rel="noopener noreferrer">
-              GitHub
-            </a>
-            <a href="https://npmjs.com/package/@club-employes/utopia" target="_blank" rel="noopener noreferrer">
-              npm
-            </a>
-          </div>
-        </div>
+        </slot>
       </footer>
     </div>
     
@@ -113,10 +115,22 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useRoute } from 'vue-router'
 import { useTheme } from '../../../composables'
 import { Button, Logo } from '../../atoms'
 import { Header, Menu, MenuSection, NavItem } from './components'
+
+// @ts-ignore - Import vue-router only if available (optional peer dependency)
+import { useRoute } from 'vue-router'
+
+// Use route with fallback
+const route = (() => {
+  try {
+    return useRoute()
+  } catch {
+    // vue-router not available
+    return null
+  }
+})()
 
 interface MenuItem {
   key: string
@@ -185,9 +199,6 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<Emits>()
-
-// Get current route
-const route = useRoute()
 
 // Menu state
 // Use theme composable for menu state persistence

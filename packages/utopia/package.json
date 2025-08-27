@@ -32,10 +32,13 @@
     "type-check": "echo 'Type checking passed'",
     "release": "cd ../.. && npm run release"
   },
-  "dependencies": {
-    "vue": "^3.5.17"
+  "peerDependencies": {
+    "vue": "^3.5.17",
+    "vue-router": "^4.0.0"
   },
   "devDependencies": {
+    "vue": "^3.5.17",
+    "vue-router": "^4.5.0",
     "@types/json-schema": "^7.0.15",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.7.0",
