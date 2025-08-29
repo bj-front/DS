@@ -29,7 +29,7 @@ const route = useRoute()
 // Determine if we should use the default layout
 const useDefaultLayout = computed(() => {
   // Pages that should not use the default layout
-  return !route.meta?.noLayout
+  return !route.meta?.['noLayout']
 })
 
 // Get the layout component to use

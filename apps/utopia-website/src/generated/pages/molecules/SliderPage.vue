@@ -23,7 +23,7 @@
           <pre><code>&lt;Slider
   :slides="slides"
   direction="horizontal"
-  :autoplay="true"
+  autoplay
   :autoplay-delay="3000"
   height="400px"
 /&gt;</code></pre>
@@ -36,9 +36,9 @@
           <Slider
             :slides="verticalSlides"
             direction="horizontal"
-            :autoplay="true"
+            autoplay
             :autoplay-delay="4000"
-            :show-dots="true"
+            show-dots
             height="100%"
           />
         </div>
@@ -50,9 +50,9 @@
           <pre><code>&lt;Slider
   :slides="slides"
   direction="vertical"
-  :autoplay="true"
+  autoplay
   :autoplay-delay="4000"
-  :show-dots="true"
+  show-dots
   height="500px"
 /&gt;</code></pre>
         </details>
@@ -64,7 +64,7 @@
           <Slider
             :slides="simpleSlides"
             :autoplay="false"
-            :always-show-controls="true"
+            always-show-controls
             height="100%"
           />
         </div>
@@ -76,7 +76,7 @@
           <pre><code>&lt;Slider
   :slides="slides"
   :autoplay="false"
-  :always-show-controls="true"
+  always-show-controls
   height="300px"
 /&gt;</code></pre>
         </details>

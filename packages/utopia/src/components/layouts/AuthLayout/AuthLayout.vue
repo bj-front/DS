@@ -70,8 +70,8 @@
         direction="horizontal"
         :autoplay="autoplay"
         :autoplay-delay="autoplayDelay"
-        :show-dots="true"
-        :show-controls="true"
+        show-dots
+        show-controls
         :always-show-controls="false"
         @slide-change="handleSlideChange"
       >
