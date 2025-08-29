@@ -1,5 +1,11 @@
 # @club-employes/utopia
 
+## 3.0.0
+
+### Major Changes
+
+- 096eb4c: AuthLayout and Slider components added
+
 ## 2.16.0
 
 ### Minor Changes
