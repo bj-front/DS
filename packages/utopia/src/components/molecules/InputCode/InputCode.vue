@@ -143,7 +143,7 @@ const handleFieldInput = (index: number, value: string) => {
     })
   }
   
-  // Vérifier si le code est complet
+  // Vérifier si le code est completed
   if (completeValue.length === props.length) {
     emit('complete', completeValue)
   }
