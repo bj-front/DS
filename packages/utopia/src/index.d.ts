@@ -183,6 +183,8 @@ export declare const InputCode: DefineComponent<InputCodeProps>
 export declare const DataTable: DefineComponent<DataTableProps>
 export declare const ThemeProvider: DefineComponent<ThemeProviderProps>
 export declare const DefaultLayout: DefineComponent<{}>
+export declare const AuthLayout: DefineComponent<{}>
+export declare const Slider: DefineComponent<{}>
 
 // Theme exports
 export declare const clubEmployesLight: ThemeConfig

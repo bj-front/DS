@@ -1,3 +1,4 @@
+export { default as AuthLayoutPage } from './AuthLayoutPage.vue'
 export { default as ColorsPage } from './ColorsPage.vue'
 export { default as IconsPage } from './IconsPage.vue'
 export { default as LogosPage } from './LogosPage.vue'

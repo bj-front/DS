@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 // Import pages from domains
 import {
+  AuthLayoutPage,
   ColorsPage,
   IconsPage,
   LogosPage,
@@ -72,6 +73,16 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: 'Icônes - Design System Utopia',
       description: 'Bibliothèque complète des icônes disponibles'
+    }
+  },
+  {
+    path: '/auth-demo',
+    name: 'auth-layout-demo',
+    component: AuthLayoutPage,
+    meta: {
+      title: 'Auth Layout Demo - Design System Utopia',
+      description: 'Démonstration du layout d\'authentification',
+      noLayout: true
     }
   },
   // Future routes
