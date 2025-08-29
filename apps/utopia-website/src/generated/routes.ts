@@ -62,6 +62,19 @@ export const generatedRoutes: RouteRecordRaw[] = [
     component: () => import('@/generated/pages/molecules/InputCodePage.vue'),
     meta: {"title":"InputCode","section":"Molecules"}
   }
+,
+  {
+    path: '/design-system/layouts/authlayout',
+    name: 'layouts-AuthLayout',
+    component: () => import('@/generated/pages/layouts/AuthLayoutPage.vue'),
+    meta: {"title":"AuthLayout","section":"Layouts"}
+  },
+  {
+    path: '/design-system/molecules/slider',
+    name: 'molecules-Slider',
+    component: () => import('@/generated/pages/molecules/SliderPage.vue'),
+    meta: {"title":"Slider","section":"Molecules"}
+  }
 ]
 
 // Dernière mise à jour: 2025-08-08T13:47:00.793Z

@@ -1,12 +1,18 @@
 <template>
   <ThemeProvider :theme="currentTheme">
-    <AppLayout />
-    <SpeedInsights />
+    <!-- Conditional layout based on route meta -->
+    <component :is="layoutComponent">
+      <router-view v-if="useDefaultLayout" />
+    </component>
+    <!-- Direct router-view for pages without layout -->
+    <router-view v-if="!useDefaultLayout" />
   </ThemeProvider>
 </template>
 
 <script setup lang="ts">
 import { ThemeProvider } from '@club-employes/utopia'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 
 // Import the shared layout component
 import AppLayout from './domains/shared/components/AppLayout.vue'
@@ -17,7 +23,19 @@ import { useTheme } from '@club-employes/utopia'
 // Use theme composable for global theme management
 const { currentTheme } = useTheme()
 
-// Global styles and theme will be managed here
+// Get current route
+const route = useRoute()
+
+// Determine if we should use the default layout
+const useDefaultLayout = computed(() => {
+  // Pages that should not use the default layout
+  return !route.meta?.noLayout
+})
+
+// Get the layout component to use
+const layoutComponent = computed(() => {
+  return useDefaultLayout.value ? AppLayout : 'div'
+})
 </script>
 
 <style>

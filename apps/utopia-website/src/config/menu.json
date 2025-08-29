@@ -59,6 +59,12 @@
       "to": "/design-system/molecules/dropdown"
     },
     {
+      "key": "slider",
+      "label": "Slider",
+      "icon": "Cassette-tape",
+      "to": "/design-system/molecules/slider"
+    },
+    {
       "key": "inputcode",
       "label": "InputCode",
       "icon": "Lock",
@@ -79,6 +85,12 @@
       "label": "Default Layout",
       "icon": "Layout",
       "to": "/design-system/layouts/defaultlayout"
+    },
+    {
+      "key": "authlayout",
+      "label": "AuthLayout",
+      "icon": "Log-in",
+      "to": "/design-system/layouts/authlayout"
     },
     {
       "key": "design-section",

@@ -6,5 +6,6 @@
   "atoms-Card": "Wallet-cards",
   "atoms-Chip": "Tag",
   "molecules-DropDown": "Droplet",
-  "molecules-InputCode": "Lock"
+  "molecules-InputCode": "Lock",
+  "layouts-AuthLayout": "Log-in"
 }
