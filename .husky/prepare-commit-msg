@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Capture le message de commit et le stocke dans une variable d'environnement
+# pour que le script auto-changeset puisse l'utiliser
+if [ -n "$2" ]; then
+    export GIT_COMMIT_MSG="$(cat "$2")"
+fi

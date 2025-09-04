@@ -55,7 +55,8 @@
   },
   "lint-staged": {
     "packages/utopia/src/**/*.{js,ts,vue}": [
-      "node scripts/auto-changeset.js"
+      "turbo lint --filter=@club-employes/utopia",
+      "turbo type-check --filter=@club-employes/utopia"
     ],
     "apps/utopia-website/**/*.{js,ts,vue}": [
       "turbo lint --filter=utopia-website",

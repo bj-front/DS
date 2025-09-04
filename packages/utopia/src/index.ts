@@ -6,6 +6,7 @@ export type { ThemeConfig, ThemeProviderProps } from './theme-provider'
 export * from './components'
 
 // Explicit exports for better IDE support
+export { Skeleton } from './components/atoms/Skeleton'
 export { DefaultLayout, Header, Menu, NavItem } from './components/layouts'
 
 // Themes
