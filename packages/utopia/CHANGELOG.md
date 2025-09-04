@@ -1,5 +1,14 @@
 # @club-employes/utopia
 
+## 4.2.0
+
+### Minor Changes
+
+- 7413f55: Updates from branch changeset-release/main:
+  - Design system components updated
+- 463e120: Updates from branch feat/atoms/chip:
+  - Design system components updated
+
 ## 4.1.0
 
 ### Minor Changes
