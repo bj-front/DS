@@ -1,5 +1,12 @@
 # @club-employes/utopia
 
+## 3.4.0
+
+### Minor Changes
+
+- ff7f539: Updates from branch changeset-release/main:
+  - Design system components updated
+
 ## 3.3.0
 
 ### Minor Changes
