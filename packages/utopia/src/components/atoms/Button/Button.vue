@@ -5,6 +5,7 @@
     :disabled="disabled || loading"
     @click="handleClick"
     :style="buttonStyle"
+    :aria-label="props.ariaLabel"
   >
     <!-- Éléments de gauche (icône ou loading) -->
     <template v-if="iconPosition === 'left' || (!icon && loading)">
@@ -63,6 +64,7 @@ interface Props {
   loading?: boolean
   icon?: string
   iconPosition?: 'left' | 'right'
+  ariaLabel?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -70,7 +72,8 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'md',
   disabled: false,
   loading: false,
-  iconPosition: 'left'
+  iconPosition: 'left',
+  ariaLabel: undefined
 })
 
 const emit = defineEmits<{

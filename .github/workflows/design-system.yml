@@ -2,7 +2,11 @@ name: Design System CI/CD
 
 on:
   push:
-    branches: ['**']
+    branches: 
+      - '**'
+      - '!changeset-release/**'
+      - '!release/**'
+      - '!version/**'
     paths:
       - 'packages/utopia/**'
       - '.github/workflows/design-system.yml'
@@ -55,14 +59,24 @@ jobs:
         uses: ./.github/actions/build-design-system
 
       - name: 🔄 Auto Create Changeset
-        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+        if: |
+          github.event_name == 'push' && 
+          github.ref != 'refs/heads/main' &&
+          !startsWith(github.ref_name, 'changeset-release/') &&
+          !startsWith(github.ref_name, 'release/') &&
+          !startsWith(github.ref_name, 'version/')
         uses: ./.github/actions/auto-changeset
         with:
           github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
           branch-name: ${{ github.ref_name }}
 
       - name: 🔄 Create or update Pull Request
-        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+        if: |
+          github.event_name == 'push' && 
+          github.ref != 'refs/heads/main' &&
+          !startsWith(github.ref_name, 'changeset-release/') &&
+          !startsWith(github.ref_name, 'release/') &&
+          !startsWith(github.ref_name, 'version/')
         uses: ./.github/actions/create-pr
         with:
           github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
@@ -74,7 +88,9 @@ jobs:
   release:
     name: 📦 Release & Publish
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: |
+      (github.ref == 'refs/heads/main' && github.event_name == 'push') ||
+      (github.event_name == 'pull_request' && github.head_ref == 'changeset-release/main')
     defaults:
       run:
         working-directory: packages/utopia
@@ -160,3 +176,35 @@ jobs:
           else
             echo "ℹ️ No version information available, skipping GitHub release"
           fi
+
+  # Job 4: Auto-merge release PRs
+  auto-merge-release:
+    name: 🔄 Auto-merge Release PR
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'pull_request' && 
+      github.head_ref == 'changeset-release/main' &&
+      github.event.pull_request.merged == false
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: 🔄 Auto-merge release PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          echo "🔄 Auto-merging release PR #${{ github.event.pull_request.number }}"
+          
+          # Merger la PR automatiquement
+          gh pr merge ${{ github.event.pull_request.number }} \
+            --merge \
+            --delete-branch \
+            --body "🚀 Auto-merged release PR for NPM publication"
+          
+          echo "✅ Release PR merged successfully"
