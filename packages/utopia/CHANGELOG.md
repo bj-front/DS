@@ -1,5 +1,42 @@
 # @club-employes/utopia
 
+## 2.16.0
+
+### Minor Changes
+
+- ## ✨ New Features & Components
+
+  ### Atoms
+
+  - **Skeleton Component**: Added comprehensive skeleton loading component with text, rectangular, and circular variants
+  - **Chip Component**: Enhanced with actionable prop for interactive chips
+  - **Button Component**: Improved with loading states and icon positioning
+  - **Icon Component**: Enhanced with better theming and accessibility support
+
+  ### Molecules
+
+  - **DropDown Component**: Moved to molecules with advanced features (search, multi-select, clearable)
+  - **InputCode Component**: New multi-digit code input component
+  - **Slider Component**: Enhanced carousel component with touch support and controls
+
+  ### Layouts
+
+  - **DefaultLayout**: Enhanced with better navigation and responsive design
+  - **AuthLayout**: Improved authentication layout with better theming
+
+  ## 🔧 Improvements
+
+  - **Automated Changeset**: Implemented automatic changeset creation on design system changes
+  - **Component Documentation**: Added comprehensive COMPONENTS.md for AI-assisted development
+  - **Build Process**: Optimized token generation and build pipeline
+  - **Accessibility**: Enhanced ARIA support across all components
+
+  ## 🧹 Cleanup
+
+  - Removed unused scripts and test components
+  - Cleaned up changeset files
+  - Optimized component exports and types
+
 ## 2.15.1
 
 ### Patch Changes
