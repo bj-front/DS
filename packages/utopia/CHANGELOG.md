@@ -1,5 +1,21 @@
 # @club-employes/utopia
 
+## 3.1.0
+
+### Minor Changes
+
+- 2d81ec5: Updates from branch feat/atoms/chip:
+  - Design system components updated
+- 7755745: Updates from branch feat/atoms/chip:
+  - Design system components updated
+
+## 3.0.0
+
+### Major Changes
+
+- 096eb4c: AuthLayout and Slider components added
+
+
 ## 2.16.0
 
 ### Minor Changes
@@ -36,7 +52,6 @@
   - Removed unused scripts and test components
   - Cleaned up changeset files
   - Optimized component exports and types
-
 ## 2.15.1
 
 ### Patch Changes
