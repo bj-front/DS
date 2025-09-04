@@ -38,7 +38,7 @@ const cardClasses = computed(() => ({
   display: flex;
   flex-direction: column;
   gap: var(--spacing-3, 12px);
-  border-radius: var(--radius-md, 8px);
+  border-radius: var(--border-radius-lg, 8px);
   background-color: var(--theme-colors-surface-background, #ffffff);
   color: var(--theme-colors-text-primary, #111827);
   border: 2px solid var(--theme-colors-border-default, #9ca3af);
