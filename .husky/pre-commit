@@ -10,13 +10,13 @@ if echo "$CHANGED_FILES" | grep -q "^apps/utopia-website/.*\.(js|ts|vue)$"; then
 fi
 
 # Détecte les changements pour le design system
-if echo "$CHANGED_FILES" | grep -q "^packages/utopia/.*\.(js|ts|vue)$"; then
+if echo "$CHANGED_FILES" | grep -q "^packages/utopia/"; then
     echo "🎨 Vérifications design system..."
     npx turbo lint type-check build:tokens --filter=@club-employes/utopia
     
     # Crée automatiquement un changeset si nécessaire
     echo "📝 Création automatique du changeset..."
-    node scripts/auto-changeset.js
+    node scripts/auto-changeset-simple.js
     
     # Vérifier si un nouveau changeset a été créé et l'ajouter au commit
     NEW_CHANGESETS=$(git diff --cached --name-only | grep "^\.changeset/.*\.md$")
