@@ -13,8 +13,11 @@ function getChangedFiles() {
   try {
     // Pour un pre-commit hook, on regarde les fichiers staged
     const output = execSync('git diff --cached --name-only', { encoding: 'utf8' });
-    return output.trim().split('\n').filter(Boolean);
+    const files = output.trim().split('\n').filter(Boolean);
+    console.log('📁 Fichiers modifiés détectés:', files);
+    return files;
   } catch (error) {
+    console.log('⚠️  Erreur lors de la récupération des fichiers modifiés:', error.message);
     return [];
   }
 }
@@ -196,6 +199,8 @@ function findExistingUtopiaChangeset() {
 }
 
 function main() {
+  console.log('🚀 Démarrage du script auto-changeset...');
+  
   const changedFiles = getChangedFiles();
   
   if (!hasDesignSystemChanges(changedFiles)) {
@@ -203,10 +208,19 @@ function main() {
     return;
   }
   
+  console.log('✅ Changements détectés dans le design system');
+  
   const changeType = determineChangeType(changedFiles);
   const branchName = execSync('git branch --show-current', { encoding: 'utf8' }).trim();
   const changesSummary = getChangesSummary(changedFiles);
-  const commitMessage = execSync('git log -1 --pretty=%s 2>/dev/null', { encoding: 'utf8' }).trim() || '';
+  
+  // Essayer de récupérer le message de commit depuis les variables d'environnement ou le dernier commit
+  let commitMessage = '';
+  try {
+    commitMessage = process.env.GIT_COMMIT_MSG || execSync('git log -1 --pretty=%s 2>/dev/null', { encoding: 'utf8' }).trim() || '';
+  } catch (e) {
+    commitMessage = '';
+  }
   
   // Description basée sur le commit message ou un résumé des changements
   let description = '';
@@ -217,6 +231,9 @@ function main() {
   } else {
     description = `- Update design system components from branch ${branchName}`;
   }
+  
+  console.log(`📝 Type de changement: ${changeType}`);
+  console.log(`📄 Description: ${description}`);
   
   // Chercher un changeset existant pour utopia
   const existingChangeset = findExistingUtopiaChangeset();
@@ -233,6 +250,8 @@ function main() {
     const fullDescription = `Updates from branch ${branchName}:\n${description}`;
     createChangeset(changeType, fullDescription);
   }
+  
+  console.log('✅ Script auto-changeset terminé');
 }
 
 if (require.main === module) {
