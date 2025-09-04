@@ -1,6 +1,6 @@
 <template>
   <div class="test-component">
-    <p>Test component for changeset automation</p>
+    <p>Test component for changeset automation - Updated</p>
   </div>
 </template>
 
