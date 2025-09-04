@@ -75,6 +75,13 @@ export const generatedRoutes: RouteRecordRaw[] = [
     component: () => import('@/generated/pages/molecules/SliderPage.vue'),
     meta: {"title":"Slider","section":"Molecules"}
   }
+,
+  {
+    path: '/design-system/atoms/skeleton',
+    name: 'atoms-Skeleton',
+    component: () => import('@/generated/pages/atoms/SkeletonPage.vue'),
+    meta: {"title":"Skeleton","section":"Atoms"}
+  }
 ]
 
 // Dernière mise à jour: 2025-08-08T13:47:00.793Z

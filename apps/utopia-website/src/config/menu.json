@@ -48,6 +48,12 @@
       "to": "/design-system/atoms/chip"
     },
     {
+      "key": "skeleton",
+      "label": "Skeleton",
+      "icon": "Skull",
+      "to": "/design-system/atoms/skeleton"
+    },
+    {
       "key": "molecules-section",
       "type": "section",
       "label": "Molecules"

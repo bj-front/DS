@@ -7,5 +7,6 @@
   "atoms-Chip": "Tag",
   "molecules-DropDown": "Droplet",
   "molecules-InputCode": "Lock",
-  "layouts-AuthLayout": "Log-in"
+  "layouts-AuthLayout": "Log-in",
+  "atoms-Skeleton": "Skull"
 }
