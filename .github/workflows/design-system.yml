@@ -146,35 +146,44 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
-          # Récupérer la version depuis le package.json
+          # Récupérer la version APRÈS la publication (npm run release met à jour package.json)
           VERSION=$(node -p "require('./packages/utopia/package.json').version")
           
           if [ -n "$VERSION" ] && [ "$VERSION" != "null" ]; then
             echo "📦 Creating release for version: $VERSION"
             
-            # Créer le tag Git
-            git tag "v$VERSION"
-            git push origin "v$VERSION"
+            # Vérifier si le tag existe déjà
+            if git tag -l | grep -q "v$VERSION"; then
+              echo "⚠️ Tag v$VERSION already exists, skipping tag creation"
+            else
+              # Créer le tag Git
+              git tag "v$VERSION"
+              git push origin "v$VERSION"
+            fi
             
-            # Créer la GitHub Release
-            gh release create "v$VERSION" \
-              --title "🚀 Design System v$VERSION" \
-              --notes "🎨 New release of @club-employes/utopia design system
+            # Créer la GitHub Release (si elle n'existe pas déjà)
+            if gh release view "v$VERSION" >/dev/null 2>&1; then
+              echo "⚠️ GitHub Release v$VERSION already exists, skipping release creation"
+            else
+              gh release create "v$VERSION" \
+                --title "🚀 Design System v$VERSION" \
+                --notes "🎨 New release of @club-employes/utopia design system
 
-            **Installation:**
-            \`\`\`bash
-            npm install @club-employes/utopia@$VERSION
-            \`\`\`
-            
-            **What's included:**
-            - 🎨 Design tokens (colors, spacing, typography)  
-            - 🧩 Vue 3 components
-            - 📱 Responsive utilities
-            - 🌙 Dark mode support
-            " \
-              --latest
+              **Installation:**
+              \`\`\`bash
+              npm install @club-employes/utopia@$VERSION
+              \`\`\`
               
-            echo "✅ GitHub Release created: v$VERSION"
+              **What's included:**
+              - 🎨 Design tokens (colors, spacing, typography)  
+              - 🧩 Vue 3 components
+              - 📱 Responsive utilities
+              - 🌙 Dark mode support
+              " \
+                --latest
+                
+              echo "✅ GitHub Release created: v$VERSION"
+            fi
           else
             echo "ℹ️ No version information available, skipping GitHub release"
           fi
