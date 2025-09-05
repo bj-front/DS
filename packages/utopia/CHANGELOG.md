@@ -1,5 +1,12 @@
 # @club-employes/utopia
 
+## 4.5.0
+
+### Minor Changes
+
+- 85befeb: Updates from branch changeset-release/main:
+  - Design system components updated
+
 ## 4.4.0
 
 ### Minor Changes
