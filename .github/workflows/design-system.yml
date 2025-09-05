@@ -82,4 +82,59 @@ jobs:
           github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
           project-type: 'design-system'
 
+  # Job 3: Release automatique (main branch uniquement)
+  release:
+    name: 📦 Release & Publish
+    runs-on: ubuntu-latest
+    if: |
+      github.ref == 'refs/heads/main' && 
+      github.event_name == 'push' &&
+      !contains(github.event.head_commit.message, 'chore: version packages')
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: ⚡ Setup Node.js and Cache
+        uses: ./.github/actions/setup-node-cache
+        with:
+          cache-prefix: 'release'
+
+      - name: 🔍 Check for changesets
+        id: check-changesets
+        run: |
+          CHANGESETS=$(find .changeset -name "*.md" -not -name "README.md" | wc -l)
+          echo "changesets_count=$CHANGESETS" >> $GITHUB_OUTPUT
+          echo "Found $CHANGESETS changeset(s)"
+
+      - name: 🏗️ Build Design System
+        if: steps.check-changesets.outputs.changesets_count > 0
+        uses: ./.github/actions/build-design-system
+
+      - name: 🚀 Create Release PR or Publish
+        if: steps.check-changesets.outputs.changesets_count > 0
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: npm run release
+          title: "🚀 Release: Version Packages"
+          commit: "chore: version packages"
+          setupGitUser: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📊 Release Summary
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          echo "🎉 Successfully published packages!"
+          echo "Published packages: ${{ steps.changesets.outputs.publishedPackages }}"
+
   
