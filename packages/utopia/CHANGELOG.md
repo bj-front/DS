@@ -1,5 +1,12 @@
 # @club-employes/utopia
 
+## 4.7.0
+
+### Minor Changes
+
+- 24c4755: Updates from branch changeset-release/main:
+  - Design system components updated
+
 ## 4.6.0
 
 ### Minor Changes
