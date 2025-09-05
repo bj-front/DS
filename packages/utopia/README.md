@@ -24,7 +24,7 @@
 ### Installation
 
 ```bash
-npm install @club-employes/utopia vue@^3.5.0
+npm install @club-employes/utopia vue@^3.1.0
 ```
 
 ### Basic Usage
