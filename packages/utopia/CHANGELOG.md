@@ -1,5 +1,35 @@
 # @club-employes/utopia
 
+## 4.7.0
+
+### Minor Changes
+
+- 677703b: Updates from branch feat/CI/npm:
+  - Design system components updated
+- 2bfa192: Updates from branch feat/CI/npm:
+  - Design system components updated
+- ae37fd7: Updates from branch feat/CI/npm:
+  - Design system components updated
+- ## 🚀 Version 4.7.0
+
+  ### ✨ Nouvelles fonctionnalités
+
+  - Ajout des exports manquants pour les composants Skeleton (SkeletonAvatar, SkeletonText)
+  - Amélioration des types TypeScript pour les composants Skeleton
+  - Simplification du workflow de publication npm
+
+  ### 🔧 Améliorations
+
+  - Workflow GitHub Actions optimisé pour publication directe
+  - Gestion automatique des tags Git existants
+  - Synchronisation des versions locales avec npm
+
+  ### 📦 Composants
+
+  - **Skeleton** : Exports complets disponibles
+  - **SkeletonAvatar** : Nouveau composant exporté
+  - **SkeletonText** : Nouveau composant exporté
+
 ## 3.1.0
 
 ### Minor Changes
@@ -14,7 +44,6 @@
 ### Major Changes
 
 - 096eb4c: AuthLayout and Slider components added
-
 
 ## 2.16.0
 
@@ -52,6 +81,7 @@
   - Removed unused scripts and test components
   - Cleaned up changeset files
   - Optimized component exports and types
+
 ## 2.15.1
 
 ### Patch Changes
