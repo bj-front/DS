@@ -9,6 +9,7 @@ export { Icon } from './Icon'
 export { InputText } from './InputText'
 export { Logo } from './Logo'
 export type { LogoBrand, LogoSize, LogoVariant } from './Logo'
+export { Skeleton, SkeletonAvatar, SkeletonText } from './Skeleton'
 export { Switch } from './Switch'
 
 // Types
@@ -19,4 +20,4 @@ export type ButtonSize = 'small' | 'medium' | 'large'
 export type IconName = string
 export type IconSize = 'small' | 'medium' | 'large'
 export type IconColor = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral' | 'current'
-export { Skeleton } from './Skeleton'
+

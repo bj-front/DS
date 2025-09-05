@@ -489,11 +489,7 @@
 
 <script setup lang="ts">
 import { ComponentLayout } from '@/components';
-import { Icon } from '@club-employes/utopia';
-// Import temporaire jusqu'à ce que le composant soit buildé
-import Skeleton from '../../../../../../packages/utopia/src/components/atoms/Skeleton/Skeleton.vue';
-import SkeletonAvatar from '../../../../../../packages/utopia/src/components/atoms/Skeleton/SkeletonAvatar.vue';
-import SkeletonText from '../../../../../../packages/utopia/src/components/atoms/Skeleton/SkeletonText.vue';
+import { Icon, Skeleton, SkeletonAvatar, SkeletonText } from '@club-employes/utopia';
 </script>
 
 <style scoped>

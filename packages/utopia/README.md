@@ -21,12 +21,6 @@
 
 ## 🚀 Quick Start
 
-### Installation
-
-```bash
-npm install @club-employes/utopia vue@^3.1.0
-```
-
 ### Basic Usage
 
 ```vue
