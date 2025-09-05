@@ -152,6 +152,28 @@ export interface DataTableProps {
   rowKey?: string | ((row: any) => string)
 }
 
+export interface SkeletonProps {
+  width?: string | number
+  height?: string | number
+  variant?: 'text' | 'rectangular' | 'circular'
+  animation?: 'pulse' | 'wave' | 'none'
+  radius?: number
+  bg?: boolean
+}
+
+export interface SkeletonAvatarProps {
+  size?: 'small' | 'medium' | 'large' | number
+  variant?: 'circular' | 'rounded' | 'square'
+  animation?: 'pulse' | 'wave' | 'none'
+  rounded?: boolean
+}
+
+export interface SkeletonTextProps {
+  lines?: number
+  width?: string | string[] | number
+  animation?: 'pulse' | 'wave' | 'none'
+}
+
 export interface ThemeConfig {
   name: string
   mode: 'light' | 'dark'
@@ -181,6 +203,9 @@ export declare const InputText: DefineComponent<InputTextProps>
 export declare const DropDown: DefineComponent<DropDownProps>
 export declare const InputCode: DefineComponent<InputCodeProps>
 export declare const DataTable: DefineComponent<DataTableProps>
+export declare const Skeleton: DefineComponent<SkeletonProps>
+export declare const SkeletonAvatar: DefineComponent<SkeletonAvatarProps>
+export declare const SkeletonText: DefineComponent<SkeletonTextProps>
 export declare const ThemeProvider: DefineComponent<ThemeProviderProps>
 export declare const DefaultLayout: DefineComponent<{}>
 export declare const AuthLayout: DefineComponent<{}>
