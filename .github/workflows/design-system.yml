@@ -131,27 +131,23 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: 🚀 Create Release PR or Publish
+      - name: 🚀 Publish to NPM
         if: steps.check-changesets.outputs.changesets_count > 0
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: npm run release
-          title: "🚀 Release: Version Packages"
-          commit: "chore: version packages"
-          setupGitUser: true
+        id: publish
+        run: |
+          echo "🚀 Publishing packages to NPM..."
+          npm run release
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📋 Create GitHub Release
-        if: steps.changesets.outputs.published == 'true'
+        if: steps.publish.outcome == 'success'
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
-          PUBLISHED_PACKAGES='${{ steps.changesets.outputs.publishedPackages }}'
-          VERSION=$(echo "$PUBLISHED_PACKAGES" | jq -r '.[0].version' 2>/dev/null || echo "")
+          # Récupérer la version depuis le package.json
+          VERSION=$(node -p "require('./packages/utopia/package.json').version")
           
           if [ -n "$VERSION" ] && [ "$VERSION" != "null" ]; then
             echo "📦 Creating release for version: $VERSION"
@@ -184,9 +180,10 @@ jobs:
           fi
 
       - name: 📊 Release Summary
-        if: steps.changesets.outputs.published == 'true'
+        if: steps.publish.outcome == 'success'
         run: |
           echo "🎉 Successfully published packages!"
-          echo "Published packages: ${{ steps.changesets.outputs.publishedPackages }}"
+          VERSION=$(node -p "require('./packages/utopia/package.json').version")
+          echo "Published version: $VERSION"
 
   
