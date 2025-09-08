@@ -8,5 +8,6 @@
   "molecules-DropDown": "Droplet",
   "molecules-InputCode": "Lock",
   "layouts-AuthLayout": "Log-in",
-  "atoms-Skeleton": "Skull"
+  "atoms-Skeleton": "Skull",
+  "organisms-BalanceCard": "Cable-car"
 }
