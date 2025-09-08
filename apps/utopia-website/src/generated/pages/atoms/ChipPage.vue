@@ -67,6 +67,68 @@
         </div>
       </div>
 
+      <!-- Variants Ghost -->
+      <div class="showcase-item">
+        <h3>Variants Ghost</h3>
+        <p>Variants avec un style "fantôme" - fond clair et texte coloré pour un effet plus subtil.</p>
+        
+        <div class="chip-demo">
+          <div class="chip-group">
+            <h4>Default Ghost</h4>
+            <div class="chip-examples">
+              <Chip ghost>Default ghost</Chip>
+              <Chip ghost left-icon="User">User ghost</Chip>
+              <Chip ghost removable @remove="handleRemove">Removable ghost</Chip>
+            </div>
+          </div>
+          
+          <div class="chip-group">
+            <h4>Primary Ghost</h4>
+            <div class="chip-examples">
+              <Chip variant="primary" ghost>Primary ghost</Chip>
+              <Chip variant="primary" ghost left-icon="Star">Star ghost</Chip>
+              <Chip variant="primary" ghost removable @remove="handleRemove">Removable primary ghost</Chip>
+            </div>
+          </div>
+          
+          <div class="chip-group">
+            <h4>Secondary Ghost</h4>
+            <div class="chip-examples">
+              <Chip variant="secondary" ghost>Secondary ghost</Chip>
+              <Chip variant="secondary" ghost left-icon="Heart">Heart ghost</Chip>
+              <Chip variant="secondary" ghost removable @remove="handleRemove">Removable secondary ghost</Chip>
+            </div>
+          </div>
+          
+          <div class="chip-group">
+            <h4>Success Ghost</h4>
+            <div class="chip-examples">
+              <Chip variant="success" ghost>Success ghost</Chip>
+              <Chip variant="success" ghost left-icon="Check">Check ghost</Chip>
+              <Chip variant="success" ghost removable @remove="handleRemove">Removable success ghost</Chip>
+            </div>
+          </div>
+          
+          <div class="chip-group">
+            <h4>Warning Ghost</h4>
+            <div class="chip-examples">
+              <Chip variant="warning" ghost>Warning ghost</Chip>
+              <Chip variant="warning" ghost left-icon="Alert-triangle">Warning ghost</Chip>
+              <Chip variant="warning" ghost removable @remove="handleRemove">Removable warning ghost</Chip>
+            </div>
+          </div>
+          
+          <div class="chip-group">
+            <h4>Danger Ghost</h4>
+            <div class="chip-examples">
+              <Chip variant="danger" ghost>Danger ghost</Chip>
+              <Chip variant="danger" ghost left-icon="X-circle">Error ghost</Chip>
+              <Chip variant="danger" ghost removable @remove="handleRemove">Removable danger ghost</Chip>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Tailles -->
       <div class="showcase-item">
         <h3>Tailles</h3>
@@ -97,6 +159,41 @@
               <Chip size="large">Large chip</Chip>
               <Chip size="large" left-icon="User">User</Chip>
               <Chip size="large" removable @remove="handleRemove">Remove</Chip>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tailles Ghost -->
+      <div class="showcase-item">
+        <h3>Tailles Ghost</h3>
+        <p>Variants ghost dans différentes tailles.</p>
+        
+        <div class="chip-demo">
+          <div class="chip-group">
+            <h4>Petite taille ghost</h4>
+            <div class="chip-examples">
+              <Chip size="small" ghost>Small ghost</Chip>
+              <Chip size="small" variant="primary" ghost>Primary</Chip>
+              <Chip size="small" variant="success" ghost left-icon="Check">Success</Chip>
+            </div>
+          </div>
+          
+          <div class="chip-group">
+            <h4>Taille moyenne ghost (défaut)</h4>
+            <div class="chip-examples">
+              <Chip size="medium" ghost>Medium ghost</Chip>
+              <Chip size="medium" variant="primary" ghost>Primary</Chip>
+              <Chip size="medium" variant="success" ghost left-icon="Check">Success</Chip>
+            </div>
+          </div>
+          
+          <div class="chip-group">
+            <h4>Grande taille ghost</h4>
+            <div class="chip-examples">
+              <Chip size="large" ghost>Large ghost</Chip>
+              <Chip size="large" variant="primary" ghost>Primary</Chip>
+              <Chip size="large" variant="success" ghost left-icon="Check">Success</Chip>
             </div>
           </div>
         </div>
@@ -150,6 +247,7 @@
               <Chip actionable @click="handleClick">Tag cliquable</Chip>
               <Chip actionable left-icon="User" @click="handleClick">Avec icône</Chip>
               <Chip actionable variant="primary" @click="handleClick">Primary cliquable</Chip>
+              <Chip actionable variant="success" ghost @click="handleClick">Success ghost cliquable</Chip>
             </div>
             <p class="demo-note">Ombre au hover, cursor pointer</p>
           </div>
@@ -202,20 +300,30 @@
 &lt;Chip variant="warning"&gt;Warning chip&lt;/Chip&gt;
 &lt;Chip variant="danger"&gt;Danger chip&lt;/Chip&gt;
 
+&lt;!-- Variants Ghost --&gt;
+&lt;Chip ghost&gt;Default ghost&lt;/Chip&gt;
+&lt;Chip variant="primary" ghost&gt;Primary ghost&lt;/Chip&gt;
+&lt;Chip variant="success" ghost&gt;Success ghost&lt;/Chip&gt;
+&lt;Chip variant="danger" ghost&gt;Danger ghost&lt;/Chip&gt;
+
 &lt;!-- Avec icône à gauche --&gt;
 &lt;Chip left-icon="User"&gt;User chip&lt;/Chip&gt;
 &lt;Chip variant="primary" left-icon="Star"&gt;Star chip&lt;/Chip&gt;
+&lt;Chip variant="success" ghost left-icon="Check"&gt;Check ghost&lt;/Chip&gt;
 
 &lt;!-- Supprimable --&gt;
 &lt;Chip removable @remove="handleRemove"&gt;Removable chip&lt;/Chip&gt;
+&lt;Chip variant="primary" ghost removable @remove="handleRemove"&gt;Removable ghost&lt;/Chip&gt;
 
 &lt;!-- Tailles --&gt;
 &lt;Chip size="small"&gt;Small chip&lt;/Chip&gt;
 &lt;Chip size="medium"&gt;Medium chip&lt;/Chip&gt;
 &lt;Chip size="large"&gt;Large chip&lt;/Chip&gt;
+&lt;Chip size="small" ghost&gt;Small ghost&lt;/Chip&gt;
 
 &lt;!-- États --&gt;
 &lt;Chip disabled&gt;Disabled chip&lt;/Chip&gt;
+&lt;Chip disabled ghost&gt;Disabled ghost&lt;/Chip&gt;
 
 &lt;!-- Combinaison --&gt;
 &lt;Chip 
@@ -230,11 +338,27 @@
   User chip
 &lt;/Chip&gt;
 
+&lt;!-- Combinaison Ghost --&gt;
+&lt;Chip 
+  variant="success" 
+  ghost
+  size="medium" 
+  left-icon="Check" 
+  removable 
+  actionable
+  @remove="handleRemove"
+  @click="handleClick"
+&gt;
+  Success ghost chip
+&lt;/Chip&gt;
+
 &lt;!-- Avec action --&gt;
 &lt;Chip actionable @click="handleClick"&gt;Tag cliquable&lt;/Chip&gt;
+&lt;Chip variant="primary" ghost actionable @click="handleClick"&gt;Ghost cliquable&lt;/Chip&gt;
 
 &lt;!-- Sans action (défaut) --&gt;
-&lt;Chip&gt;Tag simple&lt;/Chip&gt;</code></pre>
+&lt;Chip&gt;Tag simple&lt;/Chip&gt;
+&lt;Chip ghost&gt;Ghost simple&lt;/Chip&gt;</code></pre>
         </details>
       </div>
 
@@ -287,6 +411,12 @@
                 <td><code>boolean</code></td>
                 <td><code>false</code></td>
                 <td>Active les effets de hover (ombre, cursor pointer) pour les chips cliquables</td>
+              </tr>
+              <tr>
+                <td><code>ghost</code></td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Applique un style "fantôme" avec fond clair et texte coloré</td>
               </tr>
             </tbody>
           </table>
