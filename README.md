@@ -66,6 +66,57 @@ npm run changeset
 npm run release
 ```
 
+## 🚀 Release Manuelle
+
+Si vous devez faire une release manuelle (par exemple, si l'automatisation ne fonctionne pas), voici les étapes :
+
+### 1. Créer un changeset
+```bash
+# Créer un changeset pour vos modifications
+npm run changeset
+```
+
+### 2. Mettre à jour les versions
+```bash
+# Appliquer les changesets et mettre à jour les versions
+npm run version-packages
+```
+
+### 3. Commiter les changements de version
+```bash
+# Commiter les changements de version
+git add .
+git commit -m "chore: version packages to X.X.X"
+git push origin votre-branche
+```
+
+### 4. Merger sur main
+```bash
+# Créer une PR vers main
+gh pr create --title "Release vX.X.X" --body "Description des changements"
+
+# Ou merger directement si vous avez les droits
+git checkout main
+git merge votre-branche
+git push origin main
+```
+
+### 5. Publication automatique
+Une fois mergé sur `main`, le workflow GitHub Actions va automatiquement :
+- ✅ Détecter les changements de version
+- ✅ Builder le design system
+- ✅ Publier sur NPM
+- ✅ Créer une GitHub Release
+
+### 🔍 Vérification
+```bash
+# Vérifier que la version a été publiée
+npm view @club-employes/utopia version
+
+# Vérifier les releases GitHub
+gh release list
+```
+
 ## 🤖 Automatisation
 
 Ce projet utilise GitHub Actions pour automatiser :
@@ -74,6 +125,20 @@ Ce projet utilise GitHub Actions pour automatiser :
 - ✅ **Création de changesets** automatique pour nouveaux composants
 - ✅ **Publication npm** automatique sur merge
 - ✅ **Versioning sémantique** avec notes de release
+
+### 🔄 Flux automatique des changesets
+
+Le système détecte automatiquement les changements et crée des changesets :
+
+1. **Commit hook** : Crée automatiquement un changeset lors du commit
+2. **Version locale** : `npm run version-packages` met à jour les versions
+3. **Merge sur main** : Le workflow publie automatiquement sur NPM
+
+### 📝 Types de changements détectés
+
+- **Minor** : Nouveaux composants, nouvelles fonctionnalités
+- **Patch** : Corrections de bugs, améliorations mineures
+- **Major** : Changements breaking (détectés via mots-clés)
 
 ### Configuration rapide
 

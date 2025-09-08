@@ -82,6 +82,12 @@
       "label": "Organisms"
     },
     {
+      "key": "balancecard",
+      "label": "BalanceCard",
+      "icon": "Cable-car",
+      "to": "/design-system/organisms/balancecard"
+    },
+    {
       "key": "layouts-section",
       "type": "section",
       "label": "Layouts"

@@ -82,6 +82,13 @@ export const generatedRoutes: RouteRecordRaw[] = [
     component: () => import('@/generated/pages/atoms/SkeletonPage.vue'),
     meta: {"title":"Skeleton","section":"Atoms"}
   }
+,
+  {
+    path: '/design-system/organisms/balancecard',
+    name: 'organisms-BalanceCard',
+    component: () => import('@/generated/pages/organisms/BalanceCardPage.vue'),
+    meta: {"title":"BalanceCard","section":"Organisms"}
+  }
 ]
 
 // Dernière mise à jour: 2025-08-08T13:47:00.793Z
