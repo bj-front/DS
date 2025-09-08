@@ -5,6 +5,7 @@
       v-if="leftIcon" 
       :name="leftIcon" 
       :size="iconSize" 
+      :stroke-width="2"
       class="utopia-chip__left-icon"
     />
     
@@ -26,6 +27,7 @@
         name="X" 
         :size="iconSize" 
         class="utopia-chip__close-icon"
+        :stroke-width="2"
       />
     </button>
   </div>
@@ -43,6 +45,7 @@ interface Props {
   removable?: boolean
   leftIcon?: string
   actionable?: boolean
+  ghost?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -50,7 +53,8 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'medium',
   disabled: false,
   removable: false,
-  actionable: false
+  actionable: false,
+  ghost: false
 })
 
 const emit = defineEmits<{
@@ -65,6 +69,7 @@ const chipClasses = computed(() => ({
   'utopia-chip--disabled': props.disabled,
   'utopia-chip--removable': props.removable,
   'utopia-chip--actionable': props.actionable,
+  'utopia-chip--ghost': props.ghost,
   [`utopia-chip--${currentTheme.value?.mode || 'light'}`]: true
 }))
 
@@ -141,6 +146,43 @@ const handleRemove = (event: Event) => {
   background: linear-gradient(135deg, var(--theme-colors-semantic-attention-primary, #ef4444) 0%, var(--theme-colors-semantic-attention-primary, #dc2626) 100%);
   border: 1px solid var(--theme-colors-semantic-attention-primary, #ef4444);
   color: var(--theme-colors-semantic-attention-text, #ffffff);
+}
+
+/* Ghost variants */
+.utopia-chip--ghost.utopia-chip--default {
+  background: var(--theme-colors-brand-primary-100, #dbeafe);
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
+  border: 1px solid transparent;
+}
+
+.utopia-chip--ghost.utopia-chip--primary {
+  background: var(--theme-colors-brand-primary-100, #dbeafe);
+  color: var(--theme-colors-brand-primary-500, #3b82f6);
+  border: 1px solid transparent;
+}
+
+.utopia-chip--ghost.utopia-chip--secondary {
+  background: var(--theme-colors-brand-secondary-100, #e9d5ff);
+  color: var(--theme-colors-brand-secondary-500, #8b5cf6);
+  border: 1px solid transparent;
+}
+
+.utopia-chip--ghost.utopia-chip--success {
+  background: var(--theme-colors-common-succeed-50, #ecfdf5);
+  color: var(--theme-colors-common-succeed-500, #10b981);
+  border: 1px solid transparent;
+}
+
+.utopia-chip--ghost.utopia-chip--warning {
+  background: var(--theme-colors-warning-100, #fef3c7);
+  color: var(--theme-colors-warning-500, #f59e0b);
+  border: 1px solid transparent;
+}
+
+.utopia-chip--ghost.utopia-chip--danger {
+  background: var(--theme-colors-semantic-attention-100, #fee2e2);
+  color: var(--theme-colors-semantic-attention-500, #ef4444);
+  border: 1px solid transparent;
 }
 
 /* Sizes */
@@ -250,6 +292,37 @@ const handleRemove = (event: Event) => {
   border-color: var(--theme-colors-semantic-attention-primary, #dc2626);
 }
 
+/* Ghost hover states */
+.utopia-chip--actionable.utopia-chip--ghost.utopia-chip--default:hover:not(.utopia-chip--disabled) {
+  background: var(--theme-colors-brand-primary-200, #bfdbfe);
+  color: var(--theme-colors-brand-primary-600, #2563eb);
+}
+
+.utopia-chip--actionable.utopia-chip--ghost.utopia-chip--primary:hover:not(.utopia-chip--disabled) {
+  background: var(--theme-colors-brand-primary-200, #bfdbfe);
+  color: var(--theme-colors-brand-primary-600, #2563eb);
+}
+
+.utopia-chip--actionable.utopia-chip--ghost.utopia-chip--secondary:hover:not(.utopia-chip--disabled) {
+  background: var(--theme-colors-brand-secondary-200, #ddd6fe);
+  color: var(--theme-colors-brand-secondary-600, #7c3aed);
+}
+
+.utopia-chip--actionable.utopia-chip--ghost.utopia-chip--success:hover:not(.utopia-chip--disabled) {
+  background: var(--theme-colors-common-succeed-100, #d1fae5);
+  color: var(--theme-colors-common-succeed-600, #059669);
+}
+
+.utopia-chip--actionable.utopia-chip--ghost.utopia-chip--warning:hover:not(.utopia-chip--disabled) {
+  background: var(--theme-colors-warning-200, #fde68a);
+  color: var(--theme-colors-warning-600, #d97706);
+}
+
+.utopia-chip--actionable.utopia-chip--ghost.utopia-chip--danger:hover:not(.utopia-chip--disabled) {
+  background: var(--theme-colors-semantic-attention-200, #fecaca);
+  color: var(--theme-colors-semantic-attention-600, #dc2626);
+}
+
 /* Hover sur le bouton de fermeture */
 .utopia-chip__close-button:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.2);
@@ -326,5 +399,73 @@ const handleRemove = (event: Event) => {
   background: var(--theme-colors-surface-background, #111827);
   border-color: var(--theme-colors-border-muted, #374151);
   color: var(--theme-colors-text-muted, #6b7280);
+}
+
+/* Dark mode ghost variants */
+.utopia-chip--dark.utopia-chip--ghost.utopia-chip--default {
+  background: var(--theme-colors-brand-primary-900, #1e3a8a);
+  color: var(--theme-colors-brand-primary-300, #93c5fd);
+  border: 1px solid transparent;
+}
+
+.utopia-chip--dark.utopia-chip--ghost.utopia-chip--primary {
+  background: var(--theme-colors-brand-primary-900, #1e3a8a);
+  color: var(--theme-colors-brand-primary-300, #93c5fd);
+  border: 1px solid transparent;
+}
+
+.utopia-chip--dark.utopia-chip--ghost.utopia-chip--secondary {
+  background: var(--theme-colors-brand-secondary-900, #581c87);
+  color: var(--theme-colors-brand-secondary-300, #c4b5fd);
+  border: 1px solid transparent;
+}
+
+.utopia-chip--dark.utopia-chip--ghost.utopia-chip--success {
+  background: var(--theme-colors-common-succeed-900, #064e3b);
+  color: var(--theme-colors-common-succeed-300, #6ee7b7);
+  border: 1px solid transparent;
+}
+
+.utopia-chip--dark.utopia-chip--ghost.utopia-chip--warning {
+  background: var(--theme-colors-warning-900, #78350f);
+  color: var(--theme-colors-warning-300, #fcd34d);
+  border: 1px solid transparent;
+}
+
+.utopia-chip--dark.utopia-chip--ghost.utopia-chip--danger {
+  background: var(--theme-colors-semantic-attention-900, #7f1d1d);
+  color: var(--theme-colors-semantic-attention-300, #fca5a5);
+  border: 1px solid transparent;
+}
+
+/* Dark mode ghost hover states */
+.utopia-chip--dark.utopia-chip--actionable.utopia-chip--ghost.utopia-chip--default:hover:not(.utopia-chip--disabled) {
+  background: var(--theme-colors-brand-primary-800, #1e40af);
+  color: var(--theme-colors-brand-primary-200, #bfdbfe);
+}
+
+.utopia-chip--dark.utopia-chip--actionable.utopia-chip--ghost.utopia-chip--primary:hover:not(.utopia-chip--disabled) {
+  background: var(--theme-colors-brand-primary-800, #1e40af);
+  color: var(--theme-colors-brand-primary-200, #bfdbfe);
+}
+
+.utopia-chip--dark.utopia-chip--actionable.utopia-chip--ghost.utopia-chip--secondary:hover:not(.utopia-chip--disabled) {
+  background: var(--theme-colors-brand-secondary-800, #6b21a8);
+  color: var(--theme-colors-brand-secondary-200, #ddd6fe);
+}
+
+.utopia-chip--dark.utopia-chip--actionable.utopia-chip--ghost.utopia-chip--success:hover:not(.utopia-chip--disabled) {
+  background: var(--theme-colors-common-succeed-800, #065f46);
+  color: var(--theme-colors-common-succeed-200, #a7f3d0);
+}
+
+.utopia-chip--dark.utopia-chip--actionable.utopia-chip--ghost.utopia-chip--warning:hover:not(.utopia-chip--disabled) {
+  background: var(--theme-colors-warning-800, #92400e);
+  color: var(--theme-colors-warning-200, #fde68a);
+}
+
+.utopia-chip--dark.utopia-chip--actionable.utopia-chip--ghost.utopia-chip--danger:hover:not(.utopia-chip--disabled) {
+  background: var(--theme-colors-semantic-attention-800, #991b1b);
+  color: var(--theme-colors-semantic-attention-200, #fecaca);
 }
 </style>
