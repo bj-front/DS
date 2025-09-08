@@ -1,5 +1,21 @@
 # @club-employes/utopia
 
+## 4.8.0
+
+### Minor Changes
+
+- 3f6ca45: Add ghost variant support to Chip component
+
+  - Add ghost prop to Chip component interface
+  - Implement ghost styles for all variants (default, primary, secondary, success, warning, danger)
+  - Add ghost hover states and dark mode support
+  - Update Chip documentation page with ghost examples
+
+- 9325c03: Updates from branch feat/CI/npm:
+  - Design system components updated
+- 1af109f: Updates from branch feat/CI/npm:
+  - Design system components updated
+
 ## 4.7.0
 
 ### Minor Changes
