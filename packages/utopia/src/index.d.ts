@@ -166,6 +166,22 @@ export interface BalanceCardProps {
   currency?: string
 }
 
+export interface BalanceCardGroupProps {
+  cards: BalanceCardData[]
+  language?: 'fr' | 'en'
+  currency?: string
+}
+
+export interface BalanceCardData {
+  campaignName: string
+  category: 'culture' | 'noel' | 'voyages' | 'rentree' | 'retraite' | 'naissance' | 'mariage' | 'sport'
+  totalAmount: number
+  spentAmount: number
+  campaignCount: number
+  actionable?: () => void
+  disabled?: boolean
+}
+
 export interface SkeletonProps {
   width?: string | number
   height?: string | number
@@ -218,6 +234,7 @@ export declare const DropDown: DefineComponent<DropDownProps>
 export declare const InputCode: DefineComponent<InputCodeProps>
 export declare const DataTable: DefineComponent<DataTableProps>
 export declare const BalanceCard: DefineComponent<BalanceCardProps>
+export declare const BalanceCardGroup: DefineComponent<BalanceCardGroupProps>
 export declare const Skeleton: DefineComponent<SkeletonProps>
 export declare const SkeletonAvatar: DefineComponent<SkeletonAvatarProps>
 export declare const SkeletonText: DefineComponent<SkeletonTextProps>

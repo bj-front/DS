@@ -88,6 +88,12 @@
       "to": "/design-system/organisms/balancecard"
     },
     {
+      "key": "balancecardgroup",
+      "label": "BalanceCardGroup",
+      "icon": "Group",
+      "to": "/design-system/organisms/balancecardgroup"
+    },
+    {
       "key": "layouts-section",
       "type": "section",
       "label": "Layouts"

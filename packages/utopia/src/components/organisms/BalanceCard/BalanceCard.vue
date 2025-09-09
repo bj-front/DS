@@ -21,11 +21,15 @@
       <!-- Titre et date -->
       <div class="utopia-cardcampaign__header-content">
         <h3 class="utopia-cardcampaign__title">{{ props.campaignName }}</h3>
-        <div class="utopia-cardcampaign__expiration">
+        <div v-if="props.variant !== 'grouped'" class="utopia-cardcampaign__expiration">
           <Icon name="Calendar" size="small" class="utopia-cardcampaign__calendar-icon" :strokeWidth="2" />
           <span class="utopia-cardcampaign__expiration-text">
             {{ currentTranslations.expiresOn }} {{ formattedExpirationDate }}
           </span>
+        </div>
+        <!-- Pour le variant grouped : nombre de campagnes -->
+        <div v-else class="utopia-cardcampaign__campaign-count">
+          {{ props.campaignCount }} {{ props.campaignCount > 1 ? 'campagnes' : 'campagne' }}
         </div>
       </div>
 
@@ -37,6 +41,7 @@
 
     <!-- Deuxième rangée : Slider de balance ou statut expiré -->
     <div class="utopia-cardcampaign__row utopia-cardcampaign__row--balance">
+      <!-- Balance avec progression (pour tous les variants sauf expiré) -->
       <div v-if="!props.disabled" class="utopia-cardcampaign__balance-content">
         <!-- Labels des montants au-dessus de la barre -->
         <div class="utopia-cardcampaign__amounts-labels">
@@ -150,6 +155,7 @@ const formattedTotalAmount = computed(() => {
     minimumFractionDigits: 0
   }).format(props.totalAmount)
 })
+
 
 const formattedExpirationDate = computed(() => {
   const date = new Date(props.expirationDate)
@@ -298,6 +304,7 @@ const currentTranslations = computed(() => translations.value[props.language])
   font-size: var(--font-size-sm, 14px);
   color: var(--theme-colors-brand-primary-400, #6b7280);
 }
+
 
 /* Icône chevron */
 .utopia-cardcampaign__chevron {

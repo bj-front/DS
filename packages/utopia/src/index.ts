@@ -8,8 +8,8 @@ export * from './components'
 // Explicit exports for better IDE support
 export { Skeleton, SkeletonAvatar, SkeletonText } from './components/atoms/Skeleton'
 export { DefaultLayout, Header, Menu, NavItem } from './components/layouts'
-export { BalanceCard } from './components/organisms'
-export type { BalanceCardProps } from './components/organisms'
+export { BalanceCard, BalanceCardGroup } from './components/organisms'
+export type { BalanceCardData, BalanceCardGroupProps, BalanceCardProps } from './components/organisms'
 
 // Themes
 export { clubEmployesDark, clubEmployesLight } from './themes/club-employes'
