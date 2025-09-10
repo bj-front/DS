@@ -32,7 +32,7 @@
         <!-- Montant et progression -->
         <div class="utopia-balance-card-grouped__balance">
           <div class="utopia-balance-card-grouped__amount">
-            {{ formatAmount(card.totalAmount - card.spentAmount) }}
+            {{ formatAmount(card.amount) }}
           </div>
           <div class="utopia-balance-card-grouped__progress">
             <div class="utopia-balance-card-grouped__progress-bar">
@@ -64,7 +64,7 @@ interface BalanceCardData {
   campaignName: string
   category: 'culture' | 'noel' | 'voyages' | 'rentree' | 'retraite' | 'naissance' | 'mariage' | 'sport'
   totalAmount: number
-  spentAmount: number
+  amount: number // Montant restant
   campaignCount: number
   actionable?: () => void
   disabled?: boolean
@@ -134,8 +134,7 @@ const formatAmount = (amount: number) => {
 // Calcul du pourcentage de progression (montant restant)
 const getProgressPercentage = (card: BalanceCardData) => {
   if (card.totalAmount === 0) return 0
-  const remainingAmount = card.totalAmount - card.spentAmount
-  return Math.min((remainingAmount / card.totalAmount) * 100, 100)
+  return Math.min((card.amount / card.totalAmount) * 100, 100)
 }
 </script>
 

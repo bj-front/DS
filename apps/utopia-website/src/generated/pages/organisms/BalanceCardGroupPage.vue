@@ -172,9 +172,9 @@
                 <td>Montant total de la campagne</td>
               </tr>
               <tr>
-                <td><code>spentAmount</code></td>
+                <td><code>amount</code></td>
                 <td><code>number</code></td>
-                <td>Montant dépensé</td>
+                <td>Montant restant</td>
               </tr>
               <tr>
                 <td><code>campaignCount</code></td>
@@ -217,14 +217,14 @@
     campaignName: 'Culture',
     category: 'culture',
     totalAmount: 100,
-    spentAmount: 30,
+    amount: 70, // Montant restant
     campaignCount: 5
   },
   {
     campaignName: 'Noël',
     category: 'noel',
     totalAmount: 100,
-    spentAmount: 64,
+    amount: 36, // Montant restant
     campaignCount: 3
   }
 ]</code></pre>
@@ -267,14 +267,14 @@ const sampleCards: BalanceCardData[] = [
     campaignName: 'Culture',
     category: 'culture',
     totalAmount: 100,
-    spentAmount: 30,
+    amount: 70, // Montant restant
     campaignCount: 5
   },
   {
     campaignName: 'Noël',
     category: 'noel',
     totalAmount: 100,
-    spentAmount: 64,
+    amount: 36, // Montant restant
     campaignCount: 3
   }
 ];
@@ -284,7 +284,7 @@ const cardsWithActions: BalanceCardData[] = [
     campaignName: 'Culture',
     category: 'culture',
     totalAmount: 100,
-    spentAmount: 30,
+    amount: 70, // Montant restant
     campaignCount: 5,
     actionable: () => handleCardClick('Culture')
   },
@@ -292,7 +292,7 @@ const cardsWithActions: BalanceCardData[] = [
     campaignName: 'Noël',
     category: 'noel',
     totalAmount: 100,
-    spentAmount: 64,
+    amount: 36, // Montant restant
     campaignCount: 3,
     actionable: () => handleCardClick('Noël')
   },
@@ -300,7 +300,7 @@ const cardsWithActions: BalanceCardData[] = [
     campaignName: 'Noël',
     category: 'noel',
     totalAmount: 100,
-    spentAmount: 64,
+    amount: 36, // Montant restant
     campaignCount: 3,
     actionable: () => handleCardClick('Noël')
   },
@@ -308,7 +308,7 @@ const cardsWithActions: BalanceCardData[] = [
     campaignName: 'Noël',
     category: 'noel',
     totalAmount: 100,
-    spentAmount: 64,
+    amount: 36, // Montant restant
     campaignCount: 3,
     actionable: () => handleCardClick('Noël')
   }

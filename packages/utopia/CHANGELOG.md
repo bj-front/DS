@@ -1,5 +1,15 @@
 # @club-employes/utopia
 
+## 4.8.4
+
+### Patch Changes
+
+- Fix BalanceCardGroup interface and logic
+  - Change `spentAmount` to `amount` (remaining amount) in BalanceCardData interface
+  - Update progress bar calculation to show remaining amount percentage
+  - Fix component display logic to show remaining amount instead of spent amount
+  - Update documentation and examples to reflect new interface
+
 ## 4.8.0
 
 ### Minor Changes
