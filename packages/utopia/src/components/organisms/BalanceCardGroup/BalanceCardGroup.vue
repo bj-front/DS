@@ -25,7 +25,7 @@
         <div class="utopia-balance-card-grouped__header">
           <h3 class="utopia-balance-card-grouped__title">{{ card.campaignName }}</h3>
           <div class="utopia-balance-card-grouped__campaign-count">
-            {{ card.campaignCount }} {{ currentTranslations.campaigns }}
+            {{ card.campaignCount }} {{ card.campaignCount > 1 ? currentTranslations.campaigns : currentTranslations.campaign }}
           </div>
         </div>
 
@@ -110,9 +110,11 @@ const getCategoryImage = (category: string) => {
 // Traductions
 const translations = {
   fr: {
+    campaign: 'campagne',
     campaigns: 'campagnes'
   },
   en: {
+    campaign: 'campaign',
     campaigns: 'campaigns'
   }
 }
