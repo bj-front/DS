@@ -61,6 +61,14 @@
               expiration-date="2024-06-20"
               variant="secondary"
             />
+            <BalanceCard
+              campaign-name="Campagne avec action"
+              category="noel"
+              :total-amount="100"
+              :spent-amount="64"
+              expiration-date="2024-12-25"
+              :actionable="handleCardClick"
+            />
           </div>
         </div>
         <details class="code-snippet">
@@ -93,6 +101,15 @@
   :spent-amount="800"
   expiration-date="2024-06-20"
   variant="secondary"
+/&gt;
+
+&lt;BalanceCard
+  campaign-name="Campagne avec action"
+  category="noel"
+  :total-amount="100"
+  :spent-amount="64"
+  expiration-date="2024-12-25"
+  :actionable="() => alert('Carte cliquée!')"
 /&gt;</code></pre>
         </details>
       </div>
@@ -730,6 +747,7 @@
   currency="EUR"
   :actionable="() => router.push('/campaign-details')"
 /&gt;</code></pre>
+
       </div>
       
         <h3>🎨 Design</h3>
