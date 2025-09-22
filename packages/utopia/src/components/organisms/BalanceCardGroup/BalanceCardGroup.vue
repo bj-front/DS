@@ -201,7 +201,7 @@ const getProgressPercentage = (card: BalanceCardData) => {
 
 .utopia-balance-card-grouped--actionable {
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: none;
   transition: all 0.3s ease;
 }
 
@@ -227,6 +227,7 @@ const getProgressPercentage = (card: BalanceCardData) => {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: var(--spacing-2, 8px);
 }
 
 .utopia-balance-card-grouped__icon-image {
@@ -275,7 +276,7 @@ const getProgressPercentage = (card: BalanceCardData) => {
 .utopia-balance-card-grouped__amount {
   font-size: var(--font-size-xl, 20px);
   font-weight: var(--font-weight-bold, 700);
-  color: var(--theme-colors-brand-primary-600, #2563eb);
+  color: var(--theme-colors-brand-primary-500, #2563eb);
   line-height: 1.2;
 }
 

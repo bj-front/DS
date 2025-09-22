@@ -202,7 +202,7 @@ import { AuthLayout, Icon } from '@club-employes/utopia';
 }
 
 .demo-button:hover {
-  background-color: var(--theme-colors-brand-primary-600, #2563eb);
+  background-color: var(--theme-colors-brand-primary-500, #2563eb);
   transform: translateY(-1px);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }

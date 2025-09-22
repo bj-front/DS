@@ -295,12 +295,12 @@ const handleRemove = (event: Event) => {
 /* Ghost hover states */
 .utopia-chip--actionable.utopia-chip--ghost.utopia-chip--default:hover:not(.utopia-chip--disabled) {
   background: var(--theme-colors-brand-primary-200, #bfdbfe);
-  color: var(--theme-colors-brand-primary-600, #2563eb);
+  color: var(--theme-colors-brand-primary-500, #2563eb);
 }
 
 .utopia-chip--actionable.utopia-chip--ghost.utopia-chip--primary:hover:not(.utopia-chip--disabled) {
   background: var(--theme-colors-brand-primary-200, #bfdbfe);
-  color: var(--theme-colors-brand-primary-600, #2563eb);
+  color: var(--theme-colors-brand-primary-500, #2563eb);
 }
 
 .utopia-chip--actionable.utopia-chip--ghost.utopia-chip--secondary:hover:not(.utopia-chip--disabled) {

@@ -1017,7 +1017,7 @@ const handleCardClick = (): void => {
 }
 
 .category-item strong {
-  color: var(--theme-colors-brand-primary-600, #2563eb);
+  color: var(--theme-colors-brand-primary-500, #2563eb);
 }
 
 .category-item em {
