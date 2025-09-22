@@ -53,13 +53,13 @@ const cardClasses = computed(() => ({
 .utopia-card--default {
   background-color: var(--theme-colors-surface-background, #ffffff);
   border: 2px solid var(--theme-colors-border-default, #9ca3af);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .utopia-card--elevated {
   background-color: var(--theme-colors-surface-card, #ffffff);
   border: 1px solid var(--theme-colors-border-default, #e5e7eb);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .utopia-card--outlined {
@@ -71,7 +71,7 @@ const cardClasses = computed(() => ({
 /* Interactions (calquées sur Switch) */
 .utopia-card--interactive:hover:not(.utopia-card--disabled):not(.utopia-card--active) {
   border-color: transparent;
-  box-shadow: 0 0 0 4px var(--theme-colors-brand-secondary-50, rgba(59, 130, 246, 0.2));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .utopia-card--interactive:active:not(.utopia-card--disabled):not(.utopia-card--active) {
@@ -85,7 +85,7 @@ const cardClasses = computed(() => ({
 
 .utopia-card:not(.utopia-card--interactive):hover {
   border-color: var(--theme-colors-border-default, #9ca3af);
-  box-shadow: 0 0 0 4px transparent;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
   transform: none;
 }
 
@@ -98,25 +98,25 @@ const cardClasses = computed(() => ({
 /* Override spécifique pour les variants non-interactifs */
 .utopia-card--elevated:not(.utopia-card--interactive):hover {
   transform: none;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
   border-color: var(--theme-colors-border-default, #e5e7eb);
 }
 
 .utopia-card--outlined:not(.utopia-card--interactive):hover {
   border-color: var(--theme-colors-border-default, #e5e7eb);
-  box-shadow: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 /* Hover effects spécifiques par variant (seulement pour les interactives) */
 .utopia-card--elevated.utopia-card--interactive:hover:not(.utopia-card--disabled):not(.utopia-card--active) {
   transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
   border-color: var(--theme-colors-brand-primary-300, #93c5fd);
 }
 
 .utopia-card--outlined.utopia-card--interactive:hover:not(.utopia-card--disabled):not(.utopia-card--active) {
   border-color: var(--theme-colors-brand-primary-300, #93c5fd);
-  box-shadow: 0 0 0 4px var(--theme-colors-brand-secondary-50, rgba(59, 130, 246, 0.2));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 /* État actif */

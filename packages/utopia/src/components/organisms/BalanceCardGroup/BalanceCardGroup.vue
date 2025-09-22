@@ -372,5 +372,10 @@ const getProgressPercentage = (card: BalanceCardData) => {
   .utopia-balance-card-grouped:not(:last-child)::after {
     display: none;
   }
+  
+  /* Masquer le slider de progression sur mobile */
+  .utopia-balance-card-grouped__progress {
+    display: none;
+  }
 }
 </style>

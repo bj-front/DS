@@ -20,16 +20,25 @@
 
       <!-- Titre et date -->
       <div class="utopia-cardcampaign__header-content">
-        <h3 class="utopia-cardcampaign__title">{{ props.campaignName }}</h3>
-        <div v-if="props.variant !== 'grouped'" class="utopia-cardcampaign__expiration">
+        <div class="utopia-cardcampaign__title-container">
+          <h3 
+            class="utopia-cardcampaign__title"
+            ref="titleRef"
+            @mouseenter="showTooltip"
+            @mouseleave="hideTooltip"
+          >{{ props.campaignName }}</h3>
+          <div 
+            v-if="showTooltipFlag && props.campaignName.length > 20"
+            class="utopia-cardcampaign__tooltip"
+          >
+            {{ props.campaignName }}
+          </div>
+        </div>
+        <div v-if="!props.disabled" class="utopia-cardcampaign__expiration">
           <Icon name="Calendar" size="small" class="utopia-cardcampaign__calendar-icon" :strokeWidth="2" />
           <span class="utopia-cardcampaign__expiration-text">
             {{ currentTranslations.expiresOn }} {{ formattedExpirationDate }}
           </span>
-        </div>
-        <!-- Pour le variant grouped : nombre de campagnes -->
-        <div v-else class="utopia-cardcampaign__campaign-count">
-          {{ props.campaignCount }} {{ props.campaignCount > 1 ? 'campagnes' : 'campagne' }}
         </div>
       </div>
 
@@ -69,9 +78,6 @@
       
       <!-- Statut expiré pour les campagnes désactivées -->
       <div v-else class="utopia-cardcampaign__expired-content">
-        <div class="utopia-cardcampaign__expired-status">
-          Campagne expirée
-        </div>
         <div class="utopia-cardcampaign__expired-date">
           Expiré le {{ formattedExpirationDate }}
         </div>
@@ -81,7 +87,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import Card from '../../atoms/Card/Card.vue'
 import Icon from '../../atoms/Icon/Icon.vue'
 
@@ -185,6 +191,21 @@ const translations = computed(() => ({
 }))
 
 const currentTranslations = computed(() => translations.value[props.language])
+
+// Gestion du tooltip personnalisé
+const titleRef = ref<HTMLElement>()
+const showTooltipFlag = ref(false)
+
+// Fonctions pour gérer l'affichage du tooltip
+const showTooltip = () => {
+  if (props.campaignName.length > 20) {
+    showTooltipFlag.value = true
+  }
+}
+
+const hideTooltip = () => {
+  showTooltipFlag.value = false
+}
 </script>
 
 <style scoped>
@@ -194,6 +215,8 @@ const currentTranslations = computed(() => translations.value[props.language])
   flex-direction: column;
   gap: var(--spacing-4, 16px);
   position: relative;
+  max-width: 300px;
+  width: 100%;
 }
 
 /* Cursor pointer pour les cartes actionables */
@@ -225,7 +248,7 @@ const currentTranslations = computed(() => translations.value[props.language])
   width: 48px;
   height: 48px;
   background: var(--theme-colors-brand-primary-100, #dbeafe);
-  border-radius: 50%;
+  border-radius: var(--border-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -282,12 +305,55 @@ const currentTranslations = computed(() => translations.value[props.language])
   color: var(--theme-colors-text-muted, #6b7280);
 }
 
+/* Container du titre avec tooltip */
+.utopia-cardcampaign__title-container {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
 .utopia-cardcampaign__title {
   margin: 0;
   font-size: var(--font-size-base, 16px);
   font-weight: var(--font-weight-semibold, 600);
   color: var(--theme-colors-text-primary, #111827);
   line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tooltip personnalisé */
+.utopia-cardcampaign__tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(31, 41, 55, 0.95);
+  color: #ffffff;
+  padding: var(--spacing-3, 12px);
+  border-radius: var(--border-radius-md, 8px);
+  font-size: var(--font-size-sm, 14px);
+  z-index: 9999;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  margin-bottom: var(--spacing-2, 8px);
+  max-width: 280px;
+  word-wrap: break-word;
+  white-space: normal;
+  line-height: 1.4;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Flèche du tooltip */
+.utopia-cardcampaign__tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 20px;
+  border: 6px solid transparent;
+  border-top-color: rgba(31, 41, 55, 0.95);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .utopia-cardcampaign__expiration {
