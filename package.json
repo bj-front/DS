@@ -22,6 +22,7 @@
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "turbo build && NPM_CONFIG_YES=true changeset publish && npm run show:links",
+    "auto-release": "node scripts/auto-release.js",
     "ci:build": "turbo build && npm run show:links",
     "ci:test": "turbo lint type-check",
     "ci:validate": "turbo validate:design-system",

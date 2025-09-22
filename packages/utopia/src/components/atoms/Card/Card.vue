@@ -85,7 +85,7 @@ const cardClasses = computed(() => ({
 
 .utopia-card:not(.utopia-card--interactive):hover {
   border-color: var(--theme-colors-border-default, #9ca3af);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  box-shadow: none;
   transform: none;
 }
 
@@ -98,13 +98,13 @@ const cardClasses = computed(() => ({
 /* Override spécifique pour les variants non-interactifs */
 .utopia-card--elevated:not(.utopia-card--interactive):hover {
   transform: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  box-shadow: none;
   border-color: var(--theme-colors-border-default, #e5e7eb);
 }
 
 .utopia-card--outlined:not(.utopia-card--interactive):hover {
   border-color: var(--theme-colors-border-default, #e5e7eb);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  box-shadow: none;
 }
 
 /* Hover effects spécifiques par variant (seulement pour les interactives) */
