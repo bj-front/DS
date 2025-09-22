@@ -1,0 +1,92 @@
+name: 'Auto Version'
+description: 'Automatically version packages and handle conflicts'
+
+inputs:
+  npm-token:
+    description: 'NPM token for publishing'
+    required: true
+  github-token:
+    description: 'GitHub token for commits'
+    required: true
+
+outputs:
+  new-version:
+    description: 'The new version that was created'
+    value: ${{ steps.version.outputs.new_version }}
+  version-incremented:
+    description: 'Whether the version was incremented due to conflict'
+    value: ${{ steps.version.outputs.version_incremented }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: "Configure NPM authentication"
+      shell: bash
+      run: |
+        echo "//registry.npmjs.org/:_authToken=${{ inputs.npm-token }}" > ~/.npmrc
+        npm whoami
+
+    - name: "Version packages"
+      id: version
+      shell: bash
+      run: |
+        echo "📝 Versioning packages with changesets..."
+        npm run version-packages
+        
+        # Get the new version
+        NEW_VERSION=$(node -p "require('./packages/utopia/package.json').version")
+        echo "📦 New version from changeset: $NEW_VERSION"
+        echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+        
+        # Check if this version already exists on NPM
+        if npm view @club-employes/utopia@$NEW_VERSION version >/dev/null 2>&1; then
+          echo "⚠️ Version $NEW_VERSION already exists on NPM"
+          echo "🔄 Incrementing version..."
+          
+          cd packages/utopia
+          npm version patch
+          INCREMENTED_VERSION=$(node -p "require('./package.json').version")
+          echo "📦 Incremented to version: $INCREMENTED_VERSION"
+          cd ../..
+          
+          echo "new_version=$INCREMENTED_VERSION" >> $GITHUB_OUTPUT
+          echo "version_incremented=true" >> $GITHUB_OUTPUT
+          
+          # Update the changeset to reflect the new version
+          echo "📝 Updating changeset with new version..."
+          find .changeset -name "*.md" -not -name "README.md" -exec sed -i "s/$NEW_VERSION/$INCREMENTED_VERSION/g" {} \;
+        else
+          echo "✅ Version $NEW_VERSION is available for publishing"
+          echo "version_incremented=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: "Commit version changes"
+      shell: bash
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        git add .
+        
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          VERSION="${{ steps.version.outputs.new_version }}"
+          git commit -m "chore: version packages to $VERSION"
+          echo "✅ Committed version changes"
+        fi
+
+    - name: "Output summary"
+      shell: bash
+      run: |
+        VERSION="${{ steps.version.outputs.new_version }}"
+        INCREMENTED="${{ steps.version.outputs.version_incremented }}"
+        
+        echo "🎯 Versioning completed"
+        echo "📦 Final version: $VERSION"
+        
+        if [ "$INCREMENTED" == "true" ]; then
+          echo "🔄 Version was incremented due to NPM conflict"
+        else
+          echo "✅ Version was used as-is from changeset"
+        fi

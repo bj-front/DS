@@ -1,0 +1,225 @@
+name: Design System CI/CD (Improved)
+
+on:
+  push:
+    branches: 
+      - '**'
+      - '!changeset-release/**'
+      - '!release/**'
+      - '!version/**'
+    paths:
+      - 'packages/utopia/**'
+      - '.github/workflows/design-system-improved.yml'
+      - '.github/actions/setup-node-cache/**'
+      - '.github/actions/build-design-system/**'
+      - '.github/actions/quality-checks/**'
+      - 'package.json'
+      - 'turbo.json'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/utopia/**'
+      - '.github/workflows/design-system-improved.yml'
+      - '.github/actions/setup-node-cache/**'
+      - '.github/actions/build-design-system/**'
+      - '.github/actions/quality-checks/**'
+      - 'package.json'
+      - 'turbo.json'
+  workflow_dispatch:
+    inputs:
+      force_release:
+        description: 'Force release to NPM (main branch only)'
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  # Job 1: Tests et qualité du code
+  quality-check:
+    name: 🔍 Qualité & Tests
+    runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main'
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ⚡ Setup Node.js and Cache
+        uses: ./.github/actions/setup-node-cache
+        with:
+          cache-prefix: 'design-system'
+
+      - name: 🎨 Build Design System
+        uses: ./.github/actions/build-design-system
+
+      - name: 🔄 Auto Create Changeset
+        if: |
+          github.event_name == 'push' && 
+          github.ref != 'refs/heads/main' &&
+          !startsWith(github.ref_name, 'changeset-release/') &&
+          !startsWith(github.ref_name, 'release/') &&
+          !startsWith(github.ref_name, 'version/')
+        uses: ./.github/actions/auto-changeset
+        with:
+          github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          branch-name: ${{ github.ref_name }}
+
+      - name: 🔄 Create or update Pull Request
+        if: |
+          github.event_name == 'push' && 
+          github.ref != 'refs/heads/main' &&
+          !startsWith(github.ref_name, 'changeset-release/') &&
+          !startsWith(github.ref_name, 'release/') &&
+          !startsWith(github.ref_name, 'version/')
+        uses: ./.github/actions/create-pr
+        with:
+          github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          project-type: 'design-system'
+
+  # Job 2: Release automatique (main branch uniquement)
+  release:
+    name: 📦 Release & Publish
+    runs-on: ubuntu-latest
+    if: |
+      github.ref == 'refs/heads/main' && 
+      github.event_name == 'push' &&
+      !contains(github.event.head_commit.message, 'chore: version packages')
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: ⚡ Setup Node.js and Cache
+        uses: ./.github/actions/setup-node-cache
+        with:
+          cache-prefix: 'release'
+
+      - name: 🔧 Configure NPM Registry
+        uses: actions/setup-node@v4
+        with:
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 🔍 Check for changesets
+        id: check-changesets
+        run: |
+          CHANGESETS=$(find .changeset -name "*.md" -not -name "README.md" | wc -l)
+          echo "changesets_count=$CHANGESETS" >> $GITHUB_OUTPUT
+          echo "Found $CHANGESETS changeset(s)"
+
+      - name: 🏗️ Build Design System
+        if: steps.check-changesets.outputs.changesets_count > 0
+        uses: ./.github/actions/build-design-system
+
+      - name: 🔐 Configure npm authentication
+        if: steps.check-changesets.outputs.changesets_count > 0
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 🚀 Version and Publish to NPM
+        if: steps.check-changesets.outputs.changesets_count > 0
+        id: publish
+        run: |
+          echo "🚀 Versioning and publishing packages to NPM..."
+          
+          # Version the packages first
+          echo "📝 Versioning packages..."
+          npm run version-packages
+          
+          # Check if versioning was successful
+          NEW_VERSION=$(node -p "require('./packages/utopia/package.json').version")
+          echo "📦 New version: $NEW_VERSION"
+          
+          # Check if this version already exists on NPM
+          if npm view @club-employes/utopia@$NEW_VERSION version >/dev/null 2>&1; then
+            echo "⚠️ Version $NEW_VERSION already exists on NPM, incrementing..."
+            cd packages/utopia
+            npm version patch
+            NEW_VERSION=$(node -p "require('./package.json').version")
+            echo "📦 Incremented to version: $NEW_VERSION"
+            cd ../..
+          fi
+          
+          # Commit version changes
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "chore: version packages to $NEW_VERSION" || echo "No changes to commit"
+          git push origin main
+          
+          # Now publish
+          echo "📦 Publishing version $NEW_VERSION..."
+          npm run release
+          
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📋 Create GitHub Release
+        if: steps.publish.outcome == 'success'
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ steps.publish.outputs.new_version }}"
+          
+          if [ -n "$VERSION" ] && [ "$VERSION" != "null" ]; then
+            echo "📦 Creating release for version: $VERSION"
+            
+            # Vérifier si le tag existe déjà
+            if git tag -l | grep -q "v$VERSION"; then
+              echo "⚠️ Tag v$VERSION already exists, skipping tag creation"
+            else
+              # Créer le tag Git
+              git tag "v$VERSION"
+              git push origin "v$VERSION"
+            fi
+            
+            # Créer la GitHub Release (si elle n'existe pas déjà)
+            if gh release view "v$VERSION" >/dev/null 2>&1; then
+              echo "⚠️ GitHub Release v$VERSION already exists, skipping release creation"
+            else
+              gh release create "v$VERSION" \
+                --title "🚀 Design System v$VERSION" \
+                --notes "🎨 New release of @club-employes/utopia design system
+
+              **Installation:**
+              \`\`\`bash
+              npm install @club-employes/utopia@$VERSION
+              \`\`\`
+              
+              **What's included:**
+              - 🎨 Design tokens (colors, spacing, typography)  
+              - 🧩 Vue 3 components
+              - 📱 Responsive utilities
+              - 🌙 Dark mode support
+              " \
+                --latest
+                
+              echo "✅ GitHub Release created: v$VERSION"
+            fi
+          else
+            echo "ℹ️ No version information available, skipping GitHub release"
+          fi
+
+      - name: 📊 Release Summary
+        if: steps.publish.outcome == 'success'
+        run: |
+          echo "🎉 Successfully published packages!"
+          VERSION="${{ steps.publish.outputs.new_version }}"
+          echo "Published version: $VERSION"
