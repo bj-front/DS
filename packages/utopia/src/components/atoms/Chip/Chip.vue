@@ -114,37 +114,37 @@ const handleRemove = (event: Event) => {
 /* Variants */
 .utopia-chip--default {
   background: var(--theme-colors-surface-background, #ffffff);
-  border: 1px solid var(--theme-colors-border-default, #d1d5db);
+  border: none;
   color: var(--theme-colors-text-primary, #111827);
 }
 
 .utopia-chip--primary {
   background: linear-gradient(135deg, var(--theme-colors-brand-primary-500, #3b82f6) 0%, var(--theme-colors-brand-primary-500, #2563eb) 100%);
-  border: 1px solid var(--theme-colors-brand-primary-500, #3b82f6);
+  border: none;
   color: var(--theme-colors-brand-primary-text, #ffffff);
 }
 
 .utopia-chip--secondary {
   background: linear-gradient(135deg, var(--theme-colors-brand-secondary-500, #8b5cf6) 0%, var(--theme-colors-brand-secondary-500, #7c3aed) 100%);
-  border: 1px solid var(--theme-colors-brand-secondary-500, #8b5cf6);
+  border: none;
   color: var(--theme-colors-brand-secondary-text, #ffffff);
 }
 
 .utopia-chip--success {
   background: linear-gradient(135deg, var(--theme-colors-semantic-success-primary, #10b981) 0%, var(--theme-colors-semantic-success-primary, #059669) 100%);
-  border: 1px solid var(--theme-colors-semantic-success-primary, #10b981);
+  border: none;
   color: var(--theme-colors-semantic-success-text, #ffffff);
 }
 
 .utopia-chip--warning {
   background: linear-gradient(135deg, var(--theme-colors-warning-500, #f59e0b) 0%, var(--theme-colors-warning-500, #d97706) 100%);
-  border: 1px solid var(--theme-colors-warning-500, #f59e0b);
+  border: none;
   color: var(--theme-colors-warning-text, #ffffff);
 }
 
 .utopia-chip--danger {
   background: linear-gradient(135deg, var(--theme-colors-semantic-attention-primary, #ef4444) 0%, var(--theme-colors-semantic-attention-primary, #dc2626) 100%);
-  border: 1px solid var(--theme-colors-semantic-attention-primary, #ef4444);
+  border: none;
   color: var(--theme-colors-semantic-attention-text, #ffffff);
 }
 
@@ -152,37 +152,37 @@ const handleRemove = (event: Event) => {
 .utopia-chip--ghost.utopia-chip--default {
   background: var(--theme-colors-brand-primary-100, #dbeafe);
   color: var(--theme-colors-brand-primary-500, #3b82f6);
-  border: 1px solid transparent;
+  border: none;
 }
 
 .utopia-chip--ghost.utopia-chip--primary {
   background: var(--theme-colors-brand-primary-100, #dbeafe);
   color: var(--theme-colors-brand-primary-500, #3b82f6);
-  border: 1px solid transparent;
+  border: none;
 }
 
 .utopia-chip--ghost.utopia-chip--secondary {
   background: var(--theme-colors-brand-secondary-100, #e9d5ff);
   color: var(--theme-colors-brand-secondary-500, #8b5cf6);
-  border: 1px solid transparent;
+  border: none;
 }
 
 .utopia-chip--ghost.utopia-chip--success {
   background: var(--theme-colors-common-succeed-50, #ecfdf5);
   color: var(--theme-colors-common-succeed-500, #10b981);
-  border: 1px solid transparent;
+  border: none;
 }
 
 .utopia-chip--ghost.utopia-chip--warning {
   background: var(--theme-colors-warning-100, #fef3c7);
   color: var(--theme-colors-warning-500, #f59e0b);
-  border: 1px solid transparent;
+  border: none;
 }
 
 .utopia-chip--ghost.utopia-chip--danger {
   background: var(--theme-colors-semantic-attention-100, #fee2e2);
   color: var(--theme-colors-semantic-attention-500, #ef4444);
-  border: 1px solid transparent;
+  border: none;
 }
 
 /* Sizes */
@@ -264,32 +264,26 @@ const handleRemove = (event: Event) => {
 
 .utopia-chip--actionable.utopia-chip--default:hover:not(.utopia-chip--disabled) {
   background: var(--theme-colors-surface-background, #f9fafb);
-  border-color: var(--theme-colors-border-default, #9ca3af);
 }
 
 .utopia-chip--actionable.utopia-chip--primary:hover:not(.utopia-chip--disabled) {
   background: linear-gradient(135deg, var(--theme-colors-brand-primary-500, #2563eb) 0%, var(--theme-colors-brand-primary-500, #1d4ed8) 100%);
-  border-color: var(--theme-colors-brand-primary-500, #2563eb);
 }
 
 .utopia-chip--actionable.utopia-chip--secondary:hover:not(.utopia-chip--disabled) {
   background: linear-gradient(135deg, var(--theme-colors-brand-secondary-500, #7c3aed) 0%, var(--theme-colors-brand-secondary-500, #6d28d9) 100%);
-  border-color: var(--theme-colors-brand-secondary-500, #7c3aed);
 }
 
 .utopia-chip--actionable.utopia-chip--success:hover:not(.utopia-chip--disabled) {
   background: linear-gradient(135deg, var(--theme-colors-semantic-success-primary, #059669) 0%, var(--theme-colors-semantic-success-primary, #047857) 100%);
-  border-color: var(--theme-colors-semantic-success-primary, #059669);
 }
 
 .utopia-chip--actionable.utopia-chip--warning:hover:not(.utopia-chip--disabled) {
   background: linear-gradient(135deg, var(--theme-colors-warning-500, #d97706) 0%, var(--theme-colors-warning-500, #b45309) 100%);
-  border-color: var(--theme-colors-warning-500, #d97706);
 }
 
 .utopia-chip--actionable.utopia-chip--danger:hover:not(.utopia-chip--disabled) {
   background: linear-gradient(135deg, var(--theme-colors-semantic-attention-primary, #dc2626) 0%, var(--theme-colors-semantic-attention-primary, #b91c1c) 100%);
-  border-color: var(--theme-colors-semantic-attention-primary, #dc2626);
 }
 
 /* Ghost hover states */
@@ -386,18 +380,17 @@ const handleRemove = (event: Event) => {
 /* Dark mode */
 .utopia-chip--dark.utopia-chip--default {
   background: var(--theme-colors-surface-background, #1f2937);
-  border-color: var(--theme-colors-border-default, #4b5563);
+  border: none;
   color: var(--theme-colors-text-primary, #f9fafb);
 }
 
 .utopia-chip--dark.utopia-chip--actionable.utopia-chip--default:hover:not(.utopia-chip--disabled) {
   background: var(--theme-colors-surface-background, #374151);
-  border-color: var(--theme-colors-border-default, #6b7280);
 }
 
 .utopia-chip--dark.utopia-chip--disabled {
   background: var(--theme-colors-surface-background, #111827);
-  border-color: var(--theme-colors-border-muted, #374151);
+  border: none;
   color: var(--theme-colors-text-muted, #6b7280);
 }
 
@@ -405,37 +398,37 @@ const handleRemove = (event: Event) => {
 .utopia-chip--dark.utopia-chip--ghost.utopia-chip--default {
   background: var(--theme-colors-brand-primary-900, #1e3a8a);
   color: var(--theme-colors-brand-primary-300, #93c5fd);
-  border: 1px solid transparent;
+  border: none;
 }
 
 .utopia-chip--dark.utopia-chip--ghost.utopia-chip--primary {
   background: var(--theme-colors-brand-primary-900, #1e3a8a);
   color: var(--theme-colors-brand-primary-300, #93c5fd);
-  border: 1px solid transparent;
+  border: none;
 }
 
 .utopia-chip--dark.utopia-chip--ghost.utopia-chip--secondary {
   background: var(--theme-colors-brand-secondary-900, #581c87);
   color: var(--theme-colors-brand-secondary-300, #c4b5fd);
-  border: 1px solid transparent;
+  border: none;
 }
 
 .utopia-chip--dark.utopia-chip--ghost.utopia-chip--success {
   background: var(--theme-colors-common-succeed-900, #064e3b);
   color: var(--theme-colors-common-succeed-300, #6ee7b7);
-  border: 1px solid transparent;
+  border: none;
 }
 
 .utopia-chip--dark.utopia-chip--ghost.utopia-chip--warning {
   background: var(--theme-colors-warning-900, #78350f);
   color: var(--theme-colors-warning-300, #fcd34d);
-  border: 1px solid transparent;
+  border: none;
 }
 
 .utopia-chip--dark.utopia-chip--ghost.utopia-chip--danger {
   background: var(--theme-colors-semantic-attention-900, #7f1d1d);
   color: var(--theme-colors-semantic-attention-300, #fca5a5);
-  border: 1px solid transparent;
+  border: none;
 }
 
 /* Dark mode ghost hover states */
