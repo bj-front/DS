@@ -1,5 +1,54 @@
 # @club-employes/utopia
 
+## 4.9.0
+
+### Minor Changes
+
+- b063fb9: Updates from branch feat/CI/npm:
+  - Design system components updated
+- 600e477: Updates from branch feat/CI/npm:
+  - Design system components updated
+- 600e477: Updates from branch feat/CI/npm:
+  - Design system components updated
+- 7a11f39: Updates from branch feat/CI/npm:
+  - Design system components updated
+- d849c27: Updates from branch feat/CI/npm:
+  - Design system components updated
+- d849c27: Updates from branch feat/CI/npm:
+  - Design system components updated
+- f754bcb: Updates from branch feat/CI/npm:
+  - Design system components updated
+- 492a205: Updates from branch feat/CI/npm:
+  - Design system components updated
+- 5c63c2a: Updates from branch feat/CI/npm:
+  - Design system components updated
+- 01eaecb: Updates from branch feat/CI/npm:
+  - Design system components updated
+- 424cfb0: Updates from branch feat/CI/npm:
+  - Design system components updated
+- 1f2c76c: Updates from branch feat/CI/npm:
+  - Design system components updated
+- 3194927: Updates from branch feat/CI/npm:
+  - Design system components updated
+
+### Patch Changes
+
+- 424cfb0: fix: Update BalanceCardGroup interface and logic
+
+  - Change `spentAmount` to `amount` (remaining amount) in BalanceCardData interface
+  - Update progress bar calculation to show remaining amount percentage
+  - Fix component display logic to show remaining amount instead of spent amount
+  - Update documentation and examples to reflect new interface
+  - Added proper singular/plural handling for campaign count
+  - Fixed TypeScript errors related to grouped variant references
+
+- feat: update text-primary color token to #0B1C48
+
+  - Changed text-primary color from #111827 to #0B1C48 in club-employes-light theme
+  - Updated theme reference from {color.neutral.900} to {color.brand.secondary.500}
+  - Regenerated design tokens to apply the new color
+  - All components using --theme-colors-text-primary will now display text in the new color
+
 ## 4.8.4
 
 ### Patch Changes
