@@ -215,7 +215,6 @@ const hideTooltip = () => {
   flex-direction: column;
   gap: var(--spacing-4, 16px);
   position: relative;
-  max-width: 300px;
   width: 100%;
 }
 
