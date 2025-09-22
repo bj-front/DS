@@ -114,7 +114,7 @@ const handleRemove = (event: Event) => {
 /* Variants */
 .utopia-chip--default {
   background: var(--theme-colors-surface-background, #ffffff);
-  border: none;
+  border: 1px solid var(--theme-colors-border-default, #d1d5db);
   color: var(--theme-colors-text-primary, #111827);
 }
 
@@ -264,6 +264,7 @@ const handleRemove = (event: Event) => {
 
 .utopia-chip--actionable.utopia-chip--default:hover:not(.utopia-chip--disabled) {
   background: var(--theme-colors-surface-background, #f9fafb);
+  border-color: var(--theme-colors-border-default, #9ca3af);
 }
 
 .utopia-chip--actionable.utopia-chip--primary:hover:not(.utopia-chip--disabled) {
@@ -380,12 +381,13 @@ const handleRemove = (event: Event) => {
 /* Dark mode */
 .utopia-chip--dark.utopia-chip--default {
   background: var(--theme-colors-surface-background, #1f2937);
-  border: none;
+  border: 1px solid var(--theme-colors-border-default, #4b5563);
   color: var(--theme-colors-text-primary, #f9fafb);
 }
 
 .utopia-chip--dark.utopia-chip--actionable.utopia-chip--default:hover:not(.utopia-chip--disabled) {
   background: var(--theme-colors-surface-background, #374151);
+  border-color: var(--theme-colors-border-default, #6b7280);
 }
 
 .utopia-chip--dark.utopia-chip--disabled {
