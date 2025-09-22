@@ -32,7 +32,7 @@
         <!-- Montant et progression -->
         <div class="utopia-balance-card-grouped__balance">
           <div class="utopia-balance-card-grouped__amount">
-            {{ formatAmount(card.totalAmount - card.spentAmount) }}
+            {{ formatAmount(card.amount) }}
           </div>
           <div class="utopia-balance-card-grouped__progress">
             <div class="utopia-balance-card-grouped__progress-bar">
@@ -64,7 +64,7 @@ interface BalanceCardData {
   campaignName: string
   category: 'culture' | 'noel' | 'voyages' | 'rentree' | 'retraite' | 'naissance' | 'mariage' | 'sport'
   totalAmount: number
-  spentAmount: number
+  amount: number // Montant restant
   campaignCount: number
   actionable?: () => void
   disabled?: boolean
@@ -134,8 +134,7 @@ const formatAmount = (amount: number) => {
 // Calcul du pourcentage de progression (montant restant)
 const getProgressPercentage = (card: BalanceCardData) => {
   if (card.totalAmount === 0) return 0
-  const remainingAmount = card.totalAmount - card.spentAmount
-  return Math.min((remainingAmount / card.totalAmount) * 100, 100)
+  return Math.min((card.amount / card.totalAmount) * 100, 100)
 }
 </script>
 
@@ -202,7 +201,7 @@ const getProgressPercentage = (card: BalanceCardData) => {
 
 .utopia-balance-card-grouped--actionable {
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: none;
   transition: all 0.3s ease;
 }
 
@@ -228,6 +227,7 @@ const getProgressPercentage = (card: BalanceCardData) => {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: var(--spacing-2, 8px);
 }
 
 .utopia-balance-card-grouped__icon-image {
@@ -276,7 +276,7 @@ const getProgressPercentage = (card: BalanceCardData) => {
 .utopia-balance-card-grouped__amount {
   font-size: var(--font-size-xl, 20px);
   font-weight: var(--font-weight-bold, 700);
-  color: var(--theme-colors-brand-primary-600, #2563eb);
+  color: var(--theme-colors-brand-primary-500, #2563eb);
   line-height: 1.2;
 }
 
@@ -371,6 +371,11 @@ const getProgressPercentage = (card: BalanceCardData) => {
   
   /* Supprimer le séparateur sur mobile */
   .utopia-balance-card-grouped:not(:last-child)::after {
+    display: none;
+  }
+  
+  /* Masquer le slider de progression sur mobile */
+  .utopia-balance-card-grouped__progress {
     display: none;
   }
 }

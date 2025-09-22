@@ -38,7 +38,7 @@
         <div class="example">
           <div class="component-variants">
             <BalanceCard
-              campaign-name="Campagne Noël"
+              campaign-name="Campagne Noël avec un titre tres tres long !!!! en anglais !!!!!"
               category="noel"
               :total-amount="500"
               :spent-amount="200"
@@ -62,7 +62,7 @@
               variant="secondary"
             />
             <BalanceCard
-              campaign-name="Campagne avec action"
+              campaign-name="Campagne avec action et titre tres tres tresres tres tresres tres tresres tres tresres tres tresres tres tres long!!!! "
               category="noel"
               :total-amount="100"
               :spent-amount="64"
@@ -1017,7 +1017,7 @@ const handleCardClick = (): void => {
 }
 
 .category-item strong {
-  color: var(--theme-colors-brand-primary-600, #2563eb);
+  color: var(--theme-colors-brand-primary-500, #2563eb);
 }
 
 .category-item em {

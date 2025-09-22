@@ -187,10 +187,10 @@ const handleClick = (event: MouseEvent) => {
 
     @include button-states(
       var(--theme-colors-brand-primary-400, #60a5fa),
-      var(--theme-colors-brand-primary-600, #2563eb),
+      var(--theme-colors-brand-primary-500, #2563eb),
       var(--theme-colors-brand-primary-300, #93c5fd),
       var(--theme-colors-brand-primary-400, #60a5fa),
-      var(--theme-colors-brand-primary-600, #2563eb)
+      var(--theme-colors-brand-primary-500, #2563eb)
     ) {
       box-shadow: 0 4px 12px var(--theme-colors-brand-primary-200, rgba(59, 130, 246, 0.4));
       transform: translateY(-1px);

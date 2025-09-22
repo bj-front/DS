@@ -735,7 +735,7 @@ onUnmounted(() => {
 
 
 .bottomsheet-trigger:hover {
-  background: var(--theme-colors-brand-primary-600);
+  background: var(--theme-colors-brand-primary-500);
   transform: translateX(-50%) translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }

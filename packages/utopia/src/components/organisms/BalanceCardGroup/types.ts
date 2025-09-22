@@ -8,7 +8,7 @@ export interface BalanceCardData {
   campaignName: string
   category: 'culture' | 'noel' | 'voyages' | 'rentree' | 'retraite' | 'naissance' | 'mariage' | 'sport'
   totalAmount: number
-  spentAmount: number
+  amount: number // Montant restant
   campaignCount: number
   actionable?: () => void
   disabled?: boolean

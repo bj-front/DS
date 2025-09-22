@@ -172,7 +172,7 @@
       },
       "text": {
         "primary": {
-          "value": "{color.neutral.900}",
+          "value": "{color.brand.secondary.500}",
           "type": "color"
         },
         "secondary": {
