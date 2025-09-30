@@ -206,7 +206,7 @@ onUnmounted(() => {
 <style scoped>
 .utopia-auth-layout {
   display: flex;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: var(--theme-colors-background);
   overflow: hidden;
   box-sizing: border-box;
@@ -753,7 +753,6 @@ onUnmounted(() => {
   .utopia-auth-layout {
     flex-direction: column;
     padding: 20px;
-    height: 100vh;
     gap: 20px;
     overflow: hidden; /* Prevent scroll when bottomsheet is open */
   }

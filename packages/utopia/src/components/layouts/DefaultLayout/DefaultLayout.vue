@@ -242,7 +242,7 @@ const toggleMode = (): void => {
 
 <style scoped>
 .app-layout {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   width: 100%;
   display: flex;
 }
@@ -253,7 +253,7 @@ const toggleMode = (): void => {
   transition: margin-left 0.3s ease;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Hauteur minimale au lieu de fixe */
+  /*min-height: 100vh;  Hauteur minimale au lieu de fixe */
   overflow: visible; /* Permet le scroll */
 }
 
@@ -307,28 +307,15 @@ const toggleMode = (): void => {
   flex: 1;
   padding: var(--spacing-3);
   padding-bottom: calc(var(--spacing-3) + 200px); /* Marge en bas pour déclencher le footer */
-  overflow-y: auto; /* Permet le scroll dans le contenu principal */
-  overflow-x: hidden;
   margin-top: -60px; /* Permet au contenu de passer derrière le header */
   padding-top: calc(var(--spacing-3) + 60px); /* Compense la marge négative */
-  min-height: calc(100vh - 60px - 80px); /* Hauteur minimale : viewport - header - footer */
+  min-height: calc(100vh - 80px); /* Hauteur minimale : viewport - header - footer */
   z-index: 60; /* Passe au-dessus du footer */
   position: relative; /* Pour que le z-index fonctionne */
   background-color: var(--theme-colors-surface-background);
   border-bottom: 1px solid var(--theme-colors-border-default);
 }
 
-.app-footer {
-  position: sticky;
-  bottom: 0;
-  padding: var(--spacing-4) var(--spacing-6);
-  background-color: var(--theme-colors-background-primary);
-  z-index: 20; /* En dessous du contenu */
-  backdrop-filter: blur(13px);
-  background-color: rgba(255, 255, 255, 0.9);
-  margin-top: auto; /* Pousse le footer en bas */
-  flex-shrink: 0; /* Empêche le footer de se rétrécir */
-}
 
 /* Footer adapté quand le menu est rétracté */
 .main-content.menu-collapsed .app-footer {

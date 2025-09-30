@@ -5,6 +5,10 @@ import { defineConfig } from 'vite';
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [vue()],
+  server: {
+    host: true, // Permet l'accès depuis le réseau local
+    port: 6006
+  },
   resolve: {
     alias: {
       // En mode développement, utiliser les sources du design system pour le hot reload

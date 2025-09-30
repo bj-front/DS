@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006 --host",
     "build-storybook": "storybook build",
     "chromatic": "chromatic --project-token=chpt_31b87a32083cc96",
     "changeset": "changeset",
