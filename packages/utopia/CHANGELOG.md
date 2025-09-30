@@ -1,5 +1,19 @@
 # @club-employes/utopia
 
+## 4.10.0
+
+### Minor Changes
+
+- 5589d9a: Updates from branch feat/update_token:
+  - Design system components updated
+  - **Mobile UX Enhancement**: Fixed scroll behavior when mobile menu is open in DefaultLayout
+    - Added automatic body scroll lock when mobile menu is opened
+    - Prevents background page scrolling while menu is active
+    - Preserves scroll position when menu is closed
+    - Improved mobile user experience on touch devices
+- 2a9df33: Updates from branch feat/update_token:
+  - Design system components updated
+
 ## 4.9.0
 
 ### Minor Changes
