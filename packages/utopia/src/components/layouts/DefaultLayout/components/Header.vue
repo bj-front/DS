@@ -57,13 +57,33 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { Icon, Logo } from '../../../atoms'
 import MobileMenu from './MobileMenu.vue'
 import MobileMenuButton from './MobileMenuButton.vue'
 
 // État du menu mobile
 const isMobileMenuOpen = ref(false)
+
+// Bloquer le scroll quand le menu mobile est ouvert
+watch(isMobileMenuOpen, (isOpen) => {
+  if (isOpen) {
+    // Sauvegarder la position de scroll actuelle
+    const scrollY = window.scrollY
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollY}px`
+    document.body.style.width = '100%'
+    document.body.style.overflow = 'hidden'
+  } else {
+    // Restaurer la position de scroll
+    const scrollY = document.body.style.top
+    document.body.style.position = ''
+    document.body.style.top = ''
+    document.body.style.width = ''
+    document.body.style.overflow = ''
+    window.scrollTo(0, parseInt(scrollY || '0') * -1)
+  }
+})
 
 // Fonction pour ouvrir le menu mobile
 const openMobileMenu = () => {

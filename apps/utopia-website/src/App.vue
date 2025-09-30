@@ -54,6 +54,7 @@ html, body {
   line-height: var(--font-line-height-normal);
   background-color: var(--theme-colors-surface-background);
   color: var(--theme-colors-text-primary);
+  height: 100%;
 }
 
 #app {

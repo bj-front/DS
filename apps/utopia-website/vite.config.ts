@@ -12,6 +12,10 @@ export default defineConfig(() => ({
     vue(),
     vueDevTools(),
   ],
+  server: {
+    host: true, // Permet l'accès depuis le réseau local
+    port: 5173
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
