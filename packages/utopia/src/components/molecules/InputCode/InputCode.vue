@@ -330,7 +330,7 @@ defineExpose({
 
 /* Sizes */
 .utopia-inputcode--small .utopia-inputcode__field {
-  width: 50px;
+  width: 51px;
   min-width: 50px;
   flex-basis: 50px;
 }
