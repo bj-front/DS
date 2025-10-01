@@ -1,5 +1,16 @@
 # @club-employes/utopia
 
+## 4.13.0
+
+### Minor Changes
+
+- 5be6de4: Updates from branch version/v4.12.0:
+  - Design system components updated
+- d6745e4: Updates from branch feat/update_token:
+  - Design system components updated
+- d6745e4: Updates from branch feat/update_token:
+  - Design system components updated
+
 ## 4.12.0
 
 ### Minor Changes
