@@ -109,6 +109,7 @@ interface Props {
   label?: string
   placeholder?: string
   type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url'
+  inputmode?: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'
   state?: 'default' | 'error' | 'valid' | 'incomplete' | 'completed'
   size?: 'small' | 'medium' | 'large'
   disabled?: boolean
@@ -168,6 +169,11 @@ const computedType = computed(() => {
 })
 
 const computedInputMode = computed(() => {
+  // Si inputmode est fourni explicitement, l'utiliser
+  if (props.inputmode) {
+    return props.inputmode
+  }
+  // Sinon, logique automatique : numeric pour type number
   if (props.type === 'number') {
     return 'numeric'
   }
