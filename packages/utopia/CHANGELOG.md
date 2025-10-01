@@ -1,5 +1,18 @@
 # @club-employes/utopia
 
+## 4.11.0
+
+### Minor Changes
+
+- 24c4755: Updates from branch changeset-release/main:
+  - Design system components updated
+- 058b891: Updates from branch feat/update_token:
+  - Design system components updated
+- 3ead1cf: Updates from branch feat/update_token:
+  - Design system components updated
+- 1860711: Updates from branch feat/update_token:
+  - Design system components updated
+
 ## 4.10.0
 
 ### Minor Changes
@@ -117,8 +130,8 @@
 
   - **Skeleton** : Exports complets disponibles
   - **SkeletonAvatar** : Nouveau composant exporté
-  - **SkeletonText** : Nouveau composant exporté
-=======
+  - # **SkeletonText** : Nouveau composant exporté
+
 ## 4.6.0
 
 ### Minor Changes
