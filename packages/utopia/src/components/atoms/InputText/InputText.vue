@@ -12,10 +12,12 @@
         :id="inputId"
         ref="inputRef"
         v-model="inputValue"
-        :type="type"
+        :type="computedType"
+        :inputmode="computedInputMode"
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readonly"
+        :maxlength="maxlength"
         class="utopia-inputtext__field"
         :class="fieldClasses"
         :min="min"
@@ -118,6 +120,7 @@ interface Props {
   min?: number
   max?: number
   step?: number
+  maxlength?: number
   isCode?: boolean
 }
 
@@ -155,6 +158,23 @@ const inputId = computed(() => `utopia-input-${Math.random().toString(36).substr
 // Step numérique
 const numericStep = computed(() => props.step ?? 1)
 
+// Type et inputmode computed
+// Quand on a maxlength + type="number", on utilise type="text" avec inputmode="numeric"
+// car maxlength ne fonctionne pas avec type="number" en HTML
+const computedType = computed(() => {
+  if (props.type === 'number' && props.maxlength !== undefined && props.isCode) {
+    return 'text'
+  }
+  return props.type
+})
+
+const computedInputMode = computed(() => {
+  if (props.type === 'number' && props.maxlength !== undefined && props.isCode) {
+    return 'numeric'
+  }
+  return undefined
+})
+
 // Classes CSS
 const inputtextClasses = computed(() => ({
   [`utopia-inputtext--${props.size}`]: true,
@@ -168,7 +188,8 @@ const inputtextClasses = computed(() => ({
 const fieldClasses = computed(() => ({
   'utopia-inputtext__field--with-icon': props.icon || props.state === 'valid' || props.state === 'error',
   'utopia-inputtext__field--number': props.type === 'number',
-  'utopia-inputtext__field--code': props.isCode
+  'utopia-inputtext__field--code': props.isCode,
+  'utopia-inputtext__field--numeric-text': props.type === 'number' && props.maxlength !== undefined && props.isCode
 }))
 
 const messageClasses = computed(() => ({
@@ -383,6 +404,12 @@ watch(() => props.modelValue, (newValue) => {
 }
 
 .utopia-inputtext__field--code[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Style pour les champs numeric-text (type="text" avec inputmode="numeric") */
+.utopia-inputtext__field--numeric-text {
+  /* Assurer que le style est identique aux inputs number */
   -moz-appearance: textfield;
 }
 
