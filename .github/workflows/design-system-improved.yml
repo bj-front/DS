@@ -155,12 +155,59 @@ jobs:
             cd ../..
           fi
           
-          # Commit version changes
+          # Configure Git
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          
+          # Create version branch
+          VERSION_BRANCH="version/v${NEW_VERSION}"
+          git checkout -b "$VERSION_BRANCH"
+          
+          # Commit version changes
           git add .
-          git commit -m "chore: version packages to $NEW_VERSION" || echo "No changes to commit"
-          git push origin main
+          if git commit -m "chore: version packages to $NEW_VERSION"; then
+            echo "✅ Version changes committed"
+            
+            # Push version branch
+            git push origin "$VERSION_BRANCH"
+            
+            # Create PR to main
+            gh pr create \
+              --title "🚀 Release v${NEW_VERSION}" \
+              --body "Automated version bump to v${NEW_VERSION}
+
+            **Changes:**
+            - Version bumped to ${NEW_VERSION}
+            - Changesets consumed
+            - Ready to publish to NPM
+
+            This PR will be auto-merged and published to NPM." \
+                          --base main \
+                          --head "$VERSION_BRANCH"
+            
+            # Auto-merge the PR
+            PR_NUMBER=$(gh pr list --head "$VERSION_BRANCH" --json number --jq '.[0].number')
+            gh pr merge "$PR_NUMBER" --auto --squash --delete-branch
+            
+            echo "✅ Version PR created and will be auto-merged"
+            
+            # Wait for PR to be merged (with timeout)
+            echo "⏳ Waiting for PR to be merged..."
+            for i in {1..30}; do
+              if gh pr view "$PR_NUMBER" --json state --jq '.state' | grep -q "MERGED"; then
+                echo "✅ PR merged successfully"
+                break
+              fi
+              echo "⏳ Waiting... ($i/30)"
+              sleep 10
+            done
+            
+            # Switch back to main and pull latest
+            git checkout main
+            git pull origin main
+          else
+            echo "ℹ️ No changes to commit"
+          fi
           
           # Now publish
           echo "📦 Publishing version $NEW_VERSION..."
@@ -170,6 +217,7 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: 📋 Create GitHub Release
         if: steps.publish.outcome == 'success'
