@@ -17,7 +17,6 @@
           :size="size"
           :state="fieldStates[index]"
           :disabled="disabled"
-          :maxlength="1"
           is-code
           class="utopia-inputcode__field"
           :class="{ 'utopia-inputcode__field--active': activeIndex === index }"

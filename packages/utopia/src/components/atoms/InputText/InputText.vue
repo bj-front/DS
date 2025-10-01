@@ -17,7 +17,6 @@
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readonly"
-        :maxlength="maxlength"
         class="utopia-inputtext__field"
         :class="fieldClasses"
         :min="min"
@@ -162,14 +161,14 @@ const numericStep = computed(() => props.step ?? 1)
 // Quand on a maxlength + type="number", on utilise type="text" avec inputmode="numeric"
 // car maxlength ne fonctionne pas avec type="number" en HTML
 const computedType = computed(() => {
-  if (props.type === 'number' && props.maxlength !== undefined && props.isCode) {
+  if (props.type === 'number' && props.isCode) {
     return 'text'
   }
   return props.type
 })
 
 const computedInputMode = computed(() => {
-  if (props.type === 'number' && props.maxlength !== undefined && props.isCode) {
+  if (props.type === 'number') {
     return 'numeric'
   }
   return undefined
