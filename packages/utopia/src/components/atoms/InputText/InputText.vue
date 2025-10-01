@@ -17,7 +17,6 @@
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readonly"
-        :maxlength="maxlength"
         class="utopia-inputtext__field"
         :class="fieldClasses"
         :min="min"
