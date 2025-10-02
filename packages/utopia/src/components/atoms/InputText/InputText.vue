@@ -13,7 +13,7 @@
         ref="inputRef"
         v-model="inputValue"
         :type="computedType"
-        :inputmode="computedInputMode"
+        :inputmode="inputmode"
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readonly"
@@ -109,6 +109,7 @@ interface Props {
   label?: string
   placeholder?: string
   type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url'
+  inputmode?: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'
   state?: 'default' | 'error' | 'valid' | 'incomplete' | 'completed'
   size?: 'small' | 'medium' | 'large'
   disabled?: boolean
@@ -167,12 +168,6 @@ const computedType = computed(() => {
   return props.type
 })
 
-const computedInputMode = computed(() => {
-  if (props.type === 'number') {
-    return 'numeric'
-  }
-  return undefined
-})
 
 // Classes CSS
 const inputtextClasses = computed(() => ({

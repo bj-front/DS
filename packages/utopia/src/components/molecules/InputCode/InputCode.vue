@@ -14,6 +14,7 @@
           :ref="el => fieldRefs[index] = el"
           v-model="fieldValues[index]"
           :type="type"
+          :inputmode="inputmode"
           :size="size"
           :state="fieldStates[index]"
           :disabled="disabled"
@@ -58,6 +59,7 @@ interface Props {
   label?: string
   length?: number
   type?: 'text' | 'number'
+  inputmode?: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'
   size?: 'small' | 'medium' | 'large'
   state?: 'default' | 'error' | 'valid'
   disabled?: boolean
