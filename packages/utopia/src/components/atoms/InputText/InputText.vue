@@ -122,6 +122,7 @@ interface Props {
   step?: number
   maxlength?: number
   isCode?: boolean
+  autocomplete?: 'on' | 'off'
 }
 
 const props = withDefaults(defineProps<Props>(), {
