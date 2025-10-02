@@ -1,5 +1,32 @@
 # @club-employes/utopia
 
+## 4.16.0
+
+### Minor Changes
+
+- d880dec: Updates from branch feat/update_token:
+  - Design system components updated
+- d880dec: Updates from branch feat/update_token:
+  - Design system components updated
+- d880dec: Updates from branch feat/update_token:
+  - Design system components updated
+- d880dec: Updates from branch feat/update_token:
+  - Design system components updated
+- d880dec: Updates from branch feat/update_token:
+  - Design system components updated
+- d880dec: Updates from branch feat/update_token:
+  - Design system components updated
+- a12cdd9: Updates from branch version/v4.15.0:
+  - Design system components updated
+- 0f1bc89: Updates from branch bj/inputCode_maj:
+  - Design system components updated
+- d880dec: Add inputmode prop support to InputCode and InputText components
+
+  - Add `inputmode` prop to InputCode component for better mobile keyboard control
+  - Add `inputmode` prop to InputText component with automatic fallback
+  - Fix InputCode to properly pass maxlength to InputText
+  - Improve type="number" handling with maxlength by using type="text" + inputmode="numeric"
+
 ## 4.15.0
 
 ### Minor Changes
