@@ -9,6 +9,7 @@ on:
       - '!version/**'
     paths:
       - 'packages/utopia/**'
+      - '.changeset/**'
       - '.github/workflows/design-system-improved.yml'
       - '.github/actions/setup-node-cache/**'
       - '.github/actions/build-design-system/**'
@@ -19,6 +20,7 @@ on:
     branches: [main]
     paths:
       - 'packages/utopia/**'
+      - '.changeset/**'
       - '.github/workflows/design-system-improved.yml'
       - '.github/actions/setup-node-cache/**'
       - '.github/actions/build-design-system/**'
