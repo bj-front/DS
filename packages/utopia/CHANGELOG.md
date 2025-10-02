@@ -1,5 +1,21 @@
 # @club-employes/utopia
 
+## 4.18.0
+
+### Minor Changes
+
+- e02c89f: Updates from branch bj/inputcode:
+  - Design system components updated
+- 796dd6b: Updates from branch version/v4.17.0:
+  - Design system components updated
+
+### Patch Changes
+
+- e02c89f: Fix missing computedInputMode in InputText component
+
+  - Add missing computedInputMode computed property
+  - Ensure inputmode attribute is properly rendered on input elements
+
 ## 4.17.0
 
 ### Minor Changes
