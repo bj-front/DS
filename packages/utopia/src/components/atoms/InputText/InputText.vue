@@ -168,17 +168,6 @@ const computedType = computed(() => {
   return props.type
 })
 
-const computedInputMode = computed(() => {
-  // Si inputmode est fourni explicitement, l'utiliser
-  if (props.inputmode) {
-    return props.inputmode
-  }
-  // Sinon, logique automatique : numeric pour type number
-  if (props.type === 'number') {
-    return 'numeric'
-  }
-  return undefined
-})
 
 // Classes CSS
 const inputtextClasses = computed(() => ({
