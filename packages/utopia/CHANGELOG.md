@@ -1,5 +1,14 @@
 # @club-employes/utopia
 
+## 4.17.0
+
+### Minor Changes
+
+- a89de00: Updates from branch version/v4.16.0:
+  - Design system components updated
+- a4607bd: Updates from branch bj/inputcode:
+  - Design system components updated
+
 ## 4.16.0
 
 ### Minor Changes
