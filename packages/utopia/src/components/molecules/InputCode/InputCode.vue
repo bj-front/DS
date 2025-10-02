@@ -18,11 +18,12 @@
           :size="size"
           :state="fieldStates[index]"
           :disabled="disabled"
+          :maxlength="1"
           is-code
           class="utopia-inputcode__field"
           :class="{ 'utopia-inputcode__field--active': activeIndex === index }"
-          @input="(event) => handleFieldInput(index, (event.target as HTMLInputElement).value)"
-          @keydown="handleFieldKeydown(index, $event)"
+          @update:modelValue="value => handleFieldInput(index, value)"
+          @keydown="event => handleFieldKeydown(index, event)"
           @focus="handleFieldFocus(index)"
           @blur="handleFieldBlur(index)"
           @paste="handlePaste"
@@ -152,16 +153,21 @@ const handleFieldInput = (index: number, value: string) => {
 
 const handleFieldKeydown = (index: number, event: KeyboardEvent) => {
   if (event.key === 'Backspace') {
-    // Si le champ est vide, aller au champ précédent
-    if (!fieldValues.value[index] && index > 0) {
-      event.preventDefault()
+    event.preventDefault()
+    
+    // Si le champ actuel a du contenu, le vider
+    if (fieldValues.value[index]) {
+      fieldValues.value[index] = ''
+    } 
+    // Sinon, revenir au champ précédent et le vider
+    else if (index > 0) {
       fieldValues.value[index - 1] = ''
       focusField(index - 1)
-      
-      const completeValue = fieldValues.value.join('')
-      emit('update:modelValue', completeValue)
-      emit('change', completeValue)
     }
+    
+    const completeValue = fieldValues.value.join('')
+    emit('update:modelValue', completeValue)
+    emit('change', completeValue)
   } else if (event.key === 'ArrowLeft' && index > 0) {
     event.preventDefault()
     focusField(index - 1)
@@ -186,19 +192,28 @@ const handleFieldBlur = (index: number) => {
 }
 
 const handlePaste = (event: ClipboardEvent) => {
+  // Empêcher le comportement par défaut du paste
   event.preventDefault()
-  const pastedText = event.clipboardData?.getData('text') || ''
-  const chars = pastedText.split('').slice(0, props.length)
   
-  // Remplir les champs (validation faite par InputText)
+  const pastedText = event.clipboardData?.getData('text') || ''
+  
+  // Filtrer selon le type
+  let validChars: string[]
+  if (props.type === 'number') {
+    validChars = pastedText.split('').filter(char => /^\d$/.test(char))
+  } else {
+    validChars = pastedText.split('').filter(char => /^[A-Za-z0-9]$/.test(char))
+  }
+  
+  const chars = validChars.slice(0, props.length)
+  
+  // Réinitialiser tous les champs d'abord
+  fieldValues.value = Array(props.length).fill('')
+  
+  // Remplir avec les caractères valides
   chars.forEach((char, index) => {
     fieldValues.value[index] = char.toUpperCase()
   })
-  
-  // Remplir les champs restants avec des chaînes vides
-  for (let i = chars.length; i < props.length; i++) {
-    fieldValues.value[i] = ''
-  }
   
   const completeValue = fieldValues.value.join('')
   emit('update:modelValue', completeValue)
@@ -209,7 +224,7 @@ const handlePaste = (event: ClipboardEvent) => {
   }
   
   // Focus sur le dernier champ rempli ou le premier vide
-  const nextIndex = Math.min(chars.length, props.length - 1)
+  const nextIndex = chars.length < props.length ? chars.length : props.length - 1
   nextTick(() => {
     focusField(nextIndex)
   })

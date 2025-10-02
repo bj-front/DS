@@ -28,6 +28,8 @@
         @input="handleInput"
         @change="handleChange"
         @keypress="handleKeypress"
+        @keydown="handleKeydown"
+        @paste="handlePaste"
       />
       
       <!-- Validation / leading icon -->
@@ -151,6 +153,8 @@ const emit = defineEmits<{
   'blur': [event: FocusEvent]
   'input': [event: Event]
   'change': [event: Event]
+  'keydown': [event: KeyboardEvent]
+  'paste': [event: ClipboardEvent]
 }>()
 
 // Références
@@ -270,6 +274,14 @@ const handleKeypress = (event: KeyboardEvent) => {
       }
     }
   }
+}
+
+const handleKeydown = (event: KeyboardEvent) => {
+  emit('keydown', event)
+}
+
+const handlePaste = (event: ClipboardEvent) => {
+  emit('paste', event)
 }
 
 // Helpers number
