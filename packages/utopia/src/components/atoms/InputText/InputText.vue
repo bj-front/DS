@@ -13,10 +13,11 @@
         ref="inputRef"
         v-model="inputValue"
         :type="computedType"
-        :inputmode="inputmode"
+        :inputmode="computedInputMode"
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readonly"
+        :maxlength="maxlength"
         class="utopia-inputtext__field"
         :class="fieldClasses"
         :min="min"
@@ -168,6 +169,17 @@ const computedType = computed(() => {
   return props.type
 })
 
+const computedInputMode = computed(() => {
+  // Si inputmode est fourni explicitement, l'utiliser
+  if (props.inputmode) {
+    return props.inputmode
+  }
+  // Sinon, logique automatique : numeric pour type number
+  if (props.type === 'number') {
+    return 'numeric'
+  }
+  return undefined
+})
 
 // Classes CSS
 const inputtextClasses = computed(() => ({

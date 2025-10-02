@@ -17,6 +17,7 @@
                  v-model="code2FA"
                  label="Code de vérification"
                  :length="6"
+                 inputmode="numeric"
                  type="number"
                  size="medium"
                  auto-focus
@@ -30,6 +31,7 @@
               <InputCode
                 v-model="codeAlpha"
                 label="Code d'accès"
+                inputmode="text"
                 :length="4"
                 type="text"
                 size="medium"
