@@ -6,7 +6,7 @@
     </label>
     
     <!-- Input container -->
-    <div class="utopia-inputtext__container">
+    <div class="utopia-inputtext__container_in">
       <!-- Input field -->
       <input
         :id="inputId"
@@ -104,6 +104,10 @@
 <script setup lang="ts">
 import { computed, nextTick, ref } from 'vue'
 import { Icon } from '../Icon'
+
+defineOptions({
+  inheritAttrs: false
+})
 
 interface Props {
   modelValue?: string
@@ -342,7 +346,7 @@ watch(() => props.modelValue, (newValue) => {
 }
 
 /* Container */
-.utopia-inputtext__container {
+.utopia-inputtext__container_in {
   position: relative;
   display: flex;
   align-items: center;
