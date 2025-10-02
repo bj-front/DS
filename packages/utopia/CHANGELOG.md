@@ -1,5 +1,14 @@
 # @club-employes/utopia
 
+## 4.19.0
+
+### Minor Changes
+
+- 779c88f: Updates from branch version/v4.18.0:
+  - Design system components updated
+- 971fa65: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+
 ## 4.18.0
 
 ### Minor Changes
