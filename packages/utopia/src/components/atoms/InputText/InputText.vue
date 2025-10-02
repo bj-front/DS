@@ -13,7 +13,7 @@
         ref="inputRef"
         v-model="inputValue"
         :type="computedType"
-        :inputmode="computedInputMode"
+        :inputmode="inputmode"
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readonly"
