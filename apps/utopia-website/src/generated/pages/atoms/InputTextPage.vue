@@ -207,6 +207,98 @@
         </div>
       </div>
 
+      <!-- Icônes cliquables -->
+      <div class="showcase-item">
+        <h3>Icônes cliquables</h3>
+        <p>Champs avec icônes interactives permettant d'effectuer des actions au clic. Les icônes peuvent être positionnées à gauche ou à droite.</p>
+        
+        <div class="input-demo">
+          <div class="input-group">
+            <h4>Mot de passe avec toggle</h4>
+            <InputText 
+              v-model="passwordValue"
+              :type="showPassword ? 'text' : 'password'"
+              label="Mot de passe"
+              :icon="showPassword ? 'Eye-off' : 'Eye'"
+              icon-position="right"
+              icon-clickable
+              placeholder="Votre mot de passe"
+              @icon-click="togglePasswordVisibility"
+            />
+            <div class="demo-info">
+              <strong>Type:</strong> {{ showPassword ? 'text' : 'password' }} | <strong>Valeur:</strong> {{ passwordValue || 'Aucune' }}
+            </div>
+          </div>
+          
+          <div class="input-group">
+            <h4>Recherche avec action</h4>
+            <InputText 
+              v-model="searchValue"
+              label="Rechercher"
+              icon="Search"
+              icon-position="left"
+              icon-clickable
+              placeholder="Tapez votre recherche..."
+              @icon-click="performSearch"
+            />
+            <div class="demo-info">
+              <strong>Dernière recherche:</strong> {{ lastSearch || 'Aucune' }}
+            </div>
+          </div>
+          
+          <div class="input-group">
+            <h4>Email avec vérification</h4>
+            <InputText 
+              v-model="emailValue"
+              type="email"
+              label="Email"
+              icon="Mail"
+              icon-position="right"
+              icon-clickable
+              placeholder="votre@email.com"
+              @icon-click="sendVerification"
+            />
+            <div class="demo-info">
+              <strong>Email:</strong> {{ emailValue || 'Aucun' }} | <strong>Dernière action:</strong> {{ lastAction || 'Aucune' }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Positions d'icônes -->
+      <div class="showcase-item">
+        <h3>Positions d'icônes</h3>
+        <p>Comparaison des positions d'icônes (gauche vs droite) avec fonctionnalité cliquable.</p>
+        
+        <div class="input-demo">
+          <div class="input-group">
+            <h4>Icône à gauche</h4>
+            <InputText 
+              v-model="leftIconValue"
+              label="Icône gauche"
+              icon="Search"
+              icon-position="left"
+              icon-clickable
+              placeholder="Icône à gauche"
+              @icon-click="() => handleIconClick('gauche')"
+            />
+          </div>
+          
+          <div class="input-group">
+            <h4>Icône à droite</h4>
+            <InputText 
+              v-model="rightIconValue"
+              label="Icône droite"
+              icon="Search"
+              icon-position="right"
+              icon-clickable
+              placeholder="Icône à droite"
+              @icon-click="() => handleIconClick('droite')"
+            />
+          </div>
+        </div>
+      </div>
+
       <!-- Mode code -->
       <div class="showcase-item">
         <h3>Mode code</h3>
@@ -381,6 +473,29 @@
   placeholder="Prénom"
   state="completed"
   model-value="Prénom"
+/&gt;
+
+&lt;!-- Avec icône cliquable --&gt;
+&lt;InputText 
+  v-model="password"
+  :type="showPassword ? 'text' : 'password'"
+  label="Mot de passe"
+  :icon="showPassword ? 'Eye-off' : 'Eye'"
+  icon-position="right"
+  icon-clickable
+  placeholder="Votre mot de passe"
+  @icon-click="togglePasswordVisibility"
+/&gt;
+
+&lt;!-- Icône à gauche --&gt;
+&lt;InputText 
+  v-model="searchQuery"
+  label="Rechercher"
+  icon="Search"
+  icon-position="left"
+  icon-clickable
+  placeholder="Tapez votre recherche..."
+  @icon-click="performSearch"
 /&gt;</code></pre>
         </details>
       </div>
@@ -454,6 +569,18 @@
                 <td>Nom de l'icône à afficher</td>
               </tr>
               <tr>
+                <td><code>iconPosition</code></td>
+                <td><code>'left' | 'right'</code></td>
+                <td><code>'right'</code></td>
+                <td>Position de l'icône dans l'input</td>
+              </tr>
+              <tr>
+                <td><code>iconClickable</code></td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Rend l'icône cliquable</td>
+              </tr>
+              <tr>
                 <td><code>message</code></td>
                 <td><code>string</code></td>
                 <td><code>''</code></td>
@@ -514,6 +641,11 @@
                 <td><code>Event</code></td>
                 <td>Émis quand la valeur change et le champ perd le focus</td>
               </tr>
+              <tr>
+                <td><code>icon-click</code></td>
+                <td><code>MouseEvent</code></td>
+                <td>Émis lors du clic sur l'icône (si <code>iconClickable</code> est <code>true</code>)</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -563,6 +695,46 @@ const codeAlphaMessage = computed(() => {
   if (codeAlpha.value.length === 0) return ''
   return codeAlphaState.value === 'valid' ? 'Code alphanumérique valide' : 'Lettres et chiffres uniquement'
 })
+
+// Variables pour les icônes cliquables
+const passwordValue = ref('')
+const showPassword = ref(false)
+const searchValue = ref('')
+const lastSearch = ref('')
+const emailValue = ref('')
+const lastAction = ref('')
+const leftIconValue = ref('')
+const rightIconValue = ref('')
+
+// Fonctions pour les icônes cliquables
+const togglePasswordVisibility = (): void => {
+  showPassword.value = !showPassword.value
+}
+
+const performSearch = (): void => {
+  if (searchValue.value) {
+    lastSearch.value = searchValue.value
+    // Recherche effectuée - logique métier ici
+  }
+}
+
+const sendVerification = (): void => {
+  if (emailValue.value) {
+    lastAction.value = `Vérification envoyée à ${emailValue.value}`
+    // Vérification envoyée - logique métier ici
+  } else {
+    lastAction.value = 'Veuillez saisir un email'
+  }
+}
+
+const handleIconClick = (position: string): void => {
+  // Clic sur l'icône - logique métier ici
+  if (position === 'gauche') {
+    leftIconValue.value = `Clic gauche - ${new Date().toLocaleTimeString()}`
+  } else {
+    rightIconValue.value = `Clic droite - ${new Date().toLocaleTimeString()}`
+  }
+}
 </script>
 
 <style scoped>

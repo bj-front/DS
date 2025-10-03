@@ -7,6 +7,36 @@
     
     <!-- Input container -->
     <div class="utopia-inputtext__container_in">
+      <!-- Icon gauche (si position = left) -->
+      <div 
+        v-if="(icon || state === 'valid' || state === 'error') && iconPosition === 'left'" 
+        class="utopia-inputtext__icon utopia-inputtext__icon--left"
+        :class="{ 'utopia-inputtext__icon--clickable': iconClickable }"
+        @click="handleIconClick"
+      >
+        <Icon 
+          v-if="state === 'valid'" 
+          name="Check" 
+          class="utopia-inputtext__icon--valid"
+          stroke-width="2"
+          color="success"
+        />
+        <Icon 
+          v-else-if="state === 'error'" 
+          name="Alert-triangle" 
+          class="utopia-inputtext__icon--error"
+          stroke-width="2"
+          color="danger"
+        />
+        <Icon 
+          v-else-if="icon" 
+          :name="icon" 
+          class="utopia-inputtext__icon--default"
+          stroke-width="2"
+          color="current"
+        />
+      </div>
+
       <!-- Input field -->
       <input
         :id="inputId"
@@ -32,8 +62,13 @@
         @paste="handlePaste"
       />
       
-      <!-- Validation / leading icon -->
-      <div v-if="icon || state === 'valid' || state === 'error'" class="utopia-inputtext__icon">
+      <!-- Icon droite (si position = right) -->
+      <div 
+        v-if="(icon || state === 'valid' || state === 'error') && iconPosition === 'right'" 
+        class="utopia-inputtext__icon utopia-inputtext__icon--right"
+        :class="{ 'utopia-inputtext__icon--clickable': iconClickable }"
+        @click="handleIconClick"
+      >
         <Icon 
           v-if="state === 'valid'" 
           name="Check" 
@@ -122,6 +157,8 @@ interface Props {
   disabled?: boolean
   readonly?: boolean
   icon?: string
+  iconPosition?: 'left' | 'right'
+  iconClickable?: boolean
   message?: string
   required?: boolean
   min?: number
@@ -141,6 +178,8 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   readonly: false,
   icon: '',
+  iconPosition: 'right',
+  iconClickable: false,
   message: '',
   required: false,
   step: 1,
@@ -155,6 +194,7 @@ const emit = defineEmits<{
   'change': [event: Event]
   'keydown': [event: KeyboardEvent]
   'paste': [event: ClipboardEvent]
+  'icon-click': [event: MouseEvent]
 }>()
 
 // Références
@@ -196,11 +236,15 @@ const inputtextClasses = computed(() => ({
   'utopia-inputtext--disabled': props.disabled,
   'utopia-inputtext--with-icon': props.icon || props.state === 'valid' || props.state === 'error',
   'utopia-inputtext--with-message': props.message,
-  'utopia-inputtext--code': props.isCode
+  'utopia-inputtext--code': props.isCode,
+  'utopia-inputtext--icon-left': props.iconPosition === 'left' && (props.icon || props.state === 'valid' || props.state === 'error'),
+  'utopia-inputtext--icon-right': props.iconPosition === 'right' && (props.icon || props.state === 'valid' || props.state === 'error')
 }))
 
 const fieldClasses = computed(() => ({
   'utopia-inputtext__field--with-icon': props.icon || props.state === 'valid' || props.state === 'error',
+  'utopia-inputtext__field--with-icon-left': props.iconPosition === 'left' && (props.icon || props.state === 'valid' || props.state === 'error'),
+  'utopia-inputtext__field--with-icon-right': props.iconPosition === 'right' && (props.icon || props.state === 'valid' || props.state === 'error'),
   'utopia-inputtext__field--number': props.type === 'number',
   'utopia-inputtext__field--code': props.isCode,
   'utopia-inputtext__field--numeric-text': props.type === 'number' && props.maxlength !== undefined && props.isCode
@@ -282,6 +326,12 @@ const handleKeydown = (event: KeyboardEvent) => {
 
 const handlePaste = (event: ClipboardEvent) => {
   emit('paste', event)
+}
+
+const handleIconClick = (event: MouseEvent) => {
+  if (props.iconClickable && !props.disabled && !props.readonly) {
+    emit('icon-click', event)
+  }
 }
 
 // Helpers number
@@ -448,16 +498,54 @@ watch(() => props.modelValue, (newValue) => {
   padding-right: calc(var(--spacing-4, 16px) + 20px + var(--spacing-2, 8px));
 }
 
+.utopia-inputtext__field--with-icon-left {
+  padding-left: calc(var(--spacing-4, 16px) + 20px + var(--spacing-2, 8px));
+}
+
+.utopia-inputtext__field--with-icon-right {
+  padding-right: calc(var(--spacing-4, 16px) + 20px + var(--spacing-2, 8px));
+}
+
 /* Icon */
 .utopia-inputtext__icon {
   position: absolute;
-  right: var(--spacing-4, 16px);
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
   width: 20px;
   height: 20px;
   pointer-events: none;
+  z-index: 1;
+}
+
+.utopia-inputtext__icon--left {
+  left: var(--spacing-4, 16px);
+}
+
+.utopia-inputtext__icon--right {
+  right: var(--spacing-4, 16px);
+}
+
+.utopia-inputtext__icon--clickable {
+  pointer-events: auto;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.utopia-inputtext__icon--clickable:hover {
+  background-color: var(--theme-colors-surface-secondary, rgba(0,0,0,0.04));
+}
+
+.utopia-inputtext__icon--clickable:active {
+  background-color: var(--theme-colors-surface-secondary, rgba(0,0,0,0.06));
+}
+
+.utopia-inputtext--disabled .utopia-inputtext__icon--clickable {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 /* Custom stepper */
@@ -613,14 +701,25 @@ watch(() => props.modelValue, (newValue) => {
   font-size: var(--font-size-sm, 14px);
 }
 
-.utopia-inputtext--small .utopia-inputtext__field--with-icon {
+.utopia-inputtext--small .utopia-inputtext__field--with-icon-left {
+  padding-left: calc(var(--spacing-3, 12px) + 16px + var(--spacing-1, 4px));
+}
+
+.utopia-inputtext--small .utopia-inputtext__field--with-icon-right {
   padding-right: calc(var(--spacing-3, 12px) + 16px + var(--spacing-1, 4px));
 }
 
 .utopia-inputtext--small .utopia-inputtext__icon {
-  right: var(--spacing-3, 12px);
   width: 16px;
   height: 16px;
+}
+
+.utopia-inputtext--small .utopia-inputtext__icon--left {
+  left: var(--spacing-3, 12px);
+}
+
+.utopia-inputtext--small .utopia-inputtext__icon--right {
+  right: var(--spacing-3, 12px);
 }
 
 .utopia-inputtext--large .utopia-inputtext__field {
@@ -628,14 +727,25 @@ watch(() => props.modelValue, (newValue) => {
   font-size: var(--font-size-lg, 18px);
 }
 
-.utopia-inputtext--large .utopia-inputtext__field--with-icon {
+.utopia-inputtext--large .utopia-inputtext__field--with-icon-left {
+  padding-left: calc(var(--spacing-5, 20px) + 24px + var(--spacing-3, 12px));
+}
+
+.utopia-inputtext--large .utopia-inputtext__field--with-icon-right {
   padding-right: calc(var(--spacing-5, 20px) + 24px + var(--spacing-3, 12px));
 }
 
 .utopia-inputtext--large .utopia-inputtext__icon {
-  right: var(--spacing-5, 20px);
   width: 24px;
   height: 24px;
+}
+
+.utopia-inputtext--large .utopia-inputtext__icon--left {
+  left: var(--spacing-5, 20px);
+}
+
+.utopia-inputtext--large .utopia-inputtext__icon--right {
+  right: var(--spacing-5, 20px);
 }
 
 /* Dark mode */
@@ -656,6 +766,10 @@ watch(() => props.modelValue, (newValue) => {
   
   .utopia-inputtext__stepper-btn:hover:not(:disabled) {
     background: rgba(255,255,255,0.06);
+  }
+  
+  .utopia-inputtext__icon--clickable:hover {
+    background-color: rgba(255,255,255,0.06);
   }
   
   .utopia-inputtext--disabled .utopia-inputtext__field {

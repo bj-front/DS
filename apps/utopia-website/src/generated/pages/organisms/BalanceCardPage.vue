@@ -218,6 +218,7 @@
               expiration-date="2024-01-15"
               currency="EUR"
               disabled
+              expired-label="Expirée le"
             />
           </div>
         </div>
