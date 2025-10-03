@@ -1,5 +1,54 @@
 # @club-employes/utopia
 
+## 4.21.0
+
+### Minor Changes
+
+- 8508a95: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+- 8508a95: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+- 24f8199: Updates from branch version/v4.20.0:
+  - Design system components updated
+- 8508a95: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+
+## 4.20.0
+
+### Minor Changes
+
+- f68a497: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+- 493a126: Updates from branch version/v4.19.0:
+  - Design system components updated
+- f68a497: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+
+## 4.19.0
+
+### Minor Changes
+
+- 779c88f: Updates from branch version/v4.18.0:
+  - Design system components updated
+- 971fa65: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+
+## 4.18.0
+
+### Minor Changes
+
+- e02c89f: Updates from branch bj/inputcode:
+  - Design system components updated
+- 796dd6b: Updates from branch version/v4.17.0:
+  - Design system components updated
+
+### Patch Changes
+
+- e02c89f: Fix missing computedInputMode in InputText component
+
+  - Add missing computedInputMode computed property
+  - Ensure inputmode attribute is properly rendered on input elements
+
 ## 4.17.0
 
 ### Minor Changes
