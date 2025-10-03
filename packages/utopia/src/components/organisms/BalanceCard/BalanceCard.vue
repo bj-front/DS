@@ -79,7 +79,7 @@
       <!-- Statut expiré pour les campagnes désactivées -->
       <div v-else class="utopia-cardcampaign__expired-content">
         <div class="utopia-cardcampaign__expired-date">
-          Expiré le {{ formattedExpirationDate }}
+          {{ expiredText }} {{ formattedExpirationDate }}
         </div>
       </div>
     </div>
@@ -103,6 +103,7 @@ interface Props {
   actionable?: () => void
   language?: 'fr' | 'en'
   currency?: string
+  expiredLabel?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -110,7 +111,8 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'medium',
   disabled: false,
   language: 'fr',
-  currency: 'EUR'
+  currency: 'EUR',
+  expiredLabel: ''
 })
 
 // Imports des images
@@ -183,14 +185,21 @@ const handleClick = () => {
 // Traductions selon la langue
 const translations = computed(() => ({
   fr: {
-    expiresOn: 'Expire le'
+    expiresOn: 'Expire le',
+    expiredOn: 'Expirée le'
   },
   en: {
-    expiresOn: 'Expires on'
+    expiresOn: 'Expires on',
+    expiredOn: 'Expired on'
   }
 }))
 
 const currentTranslations = computed(() => translations.value[props.language])
+
+// Label "Expiré" avec possibilité de surcharge par le parent
+const expiredText = computed(() => {
+  return props.expiredLabel || currentTranslations.value.expiredOn
+})
 
 // Gestion du tooltip personnalisé
 const titleRef = ref<HTMLElement>()
