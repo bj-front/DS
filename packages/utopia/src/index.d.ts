@@ -252,6 +252,11 @@ export declare const gifteoDark: ThemeConfig
 // Composable types
 export type BrandTheme = 'club-employes' | 'gifteo'
 export type ThemeMode = 'light' | 'dark'
+export type ThemeName = 
+  | 'club-employes-light'
+  | 'club-employes-dark'
+  | 'gifteo-light'
+  | 'gifteo-dark'
 
 export interface UseThemeReturn {
   currentTheme: ComputedRef<ThemeConfig>
@@ -259,10 +264,14 @@ export interface UseThemeReturn {
   currentMode: ComputedRef<ThemeMode>
   currentBrandName: ComputedRef<string>
   availableBrands: ComputedRef<Array<{ key: BrandTheme; name: string }>>
+  menuCollapsed: ComputedRef<boolean>
+  isBrandLocked: ComputedRef<boolean>
   toggleBrand: () => void
   toggleMode: () => void
   setBrand: (brand: BrandTheme) => void
   setMode: (mode: ThemeMode) => void
+  toggleMenuCollapsed: () => void
+  setMenuCollapsed: (collapsed: boolean) => void
 }
 
 export interface UseFaviconReturn {
@@ -274,6 +283,12 @@ export interface UseFaviconReturn {
 // Composable exports
 export declare function useTheme(): UseThemeReturn
 export declare function useFavicon(): UseFaviconReturn
+
+// Theme initialization exports
+export declare function initializeTheme(themeName: string): Promise<void>
+export declare function getActiveTheme(): ThemeName | null
+export declare function isValidThemeName(themeName: string): themeName is ThemeName
+export declare function unlockBrand(): void
 
 // Type exports
 export type BadgeVariant = 'default' | 'success' | 'warning' | 'danger'

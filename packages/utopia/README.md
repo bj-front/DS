@@ -175,6 +175,53 @@ const toggleTheme = () => {
 </script>
 ```
 
+## 🌍 Domain-Based Theme Initialization (No FOUC)
+
+For multi-tenant applications with different domains, you can initialize the theme **before** Vue mounts to prevent Flash of Unstyled Content (FOUC):
+
+```typescript
+// main.ts
+import { createApp } from 'vue'
+import { initializeTheme } from '@club-employes/utopia'
+import '@club-employes/utopia/styles'
+import App from './App.vue'
+
+// Detect theme from domain
+function getThemeFromDomain(): string {
+  const hostname = window.location.hostname
+  
+  if (hostname.includes('gifteo')) {
+    return 'gifteo-light'
+  }
+  
+  if (hostname.includes('club-employes')) {
+    return 'club-employes-light'
+  }
+  
+  return 'club-employes-light' // Default
+}
+
+// Initialize theme BEFORE creating Vue app
+async function bootstrap() {
+  const themeName = getThemeFromDomain()
+  
+  try {
+    await initializeTheme(themeName)
+    console.log('✅ Theme initialized:', themeName)
+  } catch (error) {
+    console.error('❌ Failed to initialize theme:', error)
+  }
+  
+  // Create Vue app (no FOUC!)
+  const app = createApp(App)
+  app.mount('#app')
+}
+
+bootstrap()
+```
+
+> 📖 **[See full documentation](./THEME_INITIALIZATION.md)** for advanced patterns and examples.
+
 ## 📦 Package Exports
 
 ```javascript

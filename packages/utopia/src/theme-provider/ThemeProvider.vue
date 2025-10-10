@@ -117,7 +117,38 @@ provide('theme', {
 
 // Précharger tous les thèmes disponibles au montage
 onMounted(async () => {
-  // Vérifier si un thème par défaut est déjà chargé
+  // Vérifier si un thème a été préchargé via initializeTheme()
+  const preloadedThemeElement = document.querySelector('style[data-theme-preloaded]')
+  const preloadedTheme = preloadedThemeElement?.getAttribute('data-theme-preloaded')
+  
+  // Si le thème actuel a déjà été préchargé, ne pas le recharger
+  if (preloadedTheme === themeName.value) {
+    console.log('✅ Theme already preloaded via initializeTheme(), skipping initial injection')
+    
+    // Mettre le CSS préchargé dans le cache pour les transitions futures
+    const cssContent = preloadedThemeElement?.textContent
+    if (cssContent) {
+      cssCache.set(themeName.value, cssContent)
+    }
+    
+    // Précharger les autres thèmes en arrière-plan
+    const commonThemes = [
+      'club-employes-light',
+      'club-employes-dark', 
+      'gifteo-light',
+      'gifteo-dark'
+    ].filter(theme => theme !== themeName.value)
+    
+    Promise.all(
+      commonThemes.map(theme => preloadThemeCSS(theme))
+    ).then(() => {
+      console.log('🚀 Other themes preloaded in cache')
+    })
+    
+    return
+  }
+  
+  // Vérifier si un thème par défaut est déjà chargé (ancien système)
   const defaultThemeLoaded = document.querySelector('style[data-default-theme]')
   
   // Précharger les thèmes les plus courants
