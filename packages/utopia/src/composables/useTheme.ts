@@ -50,10 +50,99 @@ const saveMenuCollapsedToStorage = (collapsed: boolean): void => {
   }
 }
 
-// Global theme state - initialized from localStorage
-const currentBrand = ref<BrandTheme>(getStoredBrand())
-const currentMode = ref<ThemeMode>(getStoredMode())
-const menuCollapsed = ref<boolean>(getStoredMenuCollapsed())
+// Global theme state - will be initialized lazily
+let currentBrand: ReturnType<typeof ref<BrandTheme>> | undefined = undefined
+let currentMode: ReturnType<typeof ref<ThemeMode>> | undefined = undefined
+let menuCollapsed: ReturnType<typeof ref<boolean>> | undefined = undefined
+let isBrandLocked: ReturnType<typeof ref<boolean>> | undefined = undefined
+
+/**
+ * Get the initial brand and mode, checking for preloaded theme first
+ * This is called lazily when useTheme() is first invoked
+ */
+function getInitialTheme(): { brand: BrandTheme; mode: ThemeMode; isLocked: boolean } {
+  // Check if a theme was preloaded via initializeTheme()
+  if (typeof window !== 'undefined') {
+    const preloadedElement = document.querySelector('style[data-theme-preloaded]')
+    const preloadedTheme = preloadedElement?.getAttribute('data-theme-preloaded')
+    
+    if (preloadedTheme) {
+      const lastDashIndex = preloadedTheme.lastIndexOf('-')
+      const brand = preloadedTheme.substring(0, lastDashIndex) as BrandTheme
+      const mode = preloadedTheme.substring(lastDashIndex + 1) as ThemeMode
+      
+      console.log('🎨 useTheme: Using preloaded theme:', { brand, mode })
+      console.log('🔒 Brand is locked (initialized via initializeTheme)')
+      return { brand, mode, isLocked: true }
+    }
+  }
+  
+  // Fallback to localStorage
+  return {
+    brand: getStoredBrand(),
+    mode: getStoredMode(),
+    isLocked: false
+  }
+}
+
+/**
+ * Initialize the global state (called once on first useTheme() invocation)
+ */
+function initializeGlobalState(): void {
+  if (currentBrand !== undefined) return // Already initialized
+  
+  const initialTheme = getInitialTheme()
+  currentBrand = ref<BrandTheme>(initialTheme.brand)
+  currentMode = ref<ThemeMode>(initialTheme.mode)
+  menuCollapsed = ref<boolean>(getStoredMenuCollapsed())
+  isBrandLocked = ref<boolean>(initialTheme.isLocked)
+  
+  // Cast refs for TypeScript (they're guaranteed to be non-undefined after assignment)
+  const brand = currentBrand as ReturnType<typeof ref<BrandTheme>>
+  const mode = currentMode as ReturnType<typeof ref<ThemeMode>>
+  const collapsed = menuCollapsed as ReturnType<typeof ref<boolean>>
+  const locked = isBrandLocked as ReturnType<typeof ref<boolean>>
+  
+  // Listen for unlock events
+  if (typeof window !== 'undefined') {
+    window.addEventListener('utopia:brand-unlocked', () => {
+      locked.value = false
+      console.log('🎨 useTheme: Brand unlocked')
+    })
+  }
+  
+  // Watch for changes and save to localStorage
+  // Don't save brand if it's locked
+  watch(() => brand.value, (newBrand) => {
+    if (!locked.value && newBrand) {
+      saveBrandToStorage(newBrand as BrandTheme)
+    }
+  }, { immediate: false })
+
+  // Mode can always be saved
+  watch(() => mode.value, (newMode) => {
+    if (newMode) {
+      saveModeToStorage(newMode as ThemeMode)
+    }
+  }, { immediate: false })
+
+  watch(() => collapsed.value, (newCollapsed) => {
+    if (newCollapsed !== undefined) {
+      saveMenuCollapsedToStorage(newCollapsed as boolean)
+    }
+  }, { immediate: false })
+}
+
+/**
+ * Assert that global state is initialized (for TypeScript)
+ * After calling this, all global refs are guaranteed to be non-undefined
+ */
+function assertInitialized(): void {
+  if (currentBrand === undefined || currentMode === undefined || 
+      menuCollapsed === undefined || isBrandLocked === undefined) {
+    throw new Error('useTheme: Global state not initialized. This should never happen.')
+  }
+}
 
 // Available themes configuration
 const themes = {
@@ -76,6 +165,7 @@ export function useTheme(): {
   currentBrandName: import('vue').ComputedRef<string>
   availableBrands: import('vue').ComputedRef<Array<{ key: BrandTheme; name: string }>>
   menuCollapsed: import('vue').ComputedRef<boolean>
+  isBrandLocked: import('vue').ComputedRef<boolean>
   toggleBrand: () => void
   toggleMode: () => void
   setBrand: (brand: BrandTheme) => void
@@ -83,57 +173,63 @@ export function useTheme(): {
   toggleMenuCollapsed: () => void
   setMenuCollapsed: (collapsed: boolean) => void
 } {
+  // Initialize global state lazily on first call
+  initializeGlobalState()
+  assertInitialized()
+  
+  // Now we can safely use the refs (they're guaranteed to be initialized)
+  // Use non-null assertions since assertInitialized() guarantees they're defined
+  const brand = currentBrand as ReturnType<typeof ref<BrandTheme>>
+  const mode = currentMode as ReturnType<typeof ref<ThemeMode>>
+  const collapsed = menuCollapsed as ReturnType<typeof ref<boolean>>
+  const locked = isBrandLocked as ReturnType<typeof ref<boolean>>
+  
   // Computed current theme config
   const currentTheme = computed(() => {
-    return themes[currentBrand.value][currentMode.value]
+    return themes[brand.value as BrandTheme][mode.value as ThemeMode]
   })
 
   // Get theme display name
   const currentBrandName = computed(() => {
-    return themes[currentBrand.value].name
+    return themes[brand.value as BrandTheme].name
   })
 
-  // Watch for changes and save to localStorage
-  watch(currentBrand, (newBrand) => {
-    saveBrandToStorage(newBrand)
-  }, { immediate: false })
-
-  watch(currentMode, (newMode) => {
-    saveModeToStorage(newMode)
-  }, { immediate: false })
-
-  watch(menuCollapsed, (collapsed) => {
-    saveMenuCollapsedToStorage(collapsed)
-  }, { immediate: false })
-
-  // Switch between brands
+  // Switch between brands (only if not locked)
   const toggleBrand = (): void => {
-    currentBrand.value = currentBrand.value === 'club-employes' ? 'gifteo' : 'club-employes'
+    if (locked.value) {
+      console.warn('⚠️ Brand is locked and cannot be changed. Brand is determined by the domain.')
+      return
+    }
+    brand.value = brand.value === 'club-employes' ? 'gifteo' : 'club-employes'
   }
 
   // Switch between light/dark modes
   const toggleMode = (): void => {
-    currentMode.value = currentMode.value === 'light' ? 'dark' : 'light'
+    mode.value = mode.value === 'light' ? 'dark' : 'light'
   }
 
-  // Set specific brand
-  const setBrand = (brand: BrandTheme): void => {
-    currentBrand.value = brand
+  // Set specific brand (only if not locked)
+  const setBrand = (newBrand: BrandTheme): void => {
+    if (locked.value) {
+      console.warn('⚠️ Brand is locked and cannot be changed. Brand is determined by the domain.')
+      return
+    }
+    brand.value = newBrand
   }
 
   // Set specific mode
-  const setMode = (mode: ThemeMode): void => {
-    currentMode.value = mode
+  const setMode = (newMode: ThemeMode): void => {
+    mode.value = newMode
   }
 
   // Toggle menu collapsed state
   const toggleMenuCollapsed = (): void => {
-    menuCollapsed.value = !menuCollapsed.value
+    collapsed.value = !collapsed.value
   }
 
   // Set specific menu collapsed state
-  const setMenuCollapsed = (collapsed: boolean): void => {
-    menuCollapsed.value = collapsed
+  const setMenuCollapsed = (newCollapsed: boolean): void => {
+    collapsed.value = newCollapsed
   }
 
   // Get all available brands
@@ -147,11 +243,12 @@ export function useTheme(): {
   return {
     // State
     currentTheme,
-    currentBrand: computed(() => currentBrand.value),
-    currentMode: computed(() => currentMode.value),
+    currentBrand: computed(() => brand.value) as import('vue').ComputedRef<BrandTheme>,
+    currentMode: computed(() => mode.value) as import('vue').ComputedRef<ThemeMode>,
     currentBrandName,
     availableBrands,
-    menuCollapsed: computed(() => menuCollapsed.value),
+    menuCollapsed: computed(() => collapsed.value) as import('vue').ComputedRef<boolean>,
+    isBrandLocked: computed(() => locked.value) as import('vue').ComputedRef<boolean>,
 
     // Actions
     toggleBrand,

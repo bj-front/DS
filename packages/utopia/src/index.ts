@@ -16,7 +16,8 @@ export { clubEmployesDark, clubEmployesLight } from './themes/club-employes'
 export { gifteoDark, gifteoLight } from './themes/gifteo'
 
 // Composables
-export { useFavicon, useScrollShadows, useTheme } from './composables'
+export { getActiveTheme, initializeTheme, isValidThemeName, unlockBrand, useFavicon, useScrollShadows, useTheme } from './composables'
+export type { ThemeName } from './composables/initializeTheme'
 export type { UseScrollShadowsOptions, UseScrollShadowsReturn } from './composables/useScrollShadows'
 export type { BrandTheme, ThemeMode } from './composables/useTheme'
 
