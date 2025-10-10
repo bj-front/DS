@@ -84,14 +84,15 @@ jobs:
           github-token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
           project-type: 'design-system'
 
-  # Job 2: Release automatique (main branch uniquement)
-  release:
-    name: 📦 Release & Publish
+  # Job 2: Create Version PR (main branch with changesets)
+  create-version-pr:
+    name: 📝 Create Version PR
     runs-on: ubuntu-latest
     if: |
       github.ref == 'refs/heads/main' && 
       github.event_name == 'push' &&
-      !contains(github.event.head_commit.message, 'chore: version packages')
+      !contains(github.event.head_commit.message, 'chore: version packages') &&
+      !startsWith(github.event.head_commit.message, '🚀 Release')
     permissions:
       contents: write
       pull-requests: write
@@ -183,43 +184,81 @@ jobs:
             - Changesets consumed
             - Ready to publish to NPM
 
-            This PR will be auto-merged and published to NPM." \
+            **Next steps:**
+            1. Review this PR
+            2. Merge manually when ready
+            3. NPM publish will happen automatically after merge" \
                           --base main \
                           --head "$VERSION_BRANCH"
             
-            # Auto-merge the PR
-            PR_NUMBER=$(gh pr list --head "$VERSION_BRANCH" --json number --jq '.[0].number')
-            gh pr merge "$PR_NUMBER" --auto --squash --delete-branch
+            echo "✅ Version PR created"
+            echo "⚠️ Please review and merge manually: https://github.com/${{ github.repository }}/pulls"
+            echo "ℹ️ NPM publish will happen on next push to main after merge"
             
-            echo "✅ Version PR created and will be auto-merged"
-            
-            # Wait for PR to be merged (with timeout)
-            echo "⏳ Waiting for PR to be merged..."
-            for i in {1..30}; do
-              if gh pr view "$PR_NUMBER" --json state --jq '.state' | grep -q "MERGED"; then
-                echo "✅ PR merged successfully"
-                break
-              fi
-              echo "⏳ Waiting... ($i/30)"
-              sleep 10
-            done
-            
-            # Switch back to main and pull latest
-            git checkout main
-            git pull origin main
+            # Exit successfully - the publish will happen after manual merge
+            exit 0
           else
             echo "ℹ️ No changes to commit"
           fi
-          
-          # Now publish
-          echo "📦 Publishing version $NEW_VERSION..."
-          npm run release
-          
-          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+
+  # Job 3: Publish to NPM (after version PR is merged)
+  publish-npm:
+    name: 📦 Publish to NPM
+    runs-on: ubuntu-latest
+    if: |
+      github.ref == 'refs/heads/main' && 
+      github.event_name == 'push' &&
+      (contains(github.event.head_commit.message, 'chore: version packages') ||
+       startsWith(github.event.head_commit.message, '🚀 Release'))
+    permissions:
+      contents: write
+      id-token: write
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ⚡ Setup Node.js and Cache
+        uses: ./.github/actions/setup-node-cache
+        with:
+          cache-prefix: 'npm-publish'
+
+      - name: 🔧 Configure NPM Registry
+        uses: actions/setup-node@v4
+        with:
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 🏗️ Build Design System
+        uses: ./.github/actions/build-design-system
+
+      - name: 🔐 Configure npm authentication
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 Publish to NPM
+        id: publish
+        run: |
+          echo "📦 Publishing packages to NPM..."
+          NEW_VERSION=$(node -p "require('./packages/utopia/package.json').version")
+          echo "📦 Publishing version: $NEW_VERSION"
+          
+          # Publish to NPM
+          npm run release
+          
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "✅ Successfully published v$NEW_VERSION to NPM"
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📋 Create GitHub Release
         if: steps.publish.outcome == 'success'
@@ -267,9 +306,10 @@ jobs:
             echo "ℹ️ No version information available, skipping GitHub release"
           fi
 
-      - name: 📊 Release Summary
+      - name: 📊 Publish Summary
         if: steps.publish.outcome == 'success'
         run: |
-          echo "🎉 Successfully published packages!"
+          echo "🎉 Successfully published to NPM!"
           VERSION="${{ steps.publish.outputs.new_version }}"
-          echo "Published version: $VERSION"
+          echo "📦 Published version: $VERSION"
+          echo "🔗 NPM: https://www.npmjs.com/package/@club-employes/utopia/v/$VERSION"
