@@ -1,5 +1,30 @@
 # @club-employes/utopia
 
+## 4.24.0
+
+### Minor Changes
+
+- 0c59296: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+- 0c59296: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+- 0c59296: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+- 0c59296: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+- 0c59296: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+- 0c59296: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+- 0c59296: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+- 0c59296: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+- 0c59296: Updates from branch fix/workflow-changeset-trigger:
+  - Design system components updated
+- 4b11b64: Updates from branch version/v4.23.0:
+  - Design system components updated
+
 ## 4.23.0
 
 ### Minor Changes
